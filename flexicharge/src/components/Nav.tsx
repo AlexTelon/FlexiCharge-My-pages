@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import logo from "../assest/logo.svg"
+import loginbtn from "../assest/loginbtn.png"
 
 const Nav = (props: { name: string, setName: (name: string) => void }) => {
     const logout = async () => {
@@ -17,27 +18,27 @@ const Nav = (props: { name: string, setName: (name: string) => void }) => {
 
     if (props.name === '') {
         menu = (
-            <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                <li className="nav-item active">
-                    <Link to="/login" className="nav-link">Login</Link>
+            <ul className="navbar">
+                <li className="nav-item">
+                    <Link to="/login" className="btn btn-success">Login</Link>
                 </li>
                 <li className="nav-item active">
-                    <Link to="/register" className="nav-link">Register</Link>
+                    <Link to="/register" className="btn btn-success">Register</Link>
                 </li>
             </ul>
         )
     } else {
         menu = (
-            <ul className="navbar-nav me-auto mb-2 mb-md-0">
+            <ul className="navbar">
                 <li className="nav-item active">
-                    <Link to="/login" className="nav-link" onClick={logout}>Logout</Link>
+                    <Link to="/login" className="btn btn-danger" onClick={logout}>Logout</Link>
                 </li>
             </ul>
         )
     }
 
     return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <nav className="navbar">
             <div className="container-fluid">
                 <Link to="/" className="navbar-brand">
                 <img src={logo} width="300" height="60" alt="logo"/>

@@ -1,3 +1,8 @@
+body{
+  background-image: url("./assest/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -26,4 +31,12 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+
+
+.navbar{
+  background-color: #292b2a;
+  width:min-content;
+
 }
