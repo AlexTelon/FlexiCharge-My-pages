@@ -1,7 +1,5 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import logo from "../assest/logo.svg"
-import loginbtn from "../assest/loginbtn.png"
+import {Link} from 'react-router-dom';
+import logo from '../assets/logo.svg';
 
 const Nav = (props: { name: string, setName: (name: string) => void }) => {
     const logout = async () => {
@@ -10,13 +8,12 @@ const Nav = (props: { name: string, setName: (name: string) => void }) => {
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
         });
-
         props.setName('');
     }
 
     let menu;
-
-    if (props.name === '') {
+    
+    if (props.name === '' || props.name === undefined) {
         menu = (
             <ul className="navbar">
                 <li className="nav-item">

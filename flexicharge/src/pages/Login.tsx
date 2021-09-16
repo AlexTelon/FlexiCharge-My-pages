@@ -1,5 +1,10 @@
-import React, {SyntheticEvent, useState} from 'react';
-import {Redirect} from "react-router-dom";
+import  { SyntheticEvent, useState } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import { Button, TextField, Grid, Box, Container } from '@material-ui/core'
+import AccountCircle  from '@material-ui/icons/AccountCircle';
+import LockIcon from '@material-ui/icons/Lock';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
 
 const Login = (props: { setName: (name: string) => void }) => {
     const [email, setEmail] = useState('');
@@ -11,7 +16,7 @@ const Login = (props: { setName: (name: string) => void }) => {
 
         const response = await fetch('http://localhost:8000/api/login', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
             body: JSON.stringify({
                 email,
@@ -20,28 +25,88 @@ const Login = (props: { setName: (name: string) => void }) => {
         });
 
         const content = await response.json();
-
-        setRedirect(true);
-        props.setName(content.name);
+        if (!(content.message.includes('Invalid'))) {
+            setRedirect(true)
+            props.setName(content.name)
+        }else
+            alert("Incorrect username or password")
     }
 
     if (redirect) {
-        return <Redirect to="/"/>;
+        return <Redirect to="/" />;
     }
 
     return (
-        <form onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
-            <input type="email" className="form-control" placeholder="Email address" required
-                   onChange={e => setEmail(e.target.value)}
-            />
-
-            <input type="password" className="form-control" placeholder="Password" required
-                   onChange={e => setPassword(e.target.value)}
-            />
-
-            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        </form>
+        <Container className="form-container" component="main" maxWidth="xs">
+            <h2>
+                Log in  
+            </h2>
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <form onSubmit={submit}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <AccountCircle />
+                              </InputAdornment>
+                            ),
+                        }}
+                        onChange={e => setEmail(e.target.value)}
+                        autoFocus
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <LockIcon />
+                              </InputAdornment>
+                            ),
+                        }}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <Button
+                        type="submit"
+                        className="loginButton"
+                        variant="contained"
+                    >   
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            <Link to="/">
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link to="/register">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </form>
+            </Box>
+        </Container>
     );
 };
 

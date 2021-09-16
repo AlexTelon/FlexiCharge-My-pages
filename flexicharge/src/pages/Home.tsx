@@ -1,10 +1,8 @@
-import React from 'react';
-
 const Home = (props: { name: string }) => {
     return (
-        <div>
+        <h2 style={{color: 'white'}}>
             {props.name ? 'Hi ' + props.name : 'You are not logged in'}
-        </div>
+        </h2>
     );
 };
 
