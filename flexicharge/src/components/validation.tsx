@@ -26,8 +26,11 @@ export const ValidationForm = () => {
 
     const validate: any = (fieldValues = values) => {
         // this function will check if the form values are valid
-        let temp: any = { ...errors }
-
+        const temp: any = { ...errors }
+        console.log(temp, "temp")
+        console.log(errors, "errors");
+        
+        
         if ("firstName" in fieldValues)
             temp.firstName = fieldValues.firstName ? "" : "This field is required."
         if ("userName" in fieldValues)
