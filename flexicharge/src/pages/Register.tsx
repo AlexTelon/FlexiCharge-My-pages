@@ -3,7 +3,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
-import { ValidationForm } from '../components/Validation';
+import {Redirect} from 'react-router-dom';
+import { ValidationForm } from '../components/validation';
+
+
+
 
 const inputFieldValues = [
     {
@@ -12,10 +16,17 @@ const inputFieldValues = [
         id: "user-first-name",
         icon: <AccountCircle />
     },
+
     {
         name: "lastName",
         label: "Last Name",
         id: "user-Last-name",
+        icon: <AccountCircle />
+    },
+    {
+        name: "userName",
+        label: "User Name",
+        id: "user-first-name",
         icon: <AccountCircle />
     },
     {
@@ -36,11 +47,18 @@ const inputFieldValues = [
 const Register = () => {
     const {
         handleInputValue,
-        handleFormSubmit,
+        RegisterhandleFormSubmit,
         formIsValid,
-        errors
+        errors,
+        msg,
+        redirect
     } = ValidationForm();
+    console.log("lsfhodshfoisdhf   ", redirect)
 
+    
+    if (redirect) {
+        return <Redirect to="/login"/>;
+    }
     return (
         <Container className="form-container" component="main" maxWidth="xs">
             <h2>
@@ -54,8 +72,10 @@ const Register = () => {
                     alignItems: 'center',
                 }}
             >
-                <form autoComplete="off" onSubmit={handleFormSubmit}>
+        
+                <form autoComplete="off" onSubmit={RegisterhandleFormSubmit}>
                     {inputFieldValues.map((inputFieldValue, index) => {
+                       
                         return (
                             <TextField
                                 key={index}
@@ -80,7 +100,9 @@ const Register = () => {
                                     helperText: errors[inputFieldValue.name]
                                 })}
                             />
+
                         );
+
                     })}
                     <Box color="text.secondary">Password must at least have 8 characters including a number and both lowercase and uppercase letter.</Box>
                     <Button
@@ -90,9 +112,14 @@ const Register = () => {
                         disabled={!formIsValid()}
                     >
                     </Button>
+                    <Box color="red">{msg}</Box>
+
                 </form>
-            </Box>
+
+            </Box>  
+            
         </Container>
+
     )
 };
 
