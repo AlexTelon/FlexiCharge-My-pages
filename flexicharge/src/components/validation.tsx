@@ -1,20 +1,28 @@
 import { useState } from 'react';
-import { Redirect } from 'react-router';
+import AuthService from './AuthService';
+import {Redirect} from 'react-router-dom';
+
 
 const initialFormValues = {
+    userName: "",
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     formSubmitted: false,
-    success: false
 }
 
 
 export const ValidationForm = () => {
     const [values, setValues] = useState(initialFormValues);
     const [errors, setErrors] = useState({} as any);
+    const [msg, setMsg] = useState("");
     const [redirect, setRedirect] = useState(false);
+
+
+
+
+
 
     const validate: any = (fieldValues = values) => {
         // this function will check if the form values are valid
@@ -22,9 +30,11 @@ export const ValidationForm = () => {
 
         if ("firstName" in fieldValues)
             temp.firstName = fieldValues.firstName ? "" : "This field is required."
+        if ("userName" in fieldValues)
+            temp.userName = fieldValues.userName ? "" : "This field is required."
 
         if ("lastName" in fieldValues)
-            temp.lastName = fieldValues.lastName ? "" : "This field is required."    
+            temp.lastName = fieldValues.lastName ? "" : "This field is required."
 
         if ("email" in fieldValues) {
             temp.email = fieldValues.email ? "" : "This field is required."
@@ -40,8 +50,8 @@ export const ValidationForm = () => {
                 temp.password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(fieldValues.password)
                     ? ""
                     : "Password must meet the requirements."
-        } 
-        
+        }
+
 
         setErrors({
             ...temp
@@ -60,7 +70,17 @@ export const ValidationForm = () => {
         // this function will check if the form values and return a boolean value
         const isValid =
             fieldValues.firstName &&
+            fieldValues.userName &&
             fieldValues.lastName &&
+            fieldValues.email &&
+            fieldValues.password &&
+            Object.values(errors).every((x) => x === "");
+        return isValid;
+    }
+    const loginformIsValid = (fieldValues = values) => {
+        // this function will check if the form values and return a boolean value
+        const isValid =
+
             fieldValues.email &&
             fieldValues.password &&
             Object.values(errors).every((x) => x === "");
@@ -68,39 +88,73 @@ export const ValidationForm = () => {
         return isValid;
     }
 
-    const handleFormSubmit = async (e: any) => {
+    const RegisterhandleFormSubmit = async (e: any) => {
+
         // this function will be triggered by the submit event
 
         e.preventDefault();
 
         const isValid = Object.values(errors).every((x) => x === "") && formIsValid();
-        
+
         if (isValid) {
-            const { firstName, lastName, email, password} = values
-            
-            await fetch('http://localhost:8000/api/register', {
+            const { userName, firstName, lastName, email, password } = values
+            setRedirect(true)
+            AuthService.register(
+                firstName,
+                lastName,
+                userName,
+                email,
+                password
+            ).then(
+                response => {
+                    console.log(response, "sajdhasdhsa", firstName)
+                    setMsg(response.data.message)
+                },
+                error => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+                    setMsg(resMessage)
+                }
+            );
+        }
+        console.log("i am here bitches   ",redirect)
+
+    }
+    const LogInhandleFormSubmit = async (e: any) => {
+        // this function will be triggered by the submit event
+
+        e.preventDefault();
+
+        const isValid = Object.values(errors).every((x) => x === "") && loginformIsValid();
+
+        if (isValid) {
+            const { email, password } = values
+
+            await fetch('http://localhost:8000/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    firstName: firstName,
-                    lastName: lastName,
                     email: email,
                     password: password
                 })
             });
-            setRedirect(true)
         }
-        if (redirect) {
-            return <Redirect to="/login"/>
-        }
-
     }
+
 
     return {
         values,
         errors,
         handleInputValue,
-        handleFormSubmit,
+        loginformIsValid,
+        RegisterhandleFormSubmit,
+        LogInhandleFormSubmit,
         formIsValid,
+        msg,
+        redirect
     };
 }
