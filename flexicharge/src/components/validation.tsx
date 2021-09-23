@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import AuthService from './AuthService';
-import {Redirect} from 'react-router-dom';
 
 
 const initialFormValues = {

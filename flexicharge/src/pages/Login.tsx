@@ -21,7 +21,7 @@ const inputFieldValues = [
         icon: <LockIcon />
     }
 ];
-const Login = (props: { setName: (name: string) => void }) => {
+const Login = () => {
         const{
             handleInputValue, 
             LogInhandleFormSubmit,
