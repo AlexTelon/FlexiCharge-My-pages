@@ -100,7 +100,7 @@ const Login = (props: { setName: (name: string) => void }) => {
                         </Grid>
                         <Grid item>
                             <Link to="/register">
-                                {"Don't have an account? Sign Up"}
+                                No account? Sign Up
                             </Link>
                         </Grid>
                     </Grid>

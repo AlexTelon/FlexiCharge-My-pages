@@ -1,9 +1,9 @@
 import { Button, TextField, Box, Container } from '@material-ui/core'
-import { ValidationForm } from '../components/validation';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
+import { ValidationForm } from '../components/Validation';
 
 const inputFieldValues = [
     {
