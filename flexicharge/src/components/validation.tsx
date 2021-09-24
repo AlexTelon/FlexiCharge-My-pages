@@ -8,6 +8,7 @@ const initialFormValues = {
     lastName: "",
     email: "",
     password: "",
+    code: "",
     formSubmitted: false,
 }
 
@@ -26,12 +27,14 @@ export const ValidationForm = () => {
     const validate: any = (fieldValues = values) => {
         // this function will check if the form values are valid
         const temp: any = { ...errors }
-        console.log(temp, "temp")
-        console.log(errors, "errors");
-        
-        
+
+
+
         if ("firstName" in fieldValues)
             temp.firstName = fieldValues.firstName ? "" : "This field is required."
+        if ("code" in fieldValues)
+            temp.code = fieldValues.code ? "" : "This field is required."
+
         if ("userName" in fieldValues)
             temp.userName = fieldValues.userName ? "" : "This field is required."
 
@@ -90,6 +93,17 @@ export const ValidationForm = () => {
         return isValid;
     }
 
+    const verifyFormisValid = (fieldValues = values) => {
+        const isValid =
+
+            fieldValues.userName &&
+            fieldValues.code &&
+            Object.values(errors).every((x) => x === "");
+
+        return isValid;
+
+    }
+
     const RegisterhandleFormSubmit = async (e: any) => {
 
         // this function will be triggered by the submit event
@@ -100,7 +114,6 @@ export const ValidationForm = () => {
 
         if (isValid) {
             const { userName, firstName, lastName, email, password } = values
-            setRedirect(true)
             AuthService.register(
                 firstName,
                 lastName,
@@ -111,6 +124,8 @@ export const ValidationForm = () => {
                 response => {
                     console.log(response, "sajdhasdhsa", firstName)
                     setMsg(response.data.message)
+                    setRedirect(true)
+
                 },
                 error => {
                     const resMessage =
@@ -119,13 +134,40 @@ export const ValidationForm = () => {
                             error.response.data.message) ||
                         error.message ||
                         error.toString();
+                        console.log("i am here     ",resMessage)
                     setMsg(resMessage)
                 }
             );
         }
-        console.log("i am here bitches   ",redirect)
+    }
+    const verifyUser = async (e: any) => {
+        e.preventDefault();
+        const isValid = Object.values(errors).every((x) => x === "") && formIsValid();
+
+        if (isValid) {
+            const { userName, code } = values
+            setRedirect(true)
+            AuthService.verify(
+                userName,
+                code
+            ).then(
+                response => {
+                    console.log(response, "sajdhasdhsa", code)
+                },
+                error => {
+                    const verifyMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+                        console.log(verifyMessage)
+                }
+            );
+        }
 
     }
+
     const LogInhandleFormSubmit = async (e: any) => {
         // this function will be triggered by the submit event
 
@@ -148,15 +190,18 @@ export const ValidationForm = () => {
     }
 
 
+
     return {
         values,
         errors,
+        msg,
         handleInputValue,
         loginformIsValid,
+        verifyFormisValid,
         RegisterhandleFormSubmit,
         LogInhandleFormSubmit,
         formIsValid,
-        msg,
+        verifyUser,
         redirect
     };
 }
