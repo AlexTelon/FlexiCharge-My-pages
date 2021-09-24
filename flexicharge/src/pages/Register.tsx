@@ -53,10 +53,11 @@ const Register = () => {
         msg,
         redirect
     } = ValidationForm();
+    console.log("lsfhodshfoisdhf   ", msg)
 
     
-    if (redirect) {
-        return <Redirect to="/verification"/>;
+    if (!msg && redirect) {
+        return <Redirect to="/login"/>;
     }
     return (
         <Container className="form-container" component="main" maxWidth="xs">
