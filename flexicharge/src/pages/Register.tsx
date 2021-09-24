@@ -53,10 +53,10 @@ const Register = () => {
         msg,
         redirect
     } = ValidationForm();
-    console.log("lsfhodshfoisdhf   ", redirect)
+    console.log("lsfhodshfoisdhf   ", msg)
 
     
-    if (redirect) {
+    if (!msg && redirect) {
         return <Redirect to="/login"/>;
     }
     return (

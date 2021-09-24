@@ -37,9 +37,14 @@ class AuthService {
           username: UserName,
           password: password
         });
+      }
+
+      verify(UserName: string, code: string) {
         
-        
-        
+        return axios.post(API_URL + "verify", {
+          code: code,
+          username: UserName
+        });
       }
     
       getCurrentUser() {
