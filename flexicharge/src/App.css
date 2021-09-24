@@ -14,10 +14,6 @@ h1 {
 	color: whitesmoke;
 }
 
-h2 {
-	/* font: ITC Avant Garde Gothic Std; */
-}
-
 ul {
 	list-style-type: none;
 }
@@ -52,6 +48,19 @@ Button.registerButton {
 
 Button:hover {
 	transform: translateY(-7px);
+}
+
+Button.verifyButton {
+	margin: 1rem;
+	background-color: #78bd76;
+	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+}
+
+Button.verifyButton:hover {
+	transform: translateY(-7px);
+	background-color: #78bd76;
+	border: none;
+	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
 }
 
 .navbar {

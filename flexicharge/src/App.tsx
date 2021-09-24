@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import ChargingSessions from './pages/ChargingSessions';
 import Nav from './components/Nav';
+import VerifyAccount from './pages/VerifyAccount';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/" exact component={() => <Home/> }/>
                     <Route path="/login" component={() => <Login/>}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/verification" component={VerifyAccount}/>
                     <Route path="/charging-sessions" component={ChargingSessions}/>
                 </main>
             </BrowserRouter>

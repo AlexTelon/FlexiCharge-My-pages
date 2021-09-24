@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 
 const Nav = () => {
-    const logout = async () => {
-        await fetch('http://localhost:8000/api/logout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-        });
-    }
+    // const logout = async () => {
+    //     await fetch('http://localhost:8000/api/logout', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         credentials: 'include',
+    //     });
+    // }
 
     let menu;
 
@@ -20,9 +20,9 @@ const Nav = () => {
             <li className="nav-item active">
                 <Link to="/register" className="btn btn-success">Register</Link>
             </li>
-            <li className="nav-item active">
+            {/* <li className="nav-item active">
                 <Link to="/login" className="btn btn-danger" onClick={logout}>Logout</Link>
-            </li>
+            </li> */}
         </ul>
     )
 

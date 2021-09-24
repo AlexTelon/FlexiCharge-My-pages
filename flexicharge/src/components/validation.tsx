@@ -8,6 +8,7 @@ const initialFormValues = {
     lastName: "",
     email: "",
     password: "",
+    verifyCode: "",
     formSubmitted: false,
 }
 
@@ -26,9 +27,6 @@ export const ValidationForm = () => {
     const validate: any = (fieldValues = values) => {
         // this function will check if the form values are valid
         const temp: any = { ...errors }
-        console.log(temp, "temp")
-        console.log(errors, "errors");
-        
         
         if ("firstName" in fieldValues)
             temp.firstName = fieldValues.firstName ? "" : "This field is required."
@@ -109,7 +107,6 @@ export const ValidationForm = () => {
                 password
             ).then(
                 response => {
-                    console.log(response, "sajdhasdhsa", firstName)
                     setMsg(response.data.message)
                 },
                 error => {
@@ -123,9 +120,9 @@ export const ValidationForm = () => {
                 }
             );
         }
-        console.log("i am here bitches   ",redirect)
 
     }
+
     const LogInhandleFormSubmit = async (e: any) => {
         // this function will be triggered by the submit event
 
@@ -147,6 +144,7 @@ export const ValidationForm = () => {
         }
     }
 
+  
 
     return {
         values,
