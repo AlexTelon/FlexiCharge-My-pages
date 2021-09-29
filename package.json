@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@material-ui/lab": "^4.0.0-alpha.60",
-    "axios": "^0.21.4"
-  }
-}
