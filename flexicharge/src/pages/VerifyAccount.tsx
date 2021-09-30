@@ -1,11 +1,10 @@
 import { Button, TextField, Box, Grid } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import LockIcon from "@material-ui/icons/Lock";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { Redirect } from "react-router-dom";
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -14,9 +13,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			alignItems: "center",
 			justifyContent: "center",
 			maxWidth: "40%",
-			minWidth: "20vh",
+			minWidth: "40vh",
 			minHeight: "100vh",
 			margin: "auto",
+			fontWeight: "bolder",
 		},
 		container: {
 			backgroundColor: theme.flexiCharge.primary.white,
@@ -25,12 +25,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: "center",
 			padding: "1rem",
 		},
-		gridItem: {
-			margin: "auto",
+		gridItemInputs: {
+			marginTop: "3rem",
+		},
+		gridItemLabel: {
+			textAlign: "right",
+			marginTop: "3rem",
 		},
 		textField: {
 			marginTop: "1rem",
-			maxWidth: "50%",
+			maxWidth: "80%",
 		},
 		button: {
 			backgroundColor: theme.flexiCharge.accent.primary,
@@ -44,14 +48,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			marginTop: theme.spacing(2),
 			fontWeight: "bolder",
 			fontSize: "inherit",
+			margin: "auto",
 			color: theme.flexiCharge.primary.white,
 		},
 		input: {
 			maxWidth: "5%",
-			marginTop: "3rem",
 			marginRight: ".5rem",
-			minHeight: "2rem",
-			minWidth: "2rem",
+			minHeight: "2.5rem",
+			minWidth: "2.5rem",
+			textAlign: "center",
+			fontWeight: "bolder",
 		},
 	})
 );
@@ -60,12 +66,20 @@ const VerifyAccount = () => {
 	const classes = useStyles();
 	const [code, setCode] = useState(new Array(6).fill(""));
 	const [username, setUsername] = useState("");
+	const [value, setValue] = useState("");
 
 	const handleChange = (element: any, index: Number) => {
 		if (isNaN(element.value)) return false;
 
 		setCode([...code.map((d, idx) => (idx === index ? element.value : d))]);
 
+		if (element.value.length > 1) {
+			console.log(element, "e");
+			element = element.nextSibling;
+			console.log(element, "e2");
+			setValue("2");
+		}
+		console.log(element.value);
 		if (element.nextSibling) {
 			element.nextSibling.focus();
 		}
@@ -84,7 +98,8 @@ const VerifyAccount = () => {
 					autoComplete="off"
 					onSubmit={(e) => verifyHandleFormSubmit(e, username, code)}
 				>
-					<Grid item xs={12} className={classes.gridItem}>
+					<p>Verification code has been sent to your email.</p>
+					<Grid item xs={12}>
 						<TextField
 							InputProps={{
 								startAdornment: (
@@ -93,6 +108,7 @@ const VerifyAccount = () => {
 									</InputAdornment>
 								),
 							}}
+							fullWidth
 							name="username"
 							label="Username"
 							autoComplete="none"
@@ -101,22 +117,26 @@ const VerifyAccount = () => {
 							className={classes.textField}
 						/>
 					</Grid>
-					<Grid item xs={12}>
-						{code.map((data, index) => {
-							return (
-								<input
-									className={classes.input}
-									type="text"
-									name="code"
-									maxLength={1}
-									key={index}
-									value={data}
-									onChange={(e) => handleChange(e.target, index)}
-									onFocus={(e) => e.target.select()}
-								/>
-							);
-						})}
-						<p>{code.join("")}</p>
+					<Grid container>
+						<Grid item xs={2} className={classes.gridItemLabel}>
+							<p>Code:</p>
+						</Grid>
+						<Grid item xs={10} className={classes.gridItemInputs}>
+							{code.map((data, index) => {
+								return (
+									<input
+										className={classes.input}
+										type="text"
+										name="code"
+										maxLength={6}
+										key={index}
+										value={value}
+										onChange={(e) => handleChange(e.target, index)}
+										onFocus={(e) => e.target.select()}
+									/>
+								);
+							})}
+						</Grid>
 						<Button
 							variant="contained"
 							type="submit"

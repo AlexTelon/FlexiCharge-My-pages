@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AuthService from "./AuthService";
-import verusername from "../pages/VerifyAccount";
 
 const initialFormValues = {
 	username: "",
@@ -8,11 +7,8 @@ const initialFormValues = {
 	lastName: "",
 	email: "",
 	password: "",
+	code: "",
 	formSubmitted: false,
-};
-
-const verify = {
-	code: ["", "", "", "", "", ""],
 };
 
 export const ValidationForm = () => {
@@ -31,7 +27,7 @@ export const ValidationForm = () => {
 		validate({ [name]: value });
 	};
 
-	const handleInputValue1 = (e: any) => {
+	const handleInputValues = (e: any) => {
 		const { name, value } = e.target;
 
 		setValues({
@@ -99,9 +95,12 @@ export const ValidationForm = () => {
 			const { username, firstName, lastName, email, password } = values;
 			AuthService.register(firstName, lastName, username, email, password).then(
 				(response) => {
+					console.log(response, "success");
 					setRedirect(true);
 				},
 				(error) => {
+					console.log(error, "errrrrrrrrrrrrrrrrr");
+
 					const resMessage =
 						(error.response &&
 							error.response.data &&
@@ -120,6 +119,7 @@ export const ValidationForm = () => {
 		code: any
 	) => {
 		e.preventDefault();
+
 		const codeVerify = code.join("");
 		AuthService.verify(username, codeVerify).then(
 			(response) => {
@@ -141,6 +141,7 @@ export const ValidationForm = () => {
 		// this function will be triggered by the submit event
 
 		e.preventDefault();
+		console.log("here");
 
 		const { username, password } = values;
 
@@ -158,14 +159,33 @@ export const ValidationForm = () => {
 				setMsg(resMessage);
 			}
 		);
-		// await fetch("http://localhost:8000/api/login", {
-		//     method: "POST",
-		//     headers: { "Content-Type": "application/json" },
-		//     body: JSON.stringify({
-		//         username: username,
-		//         password: password,
-		//     }),
-		// });
+	};
+
+	const ForgotPasswordHandleFormSubmit = async (e: any) => {
+		// this function will be triggered by the submit event
+
+		e.preventDefault();
+		console.log("forgotpassword");
+
+		const { username } = values;
+
+		AuthService.forgotPassword(username).then(
+			(response) => {
+				console.log("success");
+				setRedirect(true);
+			},
+			(error) => {
+				console.log("error");
+
+				const resMessage =
+					(error.response &&
+						error.response.data &&
+						error.response.data.message) ||
+					error.message ||
+					error.toString();
+				setMsg(resMessage);
+			}
+		);
 	};
 
 	return {
@@ -173,11 +193,11 @@ export const ValidationForm = () => {
 		errors,
 		msg,
 		handleInputValue,
-		handleInputValue1,
 		formIsValid,
 		RegisterhandleFormSubmit,
-		LoginHandleFormSubmit,
 		verifyHandleFormSubmit,
+		LoginHandleFormSubmit,
+		ForgotPasswordHandleFormSubmit,
 		redirect,
 	};
 };

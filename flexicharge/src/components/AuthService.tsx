@@ -17,6 +17,12 @@ class AuthService {
 			});
 	}
 
+	forgotPassword(username: string) {
+		return axios.post(API_URL + `forgot-password/${username}`, {
+			username: username,
+		});
+	}
+
 	logout() {
 		localStorage.removeItem("user");
 	}

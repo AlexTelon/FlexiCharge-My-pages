@@ -21,23 +21,16 @@ import registerB from "../assets/registerB.svg";
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		imgItem: {
-			width: "100%",
+			width: "90%",
 			height: "5rem",
-			marginBottom: "5rem",
+			marginBottom: "2rem",
 		},
 		grid: {
-			spacing: 0,
 			alignItems: "center",
 			justifyContent: "center",
+			margin: "auto",
+			maxWidth: "60%",
 			minHeight: "100vh",
-		},
-		gridItem: {
-			borderRadius: "0.5rem",
-			maxWidth: "10rem",
-			padding: "1rem",
-		},
-		buttonGrid: {
-			maxWidth: "50%",
 		},
 		button: {
 			backgroundPosition: "50% 25%",
@@ -47,7 +40,8 @@ const useStyles = makeStyles((theme: Theme) =>
 				boxShadow: theme.flexiCharge.boxShadow.button,
 				transform: "translateY(-5px)",
 			},
-			width: "90%",
+			width: "50%",
+			height: "7vh",
 			minHeight: "5vh",
 			margin: theme.spacing(2),
 		},
@@ -60,8 +54,8 @@ const Home = () => {
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
-			<Grid container className={classes.buttonGrid}>
-				<img src={logo} className={classes.imgItem} />
+			<img src={logo} className={classes.imgItem} />
+			<Grid container>
 				<Grid item xs={12}>
 					<Button
 						component={Link}

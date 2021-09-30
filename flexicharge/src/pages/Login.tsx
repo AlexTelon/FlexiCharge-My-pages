@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			spacing: 0,
 			alignItems: "center",
 			justifyContent: "center",
-			maxWidth: "50%",
-			minWidth: "20vh",
+			maxWidth: "40%",
+			minWidth: "40vh",
 			minHeight: "100vh",
 			margin: "auto",
 		},
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			margin: "auto",
 		},
 		textFields: {
-			maxWidth: "60%",
+			maxWidth: "80%",
 		},
 		button: {
 			backgroundImage: `url(${loginB})`,
@@ -39,8 +39,8 @@ const useStyles = makeStyles((theme: Theme) =>
 				boxShadow: theme.flexiCharge.boxShadow.button,
 				transform: "translateY(-5px)",
 			},
-			width: "30%",
-			height: "5vh",
+			width: "50%",
+			minHeight: "5vh",
 			marginTop: theme.spacing(2),
 		},
 		links: {
@@ -66,11 +66,13 @@ const inputFieldValues = [
 ];
 const Login = () => {
 	const classes = useStyles();
-	const { LoginHandleFormSubmit, handleInputValue1, errors, msg, redirect } =
+	const { LoginHandleFormSubmit, handleInputValue, errors, msg, redirect } =
 		ValidationForm();
 
 	if (redirect) {
-		<Redirect to="/profile" />;
+		console.log("hejsan");
+
+		<Redirect to="/charging-sessions" />;
 	}
 
 	return (
@@ -83,8 +85,8 @@ const Login = () => {
 							<Grid item key={index} xs={12} className={classes.gridItem}>
 								<TextField
 									key={index}
-									onChange={handleInputValue1}
-									onBlur={handleInputValue1}
+									onChange={handleInputValue}
+									onBlur={handleInputValue}
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position="start">
@@ -98,7 +100,6 @@ const Login = () => {
 									name={inputFieldValue.name}
 									label={inputFieldValue.label}
 									type={inputFieldValue.type}
-									error={inputFieldValue.name ? false : true}
 									autoComplete="none"
 									{...(errors[inputFieldValue.name] && {
 										error: true,

@@ -5,11 +5,11 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import ChargingSessions from "./pages/ChargingSessions";
 import VerifyAccount from "./pages/VerifyAccount";
-import Navbar from "./components/Navbar";
 import { ThemeProvider } from "@material-ui/core";
 import Theme from "./theme/theme";
 import Nav from "./components/Nav";
-import auth from "./components/AuthService";
+import ForgotPassword from "./pages/ForgotPassword";
+import ForgotPasswordConfirm from "./pages/ForgotPasswordConfirm";
 
 function App() {
 	return (
@@ -22,6 +22,11 @@ function App() {
 						<Route path="/login" component={() => <Login />} />
 						<Route path="/register" component={Register} />
 						<Route path="/verification" component={VerifyAccount} />
+						<Route path="/forgot-password" component={ForgotPassword} />
+						<Route
+							path="/forgot-password-confirm"
+							component={ForgotPasswordConfirm}
+						/>
 						<Route path="/charging-sessions" component={ChargingSessions} />
 					</main>
 				</BrowserRouter>

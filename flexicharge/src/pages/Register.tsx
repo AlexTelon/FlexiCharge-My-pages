@@ -11,11 +11,10 @@ import registerB from "../assets/registerB.svg";
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		grid: {
-			spacing: 0,
 			alignItems: "center",
 			justifyContent: "center",
-			maxWidth: "60%",
-			minWidth: "20vh",
+			maxWidth: "40%",
+			minWidth: "40vh",
 			minHeight: "100vh",
 			margin: "auto",
 		},
@@ -103,7 +102,7 @@ const Register = () => {
 	}
 	return (
 		<Grid container direction="column" className={classes.grid}>
-			<h1>Create a new account</h1>
+			<h1>Register</h1>
 			<Grid container className={classes.container}>
 				<form autoComplete="off" onSubmit={RegisterhandleFormSubmit}>
 					<Grid item xs={12} className={classes.gridItem}>
@@ -124,7 +123,6 @@ const Register = () => {
 									name={inputFieldValue.name}
 									label={inputFieldValue.label}
 									type={inputFieldValue.type}
-									error={inputFieldValue.name ? false : true}
 									autoComplete="none"
 									{...(errors[inputFieldValue.name] && {
 										error: true,
