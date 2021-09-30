@@ -4,6 +4,7 @@ body {
 	background-image: url("./assets/background.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+	overflow: hidden;
 }
 
 main {
@@ -27,40 +28,6 @@ li {
 	border-radius: 0.5rem;
 	padding: 1rem;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-Button {
-	width: 300px;
-	height: 48px;
-}
-
-Button.loginButton {
-	margin: 2rem;
-	background-image: url("./assets/loginB.svg");
-	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-}
-
-Button.registerButton {
-	margin: 1rem;
-	background-image: url("./assets/registerB.svg");
-	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-}
-
-Button:hover {
-	transform: translateY(-7px);
-}
-
-Button.verifyButton {
-	margin: 1rem;
-	background-color: #78bd76;
-	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-}
-
-Button.verifyButton:hover {
-	transform: translateY(-7px);
-	background-color: #78bd76;
-	border: none;
-	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
 }
 
 .navbar {
@@ -95,8 +62,8 @@ Button.verifyButton:hover {
 }
 
 .MuiDataGrid-root {
-	max-width: 98% !important;
-	margin: 2rem auto;
+	max-width: 94% !important;
+	margin: 2rem auto auto 5rem;
 	max-height: 90%;
 	background-color: white;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

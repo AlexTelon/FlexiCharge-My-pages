@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import AuthService from './AuthService';
-
+import { useState } from "react";
+import AuthService from "./AuthService";
+import verusername from "../pages/VerifyAccount";
 
 const initialFormValues = {
-    userName: "",
+    username: "",
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     code: "",
     formSubmitted: false,
-}
+};
 
 
 export const ValidationForm = () => {
@@ -36,7 +36,7 @@ export const ValidationForm = () => {
             temp.code = fieldValues.code ? "" : "This field is required."
 
         if ("userName" in fieldValues)
-            temp.userName = fieldValues.userName ? "" : "This field is required."
+            temp.userName = fieldValues.username ? "" : "This field is required."
 
         if ("lastName" in fieldValues)
             temp.lastName = fieldValues.lastName ? "" : "This field is required."
@@ -70,12 +70,19 @@ export const ValidationForm = () => {
         });
         validate({ [name]: value });
     }
+    const handleInputValueLogin = (e: any) => {
+        const { name, value } = e.target;
+        setValues({
+            ...values,
+            [name]: value
+        });
+    }
 
     const formIsValid = (fieldValues = values) => {
         // this function will check if the form values and return a boolean value
         const isValid =
             fieldValues.firstName &&
-            fieldValues.userName &&
+            fieldValues.username &&
             fieldValues.lastName &&
             fieldValues.email &&
             fieldValues.password &&
@@ -86,7 +93,7 @@ export const ValidationForm = () => {
         // this function will check if the form values and return a boolean value
         const isValid =
 
-            fieldValues.userName &&
+            fieldValues.username &&
             fieldValues.password &&
             Object.values(errors).every((x) => x === "");
 
@@ -96,7 +103,7 @@ export const ValidationForm = () => {
     const verifyFormisValid = (fieldValues = values) => {
         const isValid =
 
-            fieldValues.userName &&
+            fieldValues.username &&
             fieldValues.code &&
             Object.values(errors).every((x) => x === "");
 
@@ -111,11 +118,11 @@ export const ValidationForm = () => {
         const isValid = Object.values(errors).every((x) => x === "");
 
         if (isValid) {
-            const { userName, firstName, lastName, email, password } = values
+            const { username, firstName, lastName, email, password } = values
             AuthService.register(
                 firstName,
                 lastName,
-                userName,
+                username,
                 email,
                 password
             ).then(
@@ -131,79 +138,64 @@ export const ValidationForm = () => {
                             error.response.data.message) ||
                         error.message ||
                         error.toString();
-                        console.log("i am here     ",resMessage)
+                    console.log("i am here     ", resMessage)
                     setMsg(resMessage)
                 }
             );
         }
     }
-    const verifyUser = async (e: any) => {
+    const verifyHandleFormSubmit = async (
+        e: any,
+        username: string,
+        code: any
+    ) => {
         e.preventDefault();
-        const isValid = Object.values(errors).every((x) => x === "");
-        console.log("iam hereeeeeeee")
-
-        if (isValid) {
-            console.log("i am here bitches")
-            const { userName, code } = values
-            console.log("i am here consts", userName, code)
-            AuthService.verify(
-                userName,
-                code
-            ).then(
-                response => {
-                    console.log(userName, code)
-                    console.log(response, "verify", code)
-                    setRedirect(true)
-
-                },
-                error => {
-                    const verifyMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
-                        setMsg(verifyMessage)
-                        console.log(verifyMessage)
-                }
-            );
-        }
-
-    }
+        const codeVerify = code.join("");
+        AuthService.verify(username, codeVerify).then(
+            (response) => {
+                setRedirect(true);
+            },
+            (error) => {
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message)
+                error.message
+                error.toString();
+                setMsg(resMessage);
+            }
+        );
+    };
 
     const LogInhandleFormSubmit = async (e: any) => {
         // this function will be triggered by the submit event
-
         e.preventDefault();
 
-        const isValid = Object.values(errors).every((x) => x === "") && loginformIsValid();
 
-        if (isValid) {
-            console.log("i am here bitches")
-            const { userName, password } = values
-            console.log("i am here consts", userName, password)
-            AuthService.login(
-                userName,
-                password
-            ).then(
-                response => {
-                    console.log(userName, password)
-                    console.log(response, "Login", password)
-                    setRedirect(true)
 
-                },
-                error => {
-                    const loginMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
-                        setMsg(loginMessage)
-                        console.log(loginMessage)
-                }
-            );
-        }
+        const { username, password } = values
+        AuthService.login(
+            username,
+            password
+        ).then(
+            response => {
+                console.log(username, password)
+                console.log(response, "Login", password)
+                setRedirect(true)
+
+            },
+            error => {
+                const loginMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                setMsg(loginMessage)
+                console.log(loginMessage)
+            }
+        );
+
     }
 
 
@@ -212,13 +204,14 @@ export const ValidationForm = () => {
         values,
         errors,
         msg,
+        handleInputValueLogin,
         handleInputValue,
         loginformIsValid,
         verifyFormisValid,
         RegisterhandleFormSubmit,
         LogInhandleFormSubmit,
         formIsValid,
-        verifyUser,
+        verifyHandleFormSubmit,
         redirect
     };
 }
