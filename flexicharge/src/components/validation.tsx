@@ -17,34 +17,17 @@ export const ValidationForm = () => {
 	const [msg, setMsg] = useState("");
 	const [redirect, setRedirect] = useState(false);
 
-	const handleInputValue = (e: any) => {
-		const { name, value } = e.target;
-
-		setValues({
-			...values,
-			[name]: value,
-		});
-		validate({ [name]: value });
-	};
-
-	const handleInputValues = (e: any) => {
-		const { name, value } = e.target;
-
-		setValues({
-			...values,
-			[name]: value,
-		});
-	};
-
 	const validate: any = (fieldValues = values) => {
 		// this function will check if the form values are valid
 		const temp: any = { ...errors };
 
 		if ("firstName" in fieldValues)
 			temp.firstName = fieldValues.firstName ? "" : "This field is required.";
+		if ("code" in fieldValues)
+			temp.code = fieldValues.code ? "" : "This field is required.";
 
-		if ("username" in fieldValues)
-			temp.username = fieldValues.username ? "" : "This field is required.";
+		if ("userName" in fieldValues)
+			temp.userName = fieldValues.username ? "" : "This field is required.";
 
 		if ("lastName" in fieldValues)
 			temp.lastName = fieldValues.lastName ? "" : "This field is required.";
@@ -71,6 +54,21 @@ export const ValidationForm = () => {
 			...temp,
 		});
 	};
+	const handleInputValue = (e: any) => {
+		const { name, value } = e.target;
+		setValues({
+			...values,
+			[name]: value,
+		});
+		validate({ [name]: value });
+	};
+	const handleInputValueLogin = (e: any) => {
+		const { name, value } = e.target;
+		setValues({
+			...values,
+			[name]: value,
+		});
+	};
 
 	const formIsValid = (fieldValues = values) => {
 		// this function will check if the form values and return a boolean value
@@ -83,19 +81,37 @@ export const ValidationForm = () => {
 			Object.values(errors).every((x) => x === "");
 		return isValid;
 	};
+	const loginformIsValid = (fieldValues = values) => {
+		// this function will check if the form values and return a boolean value
+		const isValid =
+			fieldValues.username &&
+			fieldValues.password &&
+			Object.values(errors).every((x) => x === "");
+
+		return isValid;
+	};
+
+	const verifyFormisValid = (fieldValues = values) => {
+		const isValid =
+			fieldValues.username &&
+			fieldValues.code &&
+			Object.values(errors).every((x) => x === "");
+
+		return isValid;
+	};
 
 	const RegisterhandleFormSubmit = async (e: any) => {
 		// this function will be triggered by the submit event
-
 		e.preventDefault();
-		const isValid =
-			Object.values(errors).every((x) => x === "") && formIsValid();
+
+		const isValid = Object.values(errors).every((x) => x === "");
 
 		if (isValid) {
 			const { username, firstName, lastName, email, password } = values;
-			AuthService.register(firstName, lastName, username, email, password).then(
+			AuthService.register(firstName, lastName, email, username, password).then(
 				(response) => {
 					console.log(response, "success");
+					setMsg(response.data.message);
 					setRedirect(true);
 				},
 				(error) => {
@@ -107,12 +123,12 @@ export const ValidationForm = () => {
 							error.response.data.message) ||
 						error.message ||
 						error.toString();
+
 					setMsg(resMessage);
 				}
 			);
 		}
 	};
-
 	const verifyHandleFormSubmit = async (
 		e: any,
 		username: string,
@@ -127,36 +143,35 @@ export const ValidationForm = () => {
 			},
 			(error) => {
 				const resMessage =
-					(error.response &&
-						error.response.data &&
-						error.response.data.message) ||
-					error.message ||
-					error.toString();
+					error.response && error.response.data && error.response.data.message;
+				error.message;
+				error.toString();
 				setMsg(resMessage);
 			}
 		);
 	};
 
-	const LoginHandleFormSubmit = async (e: any) => {
+	const LogInhandleFormSubmit = async (e: any) => {
 		// this function will be triggered by the submit event
-
 		e.preventDefault();
 		console.log("here");
 
 		const { username, password } = values;
-
 		AuthService.login(username, password).then(
 			(response) => {
+				console.log(username, password);
+				console.log(response, "Login", password);
 				setRedirect(true);
 			},
 			(error) => {
-				const resMessage =
+				const loginMessage =
 					(error.response &&
 						error.response.data &&
 						error.response.data.message) ||
 					error.message ||
 					error.toString();
-				setMsg(resMessage);
+				setMsg(loginMessage);
+				console.log(loginMessage);
 			}
 		);
 	};
@@ -192,11 +207,14 @@ export const ValidationForm = () => {
 		values,
 		errors,
 		msg,
+		handleInputValueLogin,
 		handleInputValue,
 		formIsValid,
 		RegisterhandleFormSubmit,
+		loginformIsValid,
+		verifyFormisValid,
+		LogInhandleFormSubmit,
 		verifyHandleFormSubmit,
-		LoginHandleFormSubmit,
 		ForgotPasswordHandleFormSubmit,
 		redirect,
 	};

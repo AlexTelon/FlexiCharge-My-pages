@@ -3,16 +3,18 @@ import axios from "axios";
 const API_URL = "http://54.220.194.65:8080/auth/";
 
 class AuthService {
-	login(username: string, password: string) {
+	login(userName: string, password: string) {
+		console.log(userName, password);
 		return axios
 			.post(API_URL + "sign-in", {
-				username: username,
+				username: userName,
 				password: password,
 			})
 			.then((response) => {
 				if (response.data.accessToken) {
 					localStorage.setItem("user", JSON.stringify(response.data));
 				}
+
 				return response.data;
 			});
 	}
@@ -28,17 +30,17 @@ class AuthService {
 	}
 
 	register(
-		username: string,
 		firstName: string,
 		familyName: string,
 		email: string,
+		UserName: string,
 		password: string
 	) {
 		return axios.post(API_URL + "sign-up", {
 			name: firstName,
 			family_name: familyName,
 			email: email,
-			username: username,
+			username: UserName,
 			password: password,
 		});
 	}

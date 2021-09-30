@@ -1,11 +1,11 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
-import { Redirect, Link } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";
+import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
-import loginB from "../assets/loginB.svg";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -31,20 +31,25 @@ const useStyles = makeStyles((theme: Theme) =>
 			maxWidth: "80%",
 		},
 		button: {
-			backgroundImage: `url(${loginB})`,
-			backgroundPosition: "center",
-			backgroundSize: "cover",
-			backgroundRepeat: "no-repeat",
+			backgroundColor: theme.flexiCharge.accent.primary,
 			"&:hover": {
+				background: theme.flexiCharge.accent.primary,
 				boxShadow: theme.flexiCharge.boxShadow.button,
 				transform: "translateY(-5px)",
 			},
-			width: "50%",
-			minHeight: "5vh",
+			maxWidth: "50%",
+			maxHeight: "10vh",
 			marginTop: theme.spacing(2),
+			fontWeight: "bold",
+			fontSize: ".7rem",
+			color: theme.flexiCharge.primary.white,
 		},
-		links: {
-			marginTop: theme.spacing(2),
+		input: {
+			maxWidth: "5%",
+			marginTop: "3rem",
+			marginRight: ".5rem",
+			minHeight: "2rem",
+			minWidth: "2rem",
 		},
 	})
 );
@@ -60,38 +65,39 @@ const inputFieldValues = [
 		name: "password",
 		type: "password",
 		label: "Password",
-		id: "user-password",
+		id: "password",
 		icon: <LockIcon />,
 	},
+	{
+		name: "verificationCode",
+		label: "Verification code",
+		id: "verificationCode",
+		icon: <VpnKeyIcon />,
+	},
 ];
-const Login = () => {
+const ForgotPasswordConfirm = () => {
 	const classes = useStyles();
-	const {
-		LogInhandleFormSubmit,
-		handleInputValueLogin,
-		errors,
-		msg,
-		redirect,
-	} = ValidationForm();
+	const { LogInhandleFormSubmit, handleInputValue, errors, msg, redirect } =
+		ValidationForm();
 
 	if (redirect) {
-		console.log("sadfasfasfa", redirect);
+		console.log("hejsan");
 
-		return <Redirect to="/" />;
+		<Redirect to="/charging-sessions" />;
 	}
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
-			<h1>Log in</h1>
 			<Grid container direction="column" className={classes.container}>
 				<form autoComplete="off" onSubmit={LogInhandleFormSubmit}>
+					<h2>Set new password</h2>
 					{inputFieldValues.map((inputFieldValue, index) => {
 						return (
 							<Grid item key={index} xs={12} className={classes.gridItem}>
 								<TextField
 									key={index}
-									onChange={handleInputValueLogin}
-									onBlur={handleInputValueLogin}
+									onChange={handleInputValue}
+									onBlur={handleInputValue}
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position="start">
@@ -114,21 +120,9 @@ const Login = () => {
 							</Grid>
 						);
 					})}
-					<Grid item xs={12}>
-						<Button
-							variant="contained"
-							type="submit"
-							className={classes.button}
-						/>
-					</Grid>
-					<Grid container className={classes.links}>
-						<Grid item xs={6}>
-							<Link to="/forgot-password">Forgot password?</Link>
-						</Grid>
-						<Grid item xs={6}>
-							<Link to="/register">No account? Sign Up</Link>
-						</Grid>
-					</Grid>
+					<Button variant="contained" type="submit" className={classes.button}>
+						Set new password
+					</Button>
 					<Box color="red">{msg}</Box>
 				</form>
 			</Grid>
@@ -136,4 +130,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default ForgotPasswordConfirm;
