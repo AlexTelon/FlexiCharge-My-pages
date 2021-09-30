@@ -2,16 +2,17 @@ import { Button, TextField, Box, Container } from '@material-ui/core'
 import LockIcon from '@material-ui/icons/Lock';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { ValidationForm } from '../components/validation';
-import EmailIcon from '@material-ui/icons/Email';
+import {Redirect} from 'react-router-dom';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
 
 const inputFieldValues = [
     {
-        name: "email",
-        label: "Email",
-        id: "user-email",
-        icon: <EmailIcon />
+        name: "userName",
+        label: "User Name",
+        id: "user-first-name",
+        icon: <AccountCircle />
     },
     {
         name: "password",
@@ -22,13 +23,19 @@ const inputFieldValues = [
     }
 ];
 const Login = () => {
+    
         const{
             handleInputValue, 
             LogInhandleFormSubmit,
             loginformIsValid,
-            errors
+            errors,
+            msg,
+            redirect
     
         }= ValidationForm();
+        if (!msg && redirect) {
+            return <Redirect to="/"/>;
+        }
        
     
         return (
@@ -79,6 +86,8 @@ const Login = () => {
                             disabled={!loginformIsValid()}
                         >
                         </Button>
+                        <Box color="red">{msg}</Box>
+
                     </form>
                 </Box>
             </Container>

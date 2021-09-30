@@ -8,11 +8,12 @@ const API_URL = "http://54.220.194.65:8080/auth/";
 
 class AuthService {
   
-    login(email: string, password: string) {
+    login(userName: string, password: string) {
+      console.log(userName, password)
         return axios
           .post(API_URL + "sign-in", {
-            email,
-            password
+            username: userName,
+            password: password
           })
           .then(response => {
             if (response.data.accessToken) {

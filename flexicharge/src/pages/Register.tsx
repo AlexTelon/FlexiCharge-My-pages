@@ -57,7 +57,7 @@ const Register = () => {
 
     
     if (!msg && redirect) {
-        return <Redirect to="/login"/>;
+        return <Redirect to="/verification"/>;
     }
     return (
         <Container className="form-container" component="main" maxWidth="xs">
