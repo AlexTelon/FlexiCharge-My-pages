@@ -66,25 +66,29 @@ const inputFieldValues = [
 ];
 const Login = () => {
 	const classes = useStyles();
-	const { LoginHandleFormSubmit, handleInputValue1, errors, msg, redirect } =
+	const { LogInhandleFormSubmit, handleInputValueLogin, errors, msg, redirect } =
 		ValidationForm();
 
+
 	if (redirect) {
-		<Redirect to="/profile" />;
+		console.log("sadfasfasfa", redirect);
+
+		return <Redirect to= "/"/>;
+
 	}
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
 			<h1>Log in</h1>
 			<Grid container direction="column" className={classes.container}>
-				<form autoComplete="off" onSubmit={LoginHandleFormSubmit}>
+				<form autoComplete="off" onSubmit={LogInhandleFormSubmit}>
 					{inputFieldValues.map((inputFieldValue, index) => {
 						return (
 							<Grid item key={index} xs={12} className={classes.gridItem}>
 								<TextField
 									key={index}
-									onChange={handleInputValue1}
-									onBlur={handleInputValue1}
+									onChange={handleInputValueLogin}
+									onBlur={handleInputValueLogin}
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position="start">

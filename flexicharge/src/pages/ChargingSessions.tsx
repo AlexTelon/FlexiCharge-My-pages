@@ -1,4 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
+import Navbar from "../components/Navbar";
 
 const columns = [
 	{ field: "id", headerName: "ID", width: 90 },
@@ -176,6 +177,8 @@ const ChargingSessions = () => {
 	return (
 		<div style={{ height: 580, width: "100%" }}>
 			<h1>Charging</h1>
+			{<Navbar />}
+
 			<DataGrid
 				rows={rows}
 				columns={columns}

@@ -1,22 +1,21 @@
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+
 import {
 	Button,
 	createStyles,
 	makeStyles,
 	Grid,
 	Theme,
+	Container,
+	Box,
 } from "@material-ui/core";
-import ChargingSessions from "./ChargingSessions";
-import { useState } from "react";
-import Navbar from "../components/Navbar";
-import Nav from "../components/Nav";
-import auth from "../components/AuthService";
-import Login from "./Login";
+import { useEffect, useState } from "react";
 import logo from "../assets/header.svg";
 import { Link } from "react-router-dom";
 import loginB from "../assets/loginB.svg";
 import registerB from "../assets/registerB.svg";
+import AuthService from "../components/AuthService";
+import Navbar from "../components/Navbar";
+
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -56,37 +55,67 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Home = () => {
 	const classes = useStyles();
-	console.log(auth.getCurrentUser());
+	const [currentUser, setCurrentUser] = useState(null);
 
-	return (
-		<Grid container direction="column" className={classes.grid}>
-			<Grid container className={classes.buttonGrid}>
-				<img src={logo} className={classes.imgItem} />
-				<Grid item xs={12}>
-					<Button
-						component={Link}
-						to="/login"
-						variant="contained"
-						className={classes.button}
-						style={{
-							backgroundImage: `url(${loginB})`,
-						}}
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<Button
-						component={Link}
-						to="/register"
-						variant="contained"
-						className={classes.button}
-						style={{
-							backgroundImage: `url(${registerB})`,
-						}}
-					/>
+
+	useEffect(() => {
+		const currentUser = AuthService.getCurrentUser();
+		console.log("whats uppppppp", currentUser)
+		if (!currentUser) {
+			console.log("there is no user")
+		} else {
+			console.log("there is  user")
+			setCurrentUser(currentUser)
+		}
+	}, []);
+	console.log("dilkfhsiodfhs", currentUser)
+
+
+
+	if (!currentUser) {
+		return (
+
+			<Grid container direction="column" className={classes.grid}>
+				<Grid container className={classes.buttonGrid}>
+					<img src={logo} className={classes.imgItem} />
+					<Grid item xs={12}>
+						<Button
+							component={Link}
+							to="/login"
+							variant="contained"
+							className={classes.button}
+							style={{
+								backgroundImage: `url(${loginB})`,
+							}}
+						/>
+					</Grid>
+					<Grid item xs={12}>
+						<Button
+							component={Link}
+							to="/register"
+							variant="contained"
+							className={classes.button}
+							style={{
+								backgroundImage: `url(${registerB})`,
+							}}
+						/>
+					</Grid>
 				</Grid>
 			</Grid>
-		</Grid>
-	);
+		);
+	} else {
+		return (
+
+
+			<Navbar />
+
+
+
+
+		);
+	}
+
+
 };
 
 export default Home;
