@@ -1,4 +1,3 @@
-
 import {
 	Button,
 	createStyles,
@@ -15,7 +14,6 @@ import loginB from "../assets/loginB.svg";
 import registerB from "../assets/registerB.svg";
 import AuthService from "../components/AuthService";
 import Navbar from "../components/Navbar";
-
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -57,24 +55,20 @@ const Home = () => {
 	const classes = useStyles();
 	const [currentUser, setCurrentUser] = useState(null);
 
-
 	useEffect(() => {
 		const currentUser = AuthService.getCurrentUser();
-		console.log("whats uppppppp", currentUser)
+		console.log("whats uppppppp", currentUser);
 		if (!currentUser) {
-			console.log("there is no user")
+			console.log("there is no user");
 		} else {
-			console.log("there is  user")
-			setCurrentUser(currentUser)
+			console.log("there is  user");
+			setCurrentUser(currentUser);
 		}
 	}, []);
-	console.log("dilkfhsiodfhs", currentUser)
+	console.log("dilkfhsiodfhs", currentUser);
 
-
-
-	if (!currentUser) {
+	if (currentUser) {
 		return (
-
 			<Grid container direction="column" className={classes.grid}>
 				<Grid container className={classes.buttonGrid}>
 					<img src={logo} className={classes.imgItem} />
@@ -104,18 +98,8 @@ const Home = () => {
 			</Grid>
 		);
 	} else {
-		return (
-
-
-			<Navbar />
-
-
-
-
-		);
+		return <Navbar />;
 	}
-
-
 };
 
 export default Home;
