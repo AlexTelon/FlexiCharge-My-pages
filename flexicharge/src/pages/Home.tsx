@@ -61,7 +61,7 @@ const Home = () => {
 	}, []);
 	console.log("dilkfhsiodfhs", currentUser);
 
-	if (currentUser) {
+	if (!currentUser) {
 		return (
 			<Grid container direction="column" className={classes.grid}>
 				<Grid container className={classes.grid}>

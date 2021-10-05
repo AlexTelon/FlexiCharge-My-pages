@@ -194,7 +194,7 @@ export default function MiniDrawer() {
       <List className={classes.navBotSection}>
         <ListItem button onClick={() => {
           AuthService.logout()
-          history.push("/login")
+          history.push("/sign-in")
         }}
         >
           <LogoutIcon></LogoutIcon>

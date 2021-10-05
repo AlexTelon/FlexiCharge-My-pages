@@ -88,7 +88,7 @@ const ConfirmForgotPassword = () => {
 	} = ValidationForm();
 
 	if (redirect) {
-		<Redirect to="/sign-in" />;
+		return <Redirect to="/sign-in" />;
 	}
 
 	return (

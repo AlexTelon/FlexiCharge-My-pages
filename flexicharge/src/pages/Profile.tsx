@@ -38,7 +38,7 @@ const Profile = () => {
     useEffect(() => {
 		const currentUser = AuthService.getCurrentUser();
         if (!currentUser) {
-            history.push("/login")
+            history.push("/sign-in")
 
 		} else {
 			console.log("there is  user")
