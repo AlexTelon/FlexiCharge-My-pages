@@ -1,11 +1,11 @@
-import { Button, TextField, Box, Grid } from "@material-ui/core";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import { Button, TextField, Grid, Box } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import LockIcon from "@material-ui/icons/Lock";
+import { Redirect, Link } from "react-router-dom";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import { Redirect } from "react-router-dom";
-import { useRef, useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -17,24 +17,17 @@ const useStyles = makeStyles((theme: Theme) =>
 			minWidth: "40vh",
 			minHeight: "100vh",
 			margin: "auto",
-			fontWeight: "bolder",
 		},
 		container: {
 			backgroundColor: theme.flexiCharge.primary.white,
 			borderRadius: "0.5rem",
-			alignItems: "center",
 			justifyContent: "center",
 			padding: "1rem",
 		},
-		gridItemInputs: {
-			marginTop: "3rem",
+		gridItem: {
+			margin: "auto",
 		},
-		gridItemLabel: {
-			textAlign: "right",
-			marginTop: "3rem",
-		},
-		textField: {
-			marginTop: "1rem",
+		textFields: {
 			maxWidth: "80%",
 		},
 		button: {
@@ -44,21 +37,19 @@ const useStyles = makeStyles((theme: Theme) =>
 				boxShadow: theme.flexiCharge.boxShadow.button,
 				transform: "translateY(-5px)",
 			},
-			maxWidth: "80%",
-			minHeight: "48px",
+			maxWidth: "50%",
+			maxHeight: "10vh",
 			marginTop: theme.spacing(2),
-			fontWeight: "bolder",
-			fontSize: "inherit",
-			margin: "auto",
+			fontWeight: "bold",
+			fontSize: ".7rem",
 			color: theme.flexiCharge.primary.white,
 		},
 		input: {
 			maxWidth: "5%",
+			marginTop: "3rem",
 			marginRight: ".5rem",
-			minHeight: "2.5rem",
-			minWidth: "2.5rem",
-			textAlign: "center",
-			fontWeight: "bolder",
+			minHeight: "2rem",
+			minWidth: "2rem",
 		},
 	})
 );
@@ -71,6 +62,13 @@ const inputFieldValues = [
 		icon: <AccountCircle />,
 	},
 	{
+		name: "newPassword",
+		type: "password",
+		label: "Password",
+		id: "password",
+		icon: <LockIcon />,
+	},
+	{
 		name: "verifyCode",
 		label: "Verification code",
 		id: "verifyCode",
@@ -79,26 +77,31 @@ const inputFieldValues = [
 	},
 ];
 
-const VerifyAccount = () => {
+const ConfirmForgotPassword = () => {
 	const classes = useStyles();
+	const {
+		ConfirmForgotPasswordHandleFormSubmit,
+		handleInputValue,
+		errors,
+		msg,
+		redirect,
+	} = ValidationForm();
 
-	const { verifyHandleFormSubmit, handleInputValue, errors, msg, redirect } =
-		ValidationForm();
-
-	if (!msg && redirect) {
-		console.log("redirect");
-
-		return <Redirect to="/sign-in" />;
+	if (redirect) {
+		<Redirect to="/sign-in" />;
 	}
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
-			<Grid container className={classes.container}>
-				<form autoComplete="off" onSubmit={verifyHandleFormSubmit}>
-					<p>Verification code has been sent to your email.</p>
+			<Grid container direction="column" className={classes.container}>
+				<form
+					autoComplete="off"
+					onSubmit={ConfirmForgotPasswordHandleFormSubmit}
+				>
+					<h2>Set new password</h2>
 					{inputFieldValues.map((inputFieldValue, index) => {
 						return (
-							<Grid item key={index} xs={12}>
+							<Grid item key={index} xs={12} className={classes.gridItem}>
 								<TextField
 									key={index}
 									onChange={handleInputValue}
@@ -112,8 +115,10 @@ const VerifyAccount = () => {
 									}}
 									fullWidth
 									style={{ marginTop: "1rem" }}
+									className={classes.textFields}
 									name={inputFieldValue.name}
 									label={inputFieldValue.label}
+									type={inputFieldValue.type}
 									autoComplete="none"
 									inputProps={{
 										maxLength: inputFieldValue.maxLength,
@@ -127,7 +132,7 @@ const VerifyAccount = () => {
 						);
 					})}
 					<Button variant="contained" type="submit" className={classes.button}>
-						Verify
+						Set new password
 					</Button>
 					<Box color="red">{msg}</Box>
 				</form>
@@ -136,4 +141,4 @@ const VerifyAccount = () => {
 	);
 };
 
-export default VerifyAccount;
+export default ConfirmForgotPassword;
