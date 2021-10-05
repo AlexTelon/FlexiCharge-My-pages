@@ -1,5 +1,10 @@
 import { DataGrid } from "@mui/x-data-grid";
 import Navbar from "../components/Navbar";
+import { useHistory } from "react-router";
+import { useEffect } from "react";
+import AuthService from "../components/AuthService";
+
+
 
 const columns = [
 	{ field: "id", headerName: "ID", width: 90 },
@@ -174,6 +179,15 @@ const rows = [
 ];
 
 const ChargingSessions = () => {
+	const history = useHistory();
+	useEffect(() => {
+		const currentUser = AuthService.getCurrentUser();
+        if (!currentUser) {
+            history.push("/login")}
+	
+	}, []);
+
+
 	return (
 		<div style={{ height: 580, width: "100%" }}>
 			<h1>Charging</h1>

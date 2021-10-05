@@ -15,7 +15,9 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import HistoryIcon from '@mui/icons-material/History';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useHistory } from 'react-router';
+import {useHistory } from 'react-router-dom';
+import AuthService from './AuthService';
+import Logout from '@mui/icons-material/Logout';
 
 // import MenuIcon from '@material-ui/icons/Menu';
 
@@ -141,71 +143,75 @@ export default function MiniDrawer() {
   const history = useHistory();
 
   return (
-      <Drawer
-        variant="permanent"
-        open={mobileOpen}
-        onClose={handleDrawerToogle}
-        className={clsx(classes.drawer, {
+    <Drawer
+      variant="permanent"
+      open={mobileOpen}
+      onClose={handleDrawerToogle}
+      className={clsx(classes.drawer, {
+        [classes.drawerOpen]: open,
+        [classes.drawerClose]: !open
+      })}
+      classes={{
+        paper: clsx({
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open
-          })
-        }}
-      >
-        
-        {categories.map(({ id, children }) => 
+        })
+      }}
+    >
 
-          <React.Fragment key={id}>
-            <ListItem className={classes.categoryHeader}>
-              <ListItemText classes={{
-                primary: classes.itemText
-              }}>
-                {id}
+      {categories.map(({ id, children }) =>
+
+        <React.Fragment key={id}>
+          <ListItem className={classes.categoryHeader}>
+            <ListItemText classes={{
+              primary: classes.itemText
+            }}>
+              {id}
+            </ListItemText>
+          </ListItem>
+          {children.map(({ id: childId, icon, location: pathLocation }) => (
+            <ListItem
+              key={childId}
+              button
+              color="primary"
+              className={clsx(classes.item)}
+              onClick={() => {
+                history.push(pathLocation);
+              }}
+            >
+              <ListItemIcon color='primary' className={classes.itemIcon}>{icon}</ListItemIcon>
+              <ListItemText classes={{ primary: classes.itemText }}>
+                {childId}
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, location: pathLocation }) => (
-              <ListItem
-                key={childId}
-                button
-                color="primary"
-                className= {clsx(classes.item)}
-                onClick={() => {
-                  history.push(pathLocation);
-                }}
-              >
-                <ListItemIcon color='primary' className={classes.itemIcon}>{icon}</ListItemIcon>
-                <ListItemText classes={{ primary: classes.itemText }}>
-                  {childId}
-                </ListItemText>
-              </ListItem>
-            ))}
-          </React.Fragment>
-        
-        )}
-              
-        <Divider />
-        
-        <List className={classes.navBotSection}>
-          <ListItem button>
-              <LogoutIcon></LogoutIcon>
-            <ListItemText classes={{ primary: classes.logoutText   }}>Sign out</ListItemText>
-          </ListItem>
-          <Divider />
-          <ListItem
-            button
+          ))}
+        </React.Fragment>
 
-            onClick={() => {
-              !open ? handleDrawerOpen() : handleDrawerClose();
-            }}
-            className={classes.openDrawButton}
-          >
-            {!open ? <ChevronRightIcon color="inherit" /> : <ChevronLeftIcon />}
-          </ListItem>
-        </List>
-      </Drawer>
+      )}
+
+      <Divider />
+
+      <List className={classes.navBotSection}>
+        <ListItem button onClick={() => {
+          AuthService.logout()
+          history.push("/login")
+        }}
+        >
+          <LogoutIcon></LogoutIcon>
+          <ListItemText classes={{ primary: classes.logoutText }}>Sign out</ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem
+          button
+
+          onClick={() => {
+            !open ? handleDrawerOpen() : handleDrawerClose();
+          }}
+          className={classes.openDrawButton}
+        >
+          {!open ? <ChevronRightIcon color="inherit" /> : <ChevronLeftIcon />}
+        </ListItem>
+      </List>
+    </Drawer>
   );
 }
