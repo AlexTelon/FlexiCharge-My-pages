@@ -191,7 +191,7 @@ const ChargingSessions = () => {
 	return (
 		<div style={{ height: 580, width: "100%" }}>
 			<h1>Charging</h1>
-			{<Navbar />}
+			<Navbar />
 
 			<DataGrid
 				rows={rows}

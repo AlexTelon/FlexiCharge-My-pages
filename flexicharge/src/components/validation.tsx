@@ -1,217 +1,229 @@
+import { Password } from "@mui/icons-material";
 import { useState } from "react";
 import AuthService from "./AuthService";
-import verusername from "../pages/VerifyAccount";
 
 const initialFormValues = {
-    username: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    code: "",
-    formSubmitted: false,
+	firstName: "",
+	lastName: "",
+	username: "",
+	email: "",
+	newPassword: "",
+	password: "",
+	verifyCode: "",
+	formSubmitted: false,
 };
 
-
 export const ValidationForm = () => {
-    const [values, setValues] = useState(initialFormValues);
-    const [errors, setErrors] = useState({} as any);
-    const [msg, setMsg] = useState("");
-    const [redirect, setRedirect] = useState(false);
+	const [values, setValues] = useState(initialFormValues);
+	const [errors, setErrors] = useState({} as any);
+	const [msg, setMsg] = useState("");
+	const [redirect, setRedirect] = useState(false);
 
+	const validate: any = (fieldValues = values) => {
+		// this function will check if the form values are valid
+		const temp: any = { ...errors };
 
+		if ("firstName" in fieldValues)
+			temp.firstName = fieldValues.firstName ? "" : "This field is required.";
 
+		if ("lastName" in fieldValues)
+			temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
+		if ("username" in fieldValues) {
+			temp.username = fieldValues.username ? "" : "This field is required.";
+		}
 
+		if ("email" in fieldValues) {
+			temp.email = fieldValues.email ? "" : "This field is required.";
+			if (fieldValues.email) {
+				temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
+					? ""
+					: "Email is not valid.";
+			}
+		}
 
-    const validate: any = (fieldValues = values) => {
-        // this function will check if the form values are valid
-        const temp: any = { ...errors }
+		if ("newPassword" in fieldValues) {
+			temp.newPassword = fieldValues.newPassword
+				? ""
+				: "This field is required.";
+			if (fieldValues.newPassword) {
+				temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(
+					fieldValues.newPassword
+				)
+					? ""
+					: "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
+			}
+		}
 
+		if ("password" in fieldValues)
+			temp.password = fieldValues.password ? "" : "This field is required.";
 
+		if ("verifyCode" in fieldValues) {
+			temp.verifyCode = fieldValues.verifyCode
+				? ""
+				: "Code is a 6 digit number that was sent to your email.";
+		}
 
-        if ("firstName" in fieldValues)
-            temp.firstName = fieldValues.firstName ? "" : "This field is required."
-        if ("code" in fieldValues)
-            temp.code = fieldValues.code ? "" : "This field is required."
+		setErrors({
+			...temp,
+		});
+	};
 
-        if ("userName" in fieldValues)
-            temp.userName = fieldValues.username ? "" : "This field is required."
+	const handleInputValue = (e: any) => {
+		const { name, value } = e.target;
+		setValues({
+			...values,
+			[name]: value,
+		});
+		validate({ [name]: value });
+	};
 
-        if ("lastName" in fieldValues)
-            temp.lastName = fieldValues.lastName ? "" : "This field is required."
+	const isEmpty = (initialValues: Object) => {
+		var missingValues = [];
+		for (const [key, value] of Object.entries(initialValues)) {
+			if (value.length < 1) {
+				missingValues.push("missing");
+			}
+		}
+		return missingValues.length ? true : false;
+	};
 
-        if ("email" in fieldValues) {
-            temp.email = fieldValues.email ? "" : "This field is required."
-            if (fieldValues.email)
-                temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
-                    ? ""
-                    : "Email is not valid."
-        }
+	const RegisterhandleFormSubmit = async (e: any) => {
+		e.preventDefault();
+		setMsg("");
 
-        if ("password" in fieldValues) {
-            temp.password = fieldValues.password ? "" : "This field is required."
-            if (fieldValues.password)
-                temp.password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(fieldValues.password)
-                    ? ""
-                    : "Password must meet the requirements."
-        }
+		const { firstName, lastName, email, username, newPassword } =
+			e.target.elements;
 
+		const initialValues = {
+			firstName: firstName.value,
+			lastName: lastName.value,
+			email: email.value,
+			username: username.value,
+			newPassword: newPassword.value,
+		};
 
-        setErrors({
-            ...temp
-        });
-    }
-    const handleInputValue = (e: any) => {
-        const { name, value } = e.target;
-        setValues({
-            ...values,
-            [name]: value
-        });
-        validate({ [name]: value });
-    }
-    const handleInputValueLogin = (e: any) => {
-        const { name, value } = e.target;
-        setValues({
-            ...values,
-            [name]: value
-        });
-    }
+		const isValid = Object.values(errors).every((x) => x === "");
+		if (!isEmpty(initialValues)) {
+			if (isValid) {
+				const { firstName, lastName, email, username, newPassword } = values;
+				AuthService.register(
+					firstName,
+					lastName,
+					email,
+					username,
+					newPassword
+				).then(
+					() => setRedirect(true),
+					(error) => setMsg(error.response.data.message)
+				);
+			}
+		} else {
+			setMsg("Please fill in the fields!");
+		}
+	};
 
-    const formIsValid = (fieldValues = values) => {
-        // this function will check if the form values and return a boolean value
-        const isValid =
-            fieldValues.firstName &&
-            fieldValues.username &&
-            fieldValues.lastName &&
-            fieldValues.email &&
-            fieldValues.password &&
-            Object.values(errors).every((x) => x === "");
-        return isValid;
-    }
-    const loginformIsValid = (fieldValues = values) => {
-        // this function will check if the form values and return a boolean value
-        const isValid =
+	const verifyHandleFormSubmit = async (e: any) => {
+		e.preventDefault();
 
-            fieldValues.username &&
-            fieldValues.password &&
-            Object.values(errors).every((x) => x === "");
+		const { username, verifyCode } = e.target.elements;
+		const initialValues = {
+			username: username.value,
+			verifyCode: verifyCode.value,
+		};
 
-        return isValid;
-    }
+		const isValid = Object.values(errors).every((x) => x === "");
 
-    const verifyFormisValid = (fieldValues = values) => {
-        const isValid =
+		if (isValid && !isEmpty(initialValues)) {
+			const { username, verifyCode } = values;
+			AuthService.verify(username, verifyCode).then(
+				() => setRedirect(true),
+				(error) => setMsg(error.response.data.message)
+			);
+		} else setMsg("Please fill in the fields!");
+	};
 
-            fieldValues.username &&
-            fieldValues.code &&
-            Object.values(errors).every((x) => x === "");
+	const LogInhandleFormSubmit = async (e: any) => {
+		e.preventDefault();
 
-        return isValid;
+		const { username, password } = e.target.elements;
+		const initialValues = {
+			username: username.value,
+			password: password.value,
+		};
+		const isValid = Object.values(errors).every((x) => x === "");
 
-    }
+		if (isValid && !isEmpty(initialValues)) {
+			const { username, password } = values;
+			AuthService.login(username, password).then(
+				() => setRedirect(true),
+				(error) => setMsg(error.response.data.message)
+			);
+		} else setMsg("Please fill in the fields!");
+	};
 
-    const RegisterhandleFormSubmit = async (e: any) => {
-        // this function will be triggered by the submit event
-        e.preventDefault();
+	const ForgotPasswordHandleFormSubmit = async (e: any) => {
+		e.preventDefault();
 
-        const isValid = Object.values(errors).every((x) => x === "");
+		const { username } = e.target.elements;
+		const initialValues = {
+			username: username.value,
+		};
 
-        if (isValid) {
-            const { username, firstName, lastName, email, password } = values
-            AuthService.register(
-                firstName,
-                lastName,
-                username,
-                email,
-                password
-            ).then(
-                response => {
-                    console.log(response, "sajdhasdhsa", firstName)
-                    setMsg(response.data.message)
-                    setRedirect(true)
-                },
-                error => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
-                    console.log("i am here     ", resMessage)
-                    setMsg(resMessage)
-                }
-            );
-        }
-    }
-    const verifyHandleFormSubmit = async (
-        e: any,
-        username: string,
-        code: any
-    ) => {
-        e.preventDefault();
-        const codeVerify = code.join("");
-        AuthService.verify(username, codeVerify).then(
-            (response) => {
-                setRedirect(true);
-            },
-            (error) => {
-                const resMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message)
-                error.message
-                error.toString();
-                setMsg(resMessage);
-            }
-        );
-    };
+		const isValid = Object.values(errors).every((x) => x === "");
 
-    const LogInhandleFormSubmit = async (e: any) => {
-        // this function will be triggered by the submit event
-        e.preventDefault();
+		if (isValid && !isEmpty(initialValues)) {
+			const { username } = values;
+			AuthService.forgotPassword(username).then(() => setRedirect(true));
+		} else setMsg("Please fill in the fields!");
+	};
 
+	const ConfirmForgotPasswordHandleFormSubmit = async (e: any) => {
+		e.preventDefault();
+		setMsg("");
 
+		const { username, newPassword, verifyCode } = e.target.elements;
+		const initialValues = {
+			username: username.value,
+			newPassword: newPassword.value,
+			verifyCode: verifyCode.value,
+		};
 
-        const { username, password } = values
-        AuthService.login(
-            username,
-            password
-        ).then(
-            response => {
-                console.log(username, password)
-                console.log(response, "Login", password)
-                setRedirect(true)
+		const isValid = Object.values(errors).every((x) => x === "");
 
-            },
-            error => {
-                const loginMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-                setMsg(loginMessage)
-                console.log(loginMessage)
-            }
-        );
+		if (!isEmpty(initialValues)) {
+			if (isValid) {
+				const { username, newPassword, verifyCode } = values;
+				AuthService.confirmForgotPassword(
+					username,
+					newPassword,
+					verifyCode
+				).then(
+					(response) => {
+						console.log("sucesss confirmsforgot", response);
+						setRedirect(true);
+					},
+					(error) => {
+						console.log(error.response, "error");
+						setMsg(error.response.data.message);
+					}
+				);
+			}
+		} else {
+			setMsg("Please fill in the fields!");
+		}
+	};
 
-    }
-
-
-
-    return {
-        values,
-        errors,
-        msg,
-        handleInputValueLogin,
-        handleInputValue,
-        loginformIsValid,
-        verifyFormisValid,
-        RegisterhandleFormSubmit,
-        LogInhandleFormSubmit,
-        formIsValid,
-        verifyHandleFormSubmit,
-        redirect
-    };
-}
+	return {
+		values,
+		errors,
+		msg,
+		handleInputValue,
+		RegisterhandleFormSubmit,
+		verifyHandleFormSubmit,
+		LogInhandleFormSubmit,
+		ForgotPasswordHandleFormSubmit,
+		ConfirmForgotPasswordHandleFormSubmit,
+		redirect,
+	};
+};

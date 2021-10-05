@@ -3,55 +3,74 @@ import axios from "axios";
 const API_URL = "http://54.220.194.65:8080/auth/";
 
 class AuthService {
-  
-    login(userName: string, password: string) {
-      console.log(userName, password)
-        return axios
-          .post(API_URL + "sign-in", {
-            username: userName,
-            password: password
-          })
-          .then(response => {
-            if (response.data.accessToken) {
-              localStorage.setItem("user", JSON.stringify(response.data));
-            }
-    
-            return response.data;
-          });
-      }
-    
-      logout() {
-        console.log("i am here bitcheeeeeeees")
-        localStorage.removeItem("user");
+ 
+login(username: string, password: string) {
+		console.log(username, password);
+		return axios
+			.post(API_URL + "sign-in", {
+				username: username,
+				password: password,
+			})
+			.then((response) => {
+				if (response.data.accessToken) {
+					localStorage.setItem("user", JSON.stringify(response.data));
+				}
 
-      }
-      
-    
-      register(UserName: string, firstName: string, familyName: string, email: string, password: string) {
-        
-        return axios.post(API_URL + "sign-up", {
-          name: firstName,
-          family_name: familyName,
-          email: email,
-          username: UserName,
-          password: password
-        });
-      }
+				return response.data;
+			});
+	}
 
-      verify(UserName: string, code: string) {
-        
-        return axios.post(API_URL + "verify", {
-          code: code,
-          username: UserName
-        });
-      }
-    
-      getCurrentUser() {
-        const userStr = localStorage.getItem("user");
-        if (userStr) return JSON.parse(userStr);
-    
-        return null;
-      }
-    }
-    
-    export default new AuthService();
+	forgotPassword(username: string) {
+		return axios.post(API_URL + `forgot-password/${username}`, {
+			username: username,
+		});
+	}
+
+	confirmForgotPassword(
+		username: string,
+		password: string,
+		confirmationCode: string
+	) {
+		return axios.post(API_URL + "confirm-forgot-password", {
+			username: username,
+			password: password,
+			confirmationCode: confirmationCode,
+		});
+	}
+
+	logout() {
+		localStorage.removeItem("user");
+	}
+
+	register(
+		firstName: string,
+		familyName: string,
+		email: string,
+		username: string,
+		password: string
+	) {
+		return axios.post(API_URL + "sign-up", {
+			name: firstName,
+			family_name: familyName,
+			email: email,
+			username: username,
+			password: password,
+		});
+	}
+
+	verify(username: string, code: string) {
+		return axios.post(API_URL + "verify", {
+			code: code,
+			username: username,
+		});
+	}
+
+	getCurrentUser() {
+		const userStr = localStorage.getItem("user");
+		if (userStr) return JSON.parse(userStr);
+
+		return null;
+	}
+}
+
+export default new AuthService();
