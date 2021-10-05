@@ -61,7 +61,7 @@ const Home = () => {
 	}, []);
 	console.log("dilkfhsiodfhs", currentUser);
 
-	if (!currentUser) {
+	if (currentUser) {
 		return (
 			<Grid container direction="column" className={classes.grid}>
 				<Grid container className={classes.grid}>
@@ -69,7 +69,7 @@ const Home = () => {
 					<Grid item xs={12}>
 						<Button
 							component={Link}
-							to="/login"
+							to="/sign-in"
 							variant="contained"
 							className={classes.button}
 							style={{
@@ -80,7 +80,7 @@ const Home = () => {
 					<Grid item xs={12}>
 						<Button
 							component={Link}
-							to="/register"
+							to="/sign-up"
 							variant="contained"
 							className={classes.button}
 							style={{

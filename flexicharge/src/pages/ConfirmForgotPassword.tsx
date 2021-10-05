@@ -57,39 +57,47 @@ const useStyles = makeStyles((theme: Theme) =>
 const inputFieldValues = [
 	{
 		name: "username",
-		label: "Username",
+		label: "username",
 		id: "username",
 		icon: <AccountCircle />,
 	},
 	{
-		name: "password",
+		name: "newPassword",
 		type: "password",
 		label: "Password",
 		id: "password",
 		icon: <LockIcon />,
 	},
 	{
-		name: "verificationCode",
+		name: "verifyCode",
 		label: "Verification code",
-		id: "verificationCode",
+		id: "verifyCode",
+		maxLength: 6,
 		icon: <VpnKeyIcon />,
 	},
 ];
-const ForgotPasswordConfirm = () => {
+
+const ConfirmForgotPassword = () => {
 	const classes = useStyles();
-	const { LogInhandleFormSubmit, handleInputValue, errors, msg, redirect } =
-		ValidationForm();
+	const {
+		ConfirmForgotPasswordHandleFormSubmit,
+		handleInputValue,
+		errors,
+		msg,
+		redirect,
+	} = ValidationForm();
 
 	if (redirect) {
-		console.log("hejsan");
-
-		<Redirect to="/charging-sessions" />;
+		<Redirect to="/sign-in" />;
 	}
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
 			<Grid container direction="column" className={classes.container}>
-				<form autoComplete="off" onSubmit={LogInhandleFormSubmit}>
+				<form
+					autoComplete="off"
+					onSubmit={ConfirmForgotPasswordHandleFormSubmit}
+				>
 					<h2>Set new password</h2>
 					{inputFieldValues.map((inputFieldValue, index) => {
 						return (
@@ -112,6 +120,9 @@ const ForgotPasswordConfirm = () => {
 									label={inputFieldValue.label}
 									type={inputFieldValue.type}
 									autoComplete="none"
+									inputProps={{
+										maxLength: inputFieldValue.maxLength,
+									}}
 									{...(errors[inputFieldValue.name] && {
 										error: true,
 										helperText: errors[inputFieldValue.name],
@@ -130,4 +141,4 @@ const ForgotPasswordConfirm = () => {
 	);
 };
 
-export default ForgotPasswordConfirm;
+export default ConfirmForgotPassword;

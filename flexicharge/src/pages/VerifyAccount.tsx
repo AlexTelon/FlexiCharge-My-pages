@@ -3,8 +3,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { Redirect } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -62,89 +63,72 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
+const inputFieldValues = [
+	{
+		name: "username",
+		label: "username",
+		id: "username",
+		icon: <AccountCircle />,
+	},
+	{
+		name: "verifyCode",
+		label: "Verification code",
+		id: "verifyCode",
+		maxLength: 6,
+		icon: <VpnKeyIcon />,
+	},
+];
+
 const VerifyAccount = () => {
 	const classes = useStyles();
-	const [code, setCode] = useState(new Array(6).fill(""));
-	const [username, setUsername] = useState("");
-	const [value, setValue] = useState("");
 
-	const handleChange = (element: any, index: Number) => {
-		if (isNaN(element.value)) return false;
-
-		setCode([...code.map((d, idx) => (idx === index ? element.value : d))]);
-
-		if (element.value.length > 1) {
-			console.log(element, "e");
-			element = element.nextSibling;
-			console.log(element, "e2");
-			setValue("2");
-		}
-		console.log(element.value);
-		if (element.nextSibling) {
-			element.nextSibling.focus();
-		}
-	};
-
-	const { verifyHandleFormSubmit, errors, msg, redirect } = ValidationForm();
+	const { verifyHandleFormSubmit, handleInputValue, errors, msg, redirect } =
+		ValidationForm();
 
 	if (!msg && redirect) {
-		return <Redirect to="/login" />;
+		console.log("redirect");
+
+		return <Redirect to="/sign-in" />;
 	}
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
 			<Grid container className={classes.container}>
-				<form
-					autoComplete="off"
-					onSubmit={(e) => verifyHandleFormSubmit(e, username, code)}
-				>
+				<form autoComplete="off" onSubmit={verifyHandleFormSubmit}>
 					<p>Verification code has been sent to your email.</p>
-					<Grid item xs={12}>
-						<TextField
-							InputProps={{
-								startAdornment: (
-									<InputAdornment position="start">
-										<AccountCircle />
-									</InputAdornment>
-								),
-							}}
-							fullWidth
-							name="username"
-							label="Username"
-							autoComplete="none"
-							onChange={(e) => setUsername(e.target.value)}
-							value={username}
-							className={classes.textField}
-						/>
-					</Grid>
-					<Grid container>
-						<Grid item xs={2} className={classes.gridItemLabel}>
-							<p>Code:</p>
-						</Grid>
-						<Grid item xs={10} className={classes.gridItemInputs}>
-							{code.map((data, index) => {
-								return (
-									<input
-										className={classes.input}
-										type="text"
-										name="code"
-										maxLength={6}
-										key={index}
-										value={value}
-										onChange={(e) => handleChange(e.target, index)}
-										onFocus={(e) => e.target.select()}
-									/>
-								);
-							})}
-						</Grid>
-						<Button
-							variant="contained"
-							type="submit"
-							className={classes.button}
-						>
-							Verify
-						</Button>
-					</Grid>
+					{inputFieldValues.map((inputFieldValue, index) => {
+						return (
+							<Grid item key={index} xs={12}>
+								<TextField
+									key={index}
+									onChange={handleInputValue}
+									onBlur={handleInputValue}
+									InputProps={{
+										startAdornment: (
+											<InputAdornment position="start">
+												{inputFieldValue.icon}
+											</InputAdornment>
+										),
+									}}
+									fullWidth
+									style={{ marginTop: "1rem" }}
+									name={inputFieldValue.name}
+									label={inputFieldValue.label}
+									autoComplete="none"
+									inputProps={{
+										maxLength: inputFieldValue.maxLength,
+									}}
+									{...(errors[inputFieldValue.name] && {
+										error: true,
+										helperText: errors[inputFieldValue.name],
+									})}
+								/>
+							</Grid>
+						);
+					})}
+					<Button variant="contained" type="submit" className={classes.button}>
+						Verify
+					</Button>
 					<Box color="red">{msg}</Box>
 				</form>
 			</Grid>

@@ -10,12 +10,12 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		grid: {
-			spacing: 0,
 			alignItems: "center",
 			justifyContent: "center",
 			maxWidth: "40%",
 			minWidth: "40vh",
 			minHeight: "100vh",
+			height: "0",
 			margin: "auto",
 		},
 		container: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				transform: "translateY(-5px)",
 			},
 			width: "50%",
-			minHeight: "5vh",
+			minHeight: "3rem",
 			marginTop: theme.spacing(2),
 		},
 		links: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const inputFieldValues = [
 	{
 		name: "username",
-		label: "Username",
+		label: "username",
 		id: "username",
 		icon: <AccountCircle />,
 	},
@@ -64,15 +64,11 @@ const inputFieldValues = [
 		icon: <LockIcon />,
 	},
 ];
+
 const Login = () => {
 	const classes = useStyles();
-	const {
-		LogInhandleFormSubmit,
-		handleInputValueLogin,
-		errors,
-		msg,
-		redirect,
-	} = ValidationForm();
+	const { LogInhandleFormSubmit, handleInputValue, errors, msg, redirect } =
+		ValidationForm();
 
 	if (redirect) {
 		console.log("sadfasfasfa", redirect);
@@ -90,8 +86,8 @@ const Login = () => {
 							<Grid item key={index} xs={12} className={classes.gridItem}>
 								<TextField
 									key={index}
-									onChange={handleInputValueLogin}
-									onBlur={handleInputValueLogin}
+									onChange={handleInputValue}
+									onBlur={handleInputValue}
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position="start">
@@ -114,6 +110,7 @@ const Login = () => {
 							</Grid>
 						);
 					})}
+
 					<Grid item xs={12}>
 						<Button
 							variant="contained"
@@ -126,7 +123,7 @@ const Login = () => {
 							<Link to="/forgot-password">Forgot password?</Link>
 						</Grid>
 						<Grid item xs={6}>
-							<Link to="/register">No account? Sign Up</Link>
+							<Link to="/sign-up">No account? Sign Up</Link>
 						</Grid>
 					</Grid>
 					<Box color="red">{msg}</Box>

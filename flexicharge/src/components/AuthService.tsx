@@ -3,11 +3,11 @@ import axios from "axios";
 const API_URL = "http://54.220.194.65:8080/auth/";
 
 class AuthService {
-	login(userName: string, password: string) {
-		console.log(userName, password);
+	login(username: string, password: string) {
+		console.log(username, password);
 		return axios
 			.post(API_URL + "sign-in", {
-				username: userName,
+				username: username,
 				password: password,
 			})
 			.then((response) => {
@@ -25,6 +25,18 @@ class AuthService {
 		});
 	}
 
+	confirmForgotPassword(
+		username: string,
+		password: string,
+		confirmationCode: string
+	) {
+		return axios.post(API_URL + "confirm-forgot-password", {
+			username: username,
+			password: password,
+			confirmationCode: confirmationCode,
+		});
+	}
+
 	logout() {
 		localStorage.removeItem("user");
 	}
@@ -33,22 +45,22 @@ class AuthService {
 		firstName: string,
 		familyName: string,
 		email: string,
-		UserName: string,
+		username: string,
 		password: string
 	) {
 		return axios.post(API_URL + "sign-up", {
 			name: firstName,
 			family_name: familyName,
 			email: email,
-			username: UserName,
+			username: username,
 			password: password,
 		});
 	}
 
-	verify(UserName: string, code: string) {
+	verify(username: string, code: string) {
 		return axios.post(API_URL + "verify", {
 			code: code,
-			username: UserName,
+			username: username,
 		});
 	}
 

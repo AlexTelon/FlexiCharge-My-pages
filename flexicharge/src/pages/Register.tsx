@@ -16,20 +16,20 @@ const useStyles = makeStyles((theme: Theme) =>
 			maxWidth: "40%",
 			minWidth: "40vh",
 			minHeight: "100vh",
+			height: "0",
 			margin: "auto",
 		},
 		container: {
 			backgroundColor: theme.flexiCharge.primary.white,
 			borderRadius: "0.5rem",
-			alignItems: "center",
 			justifyContent: "center",
 			padding: "1rem",
 		},
-		textFields: {
-			margin: "1rem",
-		},
 		gridItem: {
 			margin: "auto",
+		},
+		textFields: {
+			maxWidth: "80%",
 		},
 		button: {
 			backgroundImage: `url(${registerB})`,
@@ -40,12 +40,12 @@ const useStyles = makeStyles((theme: Theme) =>
 				boxShadow: theme.flexiCharge.boxShadow.button,
 				transform: "translateY(-5px)",
 			},
-			width: "40%",
-			minHeight: "5vh",
+			width: "50%",
+			minHeight: "3rem",
 			marginTop: theme.spacing(2),
 		},
 		links: {
-			marginTop: theme.spacing(2),
+			margin: "auto",
 		},
 	})
 );
@@ -77,7 +77,7 @@ const inputFieldValues = [
 		icon: <EmailIcon />,
 	},
 	{
-		name: "password",
+		name: "newPassword",
 		type: "password",
 		label: "Password",
 		id: "user-password",
@@ -88,30 +88,23 @@ const inputFieldValues = [
 const Register = () => {
 	const classes = useStyles();
 
-	const {
-		handleInputValue,
-		RegisterhandleFormSubmit,
-		formIsValid,
-		errors,
-		msg,
-		redirect,
-	} = ValidationForm();
+	const { handleInputValue, RegisterhandleFormSubmit, errors, msg, redirect } =
+		ValidationForm();
 
 	if (!msg && redirect) {
-		return <Redirect to="/verification" />;
+		return <Redirect to="/verify" />;
 	}
 	return (
 		<Grid container direction="column" className={classes.grid}>
-			<h1>Register</h1>
-			<Grid container className={classes.container}>
+			<Grid container direction="column" className={classes.container}>
 				<form autoComplete="off" onSubmit={RegisterhandleFormSubmit}>
-					<Grid item xs={12} className={classes.gridItem}>
+					<Grid item xs={12}>
+						<h2>Sign up</h2>
 						{inputFieldValues.map((inputFieldValue, index) => {
 							return (
 								<TextField
 									key={index}
 									onChange={handleInputValue}
-									onBlur={handleInputValue}
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position="start">
@@ -119,7 +112,8 @@ const Register = () => {
 											</InputAdornment>
 										),
 									}}
-									style={{ margin: "1rem" }}
+									style={{ marginTop: "1rem" }}
+									className={classes.textFields}
 									name={inputFieldValue.name}
 									label={inputFieldValue.label}
 									type={inputFieldValue.type}
@@ -131,26 +125,23 @@ const Register = () => {
 								/>
 							);
 						})}
-					</Grid>
-					<Box color="text.secondary">
-						Password must at least have 8 characters including a number and both
-						lowercase and uppercase letter.
-					</Box>
-					<Button
-						variant="contained"
-						type="submit"
-						className={classes.button}
-						disabled={!formIsValid()}
-					></Button>
-					<Grid container className={classes.links}>
-						<Grid item xs={5}>
-							<Link to="/forgot-password">Forgot password?</Link>
+						<Grid item xs={12}>
+							<Button
+								variant="contained"
+								type="submit"
+								className={classes.button}
+							/>
 						</Grid>
-						<Grid item xs={7}>
-							<Link to="/login">Already have an account? Sign in</Link>
+						<Grid container className={classes.links}>
+							<Grid item xs={6}>
+								<Link to="/forgot-password">Forgot password?</Link>
+							</Grid>
+							<Grid item xs={6}>
+								<Link to="/sign-up">Already have an account? Sign in</Link>
+							</Grid>
 						</Grid>
+						<Box color="red">{msg}</Box>
 					</Grid>
-					<Box color="red">{msg}</Box>
 				</form>
 			</Grid>
 		</Grid>

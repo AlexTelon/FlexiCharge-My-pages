@@ -7,9 +7,8 @@ import ChargingSessions from "./pages/ChargingSessions";
 import VerifyAccount from "./pages/VerifyAccount";
 import { ThemeProvider } from "@material-ui/core";
 import Theme from "./theme/theme";
-import Nav from "./components/Nav";
 import ForgotPassword from "./pages/ForgotPassword";
-import ForgotPasswordConfirm from "./pages/ForgotPasswordConfirm";
+import ConfirmForgotPassword from "./pages/ConfirmForgotPassword";
 import AuthService from "./components/AuthService";
 
 function App() {
@@ -20,13 +19,16 @@ function App() {
 				<BrowserRouter>
 					<main>
 						<Route path="/" exact component={() => <Home />} />
-						<Route path="/login" component={() => <Login />} />
-						<Route path="/register" component={Register} />
-						<Route path="/verification" component={VerifyAccount} />
-						<Route path="/forgot-password" component={ForgotPassword} />
+						<Route path="/sign-in" component={() => <Login />} />
+						<Route path="/sign-up" component={Register} />
+						<Route path="/verify" component={VerifyAccount} />
 						<Route
-							path="/forgot-password-confirm"
-							component={ForgotPasswordConfirm}
+							path="/forgot-password"
+							component={() => <ForgotPassword />}
+						/>
+						<Route
+							path="/confirm-forgot-password"
+							component={ConfirmForgotPassword}
 						/>
 						<Route path="/charging-sessions" component={ChargingSessions} />
 					</main>
