@@ -3,6 +3,7 @@ import axios from "axios";
 const API_URL = "http://54.220.194.65:8080/auth/";
 
 class AuthService {
+
 	login(username: string, password: string) {
 		return axios
 			.post(API_URL + "sign-in", {
@@ -33,6 +34,17 @@ class AuthService {
 			username: username,
 			password: password,
 			confirmationCode: confirmationCode,
+		});
+	}
+	changePassword(
+		token: string,
+		password: string,
+		newPassword: string
+	) {
+		return axios.post(API_URL + "change-password", {
+			accessToken: token,
+			previousPassword: password,
+			newPassword: newPassword,
 		});
 	}
 

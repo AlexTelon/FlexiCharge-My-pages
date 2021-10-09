@@ -252,6 +252,43 @@ export const ValidationForm = () => {
 		}
 	};
 
+	
+	const ChangePassword = async (e: any) => {
+		e.preventDefault();
+		setMsg("");
+		
+
+		const {password, newPassword } = e.target.elements;
+		const initialValues = {
+			password: password.value,
+			newPassword: newPassword.value,
+		};
+
+		const isValid = Object.values(errors).every((x) => x === "");
+		const user = AuthService.getCurrentUser()
+		const token = user.accessToken
+		if (!isEmpty(initialValues)) {
+			if (isValid) {
+				const {password, newPassword } = values;
+
+				AuthService.changePassword(
+					token,
+					password,
+					newPassword
+					
+				).then(
+					(response) => {
+						setRedirect(true);
+					},
+					(error) => {
+						setMsg(error.response.data.message);
+					}
+				);
+			}
+		} else {
+			setMsg("Please fill in the fields!");
+		}
+	};
 	return {
 		values,
 		errors,
@@ -265,6 +302,7 @@ export const ValidationForm = () => {
 		LogInhandleFormSubmit,
 		ForgotPasswordHandleFormSubmit,
 		ConfirmForgotPasswordHandleFormSubmit,
+		ChangePassword,
 		redirect,
 	};
 };

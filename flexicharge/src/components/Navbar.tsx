@@ -9,17 +9,14 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-// import { ReactComponent as Title } from '../../assets/title.svg';
-import { Icon } from "@material-ui/core";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import HistoryIcon from "@mui/icons-material/History";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useHistory } from "react-router-dom";
 import AuthService from "./AuthService";
-import Logout from "@mui/icons-material/Logout";
+import { useState } from "react";
 
-// import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 
@@ -134,8 +131,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function MiniDrawer() {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(false);
-	const [mobileOpen, setMobileOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);

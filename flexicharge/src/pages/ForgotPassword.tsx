@@ -1,7 +1,5 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
-import Alert from "@mui/material/Alert";
-import Modal from "@mui/material/Modal";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
@@ -47,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const inputFieldValue = {
 	name: "username",
-	label: "Username",
+	label: "username",
 	id: "username",
 	icon: <AccountCircle />,
 };
@@ -57,8 +55,6 @@ const ForgotPassword = () => {
 	const {
 		ForgotPasswordHandleFormSubmit,
 		handleInputValue,
-		handleClose,
-		open,
 		errors,
 		msg,
 		redirect,
@@ -70,14 +66,9 @@ const ForgotPassword = () => {
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
-			<Modal open={open} onClose={handleClose}>
-				<Box className="backdrop">
-					<div className="loader"></div>
-				</Box>
-			</Modal>
+			<h1>Forgot Password</h1>
 			<Grid container direction="column" className={classes.container}>
 				<form autoComplete="off" onSubmit={ForgotPasswordHandleFormSubmit}>
-					<h1>Forgot Password</h1>
 					<p>
 						Enter your username and we will send you a password reset link to
 						your registered email.
@@ -106,7 +97,7 @@ const ForgotPassword = () => {
 					<Button variant="contained" type="submit" className={classes.button}>
 						Send password reset
 					</Button>
-					{msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
+					<Box color="red">{msg}</Box>
 				</form>
 			</Grid>
 		</Grid>
