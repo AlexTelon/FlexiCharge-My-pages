@@ -1,4 +1,6 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
+import Alert from "@mui/material/Alert";
+import Modal from "@mui/material/Modal";
 import { Redirect, Link } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";
@@ -45,6 +47,16 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		links: {
 			marginTop: theme.spacing(2),
+			fontWeight: 500,
+		},
+		backdrop: {
+			position: "absolute" as "absolute",
+			top: "50%",
+			left: "50%",
+			transform: "translate(-50%, -50%)",
+			width: 400,
+			bgcolor: "background.paper",
+			p: 4,
 		},
 	})
 );
@@ -52,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const inputFieldValues = [
 	{
 		name: "username",
-		label: "username",
+		label: "Username",
 		id: "username",
 		icon: <AccountCircle />,
 	},
@@ -67,19 +79,30 @@ const inputFieldValues = [
 
 const Login = () => {
 	const classes = useStyles();
-	const { LogInhandleFormSubmit, handleInputValue, errors, msg, redirect } =
-		ValidationForm();
+	const {
+		LogInhandleFormSubmit,
+		handleInputValue,
+		redirect,
+		errors,
+		msg,
+		open,
+		handleClose,
+	} = ValidationForm();
 
 	if (redirect) {
-
-		return <Redirect to="/" />;
+		return <Redirect to="/profile" />;
 	}
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
-			<h1>Log in</h1>
+			<Modal open={open} onClose={handleClose}>
+				<Box className="backdrop">
+					<div className="loader"></div>
+				</Box>
+			</Modal>
 			<Grid container direction="column" className={classes.container}>
 				<form autoComplete="off" onSubmit={LogInhandleFormSubmit}>
+					<h1 className="formTitle">Log in</h1>
 					{inputFieldValues.map((inputFieldValue, index) => {
 						return (
 							<Grid item key={index} xs={12} className={classes.gridItem}>
@@ -109,7 +132,6 @@ const Login = () => {
 							</Grid>
 						);
 					})}
-
 					<Grid item xs={12}>
 						<Button
 							variant="contained"
@@ -125,8 +147,8 @@ const Login = () => {
 							<Link to="/sign-up">No account? Sign Up</Link>
 						</Grid>
 					</Grid>
-					<Box color="red">{msg}</Box>
 				</form>
+				{msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
 			</Grid>
 		</Grid>
 	);

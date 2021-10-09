@@ -17,6 +17,9 @@ export const ValidationForm = () => {
 	const [values, setValues] = useState(initialFormValues);
 	const [errors, setErrors] = useState({} as any);
 	const [msg, setMsg] = useState("");
+	const [open, setOpen] = useState(false);
+	const handleClose = () => setOpen(false);
+	const handleOpen = () => setOpen(true);
 	const [redirect, setRedirect] = useState(false);
 
 	const validate: any = (fieldValues = values) => {
@@ -106,6 +109,7 @@ export const ValidationForm = () => {
 		const isValid = Object.values(errors).every((x) => x === "");
 		if (!isEmpty(initialValues)) {
 			if (isValid) {
+				setOpen(true);
 				const { firstName, lastName, email, username, newPassword } = values;
 				AuthService.register(
 					firstName,
@@ -114,8 +118,16 @@ export const ValidationForm = () => {
 					username,
 					newPassword
 				).then(
-					() => setRedirect(true),
-					(error) => setMsg(error.response.data.message)
+					() => {
+						handleClose;
+						setOpen(false);
+						setRedirect(true);
+					},
+					(error) => {
+						handleClose;
+						setOpen(false);
+						setMsg(error.response.data.message);
+					}
 				);
 			}
 		} else {
@@ -135,10 +147,19 @@ export const ValidationForm = () => {
 		const isValid = Object.values(errors).every((x) => x === "");
 
 		if (isValid && !isEmpty(initialValues)) {
+			setOpen(true);
 			const { username, verifyCode } = values;
 			AuthService.verify(username, verifyCode).then(
-				() => setRedirect(true),
-				(error) => setMsg(error.response.data.message)
+				() => {
+					handleClose;
+					setOpen(false);
+					setRedirect(true);
+				},
+				(error) => {
+					handleClose;
+					setOpen(false);
+					setMsg(error.response.data.message);
+				}
 			);
 		} else setMsg("Please fill in the fields!");
 	};
@@ -154,10 +175,19 @@ export const ValidationForm = () => {
 		const isValid = Object.values(errors).every((x) => x === "");
 
 		if (isValid && !isEmpty(initialValues)) {
+			setOpen(true);
 			const { username, password } = values;
 			AuthService.login(username, password).then(
-				() => setRedirect(true),
-				(error) => setMsg(error.response.data.message)
+				() => {
+					handleClose;
+					setOpen(false);
+					setRedirect(true);
+				},
+				(error) => {
+					setOpen(false);
+					handleClose;
+					setMsg(error.response.data.message);
+				}
 			);
 		} else setMsg("Please fill in the fields!");
 	};
@@ -173,8 +203,13 @@ export const ValidationForm = () => {
 		const isValid = Object.values(errors).every((x) => x === "");
 
 		if (isValid && !isEmpty(initialValues)) {
+			setOpen(true);
 			const { username } = values;
-			AuthService.forgotPassword(username).then(() => setRedirect(true));
+			AuthService.forgotPassword(username).then(() => {
+				handleClose;
+				setOpen(false);
+				setRedirect(true);
+			});
 		} else setMsg("Please fill in the fields!");
 	};
 
@@ -193,16 +228,21 @@ export const ValidationForm = () => {
 
 		if (!isEmpty(initialValues)) {
 			if (isValid) {
+				setOpen(true);
 				const { username, newPassword, verifyCode } = values;
 				AuthService.confirmForgotPassword(
 					username,
 					newPassword,
 					verifyCode
 				).then(
-					(response) => {
+					() => {
+						handleClose;
+						setOpen(false);
 						setRedirect(true);
 					},
 					(error) => {
+						handleClose;
+						setOpen(false);
 						setMsg(error.response.data.message);
 					}
 				);
@@ -211,8 +251,6 @@ export const ValidationForm = () => {
 			setMsg("Please fill in the fields!");
 		}
 	};
-
-	
 	const ChangePassword = async (e: any) => {
 		e.preventDefault();
 		setMsg("");
@@ -249,17 +287,21 @@ export const ValidationForm = () => {
 			setMsg("Please fill in the fields!");
 		}
 	};
+
 	return {
 		values,
 		errors,
 		msg,
+		open,
+		ChangePassword,
+		handleClose,
+		handleOpen,
 		handleInputValue,
 		RegisterhandleFormSubmit,
 		verifyHandleFormSubmit,
 		LogInhandleFormSubmit,
 		ForgotPasswordHandleFormSubmit,
 		ConfirmForgotPasswordHandleFormSubmit,
-		ChangePassword,
 		redirect,
 	};
 };

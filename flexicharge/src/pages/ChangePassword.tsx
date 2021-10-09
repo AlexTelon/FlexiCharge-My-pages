@@ -5,6 +5,8 @@ import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import Navbar from "../components/Navbar";
+import Mobile from "../components/Mobile";
+import BottomNavigationBar from "../components/BottomNavigation";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -85,7 +87,8 @@ const ChangePassword = () => {
     }
 
     return (
-        <><Navbar /><Grid container direction="column" className={classes.grid}>
+        <>{Mobile() ? <Navbar /> : <BottomNavigationBar />}
+        <Grid container direction="column" className={classes.grid}>
             <Grid container direction="column" className={classes.container}>
                 <form
                     autoComplete="off"

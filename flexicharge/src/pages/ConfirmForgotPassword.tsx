@@ -1,7 +1,9 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
+import Alert from "@mui/material/Alert";
+import Modal from "@mui/material/Modal";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const inputFieldValues = [
 	{
 		name: "username",
-		label: "username",
+		label: "Username",
 		id: "username",
 		icon: <AccountCircle />,
 	},
@@ -82,6 +84,8 @@ const ConfirmForgotPassword = () => {
 	const {
 		ConfirmForgotPasswordHandleFormSubmit,
 		handleInputValue,
+		handleClose,
+		open,
 		errors,
 		msg,
 		redirect,
@@ -93,12 +97,17 @@ const ConfirmForgotPassword = () => {
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
+			<Modal open={open} onClose={handleClose}>
+				<Box className="backdrop">
+					<div className="loader"></div>
+				</Box>
+			</Modal>
 			<Grid container direction="column" className={classes.container}>
 				<form
 					autoComplete="off"
 					onSubmit={ConfirmForgotPasswordHandleFormSubmit}
 				>
-					<h2>Set new password</h2>
+					<h1>Set new password</h1>
 					{inputFieldValues.map((inputFieldValue, index) => {
 						return (
 							<Grid item key={index} xs={12} className={classes.gridItem}>
@@ -134,7 +143,7 @@ const ConfirmForgotPassword = () => {
 					<Button variant="contained" type="submit" className={classes.button}>
 						Set new password
 					</Button>
-					<Box color="red">{msg}</Box>
+					{msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
 				</form>
 			</Grid>
 		</Grid>

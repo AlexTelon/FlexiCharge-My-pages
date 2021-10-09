@@ -1,11 +1,12 @@
-import { Button, TextField, Box, Grid } from "@material-ui/core";
+import { Button, TextField, Grid, Box } from "@material-ui/core";
+import Alert from "@mui/material/Alert";
+import Modal from "@mui/material/Modal";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { Redirect } from "react-router-dom";
-import { useRef, useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const inputFieldValues = [
 	{
 		name: "username",
-		label: "username",
+		label: "Username",
 		id: "username",
 		icon: <AccountCircle />,
 	},
@@ -82,18 +83,30 @@ const inputFieldValues = [
 const VerifyAccount = () => {
 	const classes = useStyles();
 
-	const { verifyHandleFormSubmit, handleInputValue, errors, msg, redirect } =
-		ValidationForm();
+	const {
+		verifyHandleFormSubmit,
+		handleInputValue,
+		handleClose,
+		open,
+		errors,
+		msg,
+		redirect,
+	} = ValidationForm();
 
 	if (!msg && redirect) {
-
 		return <Redirect to="/sign-in" />;
 	}
 
 	return (
 		<Grid container direction="column" className={classes.grid}>
+			<Modal open={open} onClose={handleClose}>
+				<Box className="backdrop">
+					<div className="loader"></div>
+				</Box>
+			</Modal>
 			<Grid container className={classes.container}>
 				<form autoComplete="off" onSubmit={verifyHandleFormSubmit}>
+					<h1>Verify</h1>
 					<p>Verification code has been sent to your email.</p>
 					{inputFieldValues.map((inputFieldValue, index) => {
 						return (
@@ -128,7 +141,7 @@ const VerifyAccount = () => {
 					<Button variant="contained" type="submit" className={classes.button}>
 						Verify
 					</Button>
-					<Box color="red">{msg}</Box>
+					{msg ? <Alert severity="error">{msg}</Alert> : ""}
 				</form>
 			</Grid>
 		</Grid>

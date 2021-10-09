@@ -1,7 +1,6 @@
 import "./App.css";
 import Login from "./pages/Login";
-import { BrowserRouter, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import ChargingSessions from "./pages/ChargingSessions";
 import VerifyAccount from "./pages/VerifyAccount";
@@ -21,8 +20,9 @@ function App() {
 				<BrowserRouter>
 
 					<main>
-						<Route path="/" exact component={() => <Home />} />
-						<Route path="/sign-in" component={() => <Login />} />
+					<Route exact path="/">
+							<Redirect to="/sign-in" />
+						</Route>						<Route path="/sign-in" component={() => <Login />} />
 						<Route path="/sign-up" component={Register} />
 						<Route path="/verify" component={VerifyAccount} />
 						<Route
