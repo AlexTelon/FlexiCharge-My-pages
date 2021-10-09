@@ -1,4 +1,5 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Alert } from "@material-ui/lab";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import AuthService from "../components/AuthService";
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
             minWidth: "20vh",
             minHeight: "100vh",
             margin: "auto",
+            marginTop:"50px"
         },
         container: {
             backgroundColor: theme.flexiCharge.primary.white,
@@ -41,7 +43,6 @@ const Profile = () => {
             history.push("/sign-in")
 
         } else {
-            console.log("there is  user")
             setFirstName(currentUser.name)
             setFamilytName(currentUser.family_name)
             setEmail(currentUser.email)
@@ -100,6 +101,7 @@ const Profile = () => {
                         }}>Change Password</button>
 
                     </div>
+
                 </div>
             </div>
         </div></>

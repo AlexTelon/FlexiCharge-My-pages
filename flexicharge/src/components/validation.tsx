@@ -200,11 +200,9 @@ export const ValidationForm = () => {
 					verifyCode
 				).then(
 					(response) => {
-						console.log("sucesss confirmsforgot", response);
 						setRedirect(true);
 					},
 					(error) => {
-						console.log(error.response, "error");
 						setMsg(error.response.data.message);
 					}
 				);
@@ -219,10 +217,8 @@ export const ValidationForm = () => {
 		e.preventDefault();
 		setMsg("");
 		
-		console.log("i am here111")
 
 		const {password, newPassword } = e.target.elements;
-		console.log("i am here")
 		const initialValues = {
 			password: password.value,
 			newPassword: newPassword.value,
@@ -242,12 +238,9 @@ export const ValidationForm = () => {
 					
 				).then(
 					(response) => {
-						console.log("password changed", response);
 						setRedirect(true);
 					},
 					(error) => {
-						console.log(error.response, "error");
-
 						setMsg(error.response.data.message);
 					}
 				);

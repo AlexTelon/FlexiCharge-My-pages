@@ -63,7 +63,6 @@ const ForgotPassword = () => {
 
 
 	if (redirect) {
-		console.log("redired confirm");
 		return <Redirect to="/confirm-forgot-password" />;
 
 	}

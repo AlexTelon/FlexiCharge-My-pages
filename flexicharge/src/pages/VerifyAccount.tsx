@@ -86,7 +86,6 @@ const VerifyAccount = () => {
 		ValidationForm();
 
 	if (!msg && redirect) {
-		console.log("redirect");
 
 		return <Redirect to="/sign-in" />;
 	}

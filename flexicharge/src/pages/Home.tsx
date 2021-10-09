@@ -51,7 +51,6 @@ const Home = () => {
 
 	useEffect(() => {
 		const currentUser = AuthService.getCurrentUser();
-		console.log("whats uppppppp", currentUser);
 		if (!currentUser) {
 			console.log("there is no user");
 		} else {
@@ -59,7 +58,6 @@ const Home = () => {
 			setCurrentUser(currentUser);
 		}
 	}, []);
-	console.log("dilkfhsiodfhs", currentUser);
 
 	if (!currentUser) {
 		return (
