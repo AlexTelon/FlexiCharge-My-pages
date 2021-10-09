@@ -51,6 +51,7 @@ const inputFieldValue = {
 };
 
 const ForgotPassword = () => {
+
 	const classes = useStyles();
 	const {
 		ForgotPasswordHandleFormSubmit,
@@ -60,9 +61,11 @@ const ForgotPassword = () => {
 		redirect,
 	} = ValidationForm();
 
+
 	if (redirect) {
 		console.log("redired confirm");
 		return <Redirect to="/confirm-forgot-password" />;
+
 	}
 
 	return (

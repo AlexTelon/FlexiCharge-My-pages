@@ -37,6 +37,18 @@ login(username: string, password: string) {
 			confirmationCode: confirmationCode,
 		});
 	}
+	changePassword(
+		token: string,
+		password: string,
+		newPassword: string
+	) {
+		console.log("heeeeeeeeeereeeeeeeeeeee", password, newPassword , token 	)
+		return axios.post(API_URL + "change-password", {
+			accessToken: token,
+			previousPassword: password,
+			newPassword: newPassword,
+		});
+	}
 
 	logout() {
 		localStorage.removeItem("user");

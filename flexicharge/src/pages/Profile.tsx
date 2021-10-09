@@ -6,27 +6,27 @@ import Navbar from "../components/Navbar";
 
 
 const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		profile: {
-			spacing: 0,
-			alignItems: "center",
-			justifyContent: "center",
-			maxWidth: "60%",
-			minWidth: "20vh",
-			minHeight: "100vh",
-			margin: "auto",
-		},
+    createStyles({
+        profile: {
+            spacing: 0,
+            alignItems: "center",
+            justifyContent: "center",
+            maxWidth: "60%",
+            minWidth: "20vh",
+            minHeight: "100vh",
+            margin: "auto",
+        },
         container: {
-			backgroundColor: theme.flexiCharge.primary.white,
-			borderRadius: "0.5rem",
-			justifyContent: "center",
-			padding: "1rem",
-		},
-	})
+            backgroundColor: theme.flexiCharge.primary.white,
+            borderRadius: "0.5rem",
+            justifyContent: "center",
+            padding: "1rem",
+        },
+    })
 );
 
 const Profile = () => {
-	const classes = useStyles()
+    const classes = useStyles()
     const [firstName, setFirstName] = useState("");
     const [familyName, setFamilytName] = useState("");
     const [email, setEmail] = useState("");
@@ -36,19 +36,20 @@ const Profile = () => {
 
 
     useEffect(() => {
-		const currentUser = AuthService.getCurrentUser();
+        const currentUser = AuthService.getCurrentUser();
         if (!currentUser) {
             history.push("/sign-in")
 
-		} else {
-			console.log("there is  user")
+        } else {
+            console.log("there is  user")
             setFirstName(currentUser.name)
             setFamilytName(currentUser.family_name)
             setEmail(currentUser.email)
-            setUserName(currentUser.username)		}
-        
-	
-	}, []);
+            setUserName(currentUser.username)
+        }
+
+
+    }, []);
 
 
     return (
@@ -90,8 +91,14 @@ const Profile = () => {
                             <div className="col-sm-9 text-secondary">
                                 {email}
                             </div>
-                        </div>                       
+                        </div>
                         <hr />
+                        <button type="button" className="btn btn-success" onClick={(e) => {
+                            e.preventDefault();
+                            history.push("/change-password");
+
+                        }}>Change Password</button>
+
                     </div>
                 </div>
             </div>
