@@ -1,6 +1,7 @@
 import "./App.css";
 import Login from "./pages/Login";
-import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import Home from "./pages/Home";
 import Register from "./pages/Register";
 import ChargingSessions from "./pages/ChargingSessions";
 import VerifyAccount from "./pages/VerifyAccount";
@@ -18,10 +19,9 @@ function App() {
 		<ThemeProvider theme={Theme}>
 			<div className="App">
 				<BrowserRouter>
+
 					<main>
-						<Route exact path="/">
-							<Redirect to="/sign-in" />
-						</Route>
+						<Route path="/" exact component={() => <Home />} />
 						<Route path="/sign-in" component={() => <Login />} />
 						<Route path="/sign-up" component={Register} />
 						<Route path="/verify" component={VerifyAccount} />

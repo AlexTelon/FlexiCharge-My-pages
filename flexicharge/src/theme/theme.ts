@@ -1,5 +1,4 @@
 import { createTheme } from '@material-ui/core/styles';
-import '../index.css'
 
 declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
@@ -7,7 +6,6 @@ declare module '@material-ui/core/styles/createTheme' {
       font: {
         _main: string
         Lato: string
-        Title: string
       }
       primary: {
         black: string
@@ -36,7 +34,6 @@ declare module '@material-ui/core/styles/createTheme' {
       font: {
         _main: string
         Lato: string
-        Title: string
       }
       primary: {
         black: string
@@ -90,8 +87,7 @@ const flexiChargeTheme = createTheme({
   flexiCharge: {
     font: {
       _main: '"Lato", sans-serif',
-      Lato: '"Lato", sans-serif',
-      Title: '"FlexiTitleFont", sans-serif'
+      Lato: '"Lato", sans-serif'
     },
     primary: {
       black: '#000000',
