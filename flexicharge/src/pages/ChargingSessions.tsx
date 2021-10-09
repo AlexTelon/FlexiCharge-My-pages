@@ -1,84 +1,41 @@
-import {
-	DataGrid,
-	GridToolbarContainer,
-	GridToolbarFilterButton,
-	GridToolbarDensitySelector,
-	GridCellParams,
-} from "@mui/x-data-grid";
-import clsx from "clsx";
+import { DataGrid } from "@mui/x-data-grid";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AuthService from "../components/AuthService";
 
-import BottomNavigationBar from "../components/BottomNavigation";
-import Mobile from "../components/Mobile";
 
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			"& .long": {
-				fontSize: "12px",
-			},
-			"& .short": {
-				fontSize: "15px",
-			},
-		},
-		grid: {
-			spacing: 0,
-			alignItems: "center",
-			justifyContent: "center",
-			maxWidth: "60%",
-			minWidth: "10vh",
-			height: "50rem",
-			margin: "auto",
-		},
-		container: {
-			backgroundColor: theme.flexiCharge.primary.white,
-			borderRadius: "0.5rem",
-			justifyContent: "center",
-			padding: "1rem",
-		},
-	})
-);
 
 const columns = [
+	{ field: "id", headerName: "ID", width: 90 },
 	{
 		field: "date",
 		headerName: "Date",
-		minWidth: 100,
-		flex: 0.1,
-		fontSize: "5px",
-		type: "date",
+		width: 250,
+		editable: true,
 	},
 	{
 		field: "electricityTransferred",
 		headerName: "Electricity transferred (kWh)",
-		minWidth: 125,
-		flex: 0.25,
-		filterable: false,
+		width: 300,
+		editable: true,
 	},
 	{
 		field: "priceKwh",
 		headerName: "Price (SEK/kWh)",
-		minWidth: 130,
-		flex: 0.25,
-		filterable: false,
+		type: "number",
+		width: 300,
+		editable: true,
 	},
 	{
 		field: "location",
 		headerName: "Location",
-		width: 150,
-		type: "string",
-		sortable: false,
+		width: 400,
 	},
 	{
 		field: "totalCost",
 		headerName: "Total Cost (SEK)",
-		minWidth: 130,
-		flex: 0.25,
-		filterable: false,
+		width: 200,
 	},
 ];
 
@@ -221,58 +178,28 @@ const rows = [
 	},
 ];
 
-const toolbar = () => {
-	return (
-		<GridToolbarContainer>
-			<GridToolbarFilterButton />
-			<GridToolbarDensitySelector />
-		</GridToolbarContainer>
-	);
-};
-
 const ChargingSessions = () => {
-	const classes = useStyles();
 	const history = useHistory();
-
 	useEffect(() => {
 		const currentUser = AuthService.getCurrentUser();
-		if (!currentUser) {
-			history.push("/sign-up");
-		}
+        if (!currentUser) {
+            history.push("/login")}
+	
 	}, []);
 
+
 	return (
-		<>
-			{Mobile() ? <Navbar /> : <BottomNavigationBar />}
-			<div
-				style={{ height: "550px", width: "80%", margin: "auto" }}
-				className={classes.root}
-			>
-				<div style={{ display: "flex", height: "100%" }}>
-					<div style={{ flexGrow: 1 }}>
-						<h1>Charging</h1>
-						<DataGrid
-							rows={rows}
-							columns={columns}
-							// rowHeight={60}
-							getCellClassName={(params: GridCellParams) => {
-								const value = params.value as string;
-								console.log(value.length);
-								if (params.field === "location") {
-									return value.length > 28 ? "long" : "short";
-								}
-								return "";
-							}}
-							pageSize={10}
-							disableColumnMenu
-							disableSelectionOnClick
-							components={{ Toolbar: toolbar }}
-							rowsPerPageOptions={[10]}
-						/>
-					</div>
-				</div>
-			</div>
-		</>
+		<div style={{ height: 580, width: "100%" }}>
+			<h1>Charging</h1>
+			<Navbar />
+
+			<DataGrid
+				rows={rows}
+				columns={columns}
+				pageSize={10}
+				rowsPerPageOptions={[5]}
+			/>
+		</div>
 	);
 };
 
