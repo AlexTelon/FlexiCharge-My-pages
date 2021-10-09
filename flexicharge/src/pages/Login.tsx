@@ -71,7 +71,6 @@ const Login = () => {
 		ValidationForm();
 
 	if (redirect) {
-		console.log("sadfasfasfa", redirect);
 
 		return <Redirect to="/" />;
 	}
