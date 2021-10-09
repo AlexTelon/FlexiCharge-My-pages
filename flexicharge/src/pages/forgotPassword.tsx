@@ -43,25 +43,13 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const inputFieldValue = {
-	name: "username",
-	label: "username",
-	id: "username",
-	icon: <AccountCircle />,
-};
-
 const ForgotPassword = () => {
 	const classes = useStyles();
-	const {
-		ForgotPasswordHandleFormSubmit,
-		handleInputValue,
-		errors,
-		msg,
-		redirect,
-	} = ValidationForm();
+	const { ForgotPasswordHandleFormSubmit, errors, msg, redirect } =
+		ValidationForm();
 
 	if (redirect) {
-		return <Redirect to="/confirm-forgot-password" />;
+		<Redirect to="/profile" />;
 	}
 
 	return (
@@ -75,7 +63,6 @@ const ForgotPassword = () => {
 					</p>
 					<Grid item xs={12} className={classes.gridItem}>
 						<TextField
-							onChange={handleInputValue}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
@@ -85,13 +72,9 @@ const ForgotPassword = () => {
 							}}
 							fullWidth
 							className={classes.textFields}
-							name={inputFieldValue.name}
-							label={inputFieldValue.label}
+							name="username"
+							label="Username"
 							autoComplete="none"
-							{...(errors[inputFieldValue.name] && {
-								error: true,
-								helperText: errors[inputFieldValue.name],
-							})}
 						/>
 					</Grid>
 					<Button variant="contained" type="submit" className={classes.button}>
