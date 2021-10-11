@@ -5,15 +5,14 @@ import {
 	GridToolbarDensitySelector,
 	GridCellParams,
 } from "@mui/x-data-grid";
-import clsx from "clsx";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AuthService from "../components/AuthService";
-
 import BottomNavigationBar from "../components/BottomNavigation";
 import Mobile from "../components/Mobile";
+import TransactionService from "../components/TransactionService";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -233,13 +232,22 @@ const toolbar = () => {
 const ChargingSessions = () => {
 	const classes = useStyles();
 	const history = useHistory();
+	const currentUser = AuthService.getCurrentUser();
+	//console.log(currentUser.user_id);
+	var rowTest: any = [];
 
 	useEffect(() => {
-		const currentUser = AuthService.getCurrentUser();
 		if (!currentUser) {
 			history.push("/sign-up");
 		}
 	}, []);
+	TransactionService.getChargingSessions("1").then((res) => {
+		console.log("wtf", res);
+		rowTest = res;
+		console.log(rowTest[0]);
+		let { kwhTransfered, pricePerKwh } = rowTest[0];
+		console.log(kwhTransfered), pricePerKwh;
+	});
 
 	return (
 		<>
@@ -250,14 +258,13 @@ const ChargingSessions = () => {
 			>
 				<div style={{ display: "flex", height: "100%" }}>
 					<div style={{ flexGrow: 1 }}>
-						<h1>Charging</h1>
+						<h1 style={{ color: "whitesmoke" }}>Charging</h1>
 						<DataGrid
 							rows={rows}
 							columns={columns}
 							// rowHeight={60}
 							getCellClassName={(params: GridCellParams) => {
 								const value = params.value as string;
-								console.log(value.length);
 								if (params.field === "location") {
 									return value.length > 28 ? "long" : "short";
 								}

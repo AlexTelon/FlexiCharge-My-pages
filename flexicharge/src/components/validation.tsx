@@ -1,4 +1,5 @@
 import { Password } from "@mui/icons-material";
+import { log } from "console";
 import { useState } from "react";
 import AuthService from "./AuthService";
 
@@ -6,9 +7,12 @@ const initialFormValues = {
 	firstName: "",
 	lastName: "",
 	username: "",
+	adress: "",
+	phoneNumber: "",
 	email: "",
-	newPassword: "",
 	password: "",
+	oldPassword: "",
+	newPassword: "",
 	verifyCode: "",
 	formSubmitted: false,
 };
@@ -32,9 +36,16 @@ export const ValidationForm = () => {
 		if ("lastName" in fieldValues)
 			temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
-		if ("username" in fieldValues) {
+		if ("username" in fieldValues)
 			temp.username = fieldValues.username ? "" : "This field is required.";
-		}
+
+		if ("adress" in fieldValues)
+			temp.adress = fieldValues.adress ? "" : "This field is required.";
+
+		if ("phoneNumber" in fieldValues)
+			temp.phoneNumber = fieldValues.phoneNumber
+				? ""
+				: "This field is required.";
 
 		if ("email" in fieldValues) {
 			temp.email = fieldValues.email ? "" : "This field is required.";
@@ -42,6 +53,19 @@ export const ValidationForm = () => {
 				temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
 					? ""
 					: "Email is not valid.";
+			}
+		}
+
+		if ("oldPassword" in fieldValues) {
+			temp.oldPassword = fieldValues.oldPassword
+				? ""
+				: "This field is required.";
+			if (fieldValues.oldPassword) {
+				temp.oldPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(
+					fieldValues.oldPassword
+				)
+					? ""
+					: "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
 			}
 		}
 
@@ -93,8 +117,6 @@ export const ValidationForm = () => {
 
 	const RegisterhandleFormSubmit = async (e: any) => {
 		e.preventDefault();
-		setMsg("");
-
 		const { firstName, lastName, email, username, newPassword } =
 			e.target.elements;
 
@@ -186,6 +208,7 @@ export const ValidationForm = () => {
 				(error) => {
 					setOpen(false);
 					handleClose;
+					console.log(error);
 					setMsg(error.response.data.message);
 				}
 			);
@@ -215,7 +238,6 @@ export const ValidationForm = () => {
 
 	const ConfirmForgotPasswordHandleFormSubmit = async (e: any) => {
 		e.preventDefault();
-		setMsg("");
 
 		const { username, newPassword, verifyCode } = e.target.elements;
 		const initialValues = {
@@ -251,34 +273,34 @@ export const ValidationForm = () => {
 			setMsg("Please fill in the fields!");
 		}
 	};
+
 	const ChangePassword = async (e: any) => {
 		e.preventDefault();
-		setMsg("");
-		
 
-		const {password, newPassword } = e.target.elements;
+		const { oldPassword, newPassword } = e.target.elements;
 		const initialValues = {
-			password: password.value,
+			oldPassword: oldPassword.value,
 			newPassword: newPassword.value,
 		};
 
 		const isValid = Object.values(errors).every((x) => x === "");
-		const user = AuthService.getCurrentUser()
-		const token = user.accessToken
+		const user = AuthService.getCurrentUser();
+		const token = user.accessToken;
 		if (!isEmpty(initialValues)) {
 			if (isValid) {
-				const {password, newPassword } = values;
-
-				AuthService.changePassword(
-					token,
-					password,
-					newPassword
-					
-				).then(
-					(response) => {
-						setRedirect(true);
+				setOpen(true);
+				const { oldPassword, newPassword } = values;
+				AuthService.changePassword(token, oldPassword, newPassword).then(
+					() => {
+						handleClose;
+						setOpen(false);
+						setTimeout(() => {
+							setRedirect(true);
+						}, 2000);
 					},
 					(error) => {
+						handleClose;
+						setOpen(false);
 						setMsg(error.response.data.message);
 					}
 				);
@@ -288,12 +310,50 @@ export const ValidationForm = () => {
 		}
 	};
 
+	const EditProfileFormSubmit = async (e: any) => {
+		e.preventDefault();
+
+		const { firstName, lastName } = e.target.elements;
+		const initialValues = {
+			firstName: firstName.value,
+			lastName: lastName.value,
+		};
+
+		console.log(initialValues);
+
+		const isValid = Object.values(errors).every((x) => x === "");
+		const user = AuthService.getCurrentUser();
+		const token = user.accessToken;
+		console.log(isEmpty(initialValues));
+		if (initialValues.firstName == "") {
+			console.log("first not change");
+		}
+		if (initialValues.lastName == "") {
+			console.log("last not change");
+		}
+		if (isValid) {
+			setOpen(true);
+			AuthService.changeName(token, firstName, lastName).then(
+				() => {
+					handleClose;
+					setOpen(false);
+					setRedirect(true);
+				},
+				(error) => {
+					handleClose;
+					setOpen(false);
+					setMsg(error.response.data.message);
+				}
+			);
+		}
+	};
+
 	return {
 		values,
 		errors,
 		msg,
 		open,
-		ChangePassword,
+		redirect,
 		handleClose,
 		handleOpen,
 		handleInputValue,
@@ -302,6 +362,7 @@ export const ValidationForm = () => {
 		LogInhandleFormSubmit,
 		ForgotPasswordHandleFormSubmit,
 		ConfirmForgotPasswordHandleFormSubmit,
-		redirect,
+		ChangePassword,
+		EditProfileFormSubmit,
 	};
 };
