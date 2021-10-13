@@ -206,7 +206,6 @@ export const ValidationForm = () => {
 				(error) => {
 					setOpen(false);
 					handleClose;
-					console.log(error);
 					setMsg(error.response.data.message);
 				}
 			);
@@ -326,7 +325,6 @@ export const ValidationForm = () => {
 				const { firstName, lastName } = values;
 				AuthService.changeName(token, firstName, lastName).then(
 					() => {
-						console.log("here1", token, firstName, lastName)
 						handleClose;
 						setOpen(false);
 						setTimeout(() => {
@@ -334,7 +332,6 @@ export const ValidationForm = () => {
 						}, 2000);
 					},
 					(error) => {
-						console.log("here2", token, firstName, lastName)
 
 						handleClose;
 						setOpen(false);

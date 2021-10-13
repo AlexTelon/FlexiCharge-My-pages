@@ -17,7 +17,6 @@ class AuthService {
 				return { result: response.data };
 			})
 			.catch((error) => {
-				console.log("failed", error);
 				return { error: error };
 			});
 	}
@@ -28,7 +27,6 @@ class AuthService {
 				return { result: response.data };
 			})
 			.catch((error) => {
-				console.log("failed", error);
 				return { error: error };
 			});
 	}
@@ -41,7 +39,6 @@ class AuthService {
 				return { result: response.data };
 			})
 			.catch((error) => {
-				console.log("failed", error);
 				return { error: error };
 			});
 	}

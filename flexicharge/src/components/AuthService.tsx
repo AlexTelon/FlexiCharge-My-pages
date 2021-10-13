@@ -50,7 +50,12 @@ class AuthService {
 			accessToken: token,
 			name: firstName,
 			family_name: lastName,
-		});
+		}).then((response)=>{
+			const localstore = JSON.parse(localStorage.getItem("user")!)
+			localstore.name = firstName
+			localstore.family_name = lastName
+			localStorage.setItem("user", JSON.stringify(localstore));
+		})
 	}
 
 	logout() {

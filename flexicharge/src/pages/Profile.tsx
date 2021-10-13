@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			minWidth: "40vh",
 			marginTop: "1rem",
 			margin: "auto",
+			height: "34rem",
+
 		},
 		container: {
 			backgroundColor: theme.flexiCharge.primary.white,
@@ -120,6 +122,7 @@ const Profile = () => {
 
 	useEffect(() => {
 		const currentUser = AuthService.getCurrentUser();
+
 		if (!currentUser) {
 			history.push("/sign-in");
 		} else {

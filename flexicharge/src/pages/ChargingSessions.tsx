@@ -103,12 +103,14 @@ const ChargingSessions = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const currentUser = AuthService.getCurrentUser();
-	//console.log(currentUser.user_id);	
+	const userName = currentUser.username
 	var rowTest: any = [];
+	const [loading, setLoading] =useState(false)
+
 	const [rows, setFinalRows] = useState<IRow[]>([
-		
+
 	])
-	
+
 
 	useEffect(() => {
 		if (!currentUser) {
@@ -121,33 +123,36 @@ const ChargingSessions = () => {
 
 
 	const data = async () => {
+		setLoading(true)
 
-		const chargingSessionResponse = await TransactionService.getChargingSessions("flexicharge");
-		if(chargingSessionResponse.error) {
+
+		const chargingSessionResponse = await TransactionService.getChargingSessions(userName);
+		if (chargingSessionResponse.error) {
 			//handle error, visa att det blev fel
 			return;
 		}
 
-		let charginSessionRows:IRow[] = [];
-		for(const chargingSession of chargingSessionResponse.result) {
-			console.log(chargingSession)
+		let charginSessionRows: IRow[] = [];
+		for (const chargingSession of chargingSessionResponse.result) {
 			let { kwhTransfered, pricePerKwh, timestamp, chargerID, transactionID } = chargingSession;
 			if (!kwhTransfered) kwhTransfered = 0
-			
-			if(!chargerID)
+
+			if (!chargerID)
 				return;
+
+			pricePerKwh = pricePerKwh / 100
 
 			const totalCost = kwhTransfered * pricePerKwh
 			const date = new Date(timestamp * 1000).toLocaleDateString("sv");
 
 			const getChargerResponse = await TransactionService.getCharger(chargerID);
-			if(getChargerResponse.error) {
+			if (getChargerResponse.error) {
 				//handle error, failed to fetch certain charger
 				return;
 			}
 
 			let { chargePointID } = getChargerResponse.result;
-			if(!chargePointID) {
+			if (!chargePointID) {
 				//handle error, no chargePointID Found
 				return;
 			}
@@ -165,12 +170,14 @@ const ChargingSessions = () => {
 
 			charginSessionRows.push(row);
 
-			
+
 		}
 
 		setFinalRows(rows.concat(charginSessionRows));
+		setLoading(false)
+
 	}
-	
+
 	return (
 		<>
 			{Mobile() ? <Navbar /> : <BottomNavigationBar />}
@@ -180,7 +187,7 @@ const ChargingSessions = () => {
 			>
 				<div style={{ display: "flex", height: "100%" }}>
 					<div style={{ flexGrow: 1 }}>
-						<h1 style={{ color: "whitesmoke" }}>Charging</h1>
+						<h1 style={{ color: "whitesmoke" }}>Transactions</h1>
 						<DataGrid
 							rows={rows}
 							columns={columns}
@@ -192,6 +199,7 @@ const ChargingSessions = () => {
 								}
 								return "";
 							}}
+							loading={loading}
 							pageSize={10}
 							disableColumnMenu
 							disableSelectionOnClick
