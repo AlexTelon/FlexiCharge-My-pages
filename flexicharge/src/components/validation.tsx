@@ -1,5 +1,3 @@
-import { Password } from "@mui/icons-material";
-import { log } from "console";
 import { useState } from "react";
 import AuthService from "./AuthService";
 
@@ -309,7 +307,7 @@ export const ValidationForm = () => {
 			setMsg("Please fill in the fields!");
 		}
 	};
-
+	
 	const EditProfileFormSubmit = async (e: any) => {
 		e.preventDefault();
 
@@ -319,32 +317,33 @@ export const ValidationForm = () => {
 			lastName: lastName.value,
 		};
 
-		console.log(initialValues);
-
 		const isValid = Object.values(errors).every((x) => x === "");
 		const user = AuthService.getCurrentUser();
 		const token = user.accessToken;
-		console.log(isEmpty(initialValues));
-		if (initialValues.firstName == "") {
-			console.log("first not change");
-		}
-		if (initialValues.lastName == "") {
-			console.log("last not change");
-		}
-		if (isValid) {
-			setOpen(true);
-			AuthService.changeName(token, firstName, lastName).then(
-				() => {
-					handleClose;
-					setOpen(false);
-					setRedirect(true);
-				},
-				(error) => {
-					handleClose;
-					setOpen(false);
-					setMsg(error.response.data.message);
-				}
-			);
+		if (!isEmpty(initialValues)) {
+			if (isValid) {
+				setOpen(true);
+				const { firstName, lastName } = values;
+				AuthService.changeName(token, firstName, lastName).then(
+					() => {
+						console.log("here1", token, firstName, lastName)
+						handleClose;
+						setOpen(false);
+						setTimeout(() => {
+							setRedirect(true);
+						}, 2000);
+					},
+					(error) => {
+						console.log("here2", token, firstName, lastName)
+
+						handleClose;
+						setOpen(false);
+						setMsg(error.response.data.message);
+					}
+				);
+			}
+		} else {
+			setMsg("Please fill in the fields!");
 		}
 	};
 

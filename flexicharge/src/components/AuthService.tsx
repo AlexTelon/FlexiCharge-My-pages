@@ -45,6 +45,7 @@ class AuthService {
 	}
 
 	changeName(token: string, firstName: string, lastName: string) {
+
 		return axios.put(API_URL + "update-user", {
 			accessToken: token,
 			firstName: firstName,
