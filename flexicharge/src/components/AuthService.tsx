@@ -48,8 +48,8 @@ class AuthService {
 
 		return axios.put(API_URL + "update-user", {
 			accessToken: token,
-			firstName: firstName,
-			lastName: lastName,
+			name: firstName,
+			family_name: lastName,
 		});
 	}
 

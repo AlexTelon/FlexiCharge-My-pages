@@ -106,46 +106,7 @@ const ChargingSessions = () => {
 	//console.log(currentUser.user_id);	
 	var rowTest: any = [];
 	const [rows, setFinalRows] = useState<IRow[]>([
-		{
-			id: -5,
-			date: "2021-03-21",
-			electricityTransferred: 64,
-			priceKwh: 1.5,
-			totalCost: 96,
-			location: "Per-Brahe Parkeringshus, Jönköping",
-		},
-		{
-			id: 2,
-			date: "2021-03-27",
-			electricityTransferred: 98,
-			priceKwh: 1.5,
-			totalCost: 147,
-			location: "Asecs Röd Entre, Jönköping",
-		},
-		{
-			id: 3,
-			date: "2021-04-10",
-			electricityTransferred: 75,
-			priceKwh: 1.5,
-			totalCost: 112.5,
-			location: "Per-Brahe Parkeringshus, Jönköping",
-		},
-		{
-			id: 4,
-			date: "2021-03-25",
-			electricityTransferred: 100,
-			priceKwh: 1.4,
-			totalCost: 140,
-			location: "Sjukhusgatan, Jönköping",
-		},
-		{
-			id: 5,
-			date: "2021-03-26",
-			electricityTransferred: 80,
-			priceKwh: 1.5,
-			totalCost: 120,
-			location: "Per-Brahe Parkeringshus, Jönköping",
-		},
+		
 	])
 	
 
@@ -161,13 +122,14 @@ const ChargingSessions = () => {
 
 	const data = async () => {
 
-		const chargingSessionResponse = await TransactionService.getChargingSessions("1");
+		const chargingSessionResponse = await TransactionService.getChargingSessions("flexicharge");
 		if(chargingSessionResponse.error) {
 			//handle error, visa att det blev fel
 			return;
 		}
 
-		chargingSessionResponse.result.forEach( async (chargingSession:any) => {
+		let charginSessionRows:IRow[] = [];
+		for(const chargingSession of chargingSessionResponse.result) {
 			console.log(chargingSession)
 			let { kwhTransfered, pricePerKwh, timestamp, chargerID, transactionID } = chargingSession;
 			if (!kwhTransfered) kwhTransfered = 0
@@ -201,11 +163,14 @@ const ChargingSessions = () => {
 				location: getChargerLocationResponse.result.name,
 			}
 
-			setFinalRows(rows.concat(row));
+			charginSessionRows.push(row);
 
-		});
+			
+		}
+
+		setFinalRows(rows.concat(charginSessionRows));
 	}
-
+	
 	return (
 		<>
 			{Mobile() ? <Navbar /> : <BottomNavigationBar />}
