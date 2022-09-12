@@ -13,38 +13,34 @@ import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
 
 function App() {
-	const isLoggedIn = AuthService.getCurrentUser() ? true : false;
-	return (
-		<ThemeProvider theme={Theme}>
-			<div className="App">
-				<BrowserRouter>
-
-					<main>
-					<Route exact path="/">
-							<Redirect to="/sign-in" />
-						</Route>						<Route path="/sign-in" component={() => <Login />} />
-						<Route path="/sign-up" component={Register} />
-						<Route path="/verify" component={VerifyAccount} />
-						<Route
-							path="/forgot-password"
-							component={() => <ForgotPassword />}
-						/>
-						<Route
-							path="/confirm-forgot-password"
-							component={ConfirmForgotPassword}
-						/>
-						<Route
-							path="/change-password"
-							component={ChangePassword}
-						/>
-						<Route path="/charging-sessions" component={ChargingSessions} />
-						<Route path="/profile" component={Profile} />
-
-					</main>
-				</BrowserRouter>
-			</div>
-		</ThemeProvider>
-	);
+  const isLoggedIn = AuthService.getCurrentUser() ? true : false;
+  return (
+    <ThemeProvider theme={Theme}>
+      <div className="App">
+        <BrowserRouter>
+          <main>
+            <Route exact path="/">
+              <Redirect to="/sign-in" />
+            </Route>
+            <Route path="/sign-in" component={() => <Login />} />
+            <Route path="/sign-up" component={Register} />
+            <Route path="/verify" component={VerifyAccount} />
+            <Route
+              path="/forgot-password"
+              component={() => <ForgotPassword />}
+            />
+            <Route
+              path="/confirm-forgot-password"
+              component={ConfirmForgotPassword}
+            />
+            <Route path="/change-password" component={ChangePassword} />
+            <Route path="/charging-sessions" component={ChargingSessions} />
+            <Route path="/profile" component={Profile} />
+          </main>
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
+  );
 }
 
 export default App;
