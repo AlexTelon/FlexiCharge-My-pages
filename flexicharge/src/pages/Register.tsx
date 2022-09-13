@@ -5,53 +5,9 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailIcon from "@material-ui/icons/Email";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Redirect, Link } from "react-router-dom";
 import { ValidationForm } from "../components/validation";
-import registerB from "../assets/registerB.svg";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    grid: {
-      alignItems: "center",
-      justifyContent: "center",
-      maxWidth: "40%",
-      minWidth: "40vh",
-      minHeight: "100vh",
-      height: "0",
-      margin: "auto",
-    },
-    container: {
-      backgroundColor: theme.flexiCharge.primary.white,
-      borderRadius: "0.5rem",
-      justifyContent: "center",
-      padding: "1rem",
-    },
-    gridItem: {
-      margin: "auto",
-    },
-    textFields: {
-      maxWidth: "80%",
-    },
-    button: {
-      backgroundImage: `url(${registerB})`,
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      "&:hover": {
-        boxShadow: theme.flexiCharge.boxShadow.button,
-        transform: "translateY(-5px)",
-      },
-      width: "50%",
-      minHeight: "3rem",
-      marginTop: theme.spacing(2),
-    },
-    links: {
-      margin: "auto",
-      fontWeight: 500,
-    },
-  })
-);
+import useStyles from "../components/styles/RegisterStyles.js";
 
 const inputFieldValues = [
   {
