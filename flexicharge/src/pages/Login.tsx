@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     textFields: {
       maxWidth: "80%",
+      marginTop: "24px",
     },
     button: {
       "&:hover": {
@@ -118,7 +119,6 @@ const Login = () => {
                     ),
                   }}
                   fullWidth
-                  style={{ marginTop: "1rem" }}
                   className={classes.textFields}
                   name={inputFieldValue.name}
                   label={inputFieldValue.label}
