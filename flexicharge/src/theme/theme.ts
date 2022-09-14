@@ -83,9 +83,15 @@ const flexiChargeTheme = createTheme({
   palette: {
     primary: {
       main: "#78bd76",
-      light: "#66ff66",
+      light: "rgb(174,223,164)",
       dark: "#669966",
     },
+    /* button: {
+      edit: "#f0c200",
+      editLighter: "#f9e799"
+      delete: "#ff4242",
+      deleteLighter: #ffb3b3
+    },*/
   },
   flexiCharge: {
     font: {

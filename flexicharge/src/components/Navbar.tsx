@@ -110,6 +110,7 @@ export default function MiniDrawer() {
 
       <List className={classes.navBotSection}>
         <ListItem
+          className={classes.hoverButton}
           button
           onClick={() => {
             AuthService.logout();

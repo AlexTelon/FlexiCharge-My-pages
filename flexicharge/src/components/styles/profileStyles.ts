@@ -46,20 +46,28 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#ff4242",
       color: "#fff",
       width: "150px",
-      padding: "18px",
+      padding: "12px",
       fontSize: "12px",
       borderRadius: "10px",
       border: "none",
+      "&:hover": {
+        backgroundColor: "#ffb3b3",
+        color: theme.flexiCharge.primary.darkGrey,
+      },
     },
 
     changePasswordButton: {
       backgroundColor: "#f0c200",
       color: "#fff",
       width: "150px",
-      padding: "18px",
+      padding: "12px",
       fontSize: "12px",
       borderRadius: "10px",
       border: "none",
+      "&:hover": {
+        backgroundColor: "#f9e799",
+        color: theme.flexiCharge.primary.darkGrey,
+      },
     },
   })
 );

@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
         flexShrink: 0,
         whiteSpace: "nowrap",
         color: theme.flexiCharge.primary.white,
+        "& .MuiDrawer-paper": {
+          backgroundColor: theme.palette.primary.main,
+        },
       },
     },
     drawerOpen: {
@@ -40,6 +43,9 @@ const useStyles = makeStyles((theme: Theme) =>
       float: "right",
       display: "flex",
       justifyContent: "flex-end",
+      "&:hover": {
+        backgroundColor: theme.palette.primary.light,
+      },
     },
     navBotSection: {
       bottom: 0,
@@ -61,26 +67,33 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: theme.spacing(2),
       paddingLeft: theme.spacing(3),
       paddingBottom: theme.spacing(2),
-      color: "rgba(255, 255, 255, 0.7)",
+      color: theme.flexiCharge.primary.white,
       "&:hover,&:focus": {
-        backgroundColor: theme.flexiCharge.primary.lightGrey,
+        backgroundColor: theme.palette.primary.light,
       },
     },
     itemIcon: {
       minWidth: "auto",
       marginRight: theme.spacing(1),
-      color: theme.flexiCharge.primary.darkGrey,
+      color: theme.flexiCharge.primary.white,
       paddingTop: theme.spacing(0),
     },
     itemText: {
       fontSize: "inherit",
       paddingLeft: theme.spacing(2),
-      color: theme.flexiCharge.primary.darkGrey,
+      color: theme.flexiCharge.primary.white,
     },
+
+    hoverButton: {
+      "&:hover,&:focus": {
+        backgroundColor: theme.palette.primary.light,
+      },
+    },
+
     logoutText: {
       fontSize: "inherit",
       paddingLeft: theme.spacing(3),
-      color: theme.flexiCharge.primary.darkGrey,
+      color: theme.flexiCharge.primary.white,
     },
     MenuButton: {
       marginRight: theme.spacing(2),
