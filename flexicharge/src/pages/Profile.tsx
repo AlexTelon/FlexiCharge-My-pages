@@ -4,7 +4,7 @@ import AuthService from "../components/AuthService";
 import BottomNavigationBar from "../components/BottomNavigation";
 import Mobile from "../components/Mobile";
 import Navbar from "../components/Navbar";
-import useStyles from "../components/styles/profileStyles.js";
+import useStyles from "../components/styles/profileStyles";
 
 const Profile = () => {
   const classes = useStyles();
@@ -33,12 +33,32 @@ const Profile = () => {
         <div className={classes.container}>
           <div className={classes.profile__items}>
             <div className={classes.profileInfo}>Firstname</div>
-            <div>Ezaz</div>
+            <div className={classes.profileDescription}>{firstName}</div>
           </div>
           <div className={classes.profile__items}>
             <div className={classes.profileInfo}>Lastname</div>
-            <div>Hathalia</div>
+            <div className={classes.profileDescription}>{familyName}</div>
           </div>
+          <div className={classes.profile__items}>
+            <div className={classes.profileInfo}>Username</div>
+            <div className={classes.profileDescription}>{userName}</div>
+          </div>
+          <div className={classes.profile__items}>
+            <div className={classes.profileInfo}>Email</div>
+            <div className={classes.profileDescription}>{email}</div>
+          </div>
+        </div>
+        <div className={classes.buttonContainer}>
+          <form action="" method="post">
+            <button className={classes.changePasswordButton} type="submit">
+              Change password
+            </button>
+          </form>
+          <form action="" method="post">
+            <button className={classes.deleteButton} type="submit">
+              Delete profile
+            </button>
+          </form>
         </div>
       </div>
     </>
