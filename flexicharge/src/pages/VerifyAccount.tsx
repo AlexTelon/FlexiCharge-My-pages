@@ -7,7 +7,7 @@ import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { Redirect } from "react-router-dom";
-import useStyles from "../components/styles/VerifyAccountStyles.js";
+import useStyles from "../components/styles/verifyAccountStyles";
 
 const inputFieldValues = [
   {

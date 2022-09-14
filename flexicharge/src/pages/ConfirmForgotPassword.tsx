@@ -7,7 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import useStyles from "../components/styles/ConfirmForgotPasswordStyles";
+import useStyles from "../components/styles/confirmForgotPasswordStyles";
 
 const inputFieldValues = [
   {

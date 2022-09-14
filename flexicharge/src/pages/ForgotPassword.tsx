@@ -6,7 +6,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import useStyles from "../components/styles/ForgotPasswordStyles.js";
+import useStyles from "../components/styles/forgotPasswordStyles";
 
 const inputFieldValue = {
   name: "username",

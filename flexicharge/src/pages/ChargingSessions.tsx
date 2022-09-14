@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import AuthService from "../components/AuthService";
 import BottomNavigationBar from "../components/BottomNavigation";
 import Mobile from "../components/Mobile";
-import useStyles from "../components/styles/ChargingSessionsStyles";
+import useStyles from "../components/styles/chargingSessionsStyles";
 
 const columns = [
   {

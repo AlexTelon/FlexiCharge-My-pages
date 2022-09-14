@@ -1,10 +1,8 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grid: {
-      spacing: 0,
-      alignItems: "center",
       justifyContent: "center",
       maxWidth: "40%",
       minWidth: "40vh",
@@ -13,21 +11,14 @@ const useStyles = makeStyles((theme) =>
       fontWeight: "bolder",
     },
     container: {
+      padding: "1rem",
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "0.5rem",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "1rem",
     },
-    gridItemInputs: {
-      marginTop: "3rem",
+    gridItem: {
+      margin: "auto",
     },
-    gridItemLabel: {
-      textAlign: "right",
-      marginTop: "3rem",
-    },
-    textField: {
-      marginTop: "1rem",
+    textFields: {
       maxWidth: "80%",
     },
     button: {
@@ -37,21 +28,12 @@ const useStyles = makeStyles((theme) =>
         boxShadow: theme.flexiCharge.boxShadow.button,
         transform: "translateY(-5px)",
       },
-      maxWidth: "80%",
-      minHeight: "48px",
+      maxWidth: "50%",
+      maxHeight: "10vh",
       marginTop: theme.spacing(2),
-      fontWeight: "bolder",
-      fontSize: "inherit",
-      margin: "auto",
+      fontWeight: "bold",
+      fontSize: ".7rem",
       color: theme.flexiCharge.primary.white,
-    },
-    input: {
-      maxWidth: "5%",
-      marginRight: ".5rem",
-      minHeight: "2.5rem",
-      minWidth: "2.5rem",
-      textAlign: "center",
-      fontWeight: "bolder",
     },
   })
 );

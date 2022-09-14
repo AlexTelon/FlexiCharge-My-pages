@@ -7,7 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailIcon from "@material-ui/icons/Email";
 import { Redirect, Link } from "react-router-dom";
 import { ValidationForm } from "../components/validation";
-import useStyles from "../components/styles/RegisterStyles.js";
+import useStyles from "../components/styles/registerStyles";
 
 const inputFieldValues = [
   {

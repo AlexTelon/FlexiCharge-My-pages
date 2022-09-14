@@ -6,7 +6,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import useStyles from "../components/styles/LoginStyles.js";
+import useStyles from "../components/styles/loginStyles";
 
 const inputFieldValues = [
   {

@@ -7,7 +7,7 @@ import { ValidationForm } from "../components/validation";
 import Navbar from "../components/Navbar";
 import Mobile from "../components/Mobile";
 import BottomNavigationBar from "../components/BottomNavigation";
-import useStyles from "../components/styles/ChangePasswordStyles";
+import useStyles from "../components/styles/changePasswordStyles";
 
 const inputFieldValues = [
   {
