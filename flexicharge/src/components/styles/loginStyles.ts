@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       paddingTop: "36px",
       paddingBottom: "24px",
+      boxShadow: "3px 3px 12px #000",
     },
     gridItem: {
       margin: "auto",

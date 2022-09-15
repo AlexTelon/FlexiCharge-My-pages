@@ -20,12 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerOpen: {
       width: "240px",
+      boxShadow: "1px 0px 7px #000",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
     drawerClose: {
+      boxShadow: "1px 0px 7px #000",
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,

@@ -88,9 +88,11 @@ const flexiChargeTheme = createTheme({
     },
     /* button: {
       edit: "#f0c200",
-      editLighter: "#f9e799"
+      editLighter: "#f9e799",
+      editDarker: "#a88800",
       delete: "#ff4242",
-      deleteLighter: #ffb3b3
+      deleteLighter: #ffb3b3,
+      deleteDarker: "#b32e2e",
     },*/
   },
   flexiCharge: {

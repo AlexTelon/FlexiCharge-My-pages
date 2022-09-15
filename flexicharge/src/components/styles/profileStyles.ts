@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "550px",
       margin: "140px auto",
       backgroundColor: "rgb(174,223,164)",
-      boxShadow: "1px 1px 10px #76c365",
+      boxShadow: "3px 3px 12px #000",
       borderRadius: "10px",
     },
 
@@ -51,8 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: "10px",
       border: "none",
       "&:hover": {
-        backgroundColor: "#ffb3b3",
-        color: theme.flexiCharge.primary.darkGrey,
+        backgroundColor: "#b32e2e",
       },
     },
 
@@ -65,8 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: "10px",
       border: "none",
       "&:hover": {
-        backgroundColor: "#f9e799",
-        color: theme.flexiCharge.primary.darkGrey,
+        backgroundColor: "#a88800",
       },
     },
   })
