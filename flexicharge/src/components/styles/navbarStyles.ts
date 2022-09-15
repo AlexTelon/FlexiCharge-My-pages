@@ -77,13 +77,13 @@ const useStyles = makeStyles((theme: Theme) =>
     itemIcon: {
       minWidth: "auto",
       marginRight: theme.spacing(1),
-      color: theme.flexiCharge.primary.white,
+      color: theme.flexiCharge.primary.darkGrey,
       paddingTop: theme.spacing(0),
     },
     itemText: {
       fontSize: "inherit",
       paddingLeft: theme.spacing(2),
-      color: theme.flexiCharge.primary.white,
+      color: theme.flexiCharge.primary.darkGrey,
     },
 
     hoverButton: {
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme: Theme) =>
     logoutText: {
       fontSize: "inherit",
       paddingLeft: theme.spacing(3),
-      color: theme.flexiCharge.primary.white,
+      color: theme.flexiCharge.primary.darkGrey,
     },
     MenuButton: {
       marginRight: theme.spacing(2),

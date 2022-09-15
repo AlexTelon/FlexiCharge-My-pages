@@ -3,11 +3,11 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
-      height: "450px",
-      width: "550px",
-      margin: "140px auto",
-      backgroundColor: "rgb(174,223,164)",
-      boxShadow: "3px 3px 12px #000",
+      height: "520px",
+      width: "630px",
+      margin: "100px auto",
+      backgroundColor: theme.flexiCharge.primary.white,
+      boxShadow: "3px 3px 12px #76c365",
       borderRadius: "10px",
     },
 
@@ -19,19 +19,24 @@ const useStyles = makeStyles((theme: Theme) =>
 
     profile__items: {
       display: "flex",
-      fontSize: "16px",
+      fontSize: "20px",
       padding: "20px",
       justifyContent: "space-between",
       alignItem: "center",
-      borderTop: "1px solid #76c365",
+      borderTop: "1px solid #999999",
       borderRadius: "10px",
     },
 
     profileInfo: {
-      color: "#fff",
+      color: "#222",
+      paddingLeft: "30px",
+      paddingTop: "10px",
     },
+
     profileDescription: {
-      color: "#fff",
+      color: "#222",
+      paddingRight: "40px",
+      paddingTop: "10px",
     },
 
     buttonContainer: {
@@ -39,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItem: "center",
       justifyContent: "center",
       gap: "30px",
-      marginTop: "18px",
+      marginTop: "48px",
     },
 
     deleteButton: {
