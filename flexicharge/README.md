@@ -1,46 +1,128 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FlexiCharge My pages
+This repo contains the "My pages" part of the flexicharge project that is developed as part of the [Software Engineering Project Methods](https://ju.se/en/study-at-ju/courses.html?courseCode=TMJN10&semester=20222&revision=1,000&lang=en&lang=en) course on [JTH](https://ju.se/en/about-us/school-of-engineering.html)
 
-## Available Scripts
+[Link to live app hosted on AWS](http://flexicharge-my-pages.s3-website-eu-west-1.amazonaws.com)
+## Run Locally
 
-In the project directory, you can run:
+Clone the project
 
-### `yarn start`
+```bash
+  git clone https://github.com/knowitrickard/FlexiCharge-My-pages.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Go to the project directory
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+  cd FlexiCharge-My-pages/flexicharge/
+```
 
-### `yarn test`
+<details><summary>**Recomended step**</summary>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Uninstall create-react-app
 
-### `yarn build`
+```bash
+  npm uninstall -g create-rect-app
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+</details>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install create-react-app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm install -g create-rect-app
+```
 
-### `yarn eject`
+Install dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+  npm i @material-ui/lab
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Start the app
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+  yarn start
+```
+or
+```bash
+    npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## AWS
+**Access**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For acces to AWS contact the project manager and send them your email. 
+You will then recieve an access link on email that you use to login to the flexicharge AWS.
+You will also recieve a username, pasword, Access Key and Secret Access Key privately by the project manager.
+These are what you use to login to the flexicharge AWS and to configure the AWS CLI.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Deployment
+*Assuming that you are logged in properly to the knowit AWS account, having an access key and a secret key.*
+
+### Configure AWS Command Line Interface ###
+
+[Youtube tutorial](https://youtu.be/BzzCIsjrE7U)
+
+1. Download & install AWS CLI from the following link:
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+2. Open any terminal
+```bash
+  cd FlexiCharge-My-pages/flexicharge/
+```
+a. Open the configuration for AWS
+```bash
+  aws configure
+```
+b. You will then be prompted to input your access key
+```bash
+  AWS Access Key ID [****************ABCD]:
+```
+c. After inputing your access key you will be prompted to input your secret key
+```bash
+  AWS Secret Access Key [****************ABCD]:
+```
+d. It will then ask you for your default region name
+
+Please input: **eu-west-1**
+
+```bash
+  Default region name [eu-west-1]:
+```
+e. It will then ask you for your default output format
+
+Please input: **json**
+
+```bash
+  Default output format [json]:
+```
+*You are now done configuring the AWS CLI*
+
+### Sync build folder with AWS ###
+*This is how you deploy the app to AWS*
+
+1. Open a preferred terminal
+2. Navigate to the project directory
+```bash
+  cd FlexiCharge-My-pages/flexicharge/
+```
+3. Get a build folder of your web-app [More information about the build](https://create-react-app.dev/docs/deployment/)
+```bash
+  yarn build
+```
+4. Standing in your web-app directory in the terminal, run the following command:
+```bash
+  aws s3 sync build/ s3://flexicharge-my-pages
+```
+*Your pages should be hosted now!*
+
+**To get the URL, navigate to your bucket properties and at the bottom you can find the link.**
+
+
+## API Reference
+
+The API used to comunicate with the backend can be accessed with the ip http://18.202.253.30:8080/ and swagger documentation for the API can be found at http://18.202.253.30:8080/swagger/
+
