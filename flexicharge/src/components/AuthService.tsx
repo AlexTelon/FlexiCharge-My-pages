@@ -3,10 +3,10 @@ import axios from "axios";
 const API_URL = "http://18.202.253.30:8080/auth/";
 
 class AuthService {
-  login(username: string, password: string) {
+  login(email: string, password: string) {
     return axios
       .post(API_URL + "sign-in", {
-        username: username,
+        email: email,
         password: password,
       })
       .then((response) => {
@@ -17,19 +17,19 @@ class AuthService {
       });
   }
 
-  forgotPassword(username: string) {
-    return axios.post(API_URL + `forgot-password/${username}`, {
-      username: username,
+  forgotPassword(email: string) {
+    return axios.post(API_URL + `forgot-password/${email}`, {
+      email: email,
     });
   }
 
   confirmForgotPassword(
-    username: string,
+    email: string,
     password: string,
     confirmationCode: string
   ) {
     return axios.post(API_URL + "confirm-forgot-password", {
-      username: username,
+      email: email,
       password: password,
       confirmationCode: confirmationCode,
     });
@@ -50,22 +50,20 @@ class AuthService {
     firstName: string,
     familyName: string,
     email: string,
-    username: string,
     password: string
   ) {
     return axios.post(API_URL + "sign-up", {
       name: firstName,
       family_name: familyName,
       email: email,
-      username: username,
       password: password,
     });
   }
 
-  verify(username: string, code: string) {
+  verify(email: string, code: string) {
     return axios.post(API_URL + "verify", {
       code: code,
-      username: username,
+      email: email,
     });
   }
 

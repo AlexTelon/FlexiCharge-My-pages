@@ -24,12 +24,6 @@ const inputFieldValues = [
     icon: <AccountCircle />,
   },
   {
-    name: "username",
-    label: "Username",
-    id: "username",
-    icon: <AccountCircle />,
-  },
-  {
     name: "email",
     label: "Email",
     id: "user-email",

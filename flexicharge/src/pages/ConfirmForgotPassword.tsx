@@ -6,7 +6,6 @@ import { Redirect } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailIcon from "@material-ui/icons/Email";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import useStyles from "../components/styles/confirmForgotPasswordStyles";
 
@@ -16,12 +15,6 @@ const inputFieldValues = [
     label: "Email",
     id: "user-email",
     icon: <EmailIcon />,
-  },
-  {
-    name: "username",
-    label: "Username",
-    id: "username",
-    icon: <AccountCircle />,
   },
   {
     name: "newPassword",

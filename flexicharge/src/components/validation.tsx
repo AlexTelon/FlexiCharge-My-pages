@@ -5,7 +5,6 @@ import AuthService from "./AuthService";
 const initialFormValues = {
   firstName: "",
   lastName: "",
-  username: "",
   email: "",
   newPassword: "",
   password: "",
@@ -31,10 +30,6 @@ export const ValidationForm = () => {
 
     if ("lastName" in fieldValues)
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
-
-    if ("username" in fieldValues) {
-      temp.username = fieldValues.username ? "" : "This field is required.";
-    }
 
     if ("email" in fieldValues) {
       temp.email = fieldValues.email ? "" : "This field is required.";
@@ -95,14 +90,13 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { firstName, lastName, email, username, newPassword } =
+    const { firstName, lastName, email, newPassword } =
       e.target.elements;
 
     const initialValues = {
       firstName: firstName.value,
       lastName: lastName.value,
       email: email.value,
-      username: username.value,
       newPassword: newPassword.value,
     };
 
@@ -110,12 +104,11 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, username, newPassword } = values;
+        const { firstName, lastName, email, newPassword } = values;
         AuthService.register(
           firstName,
           lastName,
           email,
-          username,
           newPassword
         ).then(
           () => {
@@ -138,9 +131,8 @@ export const ValidationForm = () => {
   const verifyHandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
-    const { username, verifyCode } = e.target.elements;
+    const { verifyCode } = e.target.elements;
     const initialValues = {
-      username: username.value,
       verifyCode: verifyCode.value,
     };
 
@@ -148,8 +140,8 @@ export const ValidationForm = () => {
 
     if (isValid && !isEmpty(initialValues)) {
       setOpen(true);
-      const { username, verifyCode } = values;
-      AuthService.verify(username, verifyCode).then(
+      const { email, verifyCode } = values;
+      AuthService.verify(email, verifyCode).then(
         () => {
           handleClose;
           setOpen(false);
@@ -167,17 +159,17 @@ export const ValidationForm = () => {
   const LogInhandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
-    const { username, password } = e.target.elements;
+    const { email, password } = e.target.elements;
     const initialValues = {
-      username: username.value,
+      email: email.value,
       password: password.value,
     };
     const isValid = Object.values(errors).every((x) => x === "");
 
     if (isValid && !isEmpty(initialValues)) {
       setOpen(true);
-      const { username, password } = values;
-      AuthService.login(username, password).then(
+      const { email, password } = values;
+      AuthService.login(email, password).then(
         () => {
           handleClose;
           setOpen(false);
@@ -196,17 +188,17 @@ export const ValidationForm = () => {
   const ForgotPasswordHandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
-    const { username } = e.target.elements;
+    const { email } = e.target.elements;
     const initialValues = {
-      username: username.value,
+      email: email.value,
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
 
     if (isValid && !isEmpty(initialValues)) {
       setOpen(true);
-      const { username } = values;
-      AuthService.forgotPassword(username).then(() => {
+      const { email } = values;
+      AuthService.forgotPassword(email).then(() => {
         handleClose;
         setOpen(false);
         setRedirect(true);
@@ -218,9 +210,8 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { username, newPassword, verifyCode } = e.target.elements;
+    const { newPassword, verifyCode } = e.target.elements;
     const initialValues = {
-      username: username.value,
       newPassword: newPassword.value,
       verifyCode: verifyCode.value,
     };
@@ -230,9 +221,9 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { username, newPassword, verifyCode } = values;
+        const { email, newPassword, verifyCode } = values;
         AuthService.confirmForgotPassword(
-          username,
+          email,
           newPassword,
           verifyCode
         ).then(

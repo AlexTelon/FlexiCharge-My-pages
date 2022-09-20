@@ -4,7 +4,6 @@ import Modal from "@mui/material/Modal";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ValidationForm } from "../components/validation";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { Redirect } from "react-router-dom";
@@ -16,12 +15,6 @@ const inputFieldValues = [
     label: "Email",
     id: "user-email",
     icon: <EmailIcon />,
-  },
-  {
-    name: "username",
-    label: "Username",
-    id: "username",
-    icon: <AccountCircle />,
   },
   {
     name: "verifyCode",
