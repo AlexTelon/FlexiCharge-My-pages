@@ -6,14 +6,23 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import EmailIcon from "@material-ui/icons/Email";
 import useStyles from "../components/styles/forgotPasswordStyles";
 
-const inputFieldValue = {
+const inputFieldValues = [
+{
+  name: "email",
+  label: "Email",
+  id: "user-email",
+  icon: <EmailIcon />,
+},
+{
   name: "username",
   label: "Username",
   id: "username",
   icon: <AccountCircle />,
-};
+}
+];
 
 const ForgotPassword = () => {
   const classes = useStyles();
@@ -45,27 +54,32 @@ const ForgotPassword = () => {
             Enter your username and we will send you a password reset link to
             your registered email.
           </p>
-          <Grid item xs={12} className={classes.gridItem}>
-            <TextField
-              onChange={handleInputValue}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <AccountCircle />
-                  </InputAdornment>
-                ),
-              }}
-              fullWidth
-              className={classes.textFields}
-              name={inputFieldValue.name}
-              label={inputFieldValue.label}
-              autoComplete="none"
-              {...(errors[inputFieldValue.name] && {
-                error: true,
-                helperText: errors[inputFieldValue.name],
-              })}
-            />
-          </Grid>
+          {inputFieldValues.map((inputFieldValue, index) => {
+            return (
+              <Grid item key={index} xs={12} className={classes.gridItem}>
+                <TextField
+                  key={index}
+                  onChange={handleInputValue}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        {inputFieldValue.icon}
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth
+                  className={classes.textFields}
+                  name={inputFieldValue.name}
+                  label={inputFieldValue.label}
+                  autoComplete="none"
+                  {...(errors[inputFieldValue.name] && {
+                    error: true,
+                    helperText: errors[inputFieldValue.name],
+                  })}
+                />
+              </Grid>
+            );
+          })}
           <Button variant="contained" type="submit" className={classes.button}>
             Send password reset
           </Button>

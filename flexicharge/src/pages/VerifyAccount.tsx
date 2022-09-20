@@ -5,11 +5,18 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { Redirect } from "react-router-dom";
 import useStyles from "../components/styles/verifyAccountStyles";
 
 const inputFieldValues = [
+  {
+    name: "email",
+    label: "Email",
+    id: "user-email",
+    icon: <EmailIcon />,
+  },
   {
     name: "username",
     label: "Username",

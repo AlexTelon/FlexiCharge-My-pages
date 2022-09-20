@@ -3,12 +3,19 @@ import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import { Redirect, Link } from "react-router-dom";
 import LockIcon from "@material-ui/icons/Lock";
+import EmailIcon from "@material-ui/icons/Email";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import useStyles from "../components/styles/loginStyles";
 
 const inputFieldValues = [
+  {
+    name: "email",
+    label: "Email",
+    id: "user-email",
+    icon: <EmailIcon />,
+  },
   {
     name: "username",
     label: "Username",
