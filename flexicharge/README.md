@@ -17,7 +17,7 @@ Go to the project directory
   cd FlexiCharge-My-pages/flexicharge/
 ```
 
-<details><summary>**Recomended step**</summary>
+<details><summary>Recomended step</summary>
 
 Uninstall create-react-app
 
