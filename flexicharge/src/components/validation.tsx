@@ -8,6 +8,7 @@ const initialFormValues = {
   username: "",
   email: "",
   newPassword: "",
+  confirmPassword: "",
   password: "",
   verifyCode: "",
   formSubmitted: false,
@@ -21,6 +22,7 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
+  const [newPass, setNewPass] = useState("");
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
@@ -49,6 +51,7 @@ export const ValidationForm = () => {
       temp.newPassword = fieldValues.newPassword
         ? ""
         : "This field is required.";
+
       if (fieldValues.newPassword) {
         temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(
           fieldValues.newPassword
@@ -56,6 +59,15 @@ export const ValidationForm = () => {
           ? ""
           : "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
       }
+      setNewPass(fieldValues.newPassword)
+    }
+
+    if ("confirmPassword" in fieldValues) {
+      newPass === fieldValues.confirmPassword ? temp.confirmPassword = "" : temp.confirmPassword = "Passwords don't match.";
+
+      temp.confirmPassword = fieldValues.confirmPassword
+        ? ""
+        : "This field is required.";
     }
 
     if ("password" in fieldValues)
@@ -95,7 +107,7 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { firstName, lastName, email, username, newPassword } =
+    const { firstName, lastName, email, username, newPassword, confirmPassword } =
       e.target.elements;
 
     const initialValues = {
@@ -104,19 +116,21 @@ export const ValidationForm = () => {
       email: email.value,
       username: username.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, username, newPassword } = values;
+        const { firstName, lastName, email, username, newPassword, confirmPassword } = values;
         AuthService.register(
           firstName,
           lastName,
           email,
           username,
-          newPassword
+          newPassword,
+          confirmPassword
         ).then(
           () => {
             handleClose;

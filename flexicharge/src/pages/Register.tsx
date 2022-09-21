@@ -16,7 +16,6 @@ const inputFieldValues = [
     id: "user-first-name",
     icon: <AccountCircle />,
   },
-
   {
     name: "lastName",
     label: "Last Name",
@@ -42,6 +41,13 @@ const inputFieldValues = [
     id: "user-password",
     icon: <LockIcon />,
   },
+  {
+    name: "confirmPassword",
+    type: "password",
+    label: "Confirm Password",
+    id: "user-ConfirmPassword",
+    icon: <LockIcon />,
+  }
 ];
 
 const Register = () => {
