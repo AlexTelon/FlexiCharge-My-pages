@@ -63,7 +63,11 @@ const Profile = () => {
         </div>
         <div className={classes.buttonContainer}>
           <form action="" method="post">
-            <button className={classes.changePasswordButton} type="submit">
+            <button className={classes.changePasswordButton} type="submit" onClick={(e) => {
+                  e.preventDefault();
+                  history.push("/change-password");
+
+              }}>
               Change password
             </button>
           </form>

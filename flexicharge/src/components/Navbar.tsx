@@ -34,7 +34,9 @@ const categories = [
         icon: <HistoryIcon />,
         location: "/charging-sessions",
       },
-      { id: "Invoices", icon: <ReceiptIcon />, location: "/invoices" },
+      { id: "Invoices", 
+        icon: <ReceiptIcon />, 
+        location: "/invoices" },
     ],
   },
 ];
@@ -94,6 +96,7 @@ export default function MiniDrawer() {
               onClick={() => {
                 history.push(pathLocation);
               }}
+              title={childId}
             >
               <ListItemIcon color="primary" className={classes.itemIcon}>
                 {icon}
@@ -116,6 +119,7 @@ export default function MiniDrawer() {
             AuthService.logout();
             history.push("/sign-in");
           }}
+          title = "Sign out"
         >
           <LogoutIcon></LogoutIcon>
           <ListItemText classes={{ primary: classes.logoutText }}>
