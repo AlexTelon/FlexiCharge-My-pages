@@ -13,12 +13,14 @@ const inputFieldValues = [
   {
     name: "password",
     label: "password",
+    type: "password",
     id: "password",
     icon: <LockIcon />,
   },
   {
     name: "newPassword",
     label: "New Password",
+    type: "password",
     id: "newPassword",
     icon: <LockIcon />,
   },
@@ -59,6 +61,7 @@ const ChangePassword = () => {
                     className={classes.textFields}
                     name={inputFieldValue.name}
                     label={inputFieldValue.label}
+                    type={inputFieldValue.type}
                     autoComplete="none"
                     {...(errors[inputFieldValue.name] && {
                       error: true,
