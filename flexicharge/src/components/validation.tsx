@@ -26,11 +26,25 @@ export const ValidationForm = () => {
     // this function will check if the form values are valid
     const temp: any = { ...errors };
 
-    if ("firstName" in fieldValues)
+    if ("firstName" in fieldValues) {
       temp.firstName = fieldValues.firstName ? "" : "This field is required.";
 
-    if ("lastName" in fieldValues)
+      if (fieldValues.firstName) {
+        temp.firstName = /^[A-Za-z]*$/.test(fieldValues.firstName)
+          ? ""
+          : "May only contain letters."
+      }
+    }
+
+    if ("lastName" in fieldValues) {
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
+
+      if (fieldValues.lastName) {
+        temp.lastName = /^[A-Za-z]*$/.test(fieldValues.lastName)
+          ? ""
+          : "May only contain letters."
+      }
+    }
 
     if ("username" in fieldValues) {
       temp.username = fieldValues.username ? "" : "This field is required.";
