@@ -8,6 +8,7 @@ const initialFormValues = {
   username: "",
   email: "",
   newPassword: "",
+  confirmPassword: "",
   password: "",
   verifyCode: "",
   formSubmitted: false,
@@ -21,6 +22,7 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
+  const [newPass, setNewPass] = useState("");
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
@@ -56,6 +58,15 @@ export const ValidationForm = () => {
           ? ""
           : "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
       }
+      setNewPass(fieldValues.newPassword)
+    }
+
+    if ("confirmPassword" in fieldValues) {
+      temp.confirmPassword = fieldValues.confirmPassword
+        ? ""
+        : "This field is required."
+
+      newPass === fieldValues.confirmPassword ? temp.confirmPassword = "" : temp.confirmPassword = "Passwords don't match.";
     }
 
     if ("password" in fieldValues)
@@ -103,7 +114,7 @@ export const ValidationForm = () => {
       lastName: lastName.value,
       email: email.value,
       username: username.value,
-      newPassword: newPassword.value,
+      newPassword: newPassword.value
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
@@ -218,10 +229,11 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { username, newPassword, verifyCode } = e.target.elements;
+    const { username, newPassword, confirmPassword, verifyCode } = e.target.elements;
     const initialValues = {
       username: username.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value,
       verifyCode: verifyCode.value,
     };
 
@@ -230,10 +242,11 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { username, newPassword, verifyCode } = values;
+        const { username, newPassword, confirmPassword, verifyCode } = values;
         AuthService.confirmForgotPassword(
           username,
           newPassword,
+          confirmPassword,
           verifyCode
         ).then(
           () => {
@@ -256,10 +269,11 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { password, newPassword } = e.target.elements;
+    const { password, newPassword, confirmPassword } = e.target.elements;
     const initialValues = {
       password: password.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
@@ -267,9 +281,9 @@ export const ValidationForm = () => {
     const token = user.accessToken;
     if (!isEmpty(initialValues)) {
       if (isValid) {
-        const { password, newPassword } = values;
+        const { password, newPassword, confirmPassword } = values;
 
-        AuthService.changePassword(token, password, newPassword).then(
+        AuthService.changePassword(token, password, newPassword, confirmPassword).then(
           (response) => {
             setRedirect(true);
           },

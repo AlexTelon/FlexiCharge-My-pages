@@ -22,6 +22,13 @@ const inputFieldValues = [
     id: "newPassword",
     icon: <LockIcon />,
   },
+  {
+    name: "confirmPassword",
+    type: "password",
+    label: "Confirm Password",
+    id: "confirmPassword",
+    icon: <LockIcon />,
+  },
 ];
 
 const ChangePassword = () => {

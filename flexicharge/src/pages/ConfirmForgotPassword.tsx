@@ -24,6 +24,13 @@ const inputFieldValues = [
     icon: <LockIcon />,
   },
   {
+    name: "confirmPassword",
+    type: "password",
+    label: "Confirm Password",
+    id: "confirmPassword",
+    icon: <LockIcon />,
+  },
+  {
     name: "verifyCode",
     label: "Verification code",
     id: "verifyCode",

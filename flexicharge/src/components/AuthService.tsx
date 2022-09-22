@@ -26,19 +26,22 @@ class AuthService {
   confirmForgotPassword(
     username: string,
     password: string,
+    confirmPassword: string,
     confirmationCode: string
   ) {
     return axios.post(API_URL + "confirm-forgot-password", {
       username: username,
       password: password,
+      confirmPassword: confirmPassword,
       confirmationCode: confirmationCode,
     });
   }
-  changePassword(token: string, password: string, newPassword: string) {
+  changePassword(token: string, password: string, newPassword: string, confirmPassword: string) {
     return axios.post(API_URL + "change-password", {
       accessToken: token,
       previousPassword: password,
       newPassword: newPassword,
+      confirmPassword: confirmPassword
     });
   }
 
