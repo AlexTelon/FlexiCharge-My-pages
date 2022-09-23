@@ -16,7 +16,6 @@ const inputFieldValues = [
     id: "user-first-name",
     icon: <AccountCircle />,
   },
-
   {
     name: "lastName",
     label: "Last Name",
