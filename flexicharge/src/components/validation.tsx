@@ -21,7 +21,7 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
-
+  const minimum = 2;
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
     const temp: any = { ...errors };
@@ -32,7 +32,7 @@ export const ValidationForm = () => {
       if (fieldValues.firstName) {
         temp.firstName = /^([A-Za-z]{2,})*$/.test(fieldValues.firstName)
           ? ""
-          : "May only contain letters and a minimum of 2 letters."
+          : `May only contain letters and a minimum of ${minimum} letters.`
       }
     }
 
@@ -42,7 +42,7 @@ export const ValidationForm = () => {
       if (fieldValues.lastName) {
         temp.lastName = /^([A-Za-z]{2,})*$/.test(fieldValues.lastName)
           ? ""
-          : "May only contain letters and a minimum of 2 letters."
+          : `May only contain letters and a minimum of ${minimum} letters.`
       }
     }
 
