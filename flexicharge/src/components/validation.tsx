@@ -30,9 +30,9 @@ export const ValidationForm = () => {
       temp.firstName = fieldValues.firstName ? "" : "This field is required.";
 
       if (fieldValues.firstName) {
-        temp.firstName = /^[A-Za-z]*$/.test(fieldValues.firstName)
+        temp.firstName = /^([A-Za-z]{2,})*$/.test(fieldValues.firstName)
           ? ""
-          : "May only contain letters."
+          : "May only contain letters and a minimum of 2 letters."
       }
     }
 
@@ -40,9 +40,9 @@ export const ValidationForm = () => {
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
       if (fieldValues.lastName) {
-        temp.lastName = /^[A-Za-z]*$/.test(fieldValues.lastName)
+        temp.lastName = /^([A-Za-z]{2,})*$/.test(fieldValues.lastName)
           ? ""
-          : "May only contain letters."
+          : "May only contain letters and a minimum of 2 letters."
       }
     }
 
