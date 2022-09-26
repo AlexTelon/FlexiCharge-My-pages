@@ -5,6 +5,7 @@ import AuthService from "./AuthService";
 const initialFormValues = {
   firstName: "",
   lastName: "",
+  phoneNumber: "",
   username: "",
   email: "",
   newPassword: "",
@@ -22,6 +23,8 @@ export const ValidationForm = () => {
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
 
+  const phoneNumberLength = 10;
+
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
     const temp: any = { ...errors };
@@ -31,6 +34,14 @@ export const ValidationForm = () => {
 
     if ("lastName" in fieldValues)
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
+
+    if ("phoneNumber" in fieldValues) {
+      if (fieldValues.phoneNumber) {
+        temp.phoneNumber = /[0-9]/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
+        temp.phoneNumber = /^.{10,10}$/.test(fieldValues.phoneNumber) ? "" : `Needs to be ${phoneNumberLength} numbers long.`;
+      }
+      temp.phoneNumber = fieldValues.phoneNumber ? "" : "This field is required.";
+    }
 
     if ("username" in fieldValues) {
       temp.username = fieldValues.username ? "" : "This field is required.";
