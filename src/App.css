@@ -1,0 +1,111 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  /*background-image: url("./assets/background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;*/
+  background-image: linear-gradient(
+    90deg,
+    rgba(64, 156, 104, 1) 0%,
+    rgba(120, 219, 118, 1) 15%,
+    rgba(208, 195, 48, 1) 80%,
+    rgba(240, 194, 0, 1) 100%
+  );
+
+  overflow: hidden;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-top: 0.5rem;
+}
+
+.form-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.navbar {
+  width: min-content;
+}
+
+.backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400;
+  padding: 4;
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #78bd76;
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Charging session griddata */
+.MuiDataGrid-root {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.MuiDataGrid-columnsContainer {
+  line-height: unset !important;
+}
+
+.MuiDataGrid-columnHeaderTitle {
+  white-space: unset !important;
+  text-overflow: unset !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+  white-space: unset !important;
+  text-overflow: unset !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderWrapper {
+  background-color: #78bd76;
+}
+
+.MuiIconButton-root {
+  width: auto;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell--textLeft {
+  text-align: center !important;
+  line-height: unset !important;
+  white-space: unset !important;
+  text-overflow: unset !important;
+}
