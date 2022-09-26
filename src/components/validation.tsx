@@ -5,6 +5,7 @@ import AuthService from "./AuthService";
 const initialFormValues = {
   firstName: "",
   lastName: "",
+  address: "",
   username: "",
   email: "",
   newPassword: "",
@@ -31,6 +32,13 @@ export const ValidationForm = () => {
 
     if ("lastName" in fieldValues)
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
+
+    if ("address" in fieldValues) {
+      if (fieldValues.address) {
+        temp.address = /[a-zA-Z ]*[a-zA-Z0-9]/.test(fieldValues.address) ? "" : "Address is not valid."
+      }
+      temp.address = fieldValues.address ? "" : "This field is required.";
+    }
 
     if ("username" in fieldValues) {
       temp.username = fieldValues.username ? "" : "This field is required.";
