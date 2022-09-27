@@ -5,7 +5,9 @@ import BottomNavigationBar from "../components/BottomNavigation";
 import Mobile from "../components/Mobile";
 import Navbar from "../components/Navbar";
 import useStyles from "../components/styles/profileStyles";
-import { ReactComponent } from "../assets/editIcon.svg";
+import PromptView from "../components/PromptView";
+import ProfileElements from "../components/ProfileElements";
+import ProfileButtons from "../components/ProfileButtons";
 
 const Profile = () => {
   const classes = useStyles();
@@ -32,47 +34,20 @@ const Profile = () => {
       {Mobile() ? <Navbar /> : <BottomNavigationBar />}
       <div className={classes.profile}>
         <div className={classes.container}>
-          <div className={classes.profile__items}>
-            <div className={`${classes.profileInfo}`}>Firstname</div>
-            <div className={classes.profileDescription}>{firstName}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-          <div className={classes.profile__items}>
-            <div className={classes.profileInfo}>Lastname</div>
-            <div className={classes.profileDescription}>{familyName}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-          <div className={classes.profile__items}>
-            <div className={classes.profileInfo}>Username</div>
-            <div className={classes.profileDescription}>{userName}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-          <div className={classes.profile__items}>
-            <div className={classes.profileInfo}>Email</div>
-            <div className={classes.profileDescription}>{email}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
+          <PromptView classes={classes}></PromptView>
+          <ProfileElements items={firstName} classes={classes}>
+            Firstname
+          </ProfileElements>
+          <ProfileElements items={familyName} classes={classes}>
+            Lastname
+          </ProfileElements>
+          <ProfileElements items={email} classes={classes}>
+            Email
+          </ProfileElements>
+          <ProfileElements classes={classes}>Adress</ProfileElements>
+          <ProfileElements classes={classes}>Phone number</ProfileElements>
         </div>
-        <div className={classes.buttonContainer}>
-          <form action="" method="post">
-            <button className={classes.changePasswordButton} type="submit">
-              Change password
-            </button>
-          </form>
-          <form action="" method="post">
-            <button className={classes.deleteButton} type="submit">
-              Delete profile
-            </button>
-          </form>
-        </div>
+        <ProfileButtons classes={classes}></ProfileButtons>
       </div>
     </>
   );

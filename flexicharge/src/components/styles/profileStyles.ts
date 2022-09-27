@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
 
-    changePasswordButton: {
+    changeButton: {
       backgroundColor: "#f0c200",
       color: "#fff",
       width: "150px",
@@ -71,6 +71,60 @@ const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         backgroundColor: "#a88800",
       },
+    },
+
+    cancelButton: {
+      backgroundColor: "#fff",
+      color: "#333",
+      width: "150px",
+      padding: "12px",
+      fontSize: "12px",
+      borderRadius: "10px",
+      border: "none",
+      "&:hover": {
+        backgroundColor: "#999",
+        color: "#fff",
+      },
+    },
+
+    showPromptView: {
+      display: "flex",
+      flexDirection: "column",
+      position: "absolute",
+      backgroundColor: "#999",
+      width: "450px",
+      height: "350px",
+      border: "2px solid #000",
+      zindex: "10",
+      margin: "80px",
+    },
+
+    hidden: {
+      display: "none",
+    },
+
+    modal: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: "70%",
+      backgroundColor: "#fff",
+      padding: "48px",
+      borderRadius: "5px",
+      boxShadow: "0 24px 40px rgba(0, 0, 0, 0.3)",
+      zindex: "10",
+    },
+
+    overlay: {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+      backdropFilter: "blur(3px)",
+      zindex: "5",
     },
   })
 );
