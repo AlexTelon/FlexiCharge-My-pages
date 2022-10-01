@@ -12,14 +12,18 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "0",
       margin: "auto",
     },
+    nav:{
+      width: "100%",
+      backgroundColor: theme.flexiCharge.primary.grey,
+      height: "8vh",
+    },
     container: {
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "0.5rem",
       justifyContent: "center",
       paddingTop: "36px",
       paddingBottom: "24px",
-      boxShadow: "3px 3px 12px #000",
-      border: "2px solid #78bd76",
+      border: "3px solid #78bd76",
     },
     gridItem: {
       margin: "auto",
