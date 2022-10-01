@@ -2,16 +2,16 @@ import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import LockIcon from "@material-ui/icons/Lock";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import EmailIcon from "@material-ui/icons/Email";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { Redirect, Link } from "react-router-dom";
 import { ValidationForm } from "../components/validation";
 import useStyles from "../components/styles/registerStyles";
 import AccountLink from "../components/AccountLink";
 
 const inputFieldValues = [
-  {
+  /* {
     name: "firstName",
     label: "First Name",
     id: "user-first-name",
@@ -29,19 +29,26 @@ const inputFieldValues = [
     label: "Username",
     id: "username",
     icon: <AccountCircle />,
-  },
+  },*/
   {
     name: "email",
     label: "Email",
     id: "user-email",
-    icon: <EmailIcon />,
+    icon: <EmailOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
     name: "newPassword",
     type: "password",
     label: "Password",
     id: "user-password",
-    icon: <LockIcon />,
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
+  },
+  {
+    name: "confirmPassword",
+    type: "password",
+    label: "Confirm Password",
+    id: "user-confirm-password",
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
   },
 ];
 
@@ -70,7 +77,14 @@ const Register = () => {
       </Modal>
       <Grid container direction="column" className={classes.container}>
         <form autoComplete="off" onSubmit={RegisterhandleFormSubmit}>
-          <Grid item xs={12}>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            item
+            xs={12}
+          >
             <h1 className={classes.registerTitle}>Sign Up</h1>
             {inputFieldValues.map((inputFieldValue, index) => {
               return (
@@ -97,7 +111,7 @@ const Register = () => {
                 />
               );
             })}
-            <Grid item xs={12}>
+            <Grid container justifyContent="center" item xs={12}>
               <Button
                 variant="contained"
                 type="submit"

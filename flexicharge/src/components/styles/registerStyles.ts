@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "0.5rem",
       justifyContent: "center",
-      padding: "1rem",
+      padding: "2rem",
+      border: "solid 3px #78bd76",
     },
     gridItem: {
       margin: "auto",
@@ -31,7 +32,6 @@ const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         boxShadow: theme.flexiCharge.boxShadow.button,
         backgroundColor: "#4d9c4b",
-        transform: "translateY(-3px)",
         color: theme.flexiCharge.primary.white,
       },
       backgroundColor: theme.flexiCharge.accent.primary,
