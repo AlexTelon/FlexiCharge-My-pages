@@ -1,4 +1,5 @@
 import { createTheme } from "@material-ui/core/styles";
+import { StringifyOptions } from "querystring";
 import "../index.css";
 
 declare module "@material-ui/core/styles/createTheme" {
@@ -15,6 +16,8 @@ declare module "@material-ui/core/styles/createTheme" {
         grey: string;
         lightGrey: string;
         white: string;
+        green: string;
+        blue: string;
       };
       accent: {
         primary: string;
@@ -44,6 +47,8 @@ declare module "@material-ui/core/styles/createTheme" {
         grey: string;
         lightGrey: string;
         white: string;
+        green: string;
+        blue: string;
       };
       accent: {
         primary: string;
@@ -107,6 +112,8 @@ const flexiChargeTheme = createTheme({
       grey: "#333333",
       lightGrey: "#e5e5e5",
       white: "#ffffff",
+      green: "#78bd76",
+      blue: "#5e5eb7",
     },
     accent: {
       primary: "#78bd76",
