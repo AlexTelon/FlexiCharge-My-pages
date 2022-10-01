@@ -5,14 +5,14 @@ import { Redirect } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import useStyles from "../components/styles/forgotPasswordStyles";
 
 const inputFieldValue = {
-  name: "username",
-  label: "Username",
-  id: "username",
-  icon: <AccountCircle />,
+  name: "email",
+  label: "Email",
+  id: "email",
+  icon: <EmailOutlinedIcon style={{color: "#78bd76"}} />,
 };
 
 const ForgotPassword = () => {
@@ -42,7 +42,7 @@ const ForgotPassword = () => {
         <form autoComplete="off" onSubmit={ForgotPasswordHandleFormSubmit}>
           <h1>Forgot Password</h1>
           <p>
-            Enter your username and we will send you a password reset link to
+            Enter your email and we will send you a password reset link to
             your registered email.
           </p>
           <Grid item xs={12} className={classes.gridItem}>
@@ -51,7 +51,7 @@ const ForgotPassword = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <AccountCircle />
+                    {inputFieldValue.icon}
                   </InputAdornment>
                 ),
               }}
