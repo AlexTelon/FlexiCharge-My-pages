@@ -103,7 +103,7 @@ const flexiChargeTheme = createTheme({
     },
     primary: {
       black: "#000000",
-      darkGrey: "#222222",
+      darkGrey: "#212121",
       grey: "#333333",
       lightGrey: "#e5e5e5",
       white: "#ffffff",

@@ -20,21 +20,56 @@ const useStyles = makeStyles((theme: Theme) =>
     gridItem: {
       margin: "auto",
     },
+    registerTitle: {
+      fontFamily: "Outfit, sans-serif",
+    },
+
     textFields: {
       maxWidth: "80%",
     },
     button: {
       "&:hover": {
         boxShadow: theme.flexiCharge.boxShadow.button,
-        transform: "translateY(-5px)",
+        backgroundColor: "#4d9c4b",
+        transform: "translateY(-3px)",
+        color: theme.flexiCharge.primary.white,
       },
+      backgroundColor: theme.flexiCharge.accent.primary,
       width: "50%",
-      minHeight: "3rem",
-      marginTop: theme.spacing(2),
+      marginTop: "48px",
+      marginBottom: "28px",
     },
     links: {
       margin: "auto",
       fontWeight: 500,
+      textDecoration: "none",
+    },
+    checkAccount: {
+      display: "flex",
+    },
+
+    haveAccount: {
+      color: theme.flexiCharge.primary.black,
+
+      "&:hover": {
+        color: theme.flexiCharge.accent.primary,
+      },
+    },
+
+    signIn: {
+      color: theme.flexiCharge.accent.primary,
+      marginLeft: "5px",
+      "&:hover": {
+        color: theme.flexiCharge.primary.black,
+      },
+    },
+
+    forgotPassword: {
+      color: theme.flexiCharge.accent.primary,
+      textDecoration: "none",
+      "&:hover": {
+        color: theme.flexiCharge.primary.black,
+      },
     },
   })
 );

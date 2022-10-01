@@ -15,6 +15,7 @@ const initialFormValues = {
 
 export const ValidationForm = () => {
   const [values, setValues] = useState(initialFormValues);
+  console.log(values);
   const [errors, setErrors] = useState({} as any);
   const [msg, setMsg] = useState("");
   const [open, setOpen] = useState(false);

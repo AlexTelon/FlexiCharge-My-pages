@@ -8,6 +8,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import { Redirect, Link } from "react-router-dom";
 import { ValidationForm } from "../components/validation";
 import useStyles from "../components/styles/registerStyles";
+import AccountLink from "../components/AccountLink";
 
 const inputFieldValues = [
   {
@@ -70,7 +71,7 @@ const Register = () => {
       <Grid container direction="column" className={classes.container}>
         <form autoComplete="off" onSubmit={RegisterhandleFormSubmit}>
           <Grid item xs={12}>
-            <h1>Sign up</h1>
+            <h1 className={classes.registerTitle}>Sign Up</h1>
             {inputFieldValues.map((inputFieldValue, index) => {
               return (
                 <TextField
@@ -101,14 +102,20 @@ const Register = () => {
                 variant="contained"
                 type="submit"
                 className={classes.button}
-              />
+              >
+                Sign Up
+              </Button>
             </Grid>
             <Grid container className={classes.links}>
               <Grid item xs={6}>
-                <Link to="/forgot-password">Forgot password?</Link>
+                <Link to="/forgot-password" className={classes.forgotPassword}>
+                  Forgot password?
+                </Link>
               </Grid>
               <Grid item xs={6}>
-                <Link to="/sign-in">Already have an account? Sign in</Link>
+                <Link to="/sign-in" style={{ textDecoration: "none" }}>
+                  <AccountLink classes={classes}></AccountLink>
+                </Link>
               </Grid>
             </Grid>
             {msg ? <Alert severity="error">{msg}</Alert> : ""}
