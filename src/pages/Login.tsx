@@ -11,9 +11,9 @@ import FlexiChargeLogoNoBorder from "../assets/FlexiChargeLogoNoBorder.svg";
 
 const inputFieldValues = [
   {
-    name: "email",
+    name: "username",
     label: "Email",
-    id: "email",
+    id: "username",
     icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
   },
   {

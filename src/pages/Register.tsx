@@ -42,6 +42,13 @@ const inputFieldValues = [
     id: "user-password",
     icon: <LockIcon  style={{color: "#78bd76"}}/>,
   },
+  {
+    name: "confirmNewPassword",
+    label: "Confirm New Password",
+    type: "password",
+    id: "confirmNewPassword",
+    icon: <LockIcon  style={{color: "#78bd76"}}/>,
+  },
 ];
 
 const Register = () => {
