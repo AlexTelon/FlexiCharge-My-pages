@@ -3,11 +3,10 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
-      height: "520px",
-      width: "630px",
+      height: "88vh",
+      width: "90%",
       margin: "100px auto",
       backgroundColor: theme.flexiCharge.primary.white,
-      boxShadow: "3px 3px 12px #76c365",
       borderRadius: "10px",
     },
 
