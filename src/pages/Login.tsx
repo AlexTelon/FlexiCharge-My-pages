@@ -95,7 +95,7 @@ const Login = () => {
                 <Link className={classes.links} to="/forgot-password">Forgot password?</Link>
               </Grid>
               <Grid item xs={6}>
-                <Link className={classes.links} to="/sign-up">No account? <span style={{color: "#78bd76"}}> Sign Up </span></Link>
+                <Link className={classes.links} to="/sign-up"> <span style={{color: "#5e5eb7"}}> No account? </span> Sign Up</Link>
               </Grid>
             </Grid>
           </form>
