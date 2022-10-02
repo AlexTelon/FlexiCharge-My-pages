@@ -7,6 +7,7 @@ import Tabs from "../components/Tabs";
 
 const Profile = () => {
   const classes = useStyles();
+
   const [firstName, setFirstName] = useState("");
   const [familyName, setFamilytName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <div className={classes.profile}>
         <Tabs />
         <div className={classes.buttonContainer}>
@@ -49,7 +50,7 @@ const Profile = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

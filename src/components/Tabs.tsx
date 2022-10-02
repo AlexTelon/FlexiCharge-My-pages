@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import useStyles from "../components/styles/tabs";
+import useStyles from "../components/styles/profileStyles";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -12,7 +12,6 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
-  const classes = useStyles();
   const { children, value, index, ...other } = props;
 
   return (
@@ -49,15 +48,48 @@ export default function BasicTabs() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 2, borderColor: "#333" }}>
+      <Box sx={{ borderBottom: 10, borderColor: "#e5e5e5" }}>
         <Tabs
+          sx={{ border: "none" }}
+          variant="fullWidth"
+          TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Profile" {...allyProps(0)} />
-          <Tab label="Charging History" {...allyProps(1)} />
-          <Tab label="Invoices" {...allyProps(2)} />
+          <Tab
+            sx={{
+              fontSize: "28px",
+              color: "#333",
+              height: "100px",
+              "&:active": { color: "#333" },
+              "&:focus": { color: "#333" },
+            }}
+            label="Profile"
+            {...allyProps(0)}
+          />
+          <Tab
+            sx={{
+              fontSize: "28px",
+              color: "#333",
+              height: "100px",
+              "&:active": { color: "#333" },
+              "&:focus": { color: "#333" },
+            }}
+            label="Charging History"
+            {...allyProps(1)}
+          />
+          <Tab
+            sx={{
+              fontSize: "28px",
+              color: "#333",
+              height: "100px",
+              "&:active": { color: "#333" },
+              "&:focus": { color: "#333" },
+            }}
+            label="Invoices"
+            {...allyProps(2)}
+          />
         </Tabs>
       </Box>
 

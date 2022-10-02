@@ -71,6 +71,8 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: "#a88800",
       },
     },
+
+    ///////////TABS//////////////////////////
   })
 );
 
