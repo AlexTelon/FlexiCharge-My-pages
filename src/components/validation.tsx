@@ -22,6 +22,7 @@ export const ValidationForm = () => {
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
   const minimum = 2;
+
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
     const temp: any = { ...errors };
@@ -311,6 +312,7 @@ export const ValidationForm = () => {
     LogInhandleFormSubmit,
     ForgotPasswordHandleFormSubmit,
     ConfirmForgotPasswordHandleFormSubmit,
+    validate,
     redirect,
   };
 };
