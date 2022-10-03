@@ -7,6 +7,7 @@ import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import Navbar from "../components/Navbar";
+import NewNavbar from "../components/NewNavbar";
 import Mobile from "../components/Mobile";
 import BottomNavigationBar from "../components/BottomNavigation";
 import useStyles from "../components/styles/changePasswordStyles";
@@ -52,8 +53,6 @@ const ChangePassword = () => {
   }
 
   return (
-    <>
-      {Mobile() ? <Navbar /> : <BottomNavigationBar />}
       <Grid container direction="column">
         <div className={classes.nav}>
           {/*<img className={classes.indexLogo} src={FlexiChargeLogoNoBorder}/>*/}
@@ -66,6 +65,7 @@ const ChangePassword = () => {
               title = "Sign Out"
             </Button>*/}
         </div>
+        {Mobile() ? <NewNavbar /> : <BottomNavigationBar />}
         <Grid container direction="column" className={classes.grid}>
           <Grid container direction="column" className={classes.container}>
             <form autoComplete="off" onSubmit={ChangePassword}>
@@ -111,7 +111,6 @@ const ChangePassword = () => {
           </Grid>
         </Grid>
       </Grid>
-    </>
   );
 };
 
