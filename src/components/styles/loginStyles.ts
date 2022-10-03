@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
     links: {
       marginTop: theme.spacing(2),
       fontWeight: 500,
-      color: theme.flexiCharge.primary.blue,
+      color: theme.flexiCharge.primary.green,
       textDecorationLine: 'none',
     }, 
     backdrop: {

@@ -2,7 +2,7 @@ import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import { Redirect, Link } from "react-router-dom";
-import LockIcon from "@material-ui/icons/Lock";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -11,9 +11,9 @@ import FlexiChargeLogoNoBorder from "../assets/FlexiChargeLogoNoBorder.svg";
 
 const inputFieldValues = [
   {
-    name: "email",
+    name: "username",
     label: "Email",
-    id: "email",
+    id: "username",
     icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
   },
   {
@@ -21,7 +21,7 @@ const inputFieldValues = [
     type: "password",
     label: "Password",
     id: "user-password",
-    icon: <LockIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
   },
 ];
 
@@ -95,7 +95,7 @@ const Login = () => {
                 <Link className={classes.links} to="/forgot-password">Forgot password?</Link>
               </Grid>
               <Grid item xs={6}>
-                <Link className={classes.links} to="/sign-up">No account? <span style={{color: "#78bd76"}}> Sign Up </span></Link>
+                <Link className={classes.links} to="/sign-up"> <span style={{color: "#5e5eb7"}}> No account? </span> Sign Up</Link>
               </Grid>
             </Grid>
           </form>
