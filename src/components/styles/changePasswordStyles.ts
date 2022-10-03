@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "100vh",
       height: "0",
       marginTop: "0",
+      marginBottom:"0",
       margin: "auto",
     },
     nav:{
@@ -20,12 +21,18 @@ const useStyles = makeStyles((theme: Theme) =>
       position:"fixed",
     },
     container: {
+      '& h1': {
+        fontFamily:theme.flexiCharge.font.h3.fontFamily,
+        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontWeight: 800,
+      },
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "0.5rem",
       justifyContent: "center",
       paddingTop: "36px",
       paddingBottom: "24px",
       border: "3px solid #78bd76",
+      marginTop:"15%",
     },
     gridItem: {
       margin: "auto",
@@ -47,6 +54,9 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
+      fontFamily:theme.flexiCharge.font.h5.fontFamily,
+      fontSize:theme.flexiCharge.font.h5.fontSize,
+      textTransform: "none",
     },
     input: {
       maxWidth: "5%",

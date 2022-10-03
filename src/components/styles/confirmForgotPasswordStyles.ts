@@ -3,39 +3,62 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grid: {
-      spacing: 0,
       alignItems: "center",
       justifyContent: "center",
-      maxWidth: "40%",
+      maxWidth: "35%",
       minWidth: "40vh",
       minHeight: "100vh",
+      height: "0",
+      marginTop: "0",
       margin: "auto",
+    },
+    nav:{
+      width: "100%",
+      backgroundColor: theme.flexiCharge.primary.grey,
+      height: "8vh",
+      position:"fixed"
     },
     container: {
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "0.5rem",
       justifyContent: "center",
-      padding: "1rem",
+      paddingTop: "36px",
+      paddingBottom: "24px",
+      border: "3px solid #78bd76",
+      '& h1': {
+        fontFamily:theme.flexiCharge.font.h3.fontFamily,
+        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontWeight: 800,
+      },
+      '& p': {
+        fontFamily:theme.flexiCharge.font.p1.fontFamily,
+        fontSize:theme.flexiCharge.font.p1.fontSize,
+
+      },
     },
     gridItem: {
       margin: "auto",
     },
     textFields: {
-      maxWidth: "80%",
+      maxWidth: "40%",
+      marginTop: "24px",
     },
     button: {
-      backgroundColor: theme.flexiCharge.accent.primary,
       "&:hover": {
-        background: theme.flexiCharge.accent.primary,
+        transform: "translateY(2px)",
         boxShadow: theme.flexiCharge.boxShadow.button,
-        transform: "translateY(-5px)",
+        backgroundColor: theme.palette.primary.main,
+        color: theme.flexiCharge.primary.white,
       },
-      maxWidth: "50%",
-      maxHeight: "10vh",
-      marginTop: theme.spacing(2),
-      fontWeight: "bold",
-      fontSize: ".7rem",
-      color: theme.flexiCharge.primary.white,
+      marginTop: "48px",
+      marginBottom: "32px",
+      width: "60%",
+      minHeight: "2.5rem",
+      borderRadius: "0.5rem",
+      backgroundColor: theme.flexiCharge.primary.green,
+      fontFamily:theme.flexiCharge.font.h5.fontFamily,
+      fontSize:theme.flexiCharge.font.h5.fontSize,
+      textTransform: "none",
     },
     input: {
       maxWidth: "5%",

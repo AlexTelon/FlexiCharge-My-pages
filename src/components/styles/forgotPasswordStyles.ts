@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       backgroundColor: theme.flexiCharge.primary.grey,
       height: "8vh",
+      position:"fixed"
     },
     container: {
       backgroundColor: theme.flexiCharge.primary.white,
@@ -24,6 +25,16 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: "36px",
       paddingBottom: "24px",
       border: "3px solid #78bd76",
+      '& h1': {
+        fontFamily:theme.flexiCharge.font.h3.fontFamily,
+        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontWeight: 800,
+      },
+      '& p': {
+        fontFamily:theme.flexiCharge.font.p1.fontFamily,
+        fontSize:theme.flexiCharge.font.p1.fontSize,
+
+      },
     },
     gridItem: {
       margin: "auto",
@@ -45,6 +56,9 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
+      fontFamily:theme.flexiCharge.font.h5.fontFamily,
+      fontSize:theme.flexiCharge.font.h5.fontSize,
+      textTransform: "none",
     },
   })
 );

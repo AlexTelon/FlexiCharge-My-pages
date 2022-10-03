@@ -6,6 +6,11 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor:theme.flexiCharge.primary.grey,
       width: "100%",
       height: "100%",
+      '& h1': {
+        fontFamily:theme.flexiCharge.font.h3.fontFamily,
+        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontWeight: 800,
+      },
     },
     indexLogo:{
       minWidth:"30%",
@@ -51,12 +56,17 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
+      fontFamily:theme.flexiCharge.font.h5.fontFamily,
+      fontSize:theme.flexiCharge.font.h5.fontSize,
+      textTransform: "none",
     },
     links: {
       marginTop: theme.spacing(2),
-      fontWeight: 500,
+      fontWeight: 1000,
       color: theme.flexiCharge.primary.green,
       textDecorationLine: 'none',
+      fontFamily:theme.flexiCharge.font.h6.fontFamily,
+      fontSize:theme.flexiCharge.font.h6.fontSize,
     }, 
     backdrop: {
       position: "absolute",

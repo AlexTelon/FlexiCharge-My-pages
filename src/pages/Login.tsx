@@ -2,7 +2,7 @@ import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import { Redirect, Link } from "react-router-dom";
-import LockIcon from "@material-ui/icons/Lock";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -21,7 +21,7 @@ const inputFieldValues = [
     type: "password",
     label: "Password",
     id: "user-password",
-    icon: <LockIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
   },
 ];
 
@@ -52,7 +52,7 @@ const Login = () => {
         </Modal>
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={LogInhandleFormSubmit}>
-            <h1 className="formTitle">Sign in</h1>
+            <h1>Sign in</h1>
             {inputFieldValues.map((inputFieldValue, index) => {
               return (
                 <Grid item key={index} xs={12} className={classes.gridItem}>
@@ -95,7 +95,7 @@ const Login = () => {
                 <Link className={classes.links} to="/forgot-password">Forgot password?</Link>
               </Grid>
               <Grid item xs={6}>
-                <Link className={classes.links} to="/sign-up"> <span style={{color: "#5e5eb7"}}> No account? </span> Sign Up</Link>
+                <Link className={classes.links} to="/sign-up"> <span style={{color: "#5e5eb7"}}> Already have an account? </span> Sign Up</Link>
               </Grid>
             </Grid>
           </form>

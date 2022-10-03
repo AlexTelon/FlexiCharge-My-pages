@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor:theme.flexiCharge.primary.white,
         justifyContent: "center",
         margin: "auto",
+        position:"fixed",
         borderRadius: "0.5rem",
         boxShadow:"0px 0px 10px 10px #ffffff",
 
@@ -19,18 +20,18 @@ const useStyles = makeStyles((theme: Theme) =>
             border: "4px solid #ffffff",
             color: theme.flexiCharge.primary.black,
             backgroundColor: theme.flexiCharge.primary.lightGrey,
-            borderBlockEndColor:theme.flexiCharge.primary.darkGrey,
+            borderBlockEndColor:theme.flexiCharge.primary.black,
         },
         "&:active": {
             border: "4px solid #ffffff",
             backgroundColor: theme.flexiCharge.primary.lightGrey,
-            borderBlockEndColor:theme.flexiCharge.primary.darkGrey,
+            borderBlockEndColor:theme.flexiCharge.primary.black,
         },
         width:"100%",
         height:"100%",
         padding:"2%",
-        color: theme.flexiCharge.primary.green,
-        textDecorationLine: 'none',
+        fontFamily:theme.flexiCharge.font.h5.fontFamily,
+        fontSize:theme.flexiCharge.font.h5.fontSize,
 
     },
     iconButton:{
@@ -39,7 +40,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuItem:{
         color: theme.flexiCharge.primary.darkGrey,
-        textDecorationLine: 'none',
         padding:"2%",
 
     }

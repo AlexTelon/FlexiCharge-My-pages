@@ -1,7 +1,7 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
-import LockIcon from "@material-ui/icons/Lock";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Redirect, Link } from "react-router-dom";
@@ -41,14 +41,14 @@ const inputFieldValues = [
     type: "password",
     label: "Password",
     id: "user-password",
-    icon: <LockIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
   },
   {
     name: "confirmNewPassword",
     label: "Confirm New Password",
     type: "password",
     id: "confirmNewPassword",
-    icon: <LockIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
   },
 ];
 

@@ -81,7 +81,7 @@ const Navbar: FC = (): ReactElement => {
               }}
             >
               {categories.map((page) => (
-                <Link
+                <Link style={{color:"#333333", textDecoration: 'none'}}
                   key={page.id}
                   component={NavLink}
                   to={page.location}
@@ -94,7 +94,7 @@ const Navbar: FC = (): ReactElement => {
             </Menu>
           </Box>
         {categories.map((page) => (
-        <Link className={classes.boxWeb}
+        <Link className={classes.boxWeb} style={{color:"#333333", textDecoration: 'none'}} 
             key={page.id}
             component={NavLink}
             to={page.location}

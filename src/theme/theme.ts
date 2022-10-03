@@ -11,11 +11,11 @@ declare module "@material-ui/core/styles/createTheme" {
         Lato: string;
         Title: string;
         h3:{
-          fontSize: string;
+          fontSize: number;
           fontFamily: string;
         }
         h5:{
-          fontSize: string;
+          fontSize: number;
           fontFamily: string;
         }
         h6:{
@@ -62,11 +62,11 @@ declare module "@material-ui/core/styles/createTheme" {
         Lato: string;
         Title: string;
         h3:{
-          fontSize: string;
+          fontSize: number;
           fontFamily: string;
         }
         h5:{
-          fontSize: string;
+          fontSize: number;
           fontFamily: string;
         }
         h6:{
@@ -143,15 +143,15 @@ const flexiChargeTheme = createTheme({
   },
   flexiCharge: {
     font: {
-      _main: '"Lato", sans-serif',
+      _main: "Roboto",
       Lato: '"Lato", sans-serif',
-      Title: '"FlexiTitleFont", sans-serif',
+      Title: '"FlexiTitleFont", Roboto',
       h3: {
-        fontSize:"48",
+        fontSize:48,
         fontFamily:"Roboto",
       },
       h5: {
-        fontSize:"24",
+        fontSize:24,
         fontFamily:"Roboto regular",
       },
       h6: {

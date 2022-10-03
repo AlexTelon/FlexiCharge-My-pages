@@ -69,7 +69,7 @@ const ChangePassword = () => {
         <Grid container direction="column" className={classes.grid}>
           <Grid container direction="column" className={classes.container}>
             <form autoComplete="off" onSubmit={ChangePassword}>
-              <h2>Change password</h2>
+              <h1>Change password</h1>
               {inputFieldValues.map((inputFieldValue, index) => {
                 return (
                   <Grid item key={index} xs={12} className={classes.gridItem}>
@@ -85,7 +85,6 @@ const ChangePassword = () => {
                         ),
                       }}
                       fullWidth
-                      style={{ marginTop: "1rem" }}
                       className={classes.textFields}
                       name={inputFieldValue.name}
                       label={inputFieldValue.label}
