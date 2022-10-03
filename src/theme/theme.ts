@@ -1,4 +1,5 @@
 import { createTheme } from "@material-ui/core/styles";
+import { pbkdf2 } from "crypto";
 import { StringifyOptions } from "querystring";
 import "../index.css";
 
@@ -9,6 +10,26 @@ declare module "@material-ui/core/styles/createTheme" {
         _main: string;
         Lato: string;
         Title: string;
+        h3:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        h5:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        h6:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p1:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p2:{
+          fontSize: string;
+          fontFamily: string;
+        }
       };
       primary: {
         black: string;
@@ -40,6 +61,26 @@ declare module "@material-ui/core/styles/createTheme" {
         _main: string;
         Lato: string;
         Title: string;
+        h3:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        h5:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        h6:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p1:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p2:{
+          fontSize: string;
+          fontFamily: string;
+        }
       };
       primary: {
         black: string;
@@ -105,6 +146,26 @@ const flexiChargeTheme = createTheme({
       _main: '"Lato", sans-serif',
       Lato: '"Lato", sans-serif',
       Title: '"FlexiTitleFont", sans-serif',
+      h3: {
+        fontSize:"48",
+        fontFamily:"Roboto",
+      },
+      h5: {
+        fontSize:"24",
+        fontFamily:"Roboto regular",
+      },
+      h6: {
+        fontSize:"20",
+        fontFamily:"Roboto medium",
+      },
+      p1: {
+        fontSize:"16",
+        fontFamily:"Roboto regular",
+      },
+      p2: {
+        fontSize:"14",
+        fontFamily:"Roboto regular",
+      },
     },
     primary: {
       black: "#000000",
