@@ -29,8 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       paddingTop: "36px",
       paddingBottom: "24px",
-      boxShadow: "3px 3px 12px #000",
-      border: "2px solid #78bd76",
+      border: "3px solid #78bd76",
     },
     gridItem: {
       margin: "auto",
@@ -58,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 500,
       color: theme.flexiCharge.primary.blue,
       textDecorationLine: 'none',
-    },
+    }, 
     backdrop: {
       position: "absolute",
       top: "50%",

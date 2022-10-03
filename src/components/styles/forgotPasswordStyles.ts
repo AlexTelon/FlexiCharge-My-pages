@@ -3,37 +3,48 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grid: {
+      alignItems: "center",
       justifyContent: "center",
-      maxWidth: "40%",
+      maxWidth: "35%",
       minWidth: "40vh",
       minHeight: "100vh",
+      height: "0",
+      marginTop: "0",
       margin: "auto",
-      fontWeight: "bolder",
+    },
+    nav:{
+      width: "100%",
+      backgroundColor: theme.flexiCharge.primary.grey,
+      height: "8vh",
     },
     container: {
-      padding: "1rem",
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "0.5rem",
+      justifyContent: "center",
+      paddingTop: "36px",
+      paddingBottom: "24px",
+      border: "3px solid #78bd76",
     },
     gridItem: {
       margin: "auto",
     },
     textFields: {
-      maxWidth: "80%",
+      maxWidth: "40%",
+      marginTop: "24px",
     },
     button: {
-      backgroundColor: theme.flexiCharge.accent.primary,
       "&:hover": {
-        background: theme.flexiCharge.accent.primary,
+        transform: "translateY(2px)",
         boxShadow: theme.flexiCharge.boxShadow.button,
-        transform: "translateY(-5px)",
+        backgroundColor: theme.palette.primary.main,
+        color: theme.flexiCharge.primary.white,
       },
-      maxWidth: "50%",
-      maxHeight: "10vh",
-      marginTop: theme.spacing(2),
-      fontWeight: "bold",
-      fontSize: ".7rem",
-      color: theme.flexiCharge.primary.white,
+      marginTop: "48px",
+      marginBottom: "32px",
+      width: "60%",
+      minHeight: "2.5rem",
+      borderRadius: "0.5rem",
+      backgroundColor: theme.flexiCharge.primary.green,
     },
   })
 );

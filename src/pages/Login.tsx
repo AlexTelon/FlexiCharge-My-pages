@@ -14,14 +14,14 @@ const inputFieldValues = [
     name: "email",
     label: "Email",
     id: "email",
-    icon: <EmailOutlinedIcon/>,
+    icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
   },
   {
     name: "password",
     type: "password",
     label: "Password",
     id: "user-password",
-    icon: <LockIcon />,
+    icon: <LockIcon  style={{color: "#78bd76"}}/>,
   },
 ];
 
