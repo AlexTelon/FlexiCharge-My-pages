@@ -4,6 +4,10 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import useStyles from "../components/styles/profileStyles";
+import ProfileInformation from "../components/ProfileInformation";
+import { useHistory } from "react-router";
+import { useEffect, useState } from "react";
+import AuthService from "../components/AuthService";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -42,15 +46,44 @@ export default function BasicTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  const [firstName, setFirstName] = useState("");
+  const [familyName, setFamilytName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [userName, setUserName] = useState("");
+  const history = useHistory();
+
+  useEffect(() => {
+    const currentUser = AuthService.getCurrentUser();
+    if (!currentUser) {
+      history.push("/sign-in");
+    } else {
+      setFirstName(currentUser.name);
+      setFamilytName(currentUser.family_name);
+      setEmail(currentUser.email);
+      setPhoneNumber(currentUser.phone);
+      setAddress(currentUser.address);
+      setUserName(currentUser.username);
+    }
+  }, []);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  const customStyles = {
+    fontSize: "28px",
 
+    height: "100px",
+    border: "none !important",
+    "&:active": { color: "#78bd76 !important" },
+    "&:focus": { color: "#78bd76 !important" },
+    color: "#333 !important",
+  };
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 10, borderColor: "#e5e5e5" }}>
         <Tabs
-          sx={{ border: "none" }}
           variant="fullWidth"
           TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
           value={value}
@@ -58,34 +91,20 @@ export default function BasicTabs() {
           aria-label="basic tabs example"
         >
           <Tab
-            sx={{
-              fontSize: "28px",
-              color: "#333",
-              height: "100px",
-              "&:active": { color: "#333" },
-              "&:focus": { color: "#333" },
-            }}
+            sx={{ ...customStyles, border: 0 }}
             label="Profile"
             {...allyProps(0)}
           />
           <Tab
             sx={{
-              fontSize: "28px",
-              color: "#333",
-              height: "100px",
-              "&:active": { color: "#333" },
-              "&:focus": { color: "#333" },
+              ...customStyles,
             }}
             label="Charging History"
             {...allyProps(1)}
           />
           <Tab
             sx={{
-              fontSize: "28px",
-              color: "#333",
-              height: "100px",
-              "&:active": { color: "#333" },
-              "&:focus": { color: "#333" },
+              ...customStyles,
             }}
             label="Invoices"
             {...allyProps(2)}
@@ -94,7 +113,13 @@ export default function BasicTabs() {
       </Box>
 
       <TabPanel value={value} index={0}>
-        Here will the compnents for user profile be
+        <ProfileInformation
+          label="Name"
+          descript={`${firstName}, ${familyName}`}
+        />
+        <ProfileInformation label="Email" descript={email} />
+        <ProfileInformation label="Phone" descript={phone} />
+        <ProfileInformation label="Address" descript={address} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Here will the users charging history be
