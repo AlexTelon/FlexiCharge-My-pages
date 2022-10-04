@@ -1,35 +1,26 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import { Redirect } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailIcon from "@material-ui/icons/Email";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import { Redirect } from "react-router-dom";
-import useStyles from "../components/styles/verifyAccountStyles";
+import useStyles from "../components/styles/forgotPasswordStyles";
 
 const inputFieldValues = [
-  {
-    name: "username",
-    label: "Email",
-    id: "user-username",
-    icon: <EmailIcon />,
-  },
-  {
-    name: "verifyCode",
-    label: "Verification code",
-    id: "verifyCode",
-    maxLength: 6,
-    icon: <VpnKeyIcon />,
-  },
+{
+  name: "email",
+  label: "Email",
+  id: "user-email",
+  icon: <EmailIcon />,
+}
 ];
 
-const VerifyAccount = () => {
+const ForgotPassword = () => {
   const classes = useStyles();
-
   const {
-    verifyHandleFormSubmit,
+    ForgotPasswordHandleFormSubmit,
     handleInputValue,
     handleClose,
     open,
@@ -38,8 +29,8 @@ const VerifyAccount = () => {
     redirect,
   } = ValidationForm();
 
-  if (!msg && redirect) {
-    return <Redirect to="/sign-in" />;
+  if (redirect) {
+    return <Redirect to="/confirm-forgot-password" />;
   }
 
   return (
@@ -49,17 +40,19 @@ const VerifyAccount = () => {
           <div className="loader"></div>
         </Box>
       </Modal>
-      <Grid container className={classes.container}>
-        <form autoComplete="off" onSubmit={verifyHandleFormSubmit}>
-          <h1>Verify</h1>
-          <p>Verification code has been sent to your email.</p>
+      <Grid container direction="column" className={classes.container}>
+        <form autoComplete="off" onSubmit={ForgotPasswordHandleFormSubmit}>
+          <h1>Forgot Password</h1>
+          <p>
+            Enter your username and we will send you a password reset link to
+            your registered email.
+          </p>
           {inputFieldValues.map((inputFieldValue, index) => {
             return (
-              <Grid item key={index} xs={12}>
+              <Grid item key={index} xs={12} className={classes.gridItem}>
                 <TextField
                   key={index}
                   onChange={handleInputValue}
-                  onBlur={handleInputValue}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -68,13 +61,10 @@ const VerifyAccount = () => {
                     ),
                   }}
                   fullWidth
-                  style={{ marginTop: "1rem" }}
+                  className={classes.textFields}
                   name={inputFieldValue.name}
                   label={inputFieldValue.label}
                   autoComplete="none"
-                  inputProps={{
-                    maxLength: inputFieldValue.maxLength,
-                  }}
                   {...(errors[inputFieldValue.name] && {
                     error: true,
                     helperText: errors[inputFieldValue.name],
@@ -84,13 +74,13 @@ const VerifyAccount = () => {
             );
           })}
           <Button variant="contained" type="submit" className={classes.button}>
-            Verify
+            Send password reset
           </Button>
-          {msg ? <Alert severity="error">{msg}</Alert> : ""}
+          {msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
         </form>
       </Grid>
     </Grid>
   );
 };
 
-export default VerifyAccount;
+export default ForgotPassword;

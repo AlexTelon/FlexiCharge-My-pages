@@ -12,7 +12,6 @@ const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [familyName, setFamilytName] = useState("");
   const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const Profile = () => {
       setFirstName(currentUser.name);
       setFamilytName(currentUser.family_name);
       setEmail(currentUser.email);
-      setUserName(currentUser.username);
     }
   }, []);
 
@@ -42,13 +40,6 @@ const Profile = () => {
           <div className={classes.profile__items}>
             <div className={classes.profileInfo}>Lastname</div>
             <div className={classes.profileDescription}>{familyName}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-          <div className={classes.profile__items}>
-            <div className={classes.profileInfo}>Username</div>
-            <div className={classes.profileDescription}>{userName}</div>
             <div>
               <ReactComponent />
             </div>

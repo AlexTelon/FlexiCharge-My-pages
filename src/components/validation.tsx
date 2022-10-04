@@ -32,10 +32,6 @@ export const ValidationForm = () => {
     if ("lastName" in fieldValues)
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
-    if ("username" in fieldValues) {
-      temp.username = fieldValues.username ? "" : "This field is required.";
-    }
-
     if ("email" in fieldValues) {
       temp.email = fieldValues.email ? "" : "This field is required.";
       if (fieldValues.email) {
@@ -138,9 +134,8 @@ export const ValidationForm = () => {
   const verifyHandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
-    const { username, verifyCode } = e.target.elements;
+    const { verifyCode } = e.target.elements;
     const initialValues = {
-      username: username.value,
       verifyCode: verifyCode.value,
     };
 
