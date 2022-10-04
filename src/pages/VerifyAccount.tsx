@@ -1,43 +1,45 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
-import { Redirect, Link } from "react-router-dom";
-import LockIcon from "@material-ui/icons/Lock";
-import EmailIcon from "@material-ui/icons/Email";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ValidationForm } from "../components/validation";
-import useStyles from "../components/styles/loginStyles";
+import EmailIcon from "@material-ui/icons/Email";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import { Redirect } from "react-router-dom";
+import useStyles from "../components/styles/verifyAccountStyles";
 
 const inputFieldValues = [
   {
-    name: "email",
+    name: "username",
     label: "Email",
-    id: "user-email",
+    id: "user-username",
     icon: <EmailIcon />,
   },
   {
-    name: "password",
-    type: "password",
-    label: "Password",
-    id: "user-password",
-    icon: <LockIcon />,
+    name: "verifyCode",
+    label: "Verification code",
+    id: "verifyCode",
+    maxLength: 6,
+    icon: <VpnKeyIcon />,
   },
 ];
 
-const Login = () => {
+const VerifyAccount = () => {
   const classes = useStyles();
+
   const {
-    LogInhandleFormSubmit,
+    verifyHandleFormSubmit,
     handleInputValue,
-    redirect,
+    handleClose,
+    open,
     errors,
     msg,
-    open,
-    handleClose,
+    redirect,
   } = ValidationForm();
 
-  if (redirect) {
-    return <Redirect to="/profile" />;
+  if (!msg && redirect) {
+    return <Redirect to="/sign-in" />;
   }
 
   return (
@@ -47,12 +49,13 @@ const Login = () => {
           <div className="loader"></div>
         </Box>
       </Modal>
-      <Grid container direction="column" className={classes.container}>
-        <form autoComplete="off" onSubmit={LogInhandleFormSubmit}>
-          <h1 className="formTitle">Log in</h1>
+      <Grid container className={classes.container}>
+        <form autoComplete="off" onSubmit={verifyHandleFormSubmit}>
+          <h1>Verify</h1>
+          <p>Verification code has been sent to your email.</p>
           {inputFieldValues.map((inputFieldValue, index) => {
             return (
-              <Grid item key={index} xs={12} className={classes.gridItem}>
+              <Grid item key={index} xs={12}>
                 <TextField
                   key={index}
                   onChange={handleInputValue}
@@ -65,11 +68,13 @@ const Login = () => {
                     ),
                   }}
                   fullWidth
-                  className={classes.textFields}
+                  style={{ marginTop: "1rem" }}
                   name={inputFieldValue.name}
                   label={inputFieldValue.label}
-                  type={inputFieldValue.type}
                   autoComplete="none"
+                  inputProps={{
+                    maxLength: inputFieldValue.maxLength,
+                  }}
                   {...(errors[inputFieldValue.name] && {
                     error: true,
                     helperText: errors[inputFieldValue.name],
@@ -78,28 +83,14 @@ const Login = () => {
               </Grid>
             );
           })}
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              type="submit"
-              className={classes.button}
-            >
-              Log in
-            </Button>
-          </Grid>
-          <Grid container className={classes.links}>
-            <Grid item xs={6}>
-              <Link to="/forgot-password">Forgot password?</Link>
-            </Grid>
-            <Grid item xs={6}>
-              <Link to="/sign-up">No account? Sign Up</Link>
-            </Grid>
-          </Grid>
+          <Button variant="contained" type="submit" className={classes.button}>
+            Verify
+          </Button>
+          {msg ? <Alert severity="error">{msg}</Alert> : ""}
         </form>
-        {msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
       </Grid>
     </Grid>
   );
 };
 
-export default Login;
+export default VerifyAccount;
