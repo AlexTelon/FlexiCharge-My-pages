@@ -24,10 +24,10 @@ const inputFieldValues = [
     icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
   },
   {
-    name: "confirmNewPassword",
+    name: "confirmPassword",
     type: "password",
     label: "Confirm password",
-    id: "confirmNewPassword",
+    id: "confirmPassword",
     icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
   },
   {

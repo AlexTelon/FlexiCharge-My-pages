@@ -64,7 +64,6 @@ export const ValidationForm = () => {
         : "This field is required."
 
       newPass === fieldValues.confirmPassword ? temp.confirmPassword = "" : temp.confirmPassword = "Passwords don't match.";
-      console.log(newPass);
     }
 
     if ("password" in fieldValues)
@@ -228,10 +227,11 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { username, newPassword, verifyCode } = e.target.elements;
+    const { username, newPassword, confirmPassword, verifyCode } = e.target.elements;
     const initialValues = {
       username: username.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value,
       verifyCode: verifyCode.value,
     };
 
@@ -240,10 +240,11 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { username, newPassword, verifyCode } = values;
+        const { username, newPassword, confirmPassword, verifyCode } = values;
         AuthService.confirmForgotPassword(
           username,
           newPassword,
+          confirmPassword,
           verifyCode
         ).then(
           () => {
@@ -266,10 +267,11 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { password, newPassword } = e.target.elements;
+    const { password, newPassword, confirmPassword } = e.target.elements;
     const initialValues = {
       password: password.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
@@ -277,9 +279,9 @@ export const ValidationForm = () => {
     const token = user.accessToken;
     if (!isEmpty(initialValues)) {
       if (isValid) {
-        const { password, newPassword } = values;
+        const { password, newPassword, confirmPassword } = values;
 
-        AuthService.changePassword(token, password, newPassword).then(
+        AuthService.changePassword(token, password, newPassword, confirmPassword).then(
           (response) => {
             setRedirect(true);
           },

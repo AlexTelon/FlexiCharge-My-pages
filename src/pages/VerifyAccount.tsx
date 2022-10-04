@@ -6,6 +6,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ValidationForm } from "../components/validation";
 import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Redirect } from "react-router-dom";
 import useStyles from "../components/styles/verifyAccountStyles";
 
@@ -15,6 +16,13 @@ const inputFieldValues = [
     label: "Email",
     id: "user-username",
     icon: <EmailIcon />,
+  },
+  {
+    name: "confirmPassword",
+    type: "password",
+    label: "Confirm Password",
+    id: "confirmPassword",
+    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
   },
   {
     name: "verifyCode",
