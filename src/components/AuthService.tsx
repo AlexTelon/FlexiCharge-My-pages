@@ -51,7 +51,8 @@ class AuthService {
     //familyName: string,
     //email: string,
     username: string,
-    password: string
+    password: string,
+    confirmPassword: string
   ) {
     return axios.post(API_URL + "sign-up", {
       //name: firstName,
@@ -59,6 +60,7 @@ class AuthService {
       //email: email,
       username: username,
       password: password,
+      confirmPassword: confirmPassword
     });
   }
 
