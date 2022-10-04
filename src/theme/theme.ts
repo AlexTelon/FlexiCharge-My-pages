@@ -1,4 +1,6 @@
 import { createTheme } from "@material-ui/core/styles";
+import { pbkdf2 } from "crypto";
+import { StringifyOptions } from "querystring";
 import "../index.css";
 
 declare module "@material-ui/core/styles/createTheme" {
@@ -8,6 +10,26 @@ declare module "@material-ui/core/styles/createTheme" {
         _main: string;
         Lato: string;
         Title: string;
+        h3:{
+          fontSize: number;
+          fontFamily: string;
+        }
+        h5:{
+          fontSize: number;
+          fontFamily: string;
+        }
+        h6:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p1:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p2:{
+          fontSize: string;
+          fontFamily: string;
+        }
       };
       primary: {
         black: string;
@@ -15,6 +37,8 @@ declare module "@material-ui/core/styles/createTheme" {
         grey: string;
         lightGrey: string;
         white: string;
+        green: string;
+        blue: string;
       };
       accent: {
         primary: string;
@@ -37,6 +61,26 @@ declare module "@material-ui/core/styles/createTheme" {
         _main: string;
         Lato: string;
         Title: string;
+        h3:{
+          fontSize: number;
+          fontFamily: string;
+        }
+        h5:{
+          fontSize: number;
+          fontFamily: string;
+        }
+        h6:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p1:{
+          fontSize: string;
+          fontFamily: string;
+        }
+        p2:{
+          fontSize: string;
+          fontFamily: string;
+        }
       };
       primary: {
         black: string;
@@ -44,6 +88,8 @@ declare module "@material-ui/core/styles/createTheme" {
         grey: string;
         lightGrey: string;
         white: string;
+        green: string;
+        blue: string;
       };
       accent: {
         primary: string;
@@ -97,9 +143,29 @@ const flexiChargeTheme = createTheme({
   },
   flexiCharge: {
     font: {
-      _main: '"Lato", sans-serif',
+      _main: "Roboto",
       Lato: '"Lato", sans-serif',
-      Title: '"FlexiTitleFont", sans-serif',
+      Title: '"FlexiTitleFont", Roboto',
+      h3: {
+        fontSize:48,
+        fontFamily:"Roboto",
+      },
+      h5: {
+        fontSize:24,
+        fontFamily:"Roboto regular",
+      },
+      h6: {
+        fontSize:"20",
+        fontFamily:"Roboto medium",
+      },
+      p1: {
+        fontSize:"16",
+        fontFamily:"Roboto regular",
+      },
+      p2: {
+        fontSize:"14",
+        fontFamily:"Roboto regular",
+      },
     },
     primary: {
       black: "#000000",
@@ -107,6 +173,8 @@ const flexiChargeTheme = createTheme({
       grey: "#333333",
       lightGrey: "#e5e5e5",
       white: "#ffffff",
+      green: "#78bd76",
+      blue: "#5e5eb7",
     },
     accent: {
       primary: "#78bd76",

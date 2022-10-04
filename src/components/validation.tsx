@@ -99,9 +99,9 @@ export const ValidationForm = () => {
       e.target.elements;
 
     const initialValues = {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
+      //firstName: firstName.value,
+     // lastName: lastName.value,
+     // email: email.value,
       username: username.value,
       newPassword: newPassword.value,
     };
@@ -112,9 +112,9 @@ export const ValidationForm = () => {
         setOpen(true);
         const { firstName, lastName, email, username, newPassword } = values;
         AuthService.register(
-          firstName,
-          lastName,
-          email,
+          //firstName,
+          //lastName,
+         // email,
           username,
           newPassword
         ).then(

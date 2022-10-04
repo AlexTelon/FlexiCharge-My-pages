@@ -47,16 +47,16 @@ class AuthService {
   }
 
   register(
-    firstName: string,
-    familyName: string,
-    email: string,
+   // firstName: string,
+    //familyName: string,
+    //email: string,
     username: string,
     password: string
   ) {
     return axios.post(API_URL + "sign-up", {
-      name: firstName,
-      family_name: familyName,
-      email: email,
+      //name: firstName,
+      //family_name: familyName,
+      //email: email,
       username: username,
       password: password,
     });
