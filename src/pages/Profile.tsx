@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import AuthService from "../components/AuthService";
 import useStyles from "../components/styles/profileStyles";
 import Tabs from "../components/Tabs";
+import ProfileFromHandling from "../components/ProfileFormHandling";
 
 const Profile = () => {
   const classes = useStyles();
@@ -33,25 +34,7 @@ const Profile = () => {
     <div>
       <div className={classes.profile}>
         <Tabs />
-        <div className={classes.buttonContainer}>
-          <form action="" method="post">
-            <button
-              className={classes.changePasswordButton}
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                history.push("/change-password");
-              }}
-            >
-              Change password
-            </button>
-          </form>
-          <form action="" method="post">
-            <button className={classes.deleteButton} type="submit">
-              Delete profile
-            </button>
-          </form>
-        </div>
+        <ProfileFromHandling classes={classes} />
       </div>
     </div>
   );

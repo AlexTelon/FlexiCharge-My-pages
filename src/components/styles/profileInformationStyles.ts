@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      margin: "100px auto",
+      margin: "50px auto",
       display: "grid",
       width: "33%",
       gridTemplateColumns: "1fr 3fr 1fr",
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "24px",
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
+      justifySelf: "start",
     },
 
     description: {

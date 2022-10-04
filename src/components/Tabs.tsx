@@ -8,6 +8,7 @@ import ProfileInformation from "../components/ProfileInformation";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
+import { PropaneSharp } from "@mui/icons-material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -68,12 +69,21 @@ export default function BasicTabs() {
     }
   }, []);
 
+  const handleEmptyField = (text: string) => {
+    const valid = [];
+    if (text == undefined || text == "") {
+      valid.push("......................................");
+      return valid;
+    } else {
+      return text;
+    }
+  };
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   const customStyles = {
     fontSize: "28px",
-
     height: "100px",
     border: "none !important",
     "&:active": { color: "#78bd76 !important" },
@@ -114,12 +124,19 @@ export default function BasicTabs() {
 
       <TabPanel value={value} index={0}>
         <ProfileInformation
-          label="Name"
-          descript={`${firstName}, ${familyName}`}
+          label="Firstname"
+          descript={`${handleEmptyField(firstName)}`}
         />
-        <ProfileInformation label="Email" descript={email} />
-        <ProfileInformation label="Phone" descript={phone} />
-        <ProfileInformation label="Address" descript={address} />
+        <ProfileInformation
+          label="Lastname"
+          descript={handleEmptyField(familyName)}
+        />
+        <ProfileInformation label="Email" descript={handleEmptyField(email)} />
+        <ProfileInformation label="Phone" descript={handleEmptyField(phone)} />
+        <ProfileInformation
+          label="Address"
+          descript={handleEmptyField(address)}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Here will the users charging history be
