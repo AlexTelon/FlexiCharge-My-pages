@@ -64,6 +64,7 @@ export const ValidationForm = () => {
         : "This field is required."
 
       newPass === fieldValues.confirmPassword ? temp.confirmPassword = "" : temp.confirmPassword = "Passwords don't match.";
+      console.log(newPass);
     }
 
     if ("password" in fieldValues)
