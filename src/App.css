@@ -16,7 +16,7 @@ li {
 }
 
 .form-container {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -68,7 +68,7 @@ li {
 /* Charging session griddata */
 .MuiDataGrid-root {
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: #78bd76 0px 5px 15px;
 }
 
 .MuiDataGrid-columnsContainer {
