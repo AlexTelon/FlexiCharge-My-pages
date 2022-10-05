@@ -35,10 +35,10 @@ const inputFieldValues = [
     icon: <LockTwoToneIcon  style={{color: "#78bd76"}}/>,
   },
   {
-    name: "confirmNewPassword",
-    label: "Confirm New Password",
+    name: "confirmPassword",
+    label: "Confirm Password",
     type: "password",
-    id: "confirmNewPassword",
+    id: "confirmPassword",
     icon: <LockIcon  style={{color: "#78bd76"}}/>,
   },
 ];
