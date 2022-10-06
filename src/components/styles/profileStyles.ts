@@ -4,8 +4,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
       height: "88vh",
-      width: "90%",
+      width: "96%",
       margin: "100px auto",
+      marginTop:"10vh",
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "10px",
     },

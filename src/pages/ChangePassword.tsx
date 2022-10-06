@@ -62,7 +62,7 @@ const ChangePassword = () => {
           Sign Out
         </Link>
       </div>
-      {Mobile() ? <NewNavbar /> : <BottomNavigationBar />}
+      {/*Mobile() ? <NewNavbar /> : <BottomNavigationBar />*/}
       <Grid container direction="column" className={classes.grid}>
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={ChangePassword}>

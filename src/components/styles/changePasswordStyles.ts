@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: "35vw",
       minWidth: "35vw",
       minHeight: "60vh",
-      marginTop: "0",
+      marginTop: "10vh",
       margin: "auto",
     },
     nav:{

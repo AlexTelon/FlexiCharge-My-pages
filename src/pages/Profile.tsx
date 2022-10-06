@@ -7,7 +7,9 @@ import ProfileFromHandling from "../components/ProfileFormHandling";
 import { Redirect, Link } from "react-router-dom";
 import Logout from "@mui/icons-material/Logout";
 import { Grid } from "@material-ui/core";
-
+import NewNavbar from "../components/NewNavbar";
+import Mobile from "../components/Mobile";
+import BottomNavigationBar from "../components/BottomNavigation";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const Profile = () => {
@@ -47,7 +49,7 @@ const Profile = () => {
           Sign Out
         </Link>
       </div>
-
+     {/* <NewNavbar/>*/}
       <div>
         <div className={classes.profile}>
           <Tabs />
