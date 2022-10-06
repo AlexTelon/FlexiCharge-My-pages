@@ -4,6 +4,11 @@ import AuthService from "../components/AuthService";
 import useStyles from "../components/styles/profileStyles";
 import Tabs from "../components/Tabs";
 import ProfileFromHandling from "../components/ProfileFormHandling";
+import { Redirect, Link } from "react-router-dom";
+import Logout from "@mui/icons-material/Logout";
+import { Grid } from "@material-ui/core";
+
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const Profile = () => {
   const classes = useStyles();
@@ -31,12 +36,25 @@ const Profile = () => {
   }, []);
 
   return (
-    <div>
-      <div className={classes.profile}>
-        <Tabs />
-        <ProfileFromHandling classes={classes} />
+    <Grid container direction="column">
+      <div className={classes.nav}>
+        <Link to="/profile">
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
+        </Link>
+
+        <Link to="/sign-in" className={classes.logoutButton}>
+          <Logout style={{ color: "#78bd76" }} fontSize="large" />
+          Sign Out
+        </Link>
       </div>
-    </div>
+
+      <div>
+        <div className={classes.profile}>
+          <Tabs />
+          <ProfileFromHandling classes={classes} />
+        </div>
+      </div>
+    </Grid>
   );
 };
 

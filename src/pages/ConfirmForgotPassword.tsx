@@ -1,11 +1,11 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import useStyles from "../components/styles/confirmForgotPasswordStyles";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
@@ -15,28 +15,28 @@ const inputFieldValues = [
     name: "username",
     label: "Email",
     id: "username",
-    icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
+    icon: <EmailOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
     name: "newPassword",
     type: "password",
     label: "Password",
     id: "password",
-    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
     name: "confirmPassword",
     type: "password",
     label: "Confirm password",
     id: "confirmPassword",
-    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
     name: "verifyCode",
     label: "Verification code",
     id: "verifyCode",
     maxLength: 6,
-    icon: <VpnKeyIcon style={{color: "#78bd76"}} />,
+    icon: <VpnKeyIcon style={{ color: "#78bd76" }} />,
   },
 ];
 
@@ -60,7 +60,7 @@ const ConfirmForgotPassword = () => {
     <Grid container direction="column">
       <div className={classes.nav}>
         <Link to="/sign-in">
-          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
         </Link>
       </div>
       <Grid container direction="column" className={classes.grid}>
@@ -107,7 +107,11 @@ const ConfirmForgotPassword = () => {
                 </Grid>
               );
             })}
-            <Button variant="contained" type="submit" className={classes.button}>
+            <Button
+              variant="contained"
+              type="submit"
+              className={classes.button}
+            >
               Set new password
             </Button>
             {msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
