@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor:theme.flexiCharge.primary.white,
         justifyContent: "center",
         margin: "auto",
-        position:"fixed",
         borderRadius: "0.5rem",
         boxShadow:"0px 0px 10px 10px #ffffff",
 

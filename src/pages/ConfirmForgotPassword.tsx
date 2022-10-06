@@ -2,12 +2,13 @@ import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import useStyles from "../components/styles/confirmForgotPasswordStyles";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const inputFieldValues = [
   {
@@ -58,7 +59,9 @@ const ConfirmForgotPassword = () => {
   return (
     <Grid container direction="column">
       <div className={classes.nav}>
-        {/*<img className={classes.indexLogo} src={FlexiChargeLogoNoBorder}/>*/}
+        <Link to="/sign-in">
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+        </Link>
       </div>
       <Grid container direction="column" className={classes.grid}>
         <Modal open={open} onClose={handleClose}>
