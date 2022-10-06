@@ -7,7 +7,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import useStyles from "../components/styles/loginStyles";
-import FlexiChargeLogoNoBorder from "../assets/FlexiChargeLogoNoBorder.svg";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+
 
 const inputFieldValues = [
   {
@@ -43,7 +44,7 @@ const Login = () => {
 
   return (
     <Grid className={classes.body}>
-      {/*<img className={classes.indexLogo} src={FlexiChargeLogoNoBorder}/>*/}
+      <img className={classes.indexLogo} src={FlexiChargeLogoDarkGrey}/>
       <Grid container direction="column" className={classes.grid}>
         <Modal open={open} onClose={handleClose}>
           <Box className="backdrop">

@@ -11,10 +11,9 @@ import NewNavbar from "../components/NewNavbar";
 import Mobile from "../components/Mobile";
 import BottomNavigationBar from "../components/BottomNavigation";
 import useStyles from "../components/styles/changePasswordStyles";
-import FlexiChargeLogoNoBorder from "../assets/FlexiChargeLogoNoBorder.svg";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 import Logout from "@mui/icons-material/Logout";
 //import { useHistory } from "react-router-dom";
-import AuthService from "../components/AuthService";
 
 
 //const history = useHistory();
@@ -54,17 +53,16 @@ const ChangePassword = () => {
 
   return (
       <Grid container direction="column">
-        <div className={classes.nav}>
-          {/*<img className={classes.indexLogo} src={FlexiChargeLogoNoBorder}/>*/}
-           {/*<Button>
-            <Logout style={{color: "#78bd76"}} fontSize="large" />
-              onClick={() => {
-                AuthService.logout();
-                history.push("/sign-in");
-              }}
-              title = "Sign Out"
-            </Button>*/}
-        </div>
+      <div className={classes.nav}>
+        <Link to="/sign-in">
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+        </Link>
+
+        <Link to="/sign-in" className={classes.logoutButton}>
+          <Logout style={{color: "#78bd76"}} fontSize="large" />
+           Sign Out 
+        </Link>
+      </div>
         {Mobile() ? <NewNavbar /> : <BottomNavigationBar />}
         <Grid container direction="column" className={classes.grid}>
           <Grid container direction="column" className={classes.container}>

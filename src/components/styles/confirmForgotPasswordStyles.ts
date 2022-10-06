@@ -2,14 +2,13 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    grid: {
+    grid:{
       alignItems: "center",
       justifyContent: "center",
-      maxWidth: "35%",
-      minWidth: "40vh",
+      maxWidth: "35vw",
+      minWidth: "35vw",
       minHeight: "100vh",
-      height: "0",
-      marginTop: "0",
+      marginTop: "3vw",
       margin: "auto",
     },
     nav:{
@@ -17,6 +16,13 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.flexiCharge.primary.grey,
       height: "8vh",
       position:"fixed"
+    },
+    navLogo:{
+      width:"15%",
+      marginTop:"1vh",
+      marginLeft:"5vw",
+      float:"left",
+
     },
     container: {
       backgroundColor: theme.flexiCharge.primary.white,

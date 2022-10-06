@@ -1,11 +1,12 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Block } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     body:{
       backgroundColor:theme.flexiCharge.primary.grey,
-      width: "100%",
-      height: "100%",
+      width: "100vw",
+      height: "100vh",
       '& h1': {
         fontFamily:theme.flexiCharge.font.h3.fontFamily,
         fontSize:theme.flexiCharge.font.h3.fontSize,
@@ -13,19 +14,19 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     indexLogo:{
-      minWidth:"30%",
-      maxWidth: "30%",
+      minWidth:"40vw",
+      maxWidth: "40vw",
       height: "auto",
-      border: "2px solid #78bd76",
+      marginTop:"3vw",
+      margin: "auto",
     },
-    grid: {
+    grid:{
       alignItems: "center",
       justifyContent: "center",
-      maxWidth: "35%",
-      minWidth: "40vh",
-      minHeight: "100vh",
-      height: "0",
-      marginTop: "0",
+      maxWidth: "35vw",
+      minWidth: "35vw",
+      minHeight: "60vh",
+      marginTop: "3vw",
       margin: "auto",
     },
     container: {
