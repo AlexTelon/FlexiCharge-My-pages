@@ -300,3 +300,5 @@ export const ValidationForm = () => {
     redirect,
   };
 };
+
+export default ValidationForm;
