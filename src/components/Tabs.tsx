@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import { PropaneSharp } from "@mui/icons-material";
+import InvoicesList from "./invoicesList/InvoicesList";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -142,7 +143,7 @@ export default function BasicTabs() {
         Here will the users charging history be
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Here will the users invoices be.
+        <InvoicesList/>
       </TabPanel>
     </Box>
   );
