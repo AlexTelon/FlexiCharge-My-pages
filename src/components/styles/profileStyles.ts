@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: "88vh",
       width: "96%",
       margin: "100px auto",
-      marginTop:"10vh",
+      marginTop: "10vh",
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "10px",
     },
@@ -84,6 +84,20 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "5vw",
       float: "left",
     },
+
+    editInformationButton: {
+      backgroundColor: theme.flexiCharge.accent.warning,
+      color: "#333",
+      width: "250px",
+      padding: "10px",
+      fontSize: "12px",
+      borderRadius: "10px",
+      border: "none",
+      "&:hover": {
+        boxShadow: "0px 2px 2px #000",
+      },
+    },
+
     logoutButton: {
       float: "right",
       marginTop: "1.5vh",

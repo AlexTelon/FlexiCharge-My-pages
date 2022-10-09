@@ -4,12 +4,9 @@ import AuthService from "../components/AuthService";
 import useStyles from "../components/styles/profileStyles";
 import Tabs from "../components/Tabs";
 import ProfileFromHandling from "../components/ProfileFormHandling";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logout from "@mui/icons-material/Logout";
 import { Grid } from "@material-ui/core";
-import NewNavbar from "../components/NewNavbar";
-import Mobile from "../components/Mobile";
-import BottomNavigationBar from "../components/BottomNavigation";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const Profile = () => {
@@ -49,11 +46,10 @@ const Profile = () => {
           Sign Out
         </Link>
       </div>
-     {/* <NewNavbar/>*/}
+      {/* <NewNavbar/>*/}
       <div>
         <div className={classes.profile}>
           <Tabs />
-          <ProfileFromHandling classes={classes} />
         </div>
       </div>
     </Grid>

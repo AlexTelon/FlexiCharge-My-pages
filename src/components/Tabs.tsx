@@ -9,6 +9,8 @@ import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import { PropaneSharp } from "@mui/icons-material";
+import ProfileFormHandling from "../components/ProfileFormHandling";
+import UpdateProfileButton from "../components/UpdateProfileButton";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -54,6 +56,21 @@ export default function BasicTabs() {
   const [address, setAddress] = useState("");
   const [userName, setUserName] = useState("");
   const history = useHistory();
+
+
+  const users = {
+    firstName: firstName,
+    lastName: familyName,
+    email: email,
+    phonenumber: phone,
+    address: address,
+  };
+
+  console.log(firstName);
+  console.log(familyName);
+  console.log(email);
+  console.log(phone);
+  console.log(address);
 
   useEffect(() => {
     const currentUser = AuthService.getCurrentUser();
@@ -123,6 +140,11 @@ export default function BasicTabs() {
       </Box>
 
       <TabPanel value={value} index={0}>
+        <UpdateProfileButton
+          user={users}
+          classes={classes}
+          onClick={(e: any) => e.setIsOpen(true)}
+        />
         <ProfileInformation
           label="Firstname"
           descript={`${handleEmptyField(firstName)}`}
@@ -137,6 +159,7 @@ export default function BasicTabs() {
           label="Address"
           descript={handleEmptyField(address)}
         />
+        <ProfileFormHandling classes={classes} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Here will the users charging history be
