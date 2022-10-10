@@ -21,7 +21,7 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
-  const minimum = 2;
+  const minimumLetters = 2;
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
@@ -31,9 +31,9 @@ export const ValidationForm = () => {
       temp.firstName = fieldValues.firstName ? "" : "This field is required.";
 
       if (fieldValues.firstName) {
-        temp.firstName = /^([A-Za-z]{2,})*$/.test(fieldValues.firstName)
+        temp.firstName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.firstName)
           ? ""
-          : `May only contain letters and a minimum of ${minimum} letters.`
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
       }
     }
 
@@ -41,9 +41,9 @@ export const ValidationForm = () => {
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
       if (fieldValues.lastName) {
-        temp.lastName = /^([A-Za-z]{2,})*$/.test(fieldValues.lastName)
+        temp.lastName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.lastName)
           ? ""
-          : `May only contain letters and a minimum of ${minimum} letters.`
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
       }
     }
 
@@ -312,7 +312,6 @@ export const ValidationForm = () => {
     LogInhandleFormSubmit,
     ForgotPasswordHandleFormSubmit,
     ConfirmForgotPasswordHandleFormSubmit,
-    validate,
     redirect,
   };
 };
