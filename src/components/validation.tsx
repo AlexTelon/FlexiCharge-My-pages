@@ -34,10 +34,10 @@ export const ValidationForm = () => {
     if ("lastName" in fieldValues)
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
-    if ("email" in fieldValues) {
-      temp.email = fieldValues.email ? "" : "This field is required.";
-      if (fieldValues.email) {
-        temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
+    if ("username" in fieldValues) {
+      temp.username = fieldValues.username ? "" : "This field is required.";
+      if (fieldValues.username) {
+        temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
           ? ""
           : "Email is not valid.";
       }
