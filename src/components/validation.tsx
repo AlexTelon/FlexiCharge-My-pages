@@ -49,11 +49,9 @@ export const ValidationForm = () => {
         : "This field is required.";
 
       if (fieldValues.newPassword) {
-        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(
-          fieldValues.newPassword
-        )
+        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!$%^&*"'()_+|~=`{}[\]:\\/;<>?,.@#]).{8,}/.test(fieldValues.newPassword)
           ? ""
-          : "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
+          : "Password must at least have 8 characters including a number, a symbol and both lowercase and uppercase letter.";
       }
       setNewPass(fieldValues.newPassword)
     }
@@ -311,3 +309,5 @@ export const ValidationForm = () => {
     redirect,
   };
 };
+
+export default ValidationForm;
