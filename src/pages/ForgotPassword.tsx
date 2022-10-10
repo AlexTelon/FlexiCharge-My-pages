@@ -48,7 +48,7 @@ const ForgotPassword = () => {
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={ForgotPasswordHandleFormSubmit}>
             <h1>Forgot Password</h1>
-            <p>
+            <p data-testid="test-forgot-pw">
               Enter your email and we will send you a password reset link to
               your registered email.
             </p>

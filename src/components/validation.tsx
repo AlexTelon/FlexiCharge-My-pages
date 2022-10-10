@@ -49,7 +49,7 @@ export const ValidationForm = () => {
         : "This field is required.";
 
       if (fieldValues.newPassword) {
-        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(
+        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(
           fieldValues.newPassword
         )
           ? ""
@@ -193,7 +193,6 @@ export const ValidationForm = () => {
           setRedirect(true);
         },
         (error) => {
-          console.log(error);
           setOpen(false);
           handleClose;
           setMsg(error.response.data.message);
