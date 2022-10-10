@@ -2,48 +2,69 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    grid: {
-      spacing: 0,
+    grid:{
       alignItems: "center",
       justifyContent: "center",
-      maxWidth: "40%",
-      minWidth: "40vh",
+      maxWidth: "35vw",
+      minWidth: "35vw",
       minHeight: "100vh",
+      marginTop: "2vw",
       margin: "auto",
-      fontWeight: "bolder",
+    },
+    nav:{
+      width: "100%",
+      backgroundColor: theme.flexiCharge.primary.grey,
+      height: "8vh",
+      position:"fixed"
+    },
+    navLogo:{
+      width:"15%",
+      marginTop:"1vh",
+      marginLeft:"5vw",
+      float:"left",
+
     },
     container: {
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "0.5rem",
-      alignItems: "center",
       justifyContent: "center",
-      padding: "1rem",
+      paddingTop: "36px",
+      paddingBottom: "24px",
+      border: "3px solid #78bd76",
+      '& h1': {
+        fontFamily:theme.flexiCharge.font.h3.fontFamily,
+        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontWeight: 800,
+      },
+      '& p': {
+        fontFamily:theme.flexiCharge.font.p1.fontFamily,
+        fontSize:theme.flexiCharge.font.p1.fontSize,
+
+      },
     },
-    gridItemInputs: {
-      marginTop: "3rem",
+    gridItem: {
+      margin: "auto",
     },
-    gridItemLabel: {
-      textAlign: "right",
-      marginTop: "3rem",
-    },
-    textField: {
-      marginTop: "1rem",
-      maxWidth: "80%",
+    textFields: {
+      maxWidth: "40%",
+      marginTop: "24px",
     },
     button: {
-      backgroundColor: theme.flexiCharge.accent.primary,
       "&:hover": {
-        background: theme.flexiCharge.accent.primary,
+        transform: "translateY(2px)",
         boxShadow: theme.flexiCharge.boxShadow.button,
-        transform: "translateY(-5px)",
+        backgroundColor: theme.palette.primary.main,
+        color: theme.flexiCharge.primary.white,
       },
-      maxWidth: "80%",
-      minHeight: "48px",
-      marginTop: theme.spacing(2),
-      fontWeight: "bolder",
-      fontSize: "inherit",
-      margin: "auto",
-      color: theme.flexiCharge.primary.white,
+      marginTop: "48px",
+      marginBottom: "32px",
+      width: "60%",
+      minHeight: "2.5rem",
+      borderRadius: "0.5rem",
+      backgroundColor: theme.flexiCharge.primary.green,
+      fontFamily:theme.flexiCharge.font.h5.fontFamily,
+      fontSize:theme.flexiCharge.font.h5.fontSize,
+      textTransform: "none",
     },
     input: {
       maxWidth: "5%",

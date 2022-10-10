@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import AuthService from "../components/AuthService";
-import BottomNavigationBar from "../components/BottomNavigation";
-import Mobile from "../components/Mobile";
-import Navbar from "../components/Navbar";
 import useStyles from "../components/styles/profileStyles";
-import { ReactComponent } from "../assets/editIcon.svg";
+import Tabs from "../components/Tabs";
+import ProfileFromHandling from "../components/ProfileFormHandling";
+import { Redirect, Link } from "react-router-dom";
+import Logout from "@mui/icons-material/Logout";
+import { Grid } from "@material-ui/core";
+import NewNavbar from "../components/NewNavbar";
+import Mobile from "../components/Mobile";
+import BottomNavigationBar from "../components/BottomNavigation";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const Profile = () => {
   const classes = useStyles();
+
   const [firstName, setFirstName] = useState("");
   const [familyName, setFamilytName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
   const [userName, setUserName] = useState("");
   const history = useHistory();
 
@@ -23,62 +31,32 @@ const Profile = () => {
       setFirstName(currentUser.name);
       setFamilytName(currentUser.family_name);
       setEmail(currentUser.email);
+      setPhoneNumber(currentUser.phone);
+      setAddress(currentUser.address);
       setUserName(currentUser.username);
     }
   }, []);
 
   return (
-    <>
-      {Mobile() ? <Navbar /> : <BottomNavigationBar />}
-      <div className={classes.profile}>
-        <div className={classes.container}>
-          <div className={classes.profile__items}>
-            <div className={`${classes.profileInfo}`}>Firstname</div>
-            <div className={classes.profileDescription}>{firstName}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-          <div className={classes.profile__items}>
-            <div className={classes.profileInfo}>Lastname</div>
-            <div className={classes.profileDescription}>{familyName}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-          <div className={classes.profile__items}>
-            <div className={classes.profileInfo}>Username</div>
-            <div className={classes.profileDescription}>{userName}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-          <div className={classes.profile__items}>
-            <div className={classes.profileInfo}>Email</div>
-            <div className={classes.profileDescription}>{email}</div>
-            <div>
-              <ReactComponent />
-            </div>
-          </div>
-        </div>
-        <div className={classes.buttonContainer}>
-          <form action="" method="post">
-            <button className={classes.changePasswordButton} type="submit" onClick={(e) => {
-                  e.preventDefault();
-                  history.push("/change-password");
+    <Grid container direction="column">
+      <div className={classes.nav}>
+        <Link to="/profile">
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
+        </Link>
 
-              }}>
-              Change password
-            </button>
-          </form>
-          <form action="" method="post">
-            <button className={classes.deleteButton} type="submit">
-              Delete profile
-            </button>
-          </form>
+        <Link to="/sign-in" className={classes.logoutButton}>
+          <Logout style={{ color: "#78bd76" }} fontSize="large" />
+          Sign Out
+        </Link>
+      </div>
+     {/* <NewNavbar/>*/}
+      <div>
+        <div className={classes.profile}>
+          <Tabs />
+          <ProfileFromHandling classes={classes} />
         </div>
       </div>
-    </>
+    </Grid>
   );
 };
 

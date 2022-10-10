@@ -9,6 +9,7 @@ const initialFormValues = {
   username: "",
   email: "",
   newPassword: "",
+  confirmPassword: "",
   password: "",
   verifyCode: "",
   formSubmitted: false,
@@ -22,35 +23,44 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
-
-  const phoneNumberLength = 10;
+  const minimumLetters = 2;
+  const [newPass, setNewPass] = useState("");
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
     const temp: any = { ...errors };
 
-    if ("firstName" in fieldValues)
+    if ("firstName" in fieldValues) {
       temp.firstName = fieldValues.firstName ? "" : "This field is required.";
 
-    if ("lastName" in fieldValues)
+      if (fieldValues.firstName) {
+        temp.firstName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.firstName)
+          ? ""
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
+      }
+    }
+
+    if ("lastName" in fieldValues) {
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
-    if ("phoneNumber" in fieldValues) {
-      if (fieldValues.phoneNumber) {
-        temp.phoneNumber = /[0-9]/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
-        temp.phoneNumber = /^.{10,10}$/.test(fieldValues.phoneNumber) ? "" : `Needs to be ${phoneNumberLength} numbers long.`;
+      if (fieldValues.lastName) {
+        temp.lastName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.lastName)
+          ? ""
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
       }
+    }
+
+    if ("phoneNumber" in fieldValues) {
       temp.phoneNumber = fieldValues.phoneNumber ? "" : "This field is required.";
+      if (fieldValues.phoneNumber) {
+        temp.phoneNumber = /^[0-9]+$/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
+      }
     }
 
     if ("username" in fieldValues) {
       temp.username = fieldValues.username ? "" : "This field is required.";
-    }
-
-    if ("email" in fieldValues) {
-      temp.email = fieldValues.email ? "" : "This field is required.";
-      if (fieldValues.email) {
-        temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
+      if (fieldValues.username) {
+        temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
           ? ""
           : "Email is not valid.";
       }
@@ -60,13 +70,21 @@ export const ValidationForm = () => {
       temp.newPassword = fieldValues.newPassword
         ? ""
         : "This field is required.";
+
       if (fieldValues.newPassword) {
-        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(
-          fieldValues.newPassword
-        )
+        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!$%^&*"'()_+|~=`{}[\]:\\/;<>?,.@#]).{8,}/.test(fieldValues.newPassword)
           ? ""
-          : "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
+          : "Password must at least have 8 characters including a number, a symbol and both lowercase and uppercase letter.";
       }
+      setNewPass(fieldValues.newPassword)
+    }
+
+    if ("confirmPassword" in fieldValues) {
+      temp.confirmPassword = fieldValues.confirmPassword
+        ? ""
+        : "This field is required."
+
+      newPass === fieldValues.confirmPassword ? temp.confirmPassword = "" : temp.confirmPassword = "Passwords don't match.";
     }
 
     if ("password" in fieldValues)
@@ -106,28 +124,30 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { firstName, lastName, email, username, newPassword } =
+    const { firstName, lastName, phoneNumber, username, newPassword, confirmPassword } =
       e.target.elements;
 
     const initialValues = {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
+      //firstName: firstName.value,
+     // lastName: lastName.value,
+      //phoneNumber: phoneNumber.value,
       username: username.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, username, newPassword } = values;
+        const { firstName, lastName, phoneNumber, username, newPassword, confirmPassword } = values;
         AuthService.register(
-          firstName,
-          lastName,
-          email,
+          //firstName,
+          //lastName,
+          //phoneNumber,
           username,
-          newPassword
+          newPassword,
+          confirmPassword
         ).then(
           () => {
             handleClose;
@@ -149,9 +169,8 @@ export const ValidationForm = () => {
   const verifyHandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
-    const { username, verifyCode } = e.target.elements;
+    const { verifyCode } = e.target.elements;
     const initialValues = {
-      username: username.value,
       verifyCode: verifyCode.value,
     };
 
@@ -195,7 +214,6 @@ export const ValidationForm = () => {
           setRedirect(true);
         },
         (error) => {
-          console.log(error);
           setOpen(false);
           handleClose;
           setMsg(error.response.data.message);
@@ -229,10 +247,11 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { username, newPassword, verifyCode } = e.target.elements;
+    const { username, newPassword, confirmPassword, verifyCode } = e.target.elements;
     const initialValues = {
       username: username.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value,
       verifyCode: verifyCode.value,
     };
 
@@ -241,10 +260,11 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { username, newPassword, verifyCode } = values;
+        const { username, newPassword, confirmPassword, verifyCode } = values;
         AuthService.confirmForgotPassword(
           username,
           newPassword,
+          confirmPassword,
           verifyCode
         ).then(
           () => {
@@ -267,10 +287,11 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { password, newPassword } = e.target.elements;
+    const { password, newPassword, confirmPassword } = e.target.elements;
     const initialValues = {
       password: password.value,
       newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
@@ -278,9 +299,9 @@ export const ValidationForm = () => {
     const token = user.accessToken;
     if (!isEmpty(initialValues)) {
       if (isValid) {
-        const { password, newPassword } = values;
+        const { password, newPassword, confirmPassword } = values;
 
-        AuthService.changePassword(token, password, newPassword).then(
+        AuthService.changePassword(token, password, newPassword, confirmPassword).then(
           (response) => {
             setRedirect(true);
           },
@@ -311,3 +332,5 @@ export const ValidationForm = () => {
     redirect,
   };
 };
+
+export default ValidationForm;

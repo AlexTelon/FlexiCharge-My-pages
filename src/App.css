@@ -2,17 +2,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  /*background-image: url("./assets/background.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;*/
-  background-image: linear-gradient(
-    90deg,
-    rgba(64, 156, 104, 1) 0%,
-    rgba(120, 219, 118, 1) 15%,
-    rgba(208, 195, 48, 1) 80%,
-    rgba(240, 194, 0, 1) 100%
-  );
-
+  background-color: #e5e5e5;
   overflow: hidden;
   text-align: center;
 }
@@ -26,7 +16,7 @@ li {
 }
 
 .form-container {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -78,7 +68,7 @@ li {
 /* Charging session griddata */
 .MuiDataGrid-root {
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: #78bd76 0px 5px 15px;
 }
 
 .MuiDataGrid-columnsContainer {
