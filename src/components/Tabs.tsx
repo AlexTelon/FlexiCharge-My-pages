@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import { PropaneSharp } from "@mui/icons-material";
+import InvoicesTab from "./invoicesTab/InvoicesTab";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -53,6 +54,7 @@ export default function BasicTabs() {
   const [phone, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [userName, setUserName] = useState("");
+  const [userId, setuserId] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export default function BasicTabs() {
       setPhoneNumber(currentUser.phone);
       setAddress(currentUser.address);
       setUserName(currentUser.username);
+      setuserId(currentUser.user_id);
     }
   }, []);
 
@@ -91,7 +94,7 @@ export default function BasicTabs() {
     color: "#333 !important",
   };
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%"}}>
       <Box sx={{ borderBottom: 10, borderColor: "#e5e5e5" }}>
         <Tabs
           variant="fullWidth"
@@ -142,7 +145,7 @@ export default function BasicTabs() {
         Here will the users charging history be
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Here will the users invoices be.
+        <InvoicesTab UserId = {userId}/>
       </TabPanel>
     </Box>
   );
