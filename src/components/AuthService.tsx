@@ -54,6 +54,7 @@ class AuthService {
     //familyName: string,
     //email: string,
     //streetAddress: string,
+    //phoneNumber: string,
     username: string,
     password: string,
     confirmPassword: string
@@ -63,6 +64,7 @@ class AuthService {
       //family_name: familyName,
       //email: email,
       //streetAddress: streetAddress,
+      //phoneNumber: phoneNumber,
       username: username,
       password: password,
       confirmPassword: confirmPassword

@@ -6,6 +6,7 @@ const initialFormValues = {
   firstName: "",
   lastName: "",
   streetAddress: "",
+  phoneNumber: "",
   username: "",
   email: "",
   newPassword: "",
@@ -57,6 +58,13 @@ export const ValidationForm = () => {
         temp.streetAddress = /(?=.*[a-zåäöA-ZÅÄÖ ]{2,})*(?=.*[0-9 ]{1,})/.test(fieldValues.streetAddress) 
           ? ""
           : "Address is not valid."
+      }
+    }
+
+    if ("phoneNumber" in fieldValues) {
+      temp.phoneNumber = fieldValues.phoneNumber ? "" : "This field is required.";
+      if (fieldValues.phoneNumber) {
+        temp.phoneNumber = /^[0-9]+$/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
       }
     }
 
@@ -126,8 +134,7 @@ export const ValidationForm = () => {
   const RegisterhandleFormSubmit = async (e: any) => {
     e.preventDefault();
     setMsg("");
-
-    const { firstName, lastName, email, streetAddress, username, newPassword, confirmPassword } =
+    const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } =
       e.target.elements;
 
     const initialValues = {
@@ -135,6 +142,7 @@ export const ValidationForm = () => {
      // lastName: lastName.value,
      // email: email.value,
      //streetAddress: streetAddress.value,
+      //phoneNumber: phoneNumber.value,
       username: username.value,
       newPassword: newPassword.value,
       confirmPassword: confirmPassword.value
@@ -144,12 +152,13 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, streetAddress, username, newPassword, confirmPassword } = values;
+        const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } = values;
         AuthService.register(
           //firstName,
           //lastName,
          // email,
          //streetAddress,
+         //phoneNumber,
           username,
           newPassword,
           confirmPassword
