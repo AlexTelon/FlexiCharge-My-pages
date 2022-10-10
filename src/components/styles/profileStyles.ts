@@ -3,11 +3,11 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
-      height: "520px",
-      width: "630px",
+      height: "88vh",
+      width: "96%",
       margin: "100px auto",
+      marginTop:"10vh",
       backgroundColor: theme.flexiCharge.primary.white,
-      boxShadow: "3px 3px 12px #76c365",
       borderRadius: "10px",
     },
 
@@ -43,33 +43,58 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItem: "center",
       justifyContent: "center",
-      gap: "30px",
-      marginTop: "48px",
+      gap: "100px",
     },
 
     deleteButton: {
-      backgroundColor: "#ff4242",
-      color: "#fff",
-      width: "150px",
-      padding: "12px",
+      backgroundColor: "#ef6048",
+      color: "#333",
+      width: "250px",
+      padding: "10px",
       fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
-        backgroundColor: "#b32e2e",
+        boxShadow: "0px 2px 2px #000",
       },
     },
 
     changePasswordButton: {
-      backgroundColor: "#f0c200",
-      color: "#fff",
-      width: "150px",
-      padding: "12px",
+      backgroundColor: "#78bd76",
+      color: "#333",
+      width: "250px",
+      padding: "10px",
       fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
-        backgroundColor: "#a88800",
+        boxShadow: "0px 2px 2px #000",
+      },
+    },
+    nav: {
+      width: "100vw",
+      backgroundColor: theme.flexiCharge.primary.grey,
+      height: "8vh",
+      marginTop: 0,
+      position: "fixed",
+    },
+    navLogo: {
+      width: "15%",
+      marginTop: "1vh",
+      marginLeft: "5vw",
+      float: "left",
+    },
+    logoutButton: {
+      float: "right",
+      marginTop: "1.5vh",
+      marginRight: "5vw",
+      fontFamily: theme.flexiCharge.font.h5.fontFamily,
+      fontSize: theme.flexiCharge.font.h5.fontSize,
+      color: theme.flexiCharge.primary.white,
+      textDecoration: "none",
+      "&:hover": {
+        transform: "translateY(2px)",
+        color: theme.flexiCharge.primary.white,
       },
     },
   })
