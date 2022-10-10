@@ -8,7 +8,7 @@ import { Redirect, Link } from "react-router-dom";
 import { ValidationForm } from "../components/validation";
 import useStyles from "../components/styles/registerStyles";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import FlexiChargeLogoNoBorder from "../assets/FlexiChargeLogoNoBorder.svg";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const inputFieldValues = [
   /*{
@@ -77,7 +77,9 @@ const Register = () => {
   return (
     <Grid container direction="column">
       <div className={classes.nav}>
-        {/*<img className={classes.indexLogo} src={FlexiChargeLogoNoBorder}/>*/}
+        <Link to="/sign-in">
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+        </Link>
       </div>
       <Grid container direction="column" className={classes.grid}>
         <Modal open={open} onClose={handleClose}>

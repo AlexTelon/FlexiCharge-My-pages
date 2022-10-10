@@ -6,8 +6,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 import useStyles from "../components/styles/loginStyles";
-import FlexiChargeLogoNoBorder from "../assets/FlexiChargeLogoNoBorder.svg";
+
 
 const inputFieldValues = [
   {
@@ -43,7 +44,7 @@ const Login = () => {
 
   return (
     <Grid className={classes.body}>
-      {/*<img className={classes.indexLogo} src={FlexiChargeLogoNoBorder}/>*/}
+      <img className={classes.indexLogo} src={FlexiChargeLogoDarkGrey}/>
       <Grid container direction="column" className={classes.grid}>
         <Modal open={open} onClose={handleClose}>
           <Box className="backdrop">
@@ -92,7 +93,7 @@ const Login = () => {
             </Grid>
             <Grid container>
               <Grid item xs={6}>
-                <Link className={classes.links} to="/forgot-password">Forgot password?</Link>
+                <Link data-testid="forgotPassword" className={classes.links} to="/forgot-password">Forgot password?</Link>
               </Grid>
               <Grid item xs={6}>
                 <Link className={classes.links} to="/sign-up"> <span style={{color: "#5e5eb7"}}> Already have an account? </span> Sign Up</Link>

@@ -1,13 +1,13 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import useStyles from "../components/styles/forgotPasswordStyles";
-import FlexiChargeLogoNoBorder from "../assets/FlexiChargeLogoNoBorder.svg";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const inputFieldValue = {
   name: "username",
@@ -35,7 +35,9 @@ const ForgotPassword = () => {
   return (
     <Grid container direction="column">
       <div className={classes.nav}>
-        {/*<img className={classes.indexLogo} src={FlexiChargeLogoNoBorder}/>*/}
+        <Link to="/sign-in">
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+        </Link>
       </div>
       <Grid container direction="column" className={classes.grid}>
         <Modal open={open} onClose={handleClose}>
@@ -46,7 +48,7 @@ const ForgotPassword = () => {
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={ForgotPasswordHandleFormSubmit}>
             <h1>Forgot Password</h1>
-            <p>
+            <p data-testid="test-forgot-pw">
               Enter your email and we will send you a password reset link to
               your registered email.
             </p>

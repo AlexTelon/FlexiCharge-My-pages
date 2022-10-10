@@ -2,23 +2,28 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    grid: {
+    grid:{
       alignItems: "center",
       justifyContent: "center",
-      maxWidth: "35%",
-      minWidth: "40vh",
-      minHeight: "100vh",
-      height: "0",
-      marginTop: "0",
-      marginBottom:"0",
+      maxWidth: "35vw",
+      minWidth: "35vw",
+      minHeight: "60vh",
+      marginTop: "10vh",
       margin: "auto",
     },
     nav:{
-      width: "100%",
+      width: "100vw",
       backgroundColor: theme.flexiCharge.primary.grey,
       height: "8vh",
       marginTop:0,
       position:"fixed",
+    },
+    navLogo:{
+      width:"15%",
+      marginTop:"1vh",
+      marginLeft:"5vw",
+      float:"left",
+
     },
     container: {
       '& h1': {
@@ -65,6 +70,20 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2rem",
       minWidth: "2rem",
     },
+    logoutButton:{
+      float:"right",
+      marginTop:"1.5vh",
+      marginRight:"5vw",
+      fontFamily:theme.flexiCharge.font.h5.fontFamily,
+      fontSize:theme.flexiCharge.font.h5.fontSize,
+      color: theme.flexiCharge.primary.white,
+      textDecoration:"none",
+      "&:hover": {
+        transform: "translateY(2px)",
+        color:theme.flexiCharge.primary.white,
+      },
+
+    }
   })
 );
 

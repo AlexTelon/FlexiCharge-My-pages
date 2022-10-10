@@ -10,9 +10,8 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor:theme.flexiCharge.primary.white,
         justifyContent: "center",
         margin: "auto",
-        position:"fixed",
         borderRadius: "0.5rem",
-        boxShadow:"0px 0px 10px 10px #ffffff",
+        boxShadow:"0px 0px 8px 10px #ffffff",
 
     },
     boxWeb:{
@@ -30,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
         width:"100%",
         height:"100%",
         padding:"2%",
+        fontWeight: 1000,
         fontFamily:theme.flexiCharge.font.h5.fontFamily,
         fontSize:theme.flexiCharge.font.h5.fontSize,
 
