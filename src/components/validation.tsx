@@ -22,17 +22,32 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
+  const minimumLetters = 2;
   const [newPass, setNewPass] = useState("");
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
     const temp: any = { ...errors };
 
-    if ("firstName" in fieldValues)
+    if ("firstName" in fieldValues) {
       temp.firstName = fieldValues.firstName ? "" : "This field is required.";
 
-    if ("lastName" in fieldValues)
+      if (fieldValues.firstName) {
+        temp.firstName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.firstName)
+          ? ""
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
+      }
+    }
+
+    if ("lastName" in fieldValues) {
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
+
+      if (fieldValues.lastName) {
+        temp.lastName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.lastName)
+          ? ""
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
+      }
+    }
 
     if ("username" in fieldValues) {
       temp.username = fieldValues.username ? "" : "This field is required.";
