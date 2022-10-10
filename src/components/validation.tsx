@@ -49,9 +49,7 @@ export const ValidationForm = () => {
         : "This field is required.";
 
       if (fieldValues.newPassword) {
-        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!$%^&*"'()_+|~=`{}[\]:\\/;<>?,.@#]).{8,}/.test(
-          fieldValues.newPassword
-        )
+        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!$%^&*"'()_+|~=`{}[\]:\\/;<>?,.@#]).{8,}/.test(fieldValues.newPassword)
           ? ""
           : "Password must at least have 8 characters including a number, a symbol and both lowercase and uppercase letter.";
       }
@@ -193,7 +191,6 @@ export const ValidationForm = () => {
           setRedirect(true);
         },
         (error) => {
-          console.log(error);
           setOpen(false);
           handleClose;
           setMsg(error.response.data.message);
