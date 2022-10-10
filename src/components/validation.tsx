@@ -6,6 +6,8 @@ import AuthService from "./AuthService";
 const initialFormValues = {
   firstName: "",
   lastName: "",
+  streetAddress: "",
+  phoneNumber: "",
   username: "",
   email: "",
   newPassword: "",
@@ -25,6 +27,8 @@ export const ValidationForm = () => {
   const [redirect, setRedirect] = useState(false);
   const minimumLetters = 2;
   const [newPass, setNewPass] = useState("");
+  const minimumLetters = 2;
+
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
@@ -56,15 +60,19 @@ export const ValidationForm = () => {
         temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
           ? ""
           : "Email is not valid.";
+    if ("streetAddress" in fieldValues) {
+      temp.streetAddress = fieldValues.streetAddress ? "" : "This field is required.";
+      if (fieldValues.streetAddress) {
+        temp.streetAddress = /(?=.*[a-zåäöA-ZÅÄÖ ]{2,})*(?=.*[0-9 ]{1,})/.test(fieldValues.streetAddress) 
+          ? ""
+          : "Address is not valid."
       }
     }
 
-    if ("username" in fieldValues) {
-      temp.username = fieldValues.username ? "" : "This field is required.";
-      if (fieldValues.username) {
-        temp.username = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.username)
-          ? ""
-          : "Email is not valid.";
+    if ("phoneNumber" in fieldValues) {
+      temp.phoneNumber = fieldValues.phoneNumber ? "" : "This field is required.";
+      if (fieldValues.phoneNumber) {
+        temp.phoneNumber = /^[0-9]+$/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
       }
     }
 
@@ -125,14 +133,15 @@ export const ValidationForm = () => {
   const RegisterhandleFormSubmit = async (e: any) => {
     e.preventDefault();
     setMsg("");
-
-    const { firstName, lastName, email, username, newPassword, confirmPassword } =
+    const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } =
       e.target.elements;
 
     const initialValues = {
       //firstName: firstName.value,
      // lastName: lastName.value,
      // email: email.value,
+     //streetAddress: streetAddress.value,
+      //phoneNumber: phoneNumber.value,
       username: username.value,
       newPassword: newPassword.value,
       confirmPassword: confirmPassword.value
@@ -142,11 +151,13 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, username, newPassword, confirmPassword } = values;
+        const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } = values;
         AuthService.register(
           //firstName,
           //lastName,
          // email,
+         //streetAddress,
+         //phoneNumber,
           username,
           newPassword,
           confirmPassword
