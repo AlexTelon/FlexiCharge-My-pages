@@ -127,15 +127,15 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { firstName, lastName, email, username, streetAddress, newPassword, confirmPassword } =
+    const { firstName, lastName, email, streetAddress, username, newPassword, confirmPassword } =
       e.target.elements;
 
     const initialValues = {
       //firstName: firstName.value,
      // lastName: lastName.value,
      // email: email.value,
+     //streetAddress: streetAddress.value,
       username: username.value,
-      streetAddress: streetAddress.value,
       newPassword: newPassword.value,
       confirmPassword: confirmPassword.value
     };
@@ -144,13 +144,13 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, username, streetAddress, newPassword, confirmPassword } = values;
+        const { firstName, lastName, email, streetAddress, username, newPassword, confirmPassword } = values;
         AuthService.register(
           //firstName,
           //lastName,
          // email,
+         //streetAddress,
           username,
-          streetAddress,
           newPassword,
           confirmPassword
         ).then(

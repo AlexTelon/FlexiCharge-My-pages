@@ -53,8 +53,8 @@ class AuthService {
    // firstName: string,
     //familyName: string,
     //email: string,
+    //streetAddress: string,
     username: string,
-    streetAddress: string,
     password: string,
     confirmPassword: string
   ) {
@@ -62,8 +62,8 @@ class AuthService {
       //name: firstName,
       //family_name: familyName,
       //email: email,
+      //streetAddress: streetAddress,
       username: username,
-      streetAddress: streetAddress,
       password: password,
       confirmPassword: confirmPassword
     });

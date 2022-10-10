@@ -30,12 +30,12 @@ const inputFieldValues = [
     id: "username",
     icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
   },
-  {
+  /*{
     name: "streetAddress",
     label: "Address",
     id: "streetAddress",
     icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
-  },
+  },*/
   /*{
     name: "email",
     label: "Email",
