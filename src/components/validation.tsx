@@ -5,6 +5,7 @@ import AuthService from "./AuthService";
 const initialFormValues = {
   firstName: "",
   lastName: "",
+  streetAddress: "",
   phoneNumber: "",
   username: "",
   email: "",
@@ -23,8 +24,9 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
-  const minimumLetters = 2;
   const [newPass, setNewPass] = useState("");
+  const minimumLetters = 2;
+
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
@@ -47,6 +49,15 @@ export const ValidationForm = () => {
         temp.lastName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.lastName)
           ? ""
           : `May only contain letters and a minimum of ${minimumLetters} letters.`
+      }
+    }
+
+    if ("streetAddress" in fieldValues) {
+      temp.streetAddress = fieldValues.streetAddress ? "" : "This field is required.";
+      if (fieldValues.streetAddress) {
+        temp.streetAddress = /(?=.*[a-zåäöA-ZÅÄÖ ]{2,})*(?=.*[0-9 ]{1,})/.test(fieldValues.streetAddress) 
+          ? ""
+          : "Address is not valid."
       }
     }
 
@@ -123,13 +134,14 @@ export const ValidationForm = () => {
   const RegisterhandleFormSubmit = async (e: any) => {
     e.preventDefault();
     setMsg("");
-
-    const { firstName, lastName, phoneNumber, username, newPassword, confirmPassword } =
+    const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } =
       e.target.elements;
 
     const initialValues = {
       //firstName: firstName.value,
      // lastName: lastName.value,
+     // email: email.value,
+     //streetAddress: streetAddress.value,
       //phoneNumber: phoneNumber.value,
       username: username.value,
       newPassword: newPassword.value,
@@ -140,11 +152,13 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, phoneNumber, username, newPassword, confirmPassword } = values;
+        const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } = values;
         AuthService.register(
           //firstName,
           //lastName,
-          //phoneNumber,
+         // email,
+         //streetAddress,
+         //phoneNumber,
           username,
           newPassword,
           confirmPassword
