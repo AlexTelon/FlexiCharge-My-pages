@@ -1,28 +1,43 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LockTwoToneIcon from "@mui/icons-material/LockTwoTone";
 import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
 import Navbar from "../components/Navbar";
+import NewNavbar from "../components/NewNavbar";
 import Mobile from "../components/Mobile";
 import BottomNavigationBar from "../components/BottomNavigation";
 import useStyles from "../components/styles/changePasswordStyles";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+import Logout from "@mui/icons-material/Logout";
+//import { useHistory } from "react-router-dom";
+
+//const history = useHistory();
 
 const inputFieldValues = [
   {
     name: "password",
-    label: "password",
+    label: "Current Password",
     type: "password",
     id: "password",
-    icon: <LockIcon />,
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
     name: "newPassword",
     label: "New Password",
     type: "password",
     id: "newPassword",
-    icon: <LockIcon />,
+    icon: <LockTwoToneIcon style={{ color: "#78bd76" }} />,
+  },
+  {
+    name: "confirmPassword",
+    label: "Confirm Password",
+    type: "password",
+    id: "confirmPassword",
+    icon: <LockIcon style={{ color: "#78bd76" }} />,
   },
 ];
 
@@ -36,12 +51,22 @@ const ChangePassword = () => {
   }
 
   return (
-    <>
-      {Mobile() ? <Navbar /> : <BottomNavigationBar />}
+    <Grid container direction="column">
+      <div className={classes.nav}>
+        <Link to="/profile">
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
+        </Link>
+
+        <Link to="/sign-in" className={classes.logoutButton}>
+          <Logout style={{ color: "#78bd76" }} fontSize="large" />
+          Sign Out
+        </Link>
+      </div>
+      {/*Mobile() ? <NewNavbar /> : <BottomNavigationBar />*/}
       <Grid container direction="column" className={classes.grid}>
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={ChangePassword}>
-            <h2>Change password</h2>
+            <h1>Change password</h1>
             {inputFieldValues.map((inputFieldValue, index) => {
               return (
                 <Grid item key={index} xs={12} className={classes.gridItem}>
@@ -57,7 +82,6 @@ const ChangePassword = () => {
                       ),
                     }}
                     fullWidth
-                    style={{ marginTop: "1rem" }}
                     className={classes.textFields}
                     name={inputFieldValue.name}
                     label={inputFieldValue.label}
@@ -82,7 +106,7 @@ const ChangePassword = () => {
           </form>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 

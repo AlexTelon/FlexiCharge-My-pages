@@ -61,7 +61,7 @@ export default function MiniDrawer() {
   const history = useHistory();
 
   return (
-    <Drawer
+     <Drawer
       variant="permanent"
       open={mobileOpen}
       onClose={handleDrawerToogle}
