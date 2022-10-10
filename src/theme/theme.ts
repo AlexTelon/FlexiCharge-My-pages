@@ -1,6 +1,4 @@
 import { createTheme } from "@material-ui/core/styles";
-import { pbkdf2 } from "crypto";
-import { StringifyOptions } from "querystring";
 import "../index.css";
 
 declare module "@material-ui/core/styles/createTheme" {
@@ -54,7 +52,6 @@ declare module "@material-ui/core/styles/createTheme" {
       gradient: string;
     };
   }
-  // To allow configuration using `createTheme`
   interface ThemeOptions {
     flexiCharge: {
       font: {
@@ -132,14 +129,6 @@ const flexiChargeTheme = createTheme({
       light: "rgb(174,223,164)",
       dark: "#669966",
     },
-    /* button: {
-      edit: "#f0c200",
-      editLighter: "#f9e799",
-      editDarker: "#a88800",
-      delete: "#ff4242",
-      deleteLighter: #ffb3b3,
-      deleteDarker: "#b32e2e",
-    },*/
   },
   flexiCharge: {
     font: {

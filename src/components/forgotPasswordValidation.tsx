@@ -3,7 +3,6 @@ import AuthService from "./AuthService";
 
 const initialFormValues = {
   username: "",
-  password: "",
 };
 
 export const ValidationForm = () => {
@@ -12,17 +11,19 @@ export const ValidationForm = () => {
   const [msg, setMsg] = useState("");
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
 
   const validate: any = (fieldValues = values) => {
     let temp: any = { ...errors };
 
-    temp = checkLogin(fieldValues)
+    temp = checkForgotPassword(fieldValues)
 
     setErrors({
       ...temp,
     });
   };
+
   const handleInputValue = (e: any) => {
     const { name, value } = e.target;
     setValues({
@@ -42,65 +43,55 @@ export const ValidationForm = () => {
     }
     return missingValues.length ? true : false;
   };
-  const LogInhandleFormSubmit = async (e: any) => {
+  const ForgotPasswordHandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
-    const { username, password } = e.target.elements;
+    const { username } = e.target.elements;
     const initialValues = {
       username: username.value,
-      password: password.value,
     };
+
     const isValid = Object.values(errors).every((x) => x === "");
 
     if (isValid && !isEmpty(initialValues)) {
       setOpen(true);
-      const { username, password } = values;
-      AuthService.login(username, password).then(
-        () => {
-          handleClose;
-          setOpen(false);
-          setRedirect(true);
-        },
-        (error) => {
-          console.log(error);
-          setOpen(false);
-          handleClose;
-          setMsg(error.response.data.message);
-        }
-      );
+      const { username } = values;
+      AuthService.forgotPassword(username).then(() => {
+        handleClose;
+        setOpen(false);
+        setRedirect(true);
+      });
     } else setMsg("Please fill in the fields!");
   };
+
   return {
-    LogInhandleFormSubmit,
-    handleInputValue,
-    redirect,
+    values,
     errors,
     msg,
     open,
     handleClose,
-    validate,
+    handleOpen,
+    handleInputValue,
+    ForgotPasswordHandleFormSubmit,
+    redirect,
+  
   };
 };
 
-export const checkLogin = (fieldValues:any) =>{
-  let temp = {
-    username: "",
-    password: "",
-  };
-
-  if ("username" in fieldValues) {
-    temp.username = fieldValues.username ? "" : "This field is required.";
-    if (fieldValues.username) {
-      temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
-        ? ""
-        : "Email is not valid.";
-    }
-  }
-
-  if ("password" in fieldValues){
-    temp.password = fieldValues.password ? "" : "This field is required.";
-  }
-
-  return temp
+export const checkForgotPassword = (fieldValues:any) =>{
+    let temp = {
+      username: "",
+    };
   
+    if ("username" in fieldValues) {
+        temp.username = fieldValues.username ? "" : "This field is required.";
+        if (fieldValues.username) {
+            temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
+            ? ""
+            : "Email is not valid.";
+        }
+    }
+  
+    return temp
+    
 }

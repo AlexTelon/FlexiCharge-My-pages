@@ -5,13 +5,9 @@ import {
   GridToolbarDensitySelector,
   GridCellParams,
 } from "@mui/x-data-grid";
-import clsx from "clsx";
-import Navbar from "../components/Navbar";
 import { useHistory } from "react-router";
 import { useEffect } from "react";
 import AuthService from "../components/AuthService";
-import BottomNavigationBar from "../components/BottomNavigation";
-import Mobile from "../components/Mobile";
 import useStyles from "../components/styles/chargingSessionsStyles";
 
 const columns = [
@@ -213,8 +209,7 @@ const ChargingSessions = () => {
   }, []);
 
   return (
-    <>
-      {Mobile() ? <Navbar /> : <BottomNavigationBar />}
+
       <div
         style={{ height: "500px", width: "80%", margin: "auto" }}
         className={classes.root}
@@ -243,7 +238,6 @@ const ChargingSessions = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
