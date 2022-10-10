@@ -23,22 +23,37 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
+  const minimumLetters = 2;
   const [newPass, setNewPass] = useState("");
 
   const validate: any = (fieldValues = values) => {
     // this function will check if the form values are valid
     const temp: any = { ...errors };
 
-    if ("firstName" in fieldValues)
+    if ("firstName" in fieldValues) {
       temp.firstName = fieldValues.firstName ? "" : "This field is required.";
 
-    if ("lastName" in fieldValues)
+      if (fieldValues.firstName) {
+        temp.firstName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.firstName)
+          ? ""
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
+      }
+    }
+
+    if ("lastName" in fieldValues) {
       temp.lastName = fieldValues.lastName ? "" : "This field is required.";
 
-    if ("email" in fieldValues) {
-      temp.email = fieldValues.email ? "" : "This field is required.";
-      if (fieldValues.email) {
-        temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
+      if (fieldValues.lastName) {
+        temp.lastName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.lastName)
+          ? ""
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`
+      }
+    }
+
+    if ("username" in fieldValues) {
+      temp.username = fieldValues.username ? "" : "This field is required.";
+      if (fieldValues.username) {
+        temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
           ? ""
           : "Email is not valid.";
       }
@@ -59,11 +74,9 @@ export const ValidationForm = () => {
         : "This field is required.";
 
       if (fieldValues.newPassword) {
-        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(
-          fieldValues.newPassword
-        )
+        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!$%^&*"'()_+|~=`{}[\]:\\/;<>?,.@#]).{8,}/.test(fieldValues.newPassword)
           ? ""
-          : "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
+          : "Password must at least have 8 characters including a number, a symbol and both lowercase and uppercase letter.";
       }
       setNewPass(fieldValues.newPassword)
     }
@@ -203,7 +216,6 @@ export const ValidationForm = () => {
           setRedirect(true);
         },
         (error) => {
-          console.log(error);
           setOpen(false);
           handleClose;
           setMsg(error.response.data.message);
@@ -327,3 +339,5 @@ export const ValidationForm = () => {
   
   };
 };
+
+export default ValidationForm;
