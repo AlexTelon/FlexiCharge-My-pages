@@ -1,6 +1,7 @@
 import { Password } from "@mui/icons-material";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import AuthService from "./AuthService";
+//import {LogInhandleFormSubmit} from "./loginValidation";
 
 const initialFormValues = {
   firstName: "",
@@ -38,6 +39,15 @@ export const ValidationForm = () => {
       temp.email = fieldValues.email ? "" : "This field is required.";
       if (fieldValues.email) {
         temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
+          ? ""
+          : "Email is not valid.";
+      }
+    }
+
+    if ("username" in fieldValues) {
+      temp.username = fieldValues.username ? "" : "This field is required.";
+      if (fieldValues.username) {
+        temp.username = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.username)
           ? ""
           : "Email is not valid.";
       }
@@ -173,7 +183,7 @@ export const ValidationForm = () => {
     } else setMsg("Please fill in the fields!");
   };
 
-  const LogInhandleFormSubmit = async (e: any) => {
+  /*const LogInhandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
     const { username, password } = e.target.elements;
@@ -200,7 +210,7 @@ export const ValidationForm = () => {
         }
       );
     } else setMsg("Please fill in the fields!");
-  };
+  };*/
 
   const ForgotPasswordHandleFormSubmit = async (e: any) => {
     e.preventDefault();
@@ -306,9 +316,14 @@ export const ValidationForm = () => {
     handleInputValue,
     RegisterhandleFormSubmit,
     verifyHandleFormSubmit,
-    LogInhandleFormSubmit,
+    //LogInhandleFormSubmit,
     ForgotPasswordHandleFormSubmit,
     ConfirmForgotPasswordHandleFormSubmit,
     redirect,
+    isEmpty,
+    setOpen,
+    setRedirect,
+    setMsg,
+  
   };
 };
