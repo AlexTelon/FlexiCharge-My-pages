@@ -31,9 +31,9 @@ const inputFieldValues = [
     icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
   },
   /*{
-    name: "email",
-    label: "Email",
-    id: "user-email",
+    name: "phoneNumber",
+    label: "Phone Number",
+    id: "user-phoneNumber",
     icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
   },*/
   {

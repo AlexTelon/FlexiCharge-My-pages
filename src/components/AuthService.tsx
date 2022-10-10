@@ -52,7 +52,7 @@ class AuthService {
   register(
    // firstName: string,
     //familyName: string,
-    //email: string,
+    //phoneNumber: string,
     username: string,
     password: string,
     confirmPassword: string
@@ -60,7 +60,7 @@ class AuthService {
     return axios.post(API_URL + "sign-up", {
       //name: firstName,
       //family_name: familyName,
-      //email: email,
+      //phoneNumber: phoneNumber,
       username: username,
       password: password,
       confirmPassword: confirmPassword

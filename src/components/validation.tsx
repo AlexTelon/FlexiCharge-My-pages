@@ -5,6 +5,7 @@ import AuthService from "./AuthService";
 const initialFormValues = {
   firstName: "",
   lastName: "",
+  phoneNumber: "",
   username: "",
   email: "",
   newPassword: "",
@@ -46,6 +47,13 @@ export const ValidationForm = () => {
         temp.lastName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.lastName)
           ? ""
           : `May only contain letters and a minimum of ${minimumLetters} letters.`
+      }
+    }
+
+    if ("phoneNumber" in fieldValues) {
+      temp.phoneNumber = fieldValues.phoneNumber ? "" : "This field is required.";
+      if (fieldValues.phoneNumber) {
+        temp.phoneNumber = /^[0-9]+$/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
       }
     }
 
@@ -116,13 +124,13 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { firstName, lastName, email, username, newPassword, confirmPassword } =
+    const { firstName, lastName, phoneNumber, username, newPassword, confirmPassword } =
       e.target.elements;
 
     const initialValues = {
       //firstName: firstName.value,
      // lastName: lastName.value,
-     // email: email.value,
+      //phoneNumber: phoneNumber.value,
       username: username.value,
       newPassword: newPassword.value,
       confirmPassword: confirmPassword.value
@@ -132,11 +140,11 @@ export const ValidationForm = () => {
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, username, newPassword, confirmPassword } = values;
+        const { firstName, lastName, phoneNumber, username, newPassword, confirmPassword } = values;
         AuthService.register(
           //firstName,
           //lastName,
-         // email,
+          //phoneNumber,
           username,
           newPassword,
           confirmPassword
