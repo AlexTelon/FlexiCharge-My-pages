@@ -4,9 +4,9 @@ import Modal from "@mui/material/Modal";
 import { Redirect, Link } from "react-router-dom";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../components/validation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+import { ValidationForm } from "../components/loginValidation";
 import useStyles from "../components/styles/loginStyles";
 
 

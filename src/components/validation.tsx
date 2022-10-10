@@ -1,6 +1,7 @@
 import { Password } from "@mui/icons-material";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import AuthService from "./AuthService";
+//import {LogInhandleFormSubmit} from "./loginValidation";
 
 const initialFormValues = {
   firstName: "",
@@ -24,6 +25,7 @@ export const ValidationForm = () => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const [redirect, setRedirect] = useState(false);
+  const minimumLetters = 2;
   const [newPass, setNewPass] = useState("");
   const minimumLetters = 2;
 
@@ -52,6 +54,12 @@ export const ValidationForm = () => {
       }
     }
 
+    if ("username" in fieldValues) {
+      temp.username = fieldValues.username ? "" : "This field is required.";
+      if (fieldValues.username) {
+        temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
+          ? ""
+          : "Email is not valid.";
     if ("streetAddress" in fieldValues) {
       temp.streetAddress = fieldValues.streetAddress ? "" : "This field is required.";
       if (fieldValues.streetAddress) {
@@ -65,15 +73,6 @@ export const ValidationForm = () => {
       temp.phoneNumber = fieldValues.phoneNumber ? "" : "This field is required.";
       if (fieldValues.phoneNumber) {
         temp.phoneNumber = /^[0-9]+$/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
-      }
-    }
-
-    if ("username" in fieldValues) {
-      temp.username = fieldValues.username ? "" : "This field is required.";
-      if (fieldValues.username) {
-        temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
-          ? ""
-          : "Email is not valid.";
       }
     }
 
@@ -208,7 +207,7 @@ export const ValidationForm = () => {
     } else setMsg("Please fill in the fields!");
   };
 
-  const LogInhandleFormSubmit = async (e: any) => {
+  /*const LogInhandleFormSubmit = async (e: any) => {
     e.preventDefault();
 
     const { username, password } = e.target.elements;
@@ -234,7 +233,7 @@ export const ValidationForm = () => {
         }
       );
     } else setMsg("Please fill in the fields!");
-  };
+  };*/
 
   const ForgotPasswordHandleFormSubmit = async (e: any) => {
     e.preventDefault();
@@ -340,10 +339,15 @@ export const ValidationForm = () => {
     handleInputValue,
     RegisterhandleFormSubmit,
     verifyHandleFormSubmit,
-    LogInhandleFormSubmit,
+    //LogInhandleFormSubmit,
     ForgotPasswordHandleFormSubmit,
     ConfirmForgotPasswordHandleFormSubmit,
     redirect,
+    isEmpty,
+    setOpen,
+    setRedirect,
+    setMsg,
+  
   };
 };
 

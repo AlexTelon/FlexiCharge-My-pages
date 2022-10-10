@@ -8,7 +8,6 @@ import ProfileInformation from "../components/ProfileInformation";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
-import { PropaneSharp } from "@mui/icons-material";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 
 interface TabPanelProps {

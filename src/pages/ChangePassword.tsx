@@ -1,21 +1,13 @@
 import { Button, TextField, Grid, Box } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import LockTwoToneIcon from "@mui/icons-material/LockTwoTone";
 import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
-import Navbar from "../components/Navbar";
-import NewNavbar from "../components/NewNavbar";
-import Mobile from "../components/Mobile";
-import BottomNavigationBar from "../components/BottomNavigation";
 import useStyles from "../components/styles/changePasswordStyles";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 import Logout from "@mui/icons-material/Logout";
-//import { useHistory } from "react-router-dom";
-
-//const history = useHistory();
 
 const inputFieldValues = [
   {
@@ -62,7 +54,6 @@ const ChangePassword = () => {
           Sign Out
         </Link>
       </div>
-      {/*Mobile() ? <NewNavbar /> : <BottomNavigationBar />*/}
       <Grid container direction="column" className={classes.grid}>
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={ChangePassword}>
