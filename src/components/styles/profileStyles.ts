@@ -3,10 +3,10 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
-      height: "88vh",
-      width: "96%",
+      minHight: "88vh",
+      maxWidth: "480px",
       margin: "100px auto",
-      marginTop:"10vh",
+      marginTop: "10vh",
       backgroundColor: theme.flexiCharge.primary.white,
       borderRadius: "10px",
     },
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
     deleteButton: {
       backgroundColor: "#ef6048",
       color: "#333",
-      width: "250px",
+      width: "150px",
       padding: "10px",
       fontSize: "12px",
       borderRadius: "10px",
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
     changePasswordButton: {
       backgroundColor: "#78bd76",
       color: "#333",
-      width: "250px",
+      width: "150px",
       padding: "10px",
       fontSize: "12px",
       borderRadius: "10px",
@@ -84,6 +84,20 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "5vw",
       float: "left",
     },
+
+    editInformationButton: {
+      backgroundColor: theme.flexiCharge.accent.warning,
+      color: "#333",
+      width: "250px",
+      padding: "10px",
+      fontSize: "12px",
+      borderRadius: "10px",
+      border: "none",
+      "&:hover": {
+        boxShadow: "0px 2px 2px #000",
+      },
+    },
+
     logoutButton: {
       float: "right",
       marginTop: "1.5vh",

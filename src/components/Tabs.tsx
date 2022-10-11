@@ -8,6 +8,8 @@ import ProfileInformation from "../components/ProfileInformation";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
+import ProfileFormHandling from "../components/ProfileFormHandling";
+import UpdateProfileButton from "../components/UpdateProfileButton";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 
 interface TabPanelProps {
@@ -44,14 +46,62 @@ function allyProps(index: number) {
 }
 
 export default function BasicTabs() {
+  const currentUser = AuthService.getUpdatedUserProfile();
+
+  const inputFieldValues = [
+    {
+      name: "firstName",
+      label: "First name: ",
+      descript: "Sebastian",
+      id: "firstName",
+    },
+    {
+      name: "lastName",
+      label: "Last name: ",
+      descript: "Zeed",
+      id: "lastName",
+    },
+    {
+      name: "phoneNumber",
+      label: "Phone Number: ",
+      descript: "+46731234456",
+      id: "phoneNumber",
+    },
+    {
+      name: "streetAddress",
+      label: "Street address: ",
+      descript: "Banarpsgatan 6",
+      id: "streetAddress",
+    },
+    {
+      name: "zipCode",
+      label: "Zip code: ",
+      descript: "55312",
+      id: "zipCode",
+    },
+    {
+      name: "city",
+      label: "City: ",
+      descript: "Jönköping",
+      id: "city",
+    },
+    {
+      name: "country",
+      label: "Country: ",
+      descript: "Sweden",
+      id: "country",
+    },
+  ];
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
   const [firstName, setFirstName] = useState("");
-  const [familyName, setFamilytName] = useState("");
+  const [lastName, setFamilytName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [streetAddress, setAddress] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
   const [userName, setUserName] = useState("");
   const [userId, setuserId] = useState("");
   const history = useHistory();
@@ -61,25 +111,19 @@ export default function BasicTabs() {
     if (!currentUser) {
       history.push("/sign-in");
     } else {
-      setFirstName(currentUser.name);
-      setFamilytName(currentUser.family_name);
+      setFirstName(currentUser.firstName);
+      setFamilytName(currentUser.lastName);
       setEmail(currentUser.email);
-      setPhoneNumber(currentUser.phone);
-      setAddress(currentUser.address);
+      setPhoneNumber(currentUser.phoneNumber);
+      setZipCode(currentUser.zipCode);
+      setCity(currentUser.city);
+      setCountry(currentUser.country);
+      setAddress(currentUser.streetAddress);
       setUserName(currentUser.username);
       setuserId(currentUser.user_id);
     }
   }, []);
-
-  const handleEmptyField = (text: string) => {
-    const valid = [];
-    if (text == undefined || text == "") {
-      valid.push("......................................");
-      return valid;
-    } else {
-      return text;
-    }
-  };
+  console.log(inputFieldValues);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -93,7 +137,7 @@ export default function BasicTabs() {
     color: "#333 !important",
   };
   return (
-    <Box sx={{ width: "100%"}}>
+    <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 10, borderColor: "#e5e5e5" }}>
         <Tabs
           variant="fullWidth"
@@ -103,48 +147,37 @@ export default function BasicTabs() {
           aria-label="basic tabs example"
         >
           <Tab
-            sx={{ ...customStyles, border: 0 }}
-            label="Profile"
-            {...allyProps(0)}
-          />
-          <Tab
-            sx={{
-              ...customStyles,
-            }}
-            label="Charging History"
-            {...allyProps(1)}
-          />
-          <Tab
             sx={{
               ...customStyles,
             }}
             label="Invoices"
-            {...allyProps(2)}
+            {...allyProps(0)}
+          />
+          <Tab
+            sx={{ ...customStyles, border: 0 }}
+            label="Profile"
+            {...allyProps(1)}
           />
         </Tabs>
       </Box>
-
       <TabPanel value={value} index={0}>
-        <ProfileInformation
-          label="Firstname"
-          descript={`${handleEmptyField(firstName)}`}
-        />
-        <ProfileInformation
-          label="Lastname"
-          descript={handleEmptyField(familyName)}
-        />
-        <ProfileInformation label="Email" descript={handleEmptyField(email)} />
-        <ProfileInformation label="Phone" descript={handleEmptyField(phone)} />
-        <ProfileInformation
-          label="Address"
-          descript={handleEmptyField(address)}
-        />
+        <InvoicesTab UserId={userId} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Here will the users charging history be
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <InvoicesTab UserId = {userId}/>
+        <UpdateProfileButton
+          classes={classes}
+          onClick={(e: any) => e.setIsOpen(true)}
+        />
+        {inputFieldValues.map((inputFieldValue, index) => {
+          return (
+            <ProfileInformation
+              key={index}
+              label={inputFieldValue.label}
+              descript={inputFieldValue.descript}
+            />
+          );
+        })}
+        <ProfileFormHandling classes={classes} />
       </TabPanel>
     </Box>
   );

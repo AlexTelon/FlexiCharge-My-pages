@@ -38,6 +38,7 @@ const ChangePassword = () => {
   const { ChangePassword, handleInputValue, errors, msg, redirect } =
     ValidationForm();
 
+  console.log(ChangePassword);
   if (redirect) {
     return <Redirect to="/profile" />;
   }

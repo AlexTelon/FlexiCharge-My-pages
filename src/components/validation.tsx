@@ -1,7 +1,5 @@
-import { Password } from "@mui/icons-material";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import AuthService from "./AuthService";
-//import {LogInhandleFormSubmit} from "./loginValidation";
 
 const initialFormValues = {
   firstName: "",
@@ -10,6 +8,9 @@ const initialFormValues = {
   phoneNumber: "",
   username: "",
   email: "",
+  zipCode: "",
+  city: "",
+  country: "",
   newPassword: "",
   confirmPassword: "",
   password: "",
@@ -27,11 +28,8 @@ export const ValidationForm = () => {
   const [redirect, setRedirect] = useState(false);
   const minimumLetters = 2;
   const [newPass, setNewPass] = useState("");
-  const minimumLetters = 2;
-
 
   const validate: any = (fieldValues = values) => {
-    // this function will check if the form values are valid
     const temp: any = { ...errors };
 
     if ("firstName" in fieldValues) {
@@ -40,7 +38,7 @@ export const ValidationForm = () => {
       if (fieldValues.firstName) {
         temp.firstName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.firstName)
           ? ""
-          : `May only contain letters and a minimum of ${minimumLetters} letters.`
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`;
       }
     }
 
@@ -50,29 +48,41 @@ export const ValidationForm = () => {
       if (fieldValues.lastName) {
         temp.lastName = /^([A-ZÅÄÖa-zåäö]{2,})*$/.test(fieldValues.lastName)
           ? ""
-          : `May only contain letters and a minimum of ${minimumLetters} letters.`
+          : `May only contain letters and a minimum of ${minimumLetters} letters.`;
       }
     }
 
     if ("username" in fieldValues) {
       temp.username = fieldValues.username ? "" : "This field is required.";
       if (fieldValues.username) {
-        temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(fieldValues.username)
+        temp.username = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+          fieldValues.username
+        )
           ? ""
           : "Email is not valid.";
+      }
+    }
     if ("streetAddress" in fieldValues) {
-      temp.streetAddress = fieldValues.streetAddress ? "" : "This field is required.";
+      temp.streetAddress = fieldValues.streetAddress
+        ? ""
+        : "This field is required.";
       if (fieldValues.streetAddress) {
-        temp.streetAddress = /(?=.*[a-zåäöA-ZÅÄÖ ]{2,})*(?=.*[0-9 ]{1,})/.test(fieldValues.streetAddress) 
+        temp.streetAddress = /(?=.*[a-zåäöA-ZÅÄÖ ]{2,})*(?=.*[0-9 ]{1,})/.test(
+          fieldValues.streetAddress
+        )
           ? ""
-          : "Address is not valid."
+          : "Address is not valid.";
       }
     }
 
     if ("phoneNumber" in fieldValues) {
-      temp.phoneNumber = fieldValues.phoneNumber ? "" : "This field is required.";
+      temp.phoneNumber = fieldValues.phoneNumber
+        ? ""
+        : "This field is required.";
       if (fieldValues.phoneNumber) {
-        temp.phoneNumber = /^[0-9]+$/.test(fieldValues.phoneNumber) ? "" : "May only contain numbers.";
+        temp.phoneNumber = /^[0-9]+$/.test(fieldValues.phoneNumber)
+          ? ""
+          : "May only contain numbers.";
       }
     }
 
@@ -82,19 +92,24 @@ export const ValidationForm = () => {
         : "This field is required.";
 
       if (fieldValues.newPassword) {
-        temp.newPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!$%^&*"'()_+|~=`{}[\]:\\/;<>?,.@#]).{8,}/.test(fieldValues.newPassword)
-          ? ""
-          : "Password must at least have 8 characters including a number, a symbol and both lowercase and uppercase letter.";
+        temp.newPassword =
+          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!$%^&*"'()_+|~=`{}[\]:\\/;<>?,.@#]).{8,}/.test(
+            fieldValues.newPassword
+          )
+            ? ""
+            : "Password must at least have 8 characters including a number, a symbol and both lowercase and uppercase letter.";
       }
-      setNewPass(fieldValues.newPassword)
+      setNewPass(fieldValues.newPassword);
     }
 
     if ("confirmPassword" in fieldValues) {
       temp.confirmPassword = fieldValues.confirmPassword
         ? ""
-        : "This field is required."
+        : "This field is required.";
 
-      newPass === fieldValues.confirmPassword ? temp.confirmPassword = "" : temp.confirmPassword = "Passwords don't match.";
+      newPass === fieldValues.confirmPassword
+        ? (temp.confirmPassword = "")
+        : (temp.confirmPassword = "Passwords don't match.");
     }
 
     if ("password" in fieldValues)
@@ -133,35 +148,39 @@ export const ValidationForm = () => {
   const RegisterhandleFormSubmit = async (e: any) => {
     e.preventDefault();
     setMsg("");
-    const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } =
-      e.target.elements;
+
+    const {
+      firstName,
+      lastName,
+      email,
+      streetAddress,
+      phoneNumber,
+      username,
+      newPassword,
+      confirmPassword,
+    } = e.target.elements;
 
     const initialValues = {
-      //firstName: firstName.value,
-     // lastName: lastName.value,
-     // email: email.value,
-     //streetAddress: streetAddress.value,
-      //phoneNumber: phoneNumber.value,
       username: username.value,
       newPassword: newPassword.value,
-      confirmPassword: confirmPassword.value
+      confirmPassword: confirmPassword.value,
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, streetAddress, phoneNumber, username, newPassword, confirmPassword } = values;
-        AuthService.register(
-          //firstName,
-          //lastName,
-         // email,
-         //streetAddress,
-         //phoneNumber,
+        const {
+          firstName,
+          lastName,
+          email,
+          streetAddress,
+          phoneNumber,
           username,
           newPassword,
-          confirmPassword
-        ).then(
+          confirmPassword,
+        } = values;
+        AuthService.register(username, newPassword, confirmPassword).then(
           () => {
             handleClose;
             setOpen(false);
@@ -260,7 +279,8 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { username, newPassword, confirmPassword, verifyCode } = e.target.elements;
+    const { username, newPassword, confirmPassword, verifyCode } =
+      e.target.elements;
     const initialValues = {
       username: username.value,
       newPassword: newPassword.value,
@@ -304,7 +324,7 @@ export const ValidationForm = () => {
     const initialValues = {
       password: password.value,
       newPassword: newPassword.value,
-      confirmPassword: confirmPassword.value
+      confirmPassword: confirmPassword.value,
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
@@ -314,7 +334,12 @@ export const ValidationForm = () => {
       if (isValid) {
         const { password, newPassword, confirmPassword } = values;
 
-        AuthService.changePassword(token, password, newPassword, confirmPassword).then(
+        AuthService.changePassword(
+          token,
+          password,
+          newPassword,
+          confirmPassword
+        ).then(
           (response) => {
             setRedirect(true);
           },
@@ -328,18 +353,108 @@ export const ValidationForm = () => {
     }
   };
 
+  const GetUpdatedUserProfile = async (e: any) => {
+    e.preventDefault();
+    setMsg("");
+
+    const {
+      username,
+      firstName,
+      lastName,
+      phoneNumber,
+      streetAddress,
+      zipCode,
+      city,
+      country,
+    } = e.target.elements;
+
+    const initialValues = {
+      firstName,
+      lastName,
+      phoneNumber,
+      streetAddress,
+      zipCode,
+      city,
+      country,
+    };
+
+    const isValid = Object.values(errors).every((x) => x === "");
+    if (!isEmpty(initialValues)) {
+      if (isValid) {
+        AuthService.getUpdatedUserProfile();
+      }
+    } else {
+      console.log("error");
+      setMsg("Please fill in the fields!");
+    }
+  };
+
+  const UpdateUserProfile = async (e: any) => {
+    e.preventDefault();
+    setMsg("");
+
+    const {
+      newFirstName,
+      newLastName,
+      newPhoneNumber,
+      newStreetAddress,
+      newZipCode,
+      newCity,
+      newCountry,
+    } = e.target.elements;
+
+    const initialValues = {
+      firstName: newFirstName.value,
+      lastName: newLastName.value,
+      phoneNumber: newPhoneNumber.value,
+      streetAddress: newStreetAddress.value,
+      zipCode: newZipCode.value,
+      city: newCity.value,
+      country: newCountry.value,
+    };
+
+    const isValid = Object.values(errors).every((x) => x === "");
+
+    if (!isEmpty(initialValues)) {
+      if (isValid) {
+        const {
+          firstName,
+          lastName,
+          phoneNumber,
+          streetAddress,
+          zipCode,
+          city,
+          country,
+        } = values;
+
+        AuthService.updateUserProfile(
+          firstName,
+          lastName,
+          phoneNumber,
+          streetAddress,
+          zipCode,
+          city,
+          country
+        );
+      }
+    } else {
+      setMsg("Please fill in the fields!");
+    }
+  };
+
   return {
     values,
     errors,
     msg,
     open,
+    GetUpdatedUserProfile,
     ChangePassword,
+    UpdateUserProfile,
     handleClose,
     handleOpen,
     handleInputValue,
     RegisterhandleFormSubmit,
     verifyHandleFormSubmit,
-    //LogInhandleFormSubmit,
     ForgotPasswordHandleFormSubmit,
     ConfirmForgotPasswordHandleFormSubmit,
     redirect,
@@ -347,7 +462,6 @@ export const ValidationForm = () => {
     setOpen,
     setRedirect,
     setMsg,
-  
   };
 };
 
