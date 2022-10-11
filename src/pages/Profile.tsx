@@ -3,8 +3,7 @@ import { useHistory } from "react-router";
 import AuthService from "../components/AuthService";
 import useStyles from "../components/styles/profileStyles";
 import Tabs from "../components/Tabs";
-import ProfileFromHandling from "../components/ProfileFormHandling";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logout from "@mui/icons-material/Logout";
 import { Grid } from "@material-ui/core";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
@@ -13,10 +12,10 @@ const Profile = () => {
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState("");
-  const [familyName, setFamilytName] = useState("");
+  const [lastName, setFamilytName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [streetAddress, setAddress] = useState("");
   const [userName, setUserName] = useState("");
   const history = useHistory();
 
@@ -25,11 +24,11 @@ const Profile = () => {
     if (!currentUser) {
       history.push("/sign-in");
     } else {
-      setFirstName(currentUser.name);
-      setFamilytName(currentUser.family_name);
+      setFirstName(currentUser.firstName);
+      setFamilytName(currentUser.lastName);
       setEmail(currentUser.email);
-      setPhoneNumber(currentUser.phone);
-      setAddress(currentUser.address);
+      setPhoneNumber(currentUser.phoneNumber);
+      setAddress(currentUser.streetAddress);
       setUserName(currentUser.username);
     }
   }, []);
@@ -49,7 +48,6 @@ const Profile = () => {
       <div>
         <div className={classes.profile}>
           <Tabs />
-          <ProfileFromHandling classes={classes} />
         </div>
       </div>
     </Grid>

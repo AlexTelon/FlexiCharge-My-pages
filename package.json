@@ -22,6 +22,7 @@
         "axios": "^0.21.4",
         "create-react-app": "^5.0.1",
         "react": "^17.0.2",
+        "react-blur": "^1.1.1",
         "react-dom": "^17.0.2",
         "react-modal-hover": "^1.1.13",
         "react-router-dom": "^5.3.3",
