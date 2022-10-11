@@ -1,4 +1,4 @@
-import { checkLogin } from "../components/loginValidation";
+import { checkLogin } from "../components/pageValidation/loginValidation";
 
 let initialFormValues = {
     username: "",
