@@ -1,5 +1,6 @@
 import { Password } from "@mui/icons-material";
 import { useState } from "react";
+import { isCompositeComponentWithType } from "react-dom/test-utils";
 import AuthService from "./AuthService";
 
 const initialFormValues = {
@@ -7,6 +8,11 @@ const initialFormValues = {
   lastName: "",
   username: "",
   email: "",
+  phoneNumber: "",
+  streetAddress: "",
+  zipCode: "",
+  city: "",
+  country: "",
   newPassword: "",
   confirmPassword: "",
   password: "",
@@ -55,15 +61,17 @@ export const ValidationForm = () => {
           ? ""
           : "Password must at least have 8 characters including a number and both lowercase and uppercase letter.";
       }
-      setNewPass(fieldValues.newPassword)
+      setNewPass(fieldValues.newPassword);
     }
 
     if ("confirmPassword" in fieldValues) {
       temp.confirmPassword = fieldValues.confirmPassword
         ? ""
-        : "This field is required."
+        : "This field is required.";
 
-      newPass === fieldValues.confirmPassword ? temp.confirmPassword = "" : temp.confirmPassword = "Passwords don't match.";
+      newPass === fieldValues.confirmPassword
+        ? (temp.confirmPassword = "")
+        : (temp.confirmPassword = "Passwords don't match.");
     }
 
     if ("password" in fieldValues)
@@ -103,27 +111,40 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { firstName, lastName, email, username, newPassword, confirmPassword } =
-      e.target.elements;
+    const {
+      firstName,
+      lastName,
+      email,
+      username,
+      newPassword,
+      confirmPassword,
+    } = e.target.elements;
 
     const initialValues = {
       //firstName: firstName.value,
-     // lastName: lastName.value,
-     // email: email.value,
+      // lastName: lastName.value,
+      // email: email.value,
       username: username.value,
       newPassword: newPassword.value,
-      confirmPassword: confirmPassword.value
+      confirmPassword: confirmPassword.value,
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
     if (!isEmpty(initialValues)) {
       if (isValid) {
         setOpen(true);
-        const { firstName, lastName, email, username, newPassword, confirmPassword } = values;
+        const {
+          firstName,
+          lastName,
+          email,
+          username,
+          newPassword,
+          confirmPassword,
+        } = values;
         AuthService.register(
           //firstName,
           //lastName,
-         // email,
+          // email,
           username,
           newPassword,
           confirmPassword
@@ -227,7 +248,8 @@ export const ValidationForm = () => {
     e.preventDefault();
     setMsg("");
 
-    const { username, newPassword, confirmPassword, verifyCode } = e.target.elements;
+    const { username, newPassword, confirmPassword, verifyCode } =
+      e.target.elements;
     const initialValues = {
       username: username.value,
       newPassword: newPassword.value,
@@ -271,7 +293,7 @@ export const ValidationForm = () => {
     const initialValues = {
       password: password.value,
       newPassword: newPassword.value,
-      confirmPassword: confirmPassword.value
+      confirmPassword: confirmPassword.value,
     };
 
     const isValid = Object.values(errors).every((x) => x === "");
@@ -281,7 +303,12 @@ export const ValidationForm = () => {
       if (isValid) {
         const { password, newPassword, confirmPassword } = values;
 
-        AuthService.changePassword(token, password, newPassword, confirmPassword).then(
+        AuthService.changePassword(
+          token,
+          password,
+          newPassword,
+          confirmPassword
+        ).then(
           (response) => {
             setRedirect(true);
           },
@@ -295,12 +322,103 @@ export const ValidationForm = () => {
     }
   };
 
+  const GetUpdatedUserProfile = async (e: any) => {
+    e.preventDefault();
+    setMsg("");
+
+    const {
+      username,
+      firstName,
+      lastName,
+      phoneNumber,
+      streetAddress,
+      zipCode,
+      city,
+      country,
+    } = e.target.elements;
+
+    const initialValues = {
+      firstName,
+      lastName,
+      phoneNumber,
+      streetAddress,
+      zipCode,
+      city,
+      country,
+    };
+
+    const isValid = Object.values(errors).every((x) => x === "");
+    if (!isEmpty(initialValues)) {
+      if (isValid) {
+        AuthService.getUpdatedUserProfile();
+      }
+    } else {
+      console.log("error");
+      setMsg("Please fill in the fields!");
+    }
+  };
+
+  const UpdateUserProfile = async (e: any) => {
+    e.preventDefault();
+    setMsg("");
+
+    const {
+      newFirstName,
+      newLastName,
+      newPhoneNumber,
+      newStreetAddress,
+      newZipCode,
+      newCity,
+      newCountry,
+    } = e.target.elements;
+
+    const initialValues = {
+      firstName: newFirstName.value,
+      lastName: newLastName.value,
+      phoneNumber: newPhoneNumber.value,
+      streetAddress: newStreetAddress.value,
+      zipCode: newZipCode.value,
+      city: newCity.value,
+      country: newCountry.value,
+    };
+
+    const isValid = Object.values(errors).every((x) => x === "");
+
+    if (!isEmpty(initialValues)) {
+      if (isValid) {
+        const {
+          firstName,
+          lastName,
+          phoneNumber,
+          streetAddress,
+          zipCode,
+          city,
+          country,
+        } = values;
+
+        AuthService.updateUserProfile(
+          firstName,
+          lastName,
+          phoneNumber,
+          streetAddress,
+          zipCode,
+          city,
+          country
+        );
+      }
+    } else {
+      setMsg("Please fill in the fields!");
+    }
+  };
+
   return {
     values,
     errors,
     msg,
     open,
+    GetUpdatedUserProfile,
     ChangePassword,
+    UpdateUserProfile,
     handleClose,
     handleOpen,
     handleInputValue,

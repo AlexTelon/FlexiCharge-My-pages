@@ -21,10 +21,7 @@ const UpdateProfileButton = (props: any) => {
       </div>
       {isOpen && (
         <div>
-          <UpdateProfileInformation
-            user={props.user}
-            className={props.classes}
-          />
+          <UpdateProfileInformation className={props.classes} />
         </div>
       )}
     </div>

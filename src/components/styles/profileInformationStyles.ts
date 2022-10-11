@@ -1,10 +1,9 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { height } from "@mui/system";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      margin: "50px auto",
+      margin: "32px auto",
       display: "grid",
       width: "33%",
       gridTemplateColumns: "1fr 3fr 1fr",
@@ -12,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
     profileElements: {
       gridColumn: "1/2",
-      fontSize: "24px",
+      fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
       justifySelf: "start",
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
     description: {
       gridColumn: "2/3",
-      fontSize: "24px",
+      fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
     },
@@ -41,6 +40,25 @@ const useStyles = makeStyles((theme: Theme) =>
     editContainer: {
       backgroundColor: theme.flexiCharge.primary.white,
       border: "1px solid #333",
+      padding: "42px 100px",
+    },
+
+    changebutton: {
+      "&:hover": {
+        boxShadow: "0px 2px 2px #000",
+        backgroundColor: theme.palette.primary.main,
+        color: theme.flexiCharge.primary.white,
+      },
+      backgroundColor: theme.flexiCharge.primary.green,
+      marginRight: "28px",
+      padding: "12px 24px ",
+    },
+    cancelbutton: {
+      "&:hover": {
+        boxShadow: "0px 2px 2px #000",
+        color: theme.flexiCharge.primary.white,
+      },
+      padding: "12px 24px ",
     },
   })
 );

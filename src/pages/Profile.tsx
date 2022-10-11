@@ -13,10 +13,10 @@ const Profile = () => {
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState("");
-  const [familyName, setFamilytName] = useState("");
+  const [lastName, setFamilytName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [streetAddress, setAddress] = useState("");
   const [userName, setUserName] = useState("");
   const history = useHistory();
 
@@ -25,11 +25,11 @@ const Profile = () => {
     if (!currentUser) {
       history.push("/sign-in");
     } else {
-      setFirstName(currentUser.name);
-      setFamilytName(currentUser.family_name);
+      setFirstName(currentUser.firstName);
+      setFamilytName(currentUser.lastName);
       setEmail(currentUser.email);
-      setPhoneNumber(currentUser.phone);
-      setAddress(currentUser.address);
+      setPhoneNumber(currentUser.phoneNumber);
+      setAddress(currentUser.streetAddress);
       setUserName(currentUser.username);
     }
   }, []);
