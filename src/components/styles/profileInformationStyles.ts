@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       margin: "32px auto",
       display: "grid",
-      width: "33%",
+      width: "80%",
       gridTemplateColumns: "1fr 3fr 1fr",
     },
 
@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
       justifySelf: "start",
+      marginLeft: "75px",
     },
 
     description: {

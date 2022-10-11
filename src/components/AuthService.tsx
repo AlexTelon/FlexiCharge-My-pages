@@ -1,6 +1,4 @@
-import { Email } from "@mui/icons-material";
 import axios from "axios";
-import { get } from "https";
 
 const API_URL = "http://18.202.253.30:8080/auth/";
 
