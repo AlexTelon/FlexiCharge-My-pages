@@ -2,9 +2,8 @@ import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import { Redirect, Link } from "react-router-dom";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../components/validation";
+import { ValidationForm } from "../components/pageValidation/forgotPasswordValidation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import useStyles from "../components/styles/forgotPasswordStyles";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
@@ -48,7 +47,7 @@ const ForgotPassword = () => {
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={ForgotPasswordHandleFormSubmit}>
             <h1>Forgot Password</h1>
-            <p>
+            <p data-testid="test-forgot-pw">
               Enter your email and we will send you a password reset link to
               your registered email.
             </p>

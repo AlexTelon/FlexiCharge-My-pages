@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import ProfileFormHandling from "../components/ProfileFormHandling";
 import UpdateProfileButton from "../components/UpdateProfileButton";
-import { ValidationForm } from "./validation";
+import InvoicesTab from "./invoicesTab/InvoicesTab";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -103,6 +103,7 @@ export default function BasicTabs() {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [userName, setUserName] = useState("");
+  const [userId, setuserId] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -119,6 +120,7 @@ export default function BasicTabs() {
       setCountry(currentUser.country);
       setAddress(currentUser.streetAddress);
       setUserName(currentUser.username);
+      setuserId(currentUser.user_id);
     }
   }, []);
   console.log(inputFieldValues);
@@ -158,9 +160,8 @@ export default function BasicTabs() {
           />
         </Tabs>
       </Box>
-
       <TabPanel value={value} index={0}>
-        Here will the users invoices be.
+        <InvoicesTab UserId={userId} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <UpdateProfileButton

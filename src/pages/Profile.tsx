@@ -3,7 +3,6 @@ import { useHistory } from "react-router";
 import AuthService from "../components/AuthService";
 import useStyles from "../components/styles/profileStyles";
 import Tabs from "../components/Tabs";
-import ProfileFromHandling from "../components/ProfileFormHandling";
 import { Link } from "react-router-dom";
 import Logout from "@mui/icons-material/Logout";
 import { Grid } from "@material-ui/core";
@@ -46,7 +45,6 @@ const Profile = () => {
           Sign Out
         </Link>
       </div>
-      {/* <NewNavbar/>*/}
       <div>
         <div className={classes.profile}>
           <Tabs />

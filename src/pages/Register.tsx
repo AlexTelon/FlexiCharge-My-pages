@@ -5,37 +5,19 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Redirect, Link } from "react-router-dom";
+//import { ValidationForm } from "../components/pageValidation/registerValidation";
 import { ValidationForm } from "../components/validation";
 import useStyles from "../components/styles/registerStyles";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 
 const inputFieldValues = [
-  /*{
-    name: "firstName",
-    label: "First Name",
-    id: "user-first-name",
-    icon: <AccountCircle />,
-  },
 
-  {
-    name: "lastName",
-    label: "Last Name",
-    id: "user-Last-name",
-    icon: <AccountCircle />,
-  },*/
   {
     name: "username",
     label: "Email",
     id: "username",
     icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
   },
-  /*{
-    name: "email",
-    label: "Email",
-    id: "user-email",
-    icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
-  },*/
   {
     name: "newPassword",
     type: "password",

@@ -5,6 +5,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { ValidationForm } from "../components/validation";
+//import { ValidationForm } from "../components/pageValidation/confirmForgotPasswordValidation";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import useStyles from "../components/styles/confirmForgotPasswordStyles";

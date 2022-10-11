@@ -8,7 +8,6 @@ import { ValidationForm } from "../components/validation";
 import useStyles from "../components/styles/changePasswordStyles";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 import Logout from "@mui/icons-material/Logout";
-//import { useHistory } from "react-router-dom";
 
 const inputFieldValues = [
   {
@@ -56,7 +55,6 @@ const ChangePassword = () => {
           Sign Out
         </Link>
       </div>
-      {/*Mobile() ? <NewNavbar /> : <BottomNavigationBar />*/}
       <Grid container direction="column" className={classes.grid}>
         <Grid container direction="column" className={classes.container}>
           <form autoComplete="off" onSubmit={ChangePassword}>
