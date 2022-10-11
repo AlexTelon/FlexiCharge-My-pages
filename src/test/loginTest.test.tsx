@@ -18,7 +18,7 @@ describe("testing username and password empty string", () =>{
     
 })
 
-describe("testing valid username and password string", () =>{
+describe("testing username and password valid string", () =>{
     initialFormValues.username="Hej32@his.com"
     initialFormValues.password="notEmpty"
     const loginErrors = checkLogin(initialFormValues)
