@@ -179,12 +179,6 @@ export const ValidationForm = () => {
           newPassword,
           confirmPassword,
         } = values;
-        AuthService.register(
-
-          username,
-          newPassword,
-          confirmPassword,
-        } = values;
         AuthService.register(username, newPassword, confirmPassword).then(
           () => {
             handleClose;
