@@ -148,7 +148,6 @@ export const ValidationForm = () => {
   const RegisterhandleFormSubmit = async (e: any) => {
     e.preventDefault();
     setMsg("");
-
     const {
       firstName,
       lastName,
@@ -176,6 +175,12 @@ export const ValidationForm = () => {
           email,
           streetAddress,
           phoneNumber,
+          username,
+          newPassword,
+          confirmPassword,
+        } = values;
+        AuthService.register(
+
           username,
           newPassword,
           confirmPassword,
@@ -316,6 +321,7 @@ export const ValidationForm = () => {
       setMsg("Please fill in the fields!");
     }
   };
+
   const ChangePassword = async (e: any) => {
     e.preventDefault();
     setMsg("");
