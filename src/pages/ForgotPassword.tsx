@@ -3,7 +3,7 @@ import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../components/forgotPasswordValidation";
+import { ValidationForm } from "../components/pageValidation/forgotPasswordValidation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import useStyles from "../components/styles/forgotPasswordStyles";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
