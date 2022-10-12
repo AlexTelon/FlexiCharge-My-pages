@@ -129,3 +129,28 @@ Please input: **json**
 
 The API used to comunicate with the backend can be accessed with the ip http://18.202.253.30:8080/ and swagger documentation for the API can be found at http://18.202.253.30:8080/swagger/
 
+
+## Unit tests using Jest
+
+Jest is a Javascript test runner, a JavaScript library for creating, running and structuring tests. But also works for TypeScript.
+Read more about Jest here: https://jestjs.io/
+
+All the test files can be found in the test folder of the project.
+When creating a new test file it has to end with **test.tsx** for Jest to understand it is a test.
+
+Looking in the checkValidate.test.tsx file, you'll see a method called **describe**, which isn't essential for running tests but it's used for containing one or more tests.
+Inside describe is the actual test block called **test**.
+
+To run your tests:
+```bash
+npm test
+```
+
+In the terminal you will be able to see how many of the tests passed or failed.
+
+In the test folder you can find a file called test-utils.tsx. This had to be added because when using the render() function from React Testing Library the tests couldn't find what it needed to continue.
+This was solved by creating the test-utils.tsx file which contains a Custom Render and was added to one of the test files.
+Read more about it here: https://testing-library.com/docs/react-testing-library/setup/
+
+The mock folder inside the test folder contains a file which prevents Jest from processing specific files, such as .svg, .css etc.
+We choose to ignore these files because Jest doesn't know how to process them.
