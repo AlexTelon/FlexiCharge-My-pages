@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "grid",
       width: "33%",
       gridTemplateColumns: "1fr 3fr 1fr",
-      justifyContent: "center"
+      
     },
 
     profileElements: {
@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
       justifySelf: "start",
-      alignItem: "center"
+      
+
     },
 
     description: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
+
     },
 
     editBox: {
@@ -43,6 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.flexiCharge.primary.white,
       border: "1px solid #333",
       padding: "42px 100px",
+      alignItems:"center",
     },
 
     changebutton: {
