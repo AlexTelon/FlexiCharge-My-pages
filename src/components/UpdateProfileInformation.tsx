@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { Button } from "@material-ui/core";
 import TextField from "@mui/material/TextField";
 import useStyles from "../components/styles/profileInformationStyles";
-import { ValidationForm } from "../components/validation";
+import { ValidationForm } from "./pageValidation/validation";
 import Alert from "@mui/material/Alert";
 import AuthService from "./AuthService";
 

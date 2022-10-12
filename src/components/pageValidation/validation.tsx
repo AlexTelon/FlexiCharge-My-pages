@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthService from "./AuthService";
+import AuthService from "../AuthService";
 
 const initialFormValues = {
   firstName: "",
@@ -197,83 +197,6 @@ export const ValidationForm = () => {
     }
   };
 
-  const verifyHandleFormSubmit = async (e: any) => {
-    e.preventDefault();
-
-    const { verifyCode } = e.target.elements;
-    const initialValues = {
-      verifyCode: verifyCode.value,
-    };
-
-    const isValid = Object.values(errors).every((x) => x === "");
-
-    if (isValid && !isEmpty(initialValues)) {
-      setOpen(true);
-      const { username, verifyCode } = values;
-      AuthService.verify(username, verifyCode).then(
-        () => {
-          handleClose;
-          setOpen(false);
-          setRedirect(true);
-        },
-        (error) => {
-          handleClose;
-          setOpen(false);
-          setMsg(error.response.data.message);
-        }
-      );
-    } else setMsg("Please fill in the fields!");
-  };
-
-  /*const LogInhandleFormSubmit = async (e: any) => {
-    e.preventDefault();
-
-    const { username, password } = e.target.elements;
-    const initialValues = {
-      username: username.value,
-      password: password.value,
-    };
-    const isValid = Object.values(errors).every((x) => x === "");
-
-    if (isValid && !isEmpty(initialValues)) {
-      setOpen(true);
-      const { username, password } = values;
-      AuthService.login(username, password).then(
-        () => {
-          handleClose;
-          setOpen(false);
-          setRedirect(true);
-        },
-        (error) => {
-          setOpen(false);
-          handleClose;
-          setMsg(error.response.data.message);
-        }
-      );
-    } else setMsg("Please fill in the fields!");
-  };*/
-
-  const ForgotPasswordHandleFormSubmit = async (e: any) => {
-    e.preventDefault();
-
-    const { username } = e.target.elements;
-    const initialValues = {
-      username: username.value,
-    };
-
-    const isValid = Object.values(errors).every((x) => x === "");
-
-    if (isValid && !isEmpty(initialValues)) {
-      setOpen(true);
-      const { username } = values;
-      AuthService.forgotPassword(username).then(() => {
-        handleClose;
-        setOpen(false);
-        setRedirect(true);
-      });
-    } else setMsg("Please fill in the fields!");
-  };
-
   const ConfirmForgotPasswordHandleFormSubmit = async (e: any) => {
     e.preventDefault();
     setMsg("");
@@ -454,14 +377,8 @@ export const ValidationForm = () => {
     handleOpen,
     handleInputValue,
     RegisterhandleFormSubmit,
-    verifyHandleFormSubmit,
-    ForgotPasswordHandleFormSubmit,
     ConfirmForgotPasswordHandleFormSubmit,
     redirect,
-    isEmpty,
-    setOpen,
-    setRedirect,
-    setMsg,
   };
 };
 
