@@ -3,6 +3,9 @@
 This repo contains the "My pages" part of the flexicharge project that is developed as part of the [Software Engineering Project Methods](https://ju.se/en/study-at-ju/courses.html?courseCode=TMJN10&semester=20222&revision=1,000&lang=en&lang=en) course on [JTH](https://ju.se/en/about-us/school-of-engineering.html)
 
 [Link to live app hosted on AWS](http://flexicharge-my-pages.s3-website-eu-west-1.amazonaws.com)
+
+[Design brief](./public/Flexicharge%20My%20pages%20figma.pdf)
+
 ## Run Locally
 
 Clone the project
