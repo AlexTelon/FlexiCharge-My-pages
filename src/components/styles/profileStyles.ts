@@ -3,8 +3,8 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
-      minHight: "88vh",
-      maxWidth: "480px",
+      height: "88vh",
+      maxWidth: "96%",
       margin: "100px auto",
       marginTop: "10vh",
       backgroundColor: theme.flexiCharge.primary.white,
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
     deleteButton: {
       backgroundColor: "#ef6048",
       color: "#333",
-      width: "150px",
+      width: "250px",
       padding: "10px",
       fontSize: "12px",
       borderRadius: "10px",
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
     changePasswordButton: {
       backgroundColor: "#78bd76",
       color: "#333",
-      width: "150px",
+      width: "250px",
       padding: "10px",
       fontSize: "12px",
       borderRadius: "10px",
