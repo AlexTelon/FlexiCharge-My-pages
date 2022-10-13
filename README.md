@@ -141,7 +141,7 @@ When creating a new test file it has to end with **test.tsx** for Jest to unders
 Looking in the checkValidate.test.tsx file, you'll see a method called **describe**, which isn't essential for running tests but it's used for containing one or more tests.
 Inside describe is the actual test block called **test**.
 
-To run your tests:
+To run your tests, go to the root directory and write:
 ```bash
 npm test
 ```
