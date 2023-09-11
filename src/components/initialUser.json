@@ -1,0 +1,9 @@
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "phoneNumber": "+123456789",
+    "streetAddress": "Gjuterigatan 5",
+    "zipCode": "5531255318",
+    "city": "Jönköping",
+    "country": "Sweden"
+}

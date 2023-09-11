@@ -12,6 +12,8 @@ import ProfileFormHandling from "../components/ProfileFormHandling";
 import UpdateProfileButton from "../components/UpdateProfileButton";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 
+import initialUser from "./initialUser.json";
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -52,43 +54,43 @@ export default function BasicTabs() {
     {
       name: "firstName",
       label: "First name: ",
-      descript: "Sebastian",
+      descript: initialUser.firstName,
       id: "firstName",
     },
     {
       name: "lastName",
       label: "Last name: ",
-      descript: "Zeed",
+      descript: initialUser.lastName,
       id: "lastName",
     },
     {
       name: "phoneNumber",
       label: "Phone Number: ",
-      descript: "+46731234456",
+      descript: initialUser.phoneNumber,
       id: "phoneNumber",
     },
     {
       name: "streetAddress",
       label: "Street address: ",
-      descript: "Banarpsgatan 6",
+      descript: initialUser.streetAddress,
       id: "streetAddress",
     },
     {
       name: "zipCode",
       label: "Zip code: ",
-      descript: "55312",
+      descript: initialUser.zipCode,
       id: "zipCode",
     },
     {
       name: "city",
       label: "City: ",
-      descript: "Jönköping",
+      descript: initialUser.city,
       id: "city",
     },
     {
       name: "country",
       label: "Country: ",
-      descript: "Sweden",
+      descript: initialUser.country,
       id: "country",
     },
   ];
