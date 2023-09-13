@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import { Button } from "@material-ui/core";
 import TextField from "@mui/material/TextField";
-import useStyles from "../components/styles/profileInformationStyles";
-import { ValidationForm } from "./pageValidation/validation";
+import useStyles from "../styles/profileInformationStyles";
+import { ValidationForm } from "../../utils/pageValidation/validation";
 import Alert from "@mui/material/Alert";
-import AuthService from "./AuthService";
+import AuthService from "../AuthService";
 
 const UpdateProfileInformation = (props: any) => {
   const inputFieldValues = [

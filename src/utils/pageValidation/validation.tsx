@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthService from "../AuthService";
+import AuthService from "../../components/AuthService";
 
 const initialFormValues = {
   firstName: "",
