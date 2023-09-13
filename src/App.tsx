@@ -14,15 +14,29 @@ import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   const isLoggedIn = AuthService.getCurrentUser() ? true : false;
+  
+  let redirectPath = "/sign-in";
+  if (isLoggedIn) {
+    redirectPath = "/profile";
+  }
+
   return (
     <ThemeProvider theme={Theme}>
       <div className="App">
         <BrowserRouter>
           <main>
             <Route exact path="/">
-              <Redirect to="/sign-in" />
+              <Redirect to={redirectPath} />
             </Route>
-            <Route path="/sign-in" component={() => <Login />} />
+
+            <Route path="/sign-in">
+              {isLoggedIn ? <Redirect to="/profile" /> : () => <Login /> }
+            </Route>
+
+            <Route path="/profile">
+              {!isLoggedIn ? <Redirect to="/sign-in" /> : <Profile />}
+            </Route>
+
             <Route path="/sign-up" component={Register} />
             <Route path="/verify" component={VerifyAccount} />
             <Route
@@ -35,7 +49,6 @@ function App() {
             />
             <Route path="/change-password" component={ChangePassword} />
             <Route path="/charging-sessions" component={ChargingSessions} />
-            <Route path="/profile" component={Profile} />
           </main>
         </BrowserRouter>
       </div>
