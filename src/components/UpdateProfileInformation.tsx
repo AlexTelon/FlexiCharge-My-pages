@@ -67,6 +67,8 @@ const UpdateProfileInformation = (props: any) => {
             display: "flex",
             flexDirection: "column",
           },
+          maxHeight: "100%",
+          overflow: "auto",
         }}
         noValidate
         autoComplete="off"
