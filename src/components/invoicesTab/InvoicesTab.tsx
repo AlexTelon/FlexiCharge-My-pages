@@ -2,6 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Divider, FormControlLabe
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import MockInvoices from "./MockInvoices"
 import useStyles from "./InvoicesTabStyles";
+import SessionInformationButton from "../SessionInformationButton"
 
 type invoices = {
     id : string,
@@ -176,7 +177,7 @@ const ChargingSessionListItem = ({session} : {session: session}) => {
             <ListItem className={classes.sessionItemInfo} disablePadding>
                 <p>{date} {session.charger}</p>
                 <p>{session.total}kr</p>
-                <a href="">More information about session</a>
+                <SessionInformationButton id={session.id} />
             </ListItem>
         </> 
     )

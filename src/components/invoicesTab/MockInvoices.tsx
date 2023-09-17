@@ -11,25 +11,25 @@ const MockInvoices = () => {
         total : "1500",
         sessions : [
             {
-                id : "100012",
+                id : "100019",
                 timestamp : 1663163478,
                 charger : "Some charger (JTH)",
                 total : "450",
             },
             {
-                id : "100013",
+                id : "100018",
                 timestamp : 1663163478,
                 charger : "Some other charger (PLUTO)",
                 total : "225",
             },
             {
-                id : "100014",
+                id : "100017",
                 timestamp : 1663163478,
                 charger : "Some other other charger (HLK)",
                 total : "725",
             },
             {
-                id : "100015",
+                id : "100016",
                 timestamp : 1663163478,
                 charger : "Some other other other charger (The MOON)",
                 total : "100",
@@ -44,7 +44,7 @@ const MockInvoices = () => {
         total : "1100",
         sessions : [
             {
-                id : "100012",
+                id : "100015",
                 timestamp : 1663163478,
                 charger : "Some charger (JTH)",
                 total : "200",
@@ -56,7 +56,7 @@ const MockInvoices = () => {
                 total : "350",
             },
             {
-                id : "100017",
+                id : "100013",
                 timestamp : 1663163478,
                 charger : "Some other other charger (idk)",
                 total : "550",
