@@ -153,10 +153,17 @@ export default function BasicTabs() {
             label="Invoices"
             {...allyProps(0)}
           />
+                    <Tab
+            sx={{
+              ...customStyles,
+            }}
+            label="Charging History"
+            {...allyProps(1)}
+          />
           <Tab
             sx={{ ...customStyles, border: 0 }}
             label="Profile"
-            {...allyProps(1)}
+            {...allyProps(2)}
           />
         </Tabs>
       </Box>
@@ -164,6 +171,9 @@ export default function BasicTabs() {
         <InvoicesTab UserId={userId} />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        
+      </TabPanel>
+      <TabPanel value={value} index={2}>
         <UpdateProfileButton
           classes={classes}
           onClick={(e: any) => e.setIsOpen(true)}
