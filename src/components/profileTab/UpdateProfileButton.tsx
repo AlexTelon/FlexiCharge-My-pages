@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateProfileInformation from "../components/UpdateProfileInformation";
+import UpdateProfileInformation from "./UpdateProfileInformation";
 
 const UpdateProfileButton = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);

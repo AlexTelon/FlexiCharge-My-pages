@@ -6,7 +6,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Redirect, Link } from "react-router-dom";
 //import { ValidationForm } from "../components/pageValidation/registerValidation";
-import { ValidationForm } from "../components/pageValidation/validation";
+import { ValidationForm } from "../utils/pageValidation/validation";
 import useStyles from "../components/styles/registerStyles";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 

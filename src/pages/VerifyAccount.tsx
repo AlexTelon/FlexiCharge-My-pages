@@ -2,7 +2,7 @@ import { Button, TextField, Grid, Box } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../components/pageValidation/verifyValidation";
+import { ValidationForm } from "../utils/pageValidation/verifyValidation";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { Redirect, Link } from "react-router-dom";
