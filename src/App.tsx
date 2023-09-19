@@ -1,4 +1,5 @@
 import "./App.css";
+//hello
 import Login from "./pages/Login";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import Register from "./pages/Register";
@@ -14,7 +15,7 @@ import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   const isLoggedIn = AuthService.getCurrentUser() ? true : false;
-  
+
   let redirectPath = "/sign-in";
   if (isLoggedIn) {
     redirectPath = "/profile";
@@ -30,7 +31,7 @@ function App() {
             </Route>
 
             <Route path="/sign-in">
-              {isLoggedIn ? <Redirect to="/profile" /> : () => <Login /> }
+              {isLoggedIn ? <Redirect to="/profile" /> : () => <Login />}
             </Route>
 
             <Route path="/profile">
