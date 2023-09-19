@@ -11,6 +11,7 @@ import AuthService from "../components/AuthService";
 import ProfileFormHandling from "./profileTab/ProfileFormHandling";
 import UpdateProfileButton from "./profileTab/UpdateProfileButton";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
+import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -170,9 +171,11 @@ export default function BasicTabs() {
       <TabPanel value={value} index={0}>
         <InvoicesTab UserId={userId} />
       </TabPanel>
+
       <TabPanel value={value} index={1}>
-        
+        <ChargingTab/>
       </TabPanel>
+
       <TabPanel value={value} index={2}>
         <UpdateProfileButton
           classes={classes}
