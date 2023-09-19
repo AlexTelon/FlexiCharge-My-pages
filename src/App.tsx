@@ -12,6 +12,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ConfirmForgotPassword from "./pages/ConfirmForgotPassword";
 import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
+import NotFound from "./pages/NotFound";
+
+
 
 function App() {
   const isLoggedIn = AuthService.getCurrentUser() ? true : false;
@@ -48,9 +51,8 @@ function App() {
             <Route path="/change-password" component={ChangePassword} />
             <Route path="/charging-sessions" component={ChargingSessions} />
 
-            {/* Add a catch-all route for 404 */}
             <Route path="*">
-              <Redirect to="/" />
+              <NotFound />
             </Route>
           </Switch>
         </BrowserRouter>
