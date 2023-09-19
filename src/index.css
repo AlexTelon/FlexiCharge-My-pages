@@ -14,13 +14,13 @@ code {
 
 @font-face {
   font-family: "TitleFont";
-  src: url("./fonts/TeXGyreAdventor-Bold.eot");
-  src: url("./fonts/TeXGyreAdventor-Bold.eot?#iefix")
+  src: url("./utils/fonts/TeXGyreAdventor-Bold.eot");
+  src: url("./utils/fonts/TeXGyreAdventor-Bold.eot?#iefix")
       format("embedded-opentype"),
-    url("./fonts/TeXGyreAdventor-Bold.svg#TeXGyreAdventor-Bold") format("svg"),
-    url("./fonts/TeXGyreAdventor-Bold.ttf") format("truetype"),
-    url("./fonts/TeXGyreAdventor-Bold.svg") format("woff"),
-    url("./fonts/TeXGyreAdventor-Bold.woff2") format("woff2");
+    url("./utils/fonts/TeXGyreAdventor-Bold.svg#TeXGyreAdventor-Bold") format("svg"),
+    url("./utils/fonts/TeXGyreAdventor-Bold.ttf") format("truetype"),
+    url("./utils/fonts/TeXGyreAdventor-Bold.svg") format("woff"),
+    url("./utils/fonts/TeXGyreAdventor-Bold.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }

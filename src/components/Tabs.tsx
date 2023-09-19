@@ -4,12 +4,12 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import useStyles from "../components/styles/profileStyles";
-import ProfileInformation from "../components/ProfileInformation";
+import ProfileInformation from "./profileTab/ProfileInformation";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
-import ProfileFormHandling from "../components/ProfileFormHandling";
-import UpdateProfileButton from "../components/UpdateProfileButton";
+import ProfileFormHandling from "./profileTab/ProfileFormHandling";
+import UpdateProfileButton from "./profileTab/UpdateProfileButton";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 
 interface TabPanelProps {
@@ -137,7 +137,7 @@ export default function BasicTabs() {
     color: "#333 !important",
   };
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto" }}>
       <Box sx={{ borderBottom: 10, borderColor: "#e5e5e5" }}>
         <Tabs
           variant="fullWidth"
