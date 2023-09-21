@@ -1,32 +1,20 @@
-name: Run Tests
 
-on:
-  push:
-    branches:
-      - '*'  # Trigger on all branches
-
+on: push
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  test:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: 18  # Use the Node.js version you need
+        node-version: 16
+    - run: npm install-ci-test
+    - uses:
 
-    - name: Install dependencies
-      run: |
-        npm install -g create-react-app
-        cd flexicharge  # Navigate to your project directory
-        npm install
-      working-directory: ./FlexiCharge-My-pages
-
-    - name: Run Tests
-      run: |
-        cd flexicharge  # Navigate to your project directory
-        npm test
-      working-directory: ./FlexiCharge-My-pages
+  publish:
+    needs: [test]
+    steps:
+    - uses: actions/checkout@v3
