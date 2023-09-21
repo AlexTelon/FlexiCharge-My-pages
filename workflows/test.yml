@@ -1,0 +1,32 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - '*'  # Trigger on all branches
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18  # Use the Node.js version you need
+
+    - name: Install dependencies
+      run: |
+        npm install -g create-react-app
+        cd flexicharge  # Navigate to your project directory
+        npm install
+      working-directory: ./FlexiCharge-My-pages
+
+    - name: Run Tests
+      run: |
+        cd flexicharge  # Navigate to your project directory
+        npm test
+      working-directory: ./FlexiCharge-My-pages
