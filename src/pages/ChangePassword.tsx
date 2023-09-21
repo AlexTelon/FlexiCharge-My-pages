@@ -4,7 +4,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import LockTwoToneIcon from "@mui/icons-material/LockTwoTone";
 import { Redirect, Link } from "react-router-dom";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../components/pageValidation/validation";
+import { ValidationForm } from "../utils/pageValidation/validation";
 import useStyles from "../components/styles/changePasswordStyles";
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
 import Logout from "@mui/icons-material/Logout";

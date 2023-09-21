@@ -1,4 +1,4 @@
-import {checkValidate} from "../components/pageValidation/checkValidate"
+import {checkValidate} from "../utils/pageValidation/checkValidate"
 
 let initialFormValues = {
     username: "",
