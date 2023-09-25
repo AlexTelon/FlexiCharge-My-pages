@@ -55,17 +55,16 @@ export default function BasicTable() {
         setrpg(parseInt(event.target.value, 10));
         setpg(0);
     }
+
   const classes = useStyles();
+
   return (
     <TableContainer component={Paper} className={classes.maxHeight}>
       <Table sx={{ minWidth: 650 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Date
-            <TableSortLabel className={classes.tableSortLabel}></TableSortLabel>
-            </StyledTableCell>
-            <StyledTableCell align="center">
-            Electricity transerred (kWh)</StyledTableCell>
+            <StyledTableCell>Date</StyledTableCell>
+            <StyledTableCell align="center">Electricity transerred (kWh)</StyledTableCell>
             <StyledTableCell align="center">Price (SEK/kWh)</StyledTableCell>
             <StyledTableCell align="center">Location</StyledTableCell>
             <StyledTableCell align="right">Total Costs (SEK)</StyledTableCell>

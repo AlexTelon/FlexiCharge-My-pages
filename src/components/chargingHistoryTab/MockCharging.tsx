@@ -2,9 +2,8 @@
 
 const MockCharging = () => {
 
-    var chargingHistory = []
-
-    const charging1 = {
+    var chargingHistory = [
+ {
         id : "1231",
         year : "2021",
         month : "03",
@@ -14,8 +13,8 @@ const MockCharging = () => {
         location: "Per Brahe, Parkeringshus, Jönköping",
         costs: 96,
         paid: true
-    }
-    const charging2 = {
+    },
+ {
         id : "1234",
         year : "2021",
         month : "03",
@@ -25,8 +24,8 @@ const MockCharging = () => {
         location: "Asecs Röd Entre, Jönköping",
         costs: 147,
         paid: false,
-    }
-    const charging3 = {
+    },
+ {
         id : "1235",
         year : "2021",
         month : "04",
@@ -36,8 +35,8 @@ const MockCharging = () => {
         location: "Per Brahe, Parkeringshus, Jönköping",
         costs: 112.5,
         paid: true,
-    }
-    const charging4 = {
+    },
+   {
         id : "1236",
         year : "2021",
         month : "03",
@@ -47,8 +46,8 @@ const MockCharging = () => {
         location: "Sjukhusgatan, Jönköping",
         costs: 140,
         paid: true,
-    }
-    const charging5 = {
+    },
+   {
         id : "1237",
         year : "2022",
         month : "03",
@@ -58,9 +57,9 @@ const MockCharging = () => {
         location: "Sjukhusgatan, Jönköping",
         costs: 150,
         paid: true,
-    }
+    },
     
-    const charging6 = {
+   {
         id : "1238",
         year : "2021",
         month : "05",
@@ -70,9 +69,9 @@ const MockCharging = () => {
         location: "Ekhagsringen, Jönköping",
         costs: 140,
         paid: true,
-    }
+    },
     
-    const charging7 = {
+  {
         id : "1239",
         year : "2022",
         month : "08",
@@ -82,9 +81,9 @@ const MockCharging = () => {
         location: "Jönköping",
         costs: 120,
         paid: true,
-    }
+    },
     
-    const charging8 = {
+  {
         id : "1240",
         year : "2021",
         month : "10",
@@ -94,8 +93,8 @@ const MockCharging = () => {
         location: "Sjukhusgatan, Jönköping",
         costs: 140,
         paid: true,
-    }
-    const charging9 = {
+    },
+ {
         id : "1241",
         year : "2022",
         month : "03",
@@ -106,17 +105,7 @@ const MockCharging = () => {
         costs: 140,
         paid: true,
     }
-    
-    
-    chargingHistory.push(charging1)
-    chargingHistory.push(charging2)
-    chargingHistory.push(charging3)
-    chargingHistory.push(charging4)
-    chargingHistory.push(charging5)
-    chargingHistory.push(charging6)
-    chargingHistory.push(charging7)
-    chargingHistory.push(charging8)
-    chargingHistory.push(charging9)
+]
     
  
 
