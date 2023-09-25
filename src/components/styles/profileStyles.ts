@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
       height: "88vh",
+      overflow: "auto",
       maxWidth: "96%",
       margin: "100px auto",
       marginTop: "10vh",
