@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://18.202.253.30:8080/auth/";
 
+
+
 class AuthService {
   login(username: string, password: string) {
     return axios
@@ -63,7 +65,7 @@ class AuthService {
 
     axios(config)
       .then(function (response: any) {
-        console.log(JSON.stringify(response.data));
+        return JSON.parse(response.data)
       })
       .catch(function (error: any) {
         console.log(error);
@@ -73,7 +75,7 @@ class AuthService {
   updateUserProfile(
     newFirstName: string,
     newLastName: string,
-    newPhoneNumber: string,
+    newPhoneNumber: String,
     newStreetAddress: string,
     newZipCode: string,
     newCity: string,
@@ -126,6 +128,7 @@ class AuthService {
   getCurrentUser() {
     const userStr = localStorage.getItem("user");
     if (userStr) return JSON.parse(userStr);
+    
 
     return null;
   }

@@ -24,7 +24,7 @@ const Profile = () => {
     if (!currentUser) {
       history.push("/sign-in");
     } else {
-      setFirstName(currentUser.firstName);
+      setFirstName(firstName);
       setFamilytName(currentUser.lastName);
       setEmail(currentUser.email);
       setPhoneNumber(currentUser.phoneNumber);

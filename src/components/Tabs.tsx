@@ -46,49 +46,49 @@ function allyProps(index: number) {
 }
 
 export default function BasicTabs() {
-  const currentUser = AuthService.getUpdatedUserProfile();
+  const currentUser = AuthService.getCurrentUser();
 
   const inputFieldValues = [
     {
       name: "firstName",
       label: "First name: ",
-      descript: "Sebastian",
+      descript: currentUser.firstName,
       id: "firstName",
     },
     {
       name: "lastName",
       label: "Last name: ",
-      descript: "Zeed",
+      descript: currentUser.lastName,
       id: "lastName",
     },
     {
       name: "phoneNumber",
       label: "Phone Number: ",
-      descript: "+46731234456",
+      descript: currentUser.phoneNumber,
       id: "phoneNumber",
     },
     {
       name: "streetAddress",
       label: "Street address: ",
-      descript: "Banarpsgatan 6",
+      descript: currentUser.Adress,
       id: "streetAddress",
     },
     {
       name: "zipCode",
       label: "Zip code: ",
-      descript: "55312",
+      descript: currentUser.zipCode,
       id: "zipCode",
     },
     {
       name: "city",
       label: "City: ",
-      descript: "Jönköping",
+      descript: currentUser.city,
       id: "city",
     },
     {
       name: "country",
       label: "Country: ",
-      descript: "Sweden",
+      descript: currentUser.country,
       id: "country",
     },
   ];
@@ -122,7 +122,7 @@ export default function BasicTabs() {
       setUserName(currentUser.username);
       setuserId(currentUser.user_id);
     }
-  }, []);
+  }, [currentUser]);
   console.log(inputFieldValues);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
