@@ -147,6 +147,7 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
           orientation="vertical"
+          sx={{ position: "sticky", top: "0", left: "0", width: "100%" }}
         >
           <Tab
             sx={{
