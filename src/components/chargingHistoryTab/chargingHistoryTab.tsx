@@ -64,7 +64,7 @@ export default function BasicTable() {
         <TableHead>
           <TableRow>
             <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell align="center">Electricity transerred (kWh)</StyledTableCell>
+            <StyledTableCell align="center">Electricity transferred (kWh)</StyledTableCell>
             <StyledTableCell align="center">Price (SEK/kWh)</StyledTableCell>
             <StyledTableCell align="center">Location</StyledTableCell>
             <StyledTableCell align="right">Total Costs (SEK)</StyledTableCell>
