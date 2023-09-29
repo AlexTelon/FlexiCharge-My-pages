@@ -134,7 +134,7 @@ export default function BasicTabs() {
     height: "100px",
     border: "none !important",
     "&:active": { color: "#78bd76 !important" },
-    "&:focus": { color: "#78bd76 !important" },
+    "&:focus": { color: "#78bd76 !important", outline: "none" },
     color: "#333 !important",
   };
   return (
