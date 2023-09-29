@@ -130,7 +130,7 @@ export default function BasicTabs() {
     setValue(newValue);
   };
   const customStyles = {
-    fontSize: "28px",
+    fontSize: "14px",
     height: "100px",
     border: "none !important",
     "&:active": { color: "#78bd76 !important" },
@@ -138,14 +138,15 @@ export default function BasicTabs() {
     color: "#333 !important",
   };
   return (
-    <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto" }}>
-      <Box sx={{ borderBottom: 10, borderColor: "#e5e5e5" }}>
+    <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
+      <Box>
         <Tabs
           variant="fullWidth"
           TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          orientation="vertical"
         >
           <Tab
             sx={{
@@ -154,7 +155,7 @@ export default function BasicTabs() {
             label="Invoices"
             {...allyProps(0)}
           />
-                    <Tab
+          <Tab
             sx={{
               ...customStyles,
             }}
@@ -168,30 +169,32 @@ export default function BasicTabs() {
           />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        <InvoicesTab UserId={userId} />
-      </TabPanel>
+      <Box>
+        <TabPanel value={value} index={0}>
+          <InvoicesTab UserId={userId} />
+        </TabPanel>
 
-      <TabPanel value={value} index={1}>
-        <ChargingTab/>
-      </TabPanel>
+        <TabPanel value={value} index={1}>
+          <ChargingTab/>
+        </TabPanel>
 
-      <TabPanel value={value} index={2}>
-        <UpdateProfileButton
-          classes={classes}
-          onClick={(e: any) => e.setIsOpen(true)}
-        />
-        {inputFieldValues.map((inputFieldValue, index) => {
-          return (
-            <ProfileInformation
-              key={index}
-              label={inputFieldValue.label}
-              descript={inputFieldValue.descript}
-            />
-          );
-        })}
-        <ProfileFormHandling classes={classes} />
-      </TabPanel>
+        <TabPanel value={value} index={2}>
+          <UpdateProfileButton
+            classes={classes}
+            onClick={(e: any) => e.setIsOpen(true)}
+          />
+          {inputFieldValues.map((inputFieldValue, index) => {
+            return (
+              <ProfileInformation
+                key={index}
+                label={inputFieldValue.label}
+                descript={inputFieldValue.descript}
+              />
+            );
+          })}
+          <ProfileFormHandling classes={classes} />
+        </TabPanel>
+      </Box>
     </Box>
   );
 }
