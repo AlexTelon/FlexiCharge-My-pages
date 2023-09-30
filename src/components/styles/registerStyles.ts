@@ -50,8 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         transform: "translateY(2px)",
         boxShadow: theme.flexiCharge.boxShadow.button,
-        backgroundColor: theme.palette.primary.main,
-        color: theme.flexiCharge.primary.white,
+        backgroundColor: theme.flexiCharge.primary.green,
       },
       marginTop: "48px",
       marginBottom: "32px",
@@ -59,6 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
+      color: theme.flexiCharge.primary.white,
       fontFamily:theme.flexiCharge.font.h5.fontFamily,
       fontSize:theme.flexiCharge.font.h5.fontSize,
       textTransform: "none",
