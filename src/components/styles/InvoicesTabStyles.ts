@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
       },
 
       downloadInvoiceButton: {
-        backgroundColor: "#78bd76",
-        color: "#333",
+        backgroundColor: theme.flexiCharge.primary.green,
+        color: theme.flexiCharge.primary.white,
         width: "100%",
         padding: "10px",
         fontSize: "12px",
