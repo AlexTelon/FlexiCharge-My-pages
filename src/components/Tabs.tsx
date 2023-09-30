@@ -4,13 +4,14 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import useStyles from "../components/styles/profileStyles";
-import ProfileInformation from "../components/ProfileInformation";
+import ProfileInformation from "./profileTab/ProfileInformation";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
-import ProfileFormHandling from "../components/ProfileFormHandling";
-import UpdateProfileButton from "../components/UpdateProfileButton";
+import ProfileFormHandling from "./profileTab/ProfileFormHandling";
+import UpdateProfileButton from "./profileTab/UpdateProfileButton";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
+import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -137,7 +138,7 @@ export default function BasicTabs() {
     color: "#333 !important",
   };
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto" }}>
       <Box sx={{ borderBottom: 10, borderColor: "#e5e5e5" }}>
         <Tabs
           variant="fullWidth"
@@ -153,17 +154,29 @@ export default function BasicTabs() {
             label="Invoices"
             {...allyProps(0)}
           />
+                    <Tab
+            sx={{
+              ...customStyles,
+            }}
+            label="Charging History"
+            {...allyProps(1)}
+          />
           <Tab
             sx={{ ...customStyles, border: 0 }}
             label="Profile"
-            {...allyProps(1)}
+            {...allyProps(2)}
           />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         <InvoicesTab UserId={userId} />
       </TabPanel>
+
       <TabPanel value={value} index={1}>
+        <ChargingTab/>
+      </TabPanel>
+
+      <TabPanel value={value} index={2}>
         <UpdateProfileButton
           classes={classes}
           onClick={(e: any) => e.setIsOpen(true)}

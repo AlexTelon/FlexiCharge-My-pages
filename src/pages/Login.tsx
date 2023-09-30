@@ -6,7 +6,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
-import { ValidationForm } from "../components/pageValidation/loginValidation";
+import { ValidationForm } from "../utils/pageValidation/loginValidation";
 import useStyles from "../components/styles/loginStyles";
 
 
