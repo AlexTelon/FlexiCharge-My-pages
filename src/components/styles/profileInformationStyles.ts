@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.primary.main,
         color: theme.flexiCharge.primary.white,
       },
-      backgroundColor: theme.flexiCharge.primary.green,
+      backgroundColor: theme.flexiCharge.primary.yellow,
+      color: theme.flexiCharge.primary.white,
       marginRight: "28px",
       padding: "12px 24px ",
     },
@@ -63,6 +64,8 @@ const useStyles = makeStyles((theme: Theme) =>
         boxShadow: "0px 2px 2px #000",
         color: theme.flexiCharge.primary.white,
       },
+      backgroundColor: theme.flexiCharge.primary.red,
+      color: theme.flexiCharge.primary.white,
       padding: "12px 24px ",
     },
   })
