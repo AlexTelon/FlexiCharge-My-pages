@@ -48,8 +48,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     deleteButton: {
-      backgroundColor: "#ef6048",
-      color: "#333",
+      backgroundColor: theme.flexiCharge.primary.red,
+      color: theme.flexiCharge.primary.white,
       width: "250px",
       padding: "10px",
       fontSize: "12px",
@@ -61,8 +61,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     changePasswordButton: {
-      backgroundColor: "#78bd76",
-      color: "#333",
+      backgroundColor: theme.flexiCharge.primary.green,
+      color: theme.flexiCharge.primary.white,
       width: "250px",
       padding: "10px",
       fontSize: "12px",
@@ -87,8 +87,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     editInformationButton: {
-      backgroundColor: theme.flexiCharge.accent.warning,
-      color: "#333",
+      backgroundColor: theme.flexiCharge.primary.yellow,
+      color: theme.flexiCharge.primary.white,
       width: "250px",
       padding: "10px",
       fontSize: "12px",
