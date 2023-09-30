@@ -5,26 +5,20 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       margin: "32px auto",
       display: "grid",
-      width: "33%",
-      gridTemplateColumns: "1fr 3fr 1fr",
-      
+      width: "80%",
+      gridTemplateColumns: "10fr 1fr 10fr",
     },
 
     profileElements: {
-      gridColumn: "1/2",
       fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
-      alignSelf: "end",
-      justifySelf: "start",
-      
-
+      justifySelf: "end",
     },
 
     description: {
-      gridColumn: "2/3",
       fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
-      alignSelf: "end",
+      justifySelf: "start",
 
     },
 
