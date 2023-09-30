@@ -3,15 +3,19 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Logout from "@mui/icons-material/Logout";
 import useStyles from "../components/styles/profileStyles";
 import ProfileInformation from "./profileTab/ProfileInformation";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import ProfileFormHandling from "./profileTab/ProfileFormHandling";
 import UpdateProfileButton from "./profileTab/UpdateProfileButton";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
+import FlexiChargeLogo from "../assets/header-profile.svg";
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -138,37 +142,46 @@ export default function BasicTabs() {
     color: "#333 !important",
   };
   return (
-    <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
+    <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
       <Box>
-        <Tabs
-          variant="fullWidth"
-          TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-          orientation="vertical"
-          sx={{ position: "sticky", top: "0", left: "0", width: "100%" }}
-        >
-          <Tab
-            sx={{
-              ...customStyles,
-            }}
-            label="Invoices"
-            {...allyProps(0)}
-          />
-          <Tab
-            sx={{
-              ...customStyles,
-            }}
-            label="Charging History"
-            {...allyProps(1)}
-          />
-          <Tab
-            sx={{ ...customStyles, border: 0 }}
-            label="Profile"
-            {...allyProps(2)}
-          />
-        </Tabs>
+        <Box sx={{ height: "100%", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <img className={classes.navLogo} src={FlexiChargeLogo} />
+
+          <Tabs
+            variant="fullWidth"
+            TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            orientation="vertical"
+            sx={{ width: "100%", flexGrow: "1" }}
+          >
+            <Tab
+              sx={{
+                ...customStyles,
+              }}
+              label="Invoices"
+              {...allyProps(0)}
+            />
+            <Tab
+              sx={{
+                ...customStyles,
+              }}
+              label="Charging History"
+              {...allyProps(1)}
+            />
+            <Tab
+              sx={{ ...customStyles }}
+              label="Profile"
+              {...allyProps(2)}
+            />
+          </Tabs>
+
+          <Link to="/sign-in" className={classes.logoutButton}>
+            <Logout style={{ color: "#78bd76", marginRight: "1vh" }} fontSize="large" />
+            Sign Out
+          </Link>
+        </Box>
       </Box>
       <Box>
         <TabPanel value={value} index={0}>

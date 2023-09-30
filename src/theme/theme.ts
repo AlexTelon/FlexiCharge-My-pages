@@ -50,6 +50,9 @@ declare module "@material-ui/core/styles/createTheme" {
         button: string;
       };
       gradient: string;
+      margin: {
+        marginDistance: string;
+      };
     };
   }
   interface ThemeOptions {
@@ -99,6 +102,9 @@ declare module "@material-ui/core/styles/createTheme" {
         button: string;
       };
       gradient: string;
+      margin: {
+        marginDistance: string;
+      };
     };
   }
 }
@@ -177,6 +183,9 @@ const flexiChargeTheme = createTheme({
     },
     gradient:
       "linear-gradient(90deg, rgba(240,194,0,1) 0%, rgba(208,195,48,1) 15%, rgba(120,219,118,1) 80%, rgba(64,156,104,1) 100%)",
+    margin: {
+      marginDistance: "2vh"
+    },
   },
 });
 

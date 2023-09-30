@@ -3,13 +3,12 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
-      height: "88vh",
+      height: "100vh",
       overflow: "auto",
-      maxWidth: "96%",
+      maxWidth: "100%",
       margin: "100px auto",
-      marginTop: "10vh",
+      marginTop: "0vh",
       backgroundColor: theme.flexiCharge.primary.white,
-      borderRadius: "10px",
     },
 
     container: {
@@ -80,10 +79,10 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "fixed",
     },
     navLogo: {
-      width: "15%",
-      marginTop: "1vh",
-      marginLeft: "5vw",
+      width: "100%",
+      padding: theme.flexiCharge.margin.marginDistance,
       float: "left",
+      marginBottom: theme.flexiCharge.margin.marginDistance,
     },
 
     editInformationButton: {
@@ -100,16 +99,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     logoutButton: {
-      float: "right",
-      marginTop: "1.5vh",
-      marginRight: "5vw",
+      marginBottom: theme.flexiCharge.margin.marginDistance,
       fontFamily: theme.flexiCharge.font.h5.fontFamily,
       fontSize: theme.flexiCharge.font.h5.fontSize,
-      color: theme.flexiCharge.primary.white,
+      color: theme.flexiCharge.primary.grey,
       textDecoration: "none",
       "&:hover": {
         transform: "translateY(2px)",
-        color: theme.flexiCharge.primary.white,
+        color: theme.flexiCharge.primary.grey,
       },
     },
   })
