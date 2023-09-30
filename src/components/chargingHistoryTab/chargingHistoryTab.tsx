@@ -10,19 +10,22 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
-import useStyles from "./chargingHistoryTabStyles";
+import useStyles from "../styles/chargingHistoryTabStyles";
 import MockCharging from "./MockCharging";
 
 
 import TablePagination from "@mui/material/TablePagination";
+
+import { Theme } from "@material-ui/core/styles";
 
 
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
+    fontWeight: "bold",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -59,25 +62,24 @@ export default function BasicTable() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} className={classes.maxHeight}>
+    <TableContainer component={Paper} className={classes.tableContainer}>
       <Table sx={{ minWidth: 650 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell align="center">Electricity transerred (kWh)</StyledTableCell>
+            <StyledTableCell align="center">Electricity transferred (kWh)</StyledTableCell>
             <StyledTableCell align="center">Price (SEK/kWh)</StyledTableCell>
             <StyledTableCell align="center">Location</StyledTableCell>
             <StyledTableCell align="right">Total Costs (SEK)</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>    
-        {charges.slice(pg * rpg, pg *
-                            rpg + rpg).map((charges) => (
+        {charges.slice(pg * rpg, pg * rpg + rpg).map((charges) => (
             <TableRow
               key={charges.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" style={{ whiteSpace: "nowrap" }}>
                 {charges.year}-{charges.month}-{charges.day}
               </TableCell>
               
@@ -90,14 +92,14 @@ export default function BasicTable() {
         </TableBody>
       </Table>
       <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={charges.length}
-                rowsPerPage={rpg}
-                page={pg}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={charges.length}
+        rowsPerPage={rpg}
+        page={pg}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </TableContainer>
   );
 }
