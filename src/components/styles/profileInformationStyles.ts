@@ -51,8 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
     changebutton: {
       "&:hover": {
         boxShadow: "0px 2px 2px #000",
-        backgroundColor: theme.palette.primary.main,
-        color: theme.flexiCharge.primary.white,
+        backgroundColor: theme.flexiCharge.primary.yellow,
       },
       backgroundColor: theme.flexiCharge.primary.yellow,
       color: theme.flexiCharge.primary.white,
@@ -62,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
     cancelbutton: {
       "&:hover": {
         boxShadow: "0px 2px 2px #000",
-        color: theme.flexiCharge.primary.white,
+        backgroundColor: theme.flexiCharge.primary.red,
       },
       backgroundColor: theme.flexiCharge.primary.red,
       color: theme.flexiCharge.primary.white,
