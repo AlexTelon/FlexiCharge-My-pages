@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     changePasswordButton: {
-      backgroundColor: theme.flexiCharge.primary.green,
+      backgroundColor: theme.flexiCharge.primary.yellow,
       color: theme.flexiCharge.primary.white,
       width: "250px",
       padding: "10px",
