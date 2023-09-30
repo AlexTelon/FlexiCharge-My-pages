@@ -16,14 +16,11 @@ import MockCharging from "./MockCharging";
 
 import TablePagination from "@mui/material/TablePagination";
 
-import { Theme } from "@material-ui/core/styles";
-
-
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: "#e5e5e5",
     color: theme.palette.common.black,
     fontWeight: "bold",
   },
