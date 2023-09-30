@@ -36,7 +36,9 @@ declare module "@material-ui/core/styles/createTheme" {
         lightGrey: string;
         white: string;
         green: string;
+        yellow: string;
         blue: string;
+        red: string;
       };
       accent: {
         primary: string;
@@ -86,7 +88,9 @@ declare module "@material-ui/core/styles/createTheme" {
         lightGrey: string;
         white: string;
         green: string;
+        yellow: string;
         blue: string;
+        red: string;
       };
       accent: {
         primary: string;
@@ -163,7 +167,10 @@ const flexiChargeTheme = createTheme({
       lightGrey: "#e5e5e5",
       white: "#ffffff",
       green: "#78bd76",
+      yellow: "f0c200",
       blue: "#5e5eb7",
+      red: "ef6048",
+
     },
     accent: {
       primary: "#78bd76",
