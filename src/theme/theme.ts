@@ -167,9 +167,9 @@ const flexiChargeTheme = createTheme({
       lightGrey: "#e5e5e5",
       white: "#ffffff",
       green: "#78bd76",
-      yellow: "f0c200",
+      yellow: "#f0c200",
       blue: "#5e5eb7",
-      red: "ef6048",
+      red: "#ef6048",
 
     },
     accent: {
