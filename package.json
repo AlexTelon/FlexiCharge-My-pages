@@ -20,7 +20,7 @@
         "@types/react-dom": "^17.0.0",
         "@types/react-router-dom": "^5.1.9",
         "axios": "^0.21.4",
-        "create-react-app": "^5.0.1",
+        "create-react-app": "^1.2.1",
         "react": "^17.0.2",
         "react-blur": "^1.1.1",
         "react-dom": "^17.0.2",
