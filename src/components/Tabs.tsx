@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import ProfileFormHandling from "./profileTab/ProfileFormHandling";
 import UpdateProfileButton from "./profileTab/UpdateProfileButton";
+import Title from "./Title";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
 import FlexiChargeLogo from "../assets/header-profile.svg";
@@ -25,6 +26,7 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
+  const classes = useStyles();
 
   return (
     <div
@@ -35,7 +37,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box className={classes.tabPanel}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -185,14 +187,17 @@ export default function BasicTabs() {
       </Box>
       <Box>
         <TabPanel value={value} index={0}>
+          <Title text="Invoices" />
           <InvoicesTab UserId={userId} />
         </TabPanel>
 
         <TabPanel value={value} index={1}>
+          <Title text="Charging History" />
           <ChargingTab/>
         </TabPanel>
 
         <TabPanel value={value} index={2}>
+          <Title text="Profile" />
           <UpdateProfileButton
             classes={classes}
             onClick={(e: any) => e.setIsOpen(true)}

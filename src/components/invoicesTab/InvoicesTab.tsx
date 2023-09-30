@@ -98,7 +98,7 @@ const InvoicesList = ({invoices} : {invoices:invoices}) => {
     
     
     return (
-        <List>
+        <List sx={{ padding: "0" }}>
             {invoices.map((invoice) => (
                 <InvoicesListItem key = {invoice.id} invoice = {invoice}/>
             ))}

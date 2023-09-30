@@ -109,6 +109,10 @@ const useStyles = makeStyles((theme: Theme) =>
         color: theme.flexiCharge.primary.grey,
       },
     },
+
+    tabPanel: {
+      padding: theme.flexiCharge.margin.marginDistance,
+    }
   })
 );
 
