@@ -146,7 +146,7 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
       <Box>
-        <Box sx={{ height: "100%", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <img className={classes.navLogo} src={FlexiChargeLogo} />
 
           <Tabs
