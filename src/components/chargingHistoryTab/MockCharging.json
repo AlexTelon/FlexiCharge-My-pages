@@ -99,5 +99,27 @@
         "location": "Per Brahe, Parkeringshus, Jönköping",
         "costs": 140,
         "paid": true
+    },
+    {
+        "id" : "1242",
+        "year" : "2022",
+        "month" : "11",
+        "day": "23",
+        "kWh": 100,
+        "price": 1.4,
+        "location": "Sjukhusgatan, Jönköping",
+        "costs": 140,
+        "paid": true
+    },
+    {
+        "id" : "1243",
+        "year" : "2020",
+        "month" : "12",
+        "day": "30",
+        "kWh": 100,
+        "price": 1.4,
+        "location": "Sjukhusgatan, Jönköping",
+        "costs": 140,
+        "paid": true
     }
 ]
