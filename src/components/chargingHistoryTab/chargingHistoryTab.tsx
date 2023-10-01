@@ -1,109 +1,316 @@
-import { Accordion, AccordionDetails, AccordionSummary, Divider, FormControlLabel, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material"
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
-import useStyles from "./chargingHistoryTabStyles";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { visuallyHidden } from '@mui/utils';
 import MockCharging from "./MockCharging";
 
+interface Data {
+  date: string;
+  electricitytransferred: number;
+  price: number;
+  location: string;
+  totalcosts: number;
+}
 
-import TablePagination from "@mui/material/TablePagination";
+function createData(
+  date: string,
+  electricitytransferred: number,
+  price: number,
+  location: string,
+  totalcosts: number
+): Data {
+  return {
+    date,
+    electricitytransferred,
+    price,
+    location,
+    totalcosts
+  };
+}
 
+const rows = [
+  createData('2021-09-30', 20, 1.3, "AB", 10),
+  createData('2021-10-27', 30, 0.7, "CD", 90),
+  createData('2021-10-18', 100, 1.25, "EF", 80),
+  createData('2021-09-16', 10, 1.5, "GH", 85),
+  createData('2021-08-29', 15, 1.6, "GI", 125),
+  createData('2021-08-01', 75, 1.95, "JK", 90),
+  createData('2021-07-31', 20, 1.5, "LM", 83),
+];
 
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
 
+type Order = 'asc' | 'desc';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+function getComparator<Key extends keyof any>(
+  order: Order,
+  orderBy: Key,
+): (
+  a: { [key in Key]: number | string },
+  b: { [key in Key]: number | string },
+) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-const charges = MockCharging();
-
-
-
-export default function BasicTable() {
-  const [pg, setpg] = React.useState(0);
-    const [rpg, setrpg] = React.useState(5);
-  
-    function handleChangePage(event:any, newpage:any) {
-        setpg(newpage);
+function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) {
+      return order;
     }
-  
-    function handleChangeRowsPerPage(event:any) {
-        setrpg(parseInt(event.target.value, 10));
-        setpg(0);
-    }
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
 
-  const classes = useStyles();
+interface HeadCell {
+  id: keyof Data;
+  label: string;
+  numeric: boolean;
+}
+
+const headCells: readonly HeadCell[] = [
+  {
+    id: 'date',
+    numeric: false,
+    label: 'Date',
+  },
+  {
+    id: 'electricitytransferred',
+    numeric: true,
+    label: 'Electricity Transferred',
+  },
+  {
+    id: 'price',
+    numeric: true,
+    label: 'Price (SEK/kWh)',
+  },
+  {
+    id: 'location',
+    numeric: false,
+    label: 'Location',
+  },
+  {
+    id: 'totalcosts',
+    numeric: true,
+    label: 'Total Costs (SEK)',
+  },
+];
+
+interface EnhancedTableProps {
+  numSelected: number;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  order: Order;
+  orderBy: string;
+  rowCount: number;
+}
+
+function EnhancedTableHead(props: EnhancedTableProps) {
+  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+    props;
+  const createSortHandler =
+    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+      onRequestSort(event, property);
+    };
 
   return (
-    <TableContainer component={Paper} className={classes.maxHeight}>
-      <Table sx={{ minWidth: 650 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell align="center">Electricity transerred (kWh)</StyledTableCell>
-            <StyledTableCell align="center">Price (SEK/kWh)</StyledTableCell>
-            <StyledTableCell align="center">Location</StyledTableCell>
-            <StyledTableCell align="right">Total Costs (SEK)</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>    
-        {charges.slice(pg * rpg, pg *
-                            rpg + rpg).map((charges) => (
-            <TableRow
-              key={charges.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+    <TableHead>
+      <TableRow>
+        {headCells.map((headCell) => (
+          <TableCell
+            key={headCell.id}
+            align={headCell.numeric ? 'right' : 'left'}
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
             >
-              <TableCell component="th" scope="row">
-                {charges.year}-{charges.month}-{charges.day}
-              </TableCell>
-              
-              <TableCell align="center">{charges.kWh}</TableCell>
-              <TableCell align="center">{charges.price}</TableCell>
-              <TableCell align="center">{charges.location}</TableCell>
-              <TableCell align="right">{charges.costs}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={charges.length}
-                rowsPerPage={rpg}
-                page={pg}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-    </TableContainer>
+              {headCell.label}
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
   );
 }
 
+export default function EnhancedTable() {
+  const [order, setOrder] = React.useState<Order>('desc');
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('date');
+  const [selected, setSelected] = React.useState<readonly string[]>([]);
+  const [page, setPage] = React.useState(0);
+  const [dense, setDense] = React.useState(false);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  const handleRequestSort = (
+    event: React.MouseEvent<unknown>,
+    property: keyof Data,
+  ) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
 
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelected = rows.map((n) => n.date);
+      setSelected(newSelected);
+      return;
+    }
+    setSelected([]);
+  };
 
+  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected: readonly string[] = [];
 
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
+    }
 
+    setSelected(newSelected);
+  };
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDense(event.target.checked);
+  };
+
+  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  const visibleRows = React.useMemo(
+    () =>
+      stableSort(rows, getComparator(order, orderBy)).slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage,
+      ),
+    [order, orderBy, page, rowsPerPage],
+  );
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', mb: 2 }}>
+        <TableContainer>
+          <Table
+            sx={{ minWidth: 750 }}
+            aria-labelledby="tableTitle"
+            size={dense ? 'small' : 'medium'}
+          >
+            <EnhancedTableHead
+              numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              rowCount={rows.length}
+            />
+            <TableBody>
+              {visibleRows.map((row, index) => {
+                const isItemSelected = isSelected(row.date);
+                const labelId = `enhanced-table-checkbox-${index}`;
+
+                return (
+                  <TableRow
+                    hover
+                    onClick={(event) => handleClick(event, row.date)}
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.date}
+                    selected={isItemSelected}
+                    sx={{ cursor: 'pointer' }}
+                  >
+                    <TableCell
+                      component="th"
+                      id={labelId}
+                      scope="row"
+                      sx={{ whiteSpace: "nowrap" }}
+                    >
+                      {row.date}
+                    </TableCell>
+                    <TableCell align="right">{row.electricitytransferred}</TableCell>
+                    <TableCell align="right">{row.price}</TableCell>
+                    <TableCell align="right">{row.location}</TableCell>
+                    <TableCell align="right">{row.totalcosts}</TableCell>
+                  </TableRow>
+                );
+              })}
+              {emptyRows > 0 && (
+                <TableRow
+                  style={{
+                    height: (dense ? 33 : 53) * emptyRows,
+                  }}
+                >
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+      <FormControlLabel
+        control={<Switch checked={dense} onChange={handleChangeDense} />}
+        label="Dense padding"
+      />
+    </Box>
+  );
+}
