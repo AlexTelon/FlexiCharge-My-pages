@@ -6,22 +6,10 @@ declare module "@material-ui/core/styles/createTheme" {
     flexiCharge: {
       font: {
         _main: string;
-        Lato: string;
-        h3:{
-          fontSize: number;
-          fontFamily: string;
-        }
-        h5:{
-          fontSize: number;
-          fontFamily: string;
-        }
-        h6:{
-          fontSize: string;
-          fontFamily: string;
-        }
-        p1:{
-          fontSize: string;
-          fontFamily: string;
+        fontFamily: string;
+        fontSize: {
+          title: number;
+          bigButton: number;
         }
       };
       primary: {
@@ -53,22 +41,10 @@ declare module "@material-ui/core/styles/createTheme" {
     flexiCharge: {
       font: {
         _main: string;
-        Lato: string;
-        h3:{
-          fontSize: number;
-          fontFamily: string;
-        }
-        h5:{
-          fontSize: number;
-          fontFamily: string;
-        }
-        h6:{
-          fontSize: string;
-          fontFamily: string;
-        }
-        p1:{
-          fontSize: string;
-          fontFamily: string;
+        fontFamily: string;
+        fontSize: {
+          title: number;
+          bigButton: number;
         }
       };
       primary: {
@@ -127,22 +103,10 @@ const flexiChargeTheme = createTheme({
   flexiCharge: {
     font: {
       _main: '"Lato", sans-serif',
-      Lato: '"Lato", sans-serif',
-      h3: {
-        fontSize:48,
-        fontFamily:'"Lato", sans-serif',
-      },
-      h5: {
-        fontSize:24,
-        fontFamily:'"Lato", sans-serif',
-      },
-      h6: {
-        fontSize:"20",
-        fontFamily:'"Lato", sans-serif',
-      },
-      p1: {
-        fontSize:"16",
-        fontFamily:'"Lato", sans-serif',
+      fontFamily: '"Lato", sans-serif',
+      fontSize: {
+        title: 48,
+        bigButton: 24,
       },
     },
     primary: {

@@ -32,13 +32,12 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: "24px",
       border: "3px solid #78bd76",
       '& h1': {
-        fontFamily:theme.flexiCharge.font.h3.fontFamily,
-        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontFamily:theme.flexiCharge.font.fontFamily,
+        fontSize:theme.flexiCharge.font.fontSize.title,
         fontWeight: 800,
       },
       '& p': {
-        fontFamily:theme.flexiCharge.font.p1.fontFamily,
-        fontSize:theme.flexiCharge.font.p1.fontSize,
+        fontFamily:theme.flexiCharge.font.fontFamily,
 
       },
     },
@@ -62,8 +61,8 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
-      fontFamily:theme.flexiCharge.font.h5.fontFamily,
-      fontSize:theme.flexiCharge.font.h5.fontSize,
+      fontFamily:theme.flexiCharge.font.fontFamily,
+      fontSize:theme.flexiCharge.font.fontSize.bigButton,
       textTransform: "none",
     },
     input: {

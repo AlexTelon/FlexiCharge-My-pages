@@ -103,8 +103,8 @@ const useStyles = makeStyles((theme: Theme) =>
       float: "right",
       marginTop: "1.5vh",
       marginRight: "5vw",
-      fontFamily: theme.flexiCharge.font.h5.fontFamily,
-      fontSize: theme.flexiCharge.font.h5.fontSize,
+      fontFamily: theme.flexiCharge.font.fontFamily,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
       color: theme.flexiCharge.primary.white,
       textDecoration: "none",
       "&:hover": {
