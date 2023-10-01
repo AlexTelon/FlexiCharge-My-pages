@@ -131,7 +131,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
   return (
     <TableHead>
-      <TableRow>
+      <TableRow sx={{ backgroundColor: "#e5e5e5" }}>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -142,6 +142,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              sx={{ fontWeight: "bold" }}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
