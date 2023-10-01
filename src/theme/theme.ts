@@ -124,8 +124,8 @@ const flexiChargeTheme = createTheme({
   palette: {
     primary: {
       main: "#78bd76",
-      light: "rgb(174,223,164)",
-      dark: "#669966",
+      light: "#78bd76",
+      dark: "#78bd76",
     },
   },
   flexiCharge: {
