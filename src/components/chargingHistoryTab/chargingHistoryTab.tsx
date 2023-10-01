@@ -17,25 +17,25 @@ import MockCharging from "./MockCharging.json";
 
 interface Data {
   date: string;
-  electricitytransferred: number;
+  kWh: number;
   price: number;
   location: string;
-  totalcosts: number;
+  costs: number;
 }
 
 function createData(
   date: string,
-  electricitytransferred: number,
+  kWh: number,
   price: number,
   location: string,
-  totalcosts: number
+  costs: number
 ): Data {
   return {
     date,
-    electricitytransferred,
+    kWh,
     price,
     location,
-    totalcosts
+    costs
   };
 }
 
@@ -95,8 +95,8 @@ const headCells: readonly HeadCell[] = [
     numeric: false,
   },
   {
-    id: 'electricitytransferred',
-    label: 'Electricity Transferred',
+    id: 'kWh',
+    label: 'Electricity transferred (kWh)',
     numeric: true,
   },
   {
@@ -110,8 +110,8 @@ const headCells: readonly HeadCell[] = [
     numeric: false,
   },
   {
-    id: 'totalcosts',
-    label: 'Total Costs (SEK)',
+    id: 'costs',
+    label: 'Total costs (SEK)',
     numeric: true,
   },
 ];
@@ -231,10 +231,10 @@ export default function EnhancedTable() {
                     >
                       {row.date}
                     </TableCell>
-                    <TableCell align="right">{row.electricitytransferred}</TableCell>
+                    <TableCell align="right">{row.kWh}</TableCell>
                     <TableCell align="right">{row.price}</TableCell>
                     <TableCell align="left">{row.location}</TableCell>
-                    <TableCell align="right">{row.totalcosts}</TableCell>
+                    <TableCell align="right">{row.costs}</TableCell>
                   </TableRow>
                 );
               })}
