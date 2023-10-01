@@ -7,7 +7,7 @@ declare module "@material-ui/core/styles/createTheme" {
       font: {
         _main: string;
         Lato: string;
-        Title: string;
+        heading: string;
         h3:{
           fontSize: number;
           fontFamily: string;
@@ -57,7 +57,6 @@ declare module "@material-ui/core/styles/createTheme" {
       font: {
         _main: string;
         Lato: string;
-        Title: string;
         h3:{
           fontSize: number;
           fontFamily: string;
@@ -134,7 +133,6 @@ const flexiChargeTheme = createTheme({
     font: {
       _main: "Roboto",
       Lato: '"Lato", sans-serif',
-      Title: '"FlexiTitleFont", Roboto',
       h3: {
         fontSize:48,
         fontFamily:"Roboto",
