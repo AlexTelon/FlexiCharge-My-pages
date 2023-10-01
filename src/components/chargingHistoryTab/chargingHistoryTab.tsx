@@ -13,7 +13,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import MockCharging from "./MockCharging";
+import MockCharging from "./MockCharging.json";
 
 interface Data {
   date: string;
@@ -39,15 +39,7 @@ function createData(
   };
 }
 
-const dataRows = [
-  createData('2021-09-30', 20, 1.3, "AB", 10),
-  createData('2021-10-27', 30, 0.7, "CD", 90),
-  createData('2021-10-18', 100, 1.25, "EF", 80),
-  createData('2021-09-16', 10, 1.5, "GH", 85),
-  createData('2021-08-29', 15, 1.6, "GI", 125),
-  createData('2021-08-01', 75, 1.95, "JK", 90),
-  createData('2021-07-31', 20, 1.5, "LM", 83),
-];
+const dataRows = MockCharging.map(item => createData(item.year+"-"+item.month+"-"+item.day, item.kWh, item.price, item.location, item.costs));
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
