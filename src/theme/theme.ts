@@ -23,10 +23,6 @@ declare module "@material-ui/core/styles/createTheme" {
           fontSize: string;
           fontFamily: string;
         }
-        p2:{
-          fontSize: string;
-          fontFamily: string;
-        }
       };
       primary: {
         black: string;
@@ -71,10 +67,6 @@ declare module "@material-ui/core/styles/createTheme" {
           fontFamily: string;
         }
         p1:{
-          fontSize: string;
-          fontFamily: string;
-        }
-        p2:{
           fontSize: string;
           fontFamily: string;
         }
@@ -150,10 +142,6 @@ const flexiChargeTheme = createTheme({
       },
       p1: {
         fontSize:"16",
-        fontFamily:'"Lato", sans-serif',
-      },
-      p2: {
-        fontSize:"14",
         fontFamily:'"Lato", sans-serif',
       },
     },
