@@ -7,7 +7,6 @@ declare module "@material-ui/core/styles/createTheme" {
       font: {
         _main: string;
         Lato: string;
-        heading: string;
         h3:{
           fontSize: number;
           fontFamily: string;
