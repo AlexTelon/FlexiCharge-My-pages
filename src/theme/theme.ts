@@ -134,7 +134,7 @@ const flexiChargeTheme = createTheme({
   },
   flexiCharge: {
     font: {
-      _main: "Roboto",
+      _main: '"Lato", sans-serif',
       Lato: '"Lato", sans-serif',
       h3: {
         fontSize:48,
@@ -142,19 +142,19 @@ const flexiChargeTheme = createTheme({
       },
       h5: {
         fontSize:24,
-        fontFamily:"Roboto regular",
+        fontFamily:'"Lato", sans-serif',
       },
       h6: {
         fontSize:"20",
-        fontFamily:"Roboto medium",
+        fontFamily:'"Lato", sans-serif',
       },
       p1: {
         fontSize:"16",
-        fontFamily:"Roboto regular",
+        fontFamily:'"Lato", sans-serif',
       },
       p2: {
         fontSize:"14",
-        fontFamily:"Roboto regular",
+        fontFamily:'"Lato", sans-serif',
       },
     },
     primary: {
