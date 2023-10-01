@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100vw",
       height: "100vh",
       '& h1': {
-        fontFamily:theme.flexiCharge.font.fontFamily,
+        fontFamily:theme.flexiCharge.font.fontFamily._main,
         fontSize:theme.flexiCharge.font.fontSize.title,
         fontWeight: 800,
       },
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
-      fontFamily:theme.flexiCharge.font.fontFamily,
+      fontFamily:theme.flexiCharge.font.fontFamily._main,
       fontSize:theme.flexiCharge.font.fontSize.bigButton,
       textTransform: "none",
     },
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 1000,
       color: theme.flexiCharge.primary.green,
       textDecorationLine: 'none',
-      fontFamily:theme.flexiCharge.font.fontFamily,
+      fontFamily:theme.flexiCharge.font.fontFamily._main,
     }, 
     backdrop: {
       position: "absolute",

@@ -5,8 +5,9 @@ declare module "@material-ui/core/styles/createTheme" {
   interface Theme {
     flexiCharge: {
       font: {
-        _main: string;
-        fontFamily: string;
+        fontFamily: {
+          _main: string;
+        }
         fontSize: {
           _main: string;
           small: string;
@@ -42,8 +43,9 @@ declare module "@material-ui/core/styles/createTheme" {
   interface ThemeOptions {
     flexiCharge: {
       font: {
-        _main: string;
-        fontFamily: string;
+        fontFamily: {
+          _main: string;
+        }
         fontSize: {
           _main: string;
           small: string;
@@ -106,8 +108,9 @@ const flexiChargeTheme = createTheme({
   },
   flexiCharge: {
     font: {
-      _main: '"Lato", sans-serif',
-      fontFamily: '"Lato", sans-serif',
+      fontFamily: {
+        _main: '"Lato", sans-serif'
+      },
       fontSize: {
         _main: "1rem",
         small: "0.75rem",

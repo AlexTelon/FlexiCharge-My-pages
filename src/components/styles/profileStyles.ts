@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme: Theme) =>
       float: "right",
       marginTop: "1.5vh",
       marginRight: "5vw",
-      fontFamily: theme.flexiCharge.font.fontFamily,
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
       fontSize: theme.flexiCharge.font.fontSize.bigButton,
       color: theme.flexiCharge.primary.white,
       textDecoration: "none",
