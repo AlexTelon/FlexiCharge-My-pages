@@ -8,8 +8,10 @@ declare module "@material-ui/core/styles/createTheme" {
         _main: string;
         fontFamily: string;
         fontSize: {
-          title: number;
-          bigButton: number;
+          _main: string;
+          small: string;
+          title: string;
+          bigButton: string;
         }
       };
       primary: {
@@ -43,8 +45,10 @@ declare module "@material-ui/core/styles/createTheme" {
         _main: string;
         fontFamily: string;
         fontSize: {
-          title: number;
-          bigButton: number;
+          _main: string;
+          small: string;
+          title: string;
+          bigButton: string;
         }
       };
       primary: {
@@ -105,8 +109,10 @@ const flexiChargeTheme = createTheme({
       _main: '"Lato", sans-serif',
       fontFamily: '"Lato", sans-serif',
       fontSize: {
-        title: 48,
-        bigButton: 24,
+        _main: "1rem",
+        small: "0.75rem",
+        title: "2em",
+        bigButton: "24px",
       },
     },
     primary: {

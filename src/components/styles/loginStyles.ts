@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.flexiCharge.primary.green,
       textDecorationLine: 'none',
       fontFamily:theme.flexiCharge.font.fontFamily,
+      fontSize: theme.flexiCharge.font.fontSize._main,
     }, 
     backdrop: {
       position: "absolute",
