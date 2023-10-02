@@ -35,16 +35,12 @@ const Profile = () => {
 
   return (
     <Grid container direction="column">
-      <div className={classes.nav}>
-        <Link to="/profile">
-          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
-        </Link>
-
-        <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
-          <Logout style={{ color: "#78bd76" }} fontSize="large" />
-          Sign Out
-        </Link>
+      <div>
+        <div className={classes.profile}>
+          <Tabs />
+        </div>
       </div>
+    </Grid>
   );
 };
 
