@@ -189,7 +189,7 @@ export default function EnhancedTable() {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataRows.length) : 0;
+    page > 0 ? Math.max(0, Math.min(4, (1 + page) * rowsPerPage - dataRows.length)) : 0;
 
   const visibleRows = React.useMemo(
     () =>
