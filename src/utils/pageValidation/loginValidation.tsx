@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState } from "react";
 import AuthService from "../../components/AuthService";
 import { checkValidate, isEmpty } from "./checkValidate";
 
@@ -62,6 +62,7 @@ export const ValidationForm = () => {
           handleClose;
           setOpen(false);
           setRedirect(true);
+          window.location.href = '/profile';
         },
         (error) => {
           console.log(error);
