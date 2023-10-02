@@ -46,7 +46,7 @@ function allyProps(index: number) {
 }
 
 export default function BasicTabs() {
-  const currentUser = AuthService.getCurrentUser();
+  const currentUser = AuthService.getUserProfileInfo();
 
   const inputFieldValues = [
     {
@@ -70,7 +70,7 @@ export default function BasicTabs() {
     {
       name: "streetAddress",
       label: "Street address: ",
-      descript: currentUser.Adress,
+      descript: currentUser.streetAddress,
       id: "streetAddress",
     },
     {

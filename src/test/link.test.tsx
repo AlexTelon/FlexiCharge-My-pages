@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { render, screen} from './test-utils';
+import { render, screen, waitFor} from './test-utils';
 import {BrowserRouter, Router} from 'react-router-dom';
 import userEvent from "@testing-library/user-event";
 import {createMemoryHistory} from 'history';
