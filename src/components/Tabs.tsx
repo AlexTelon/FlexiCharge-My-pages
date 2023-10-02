@@ -129,14 +129,7 @@ export default function BasicTabs() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  const customStyles = {
-    fontSize: "14px",
-    height: "100px",
-    border: "none !important",
-    "&:active": { color: "#78bd76 !important" },
-    "&:focus": { color: "#78bd76 !important", outline: "none" },
-    color: "#333 !important",
-  };
+  
   return (
     <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
       <Box>
@@ -150,21 +143,17 @@ export default function BasicTabs() {
           sx={{ position: "sticky", top: "0", left: "0", width: "100%" }}
         >
           <Tab
-            sx={{
-              ...customStyles,
-            }}
+            className={classes.tabPanel}
             label="Invoices"
             {...allyProps(0)}
           />
           <Tab
-            sx={{
-              ...customStyles,
-            }}
+            className={classes.tabPanel}
             label="Charging History"
             {...allyProps(1)}
           />
           <Tab
-            sx={{ ...customStyles, border: 0 }}
+            className={classes.tabPanel}
             label="Profile"
             {...allyProps(2)}
           />

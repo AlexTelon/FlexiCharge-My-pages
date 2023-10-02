@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
     profile__items: {
       display: "flex",
-      fontSize: "20px",
       padding: "20px",
       justifyContent: "space-between",
       alignItem: "center",
@@ -52,7 +51,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#333",
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -65,7 +63,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#333",
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -91,7 +88,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#333",
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -103,8 +99,8 @@ const useStyles = makeStyles((theme: Theme) =>
       float: "right",
       marginTop: "1.5vh",
       marginRight: "5vw",
-      fontFamily: theme.flexiCharge.font.h5.fontFamily,
-      fontSize: theme.flexiCharge.font.h5.fontSize,
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
       color: theme.flexiCharge.primary.white,
       textDecoration: "none",
       "&:hover": {
@@ -112,6 +108,14 @@ const useStyles = makeStyles((theme: Theme) =>
         color: theme.flexiCharge.primary.white,
       },
     },
+
+    tabPanel: {
+      height: "100px",
+      border: "none !important",
+      color: theme.flexiCharge.primary.grey + "!important",
+      "&:active": { color: theme.flexiCharge.primary.green + "!important" },
+      "&:focus": { color: theme.flexiCharge.primary.green + "!important", outline: "none" },
+    }
   })
 );
 

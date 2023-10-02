@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
     profileElements: {
       gridColumn: "1/2",
-      fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
       justifySelf: "start",
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
     description: {
       gridColumn: "2/3",
-      fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
       alignSelf: "end",
 
