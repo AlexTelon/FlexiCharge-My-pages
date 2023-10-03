@@ -23,7 +23,9 @@ declare module "@material-ui/core/styles/createTheme" {
         white: string;
         green: string;
         yellow: string;
+        yellow: string;
         blue: string;
+        red: string;
         red: string;
       };
       accent: {
@@ -63,7 +65,9 @@ declare module "@material-ui/core/styles/createTheme" {
         white: string;
         green: string;
         yellow: string;
+        yellow: string;
         blue: string;
+        red: string;
         red: string;
       };
       accent: {
@@ -130,8 +134,10 @@ const flexiChargeTheme = createTheme({
       white: "#ffffff",
       green: "#78bd76",
       yellow: "#f0c200",
+      yellow: "#f0c200",
       blue: "#5e5eb7",
       red: "#ef6048",
+
     },
     accent: {
       primary: "#78bd76",
@@ -141,7 +147,7 @@ const flexiChargeTheme = createTheme({
       error: "#ef6048",
     },
     boxShadow: {
-      button: "5px 5px 10px rgba(46, 229, 157, 0.4)",
+      button: "5px 5px 10px",
     },
     gradient: "linear-gradient(90deg, rgba(240,194,0,1) 0%, rgba(208,195,48,1) 15%, rgba(120,219,118,1) 80%, rgba(64,156,104,1) 100%)",
     margin: "2vh",
