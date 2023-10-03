@@ -96,6 +96,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
     logoutButton: {
       marginBottom: theme.flexiCharge.margin.marginDistance,
+      marginTop: "auto",
       fontFamily: theme.flexiCharge.font.fontFamily._main,
       fontSize: theme.flexiCharge.font.fontSize.bigButton,
       color: theme.flexiCharge.primary.grey,

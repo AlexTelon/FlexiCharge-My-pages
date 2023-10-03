@@ -146,7 +146,7 @@ export default function BasicTabs() {
   };
   return (
     <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
-      <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "white" }}>
+      <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", backgroundColor: "white" }}>
           <img className={classes.navLogo} src={FlexiChargeLogo} />
 
           <Tabs
@@ -180,7 +180,7 @@ export default function BasicTabs() {
           />
         </Tabs>
         <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
-          <Logout style={{ color: "#78bd76" }} fontSize="large" />
+          <Logout style={{ color: "#78bd76", marginTop: "auto !important" }} fontSize="large" />
           Sign Out
         </Link>
       </Box>
