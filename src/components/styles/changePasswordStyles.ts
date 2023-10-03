@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     container: {
       '& h1': {
-        fontFamily:theme.flexiCharge.font.h3.fontFamily,
-        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontFamily:theme.flexiCharge.font.fontFamily._main,
+        fontSize:theme.flexiCharge.font.fontSize.title,
         fontWeight: 800,
       },
       backgroundColor: theme.flexiCharge.primary.white,
@@ -59,8 +59,8 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
-      fontFamily:theme.flexiCharge.font.h5.fontFamily,
-      fontSize:theme.flexiCharge.font.h5.fontSize,
+      fontFamily:theme.flexiCharge.font.fontFamily._main,
+      fontSize:theme.flexiCharge.font.fontSize.bigButton,
       textTransform: "none",
     },
     input: {
@@ -74,8 +74,8 @@ const useStyles = makeStyles((theme: Theme) =>
       float:"right",
       marginTop:"1.5vh",
       marginRight:"5vw",
-      fontFamily:theme.flexiCharge.font.h5.fontFamily,
-      fontSize:theme.flexiCharge.font.h5.fontSize,
+      fontFamily:theme.flexiCharge.font.fontFamily._main,
+      fontSize:theme.flexiCharge.font.fontSize.bigButton,
       color: theme.flexiCharge.primary.white,
       textDecoration:"none",
       "&:hover": {
