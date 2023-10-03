@@ -96,8 +96,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
     logoutButton: {
       marginBottom: theme.flexiCharge.margin.marginDistance,
-      fontFamily: theme.flexiCharge.font.h5.fontFamily,
-      fontSize: theme.flexiCharge.font.h5.fontSize,
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
       color: theme.flexiCharge.primary.grey,
       textDecoration: "none",
       "&:hover": {
