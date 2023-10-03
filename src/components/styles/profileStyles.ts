@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
     profile__items: {
       display: "flex",
-      fontSize: "20px",
       padding: "20px",
       justifyContent: "space-between",
       alignItem: "center",
@@ -51,7 +50,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#333",
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -64,7 +62,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#333",
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -90,7 +87,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#333",
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {

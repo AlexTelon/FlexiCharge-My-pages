@@ -10,13 +10,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     profileElements: {
-      fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
       justifySelf: "end",
     },
 
     description: {
-      fontSize: "16px",
       color: theme.flexiCharge.primary.darkGrey,
       justifySelf: "start",
 

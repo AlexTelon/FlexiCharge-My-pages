@@ -147,44 +147,43 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
       <Box>
-        <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "white" }}>
+      <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "white" }}>
           <img className={classes.navLogo} src={FlexiChargeLogo} />
 
           <Tabs
-            variant="fullWidth"
-            TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-            orientation="vertical"
-            sx={{ width: "100%", flexGrow: "1" }}
-          >
-            <Tab
-              sx={{
-                ...customStyles,
-              }}
-              label="Invoices"
-              {...allyProps(0)}
-            />
-            <Tab
-              sx={{
-                ...customStyles,
-              }}
-              label="Charging History"
-              {...allyProps(1)}
-            />
-            <Tab
-              sx={{ ...customStyles, borderBottom:"1px solid #e5e5e5" }}
-              label="Profile"
-              {...allyProps(2)}
-            />
-          </Tabs>
+          variant="fullWidth"
+          TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+          orientation="vertical"
+          sx={{ position: "sticky", top: "0", left: "0", width: "100%" }}
+        >
+          <Tab
+            sx={{
+              ...customStyles,
+            }}
 
-          <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
+            label="Invoices"
+            {...allyProps(0)}
+          />
+          <Tab
+             sx={{
+              ...customStyles,
+            }}
+            label="Charging History"
+            {...allyProps(1)}
+          />
+          <Tab
+             sx={{ ...customStyles, borderBottom:"1px solid #e5e5e5" }}
+            label="Profile"
+            {...allyProps(2)}
+          />
+        </Tabs>
+        <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
           <Logout style={{ color: "#78bd76" }} fontSize="large" />
           Sign Out
         </Link>
-        </Box>
       </Box>
       <Box>
         <TabPanel value={value} index={0}>

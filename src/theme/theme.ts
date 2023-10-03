@@ -5,28 +5,14 @@ declare module "@material-ui/core/styles/createTheme" {
   interface Theme {
     flexiCharge: {
       font: {
-        _main: string;
-        Lato: string;
-        Title: string;
-        h3:{
-          fontSize: number;
-          fontFamily: string;
+        fontFamily: {
+          _main: string;
         }
-        h5:{
-          fontSize: number;
-          fontFamily: string;
-        }
-        h6:{
-          fontSize: string;
-          fontFamily: string;
-        }
-        p1:{
-          fontSize: string;
-          fontFamily: string;
-        }
-        p2:{
-          fontSize: string;
-          fontFamily: string;
+        fontSize: {
+          _main: string;
+          small: string;
+          title: string;
+          bigButton: string;
         }
       };
       primary: {
@@ -36,7 +22,9 @@ declare module "@material-ui/core/styles/createTheme" {
         lightGrey: string;
         white: string;
         green: string;
+        yellow: string;
         blue: string;
+        red: string;
       };
       accent: {
         primary: string;
@@ -58,28 +46,14 @@ declare module "@material-ui/core/styles/createTheme" {
   interface ThemeOptions {
     flexiCharge: {
       font: {
-        _main: string;
-        Lato: string;
-        Title: string;
-        h3:{
-          fontSize: number;
-          fontFamily: string;
+        fontFamily: {
+          _main: string;
         }
-        h5:{
-          fontSize: number;
-          fontFamily: string;
-        }
-        h6:{
-          fontSize: string;
-          fontFamily: string;
-        }
-        p1:{
-          fontSize: string;
-          fontFamily: string;
-        }
-        p2:{
-          fontSize: string;
-          fontFamily: string;
+        fontSize: {
+          _main: string;
+          small: string;
+          title: string;
+          bigButton: string;
         }
       };
       primary: {
@@ -89,7 +63,9 @@ declare module "@material-ui/core/styles/createTheme" {
         lightGrey: string;
         white: string;
         green: string;
+        yellow: string;
         blue: string;
+        red: string;
       };
       accent: {
         primary: string;
@@ -132,34 +108,20 @@ const flexiChargeTheme = createTheme({
   palette: {
     primary: {
       main: "#78bd76",
-      light: "rgb(174,223,164)",
-      dark: "#669966",
+      light: "#78bd76",
+      dark: "#78bd76",
     },
   },
   flexiCharge: {
     font: {
-      _main: "Roboto",
-      Lato: '"Lato", sans-serif',
-      Title: '"FlexiTitleFont", Roboto',
-      h3: {
-        fontSize:48,
-        fontFamily:"Roboto",
+      fontFamily: {
+        _main: '"Lato", sans-serif'
       },
-      h5: {
-        fontSize:24,
-        fontFamily:"Roboto regular",
-      },
-      h6: {
-        fontSize:"20",
-        fontFamily:"Roboto medium",
-      },
-      p1: {
-        fontSize:"16",
-        fontFamily:"Roboto regular",
-      },
-      p2: {
-        fontSize:"14",
-        fontFamily:"Roboto regular",
+      fontSize: {
+        _main: "1rem",
+        small: "0.75rem",
+        title: "2em",
+        bigButton: "24px",
       },
     },
     primary: {
@@ -169,7 +131,9 @@ const flexiChargeTheme = createTheme({
       lightGrey: "#e5e5e5",
       white: "#ffffff",
       green: "#78bd76",
+      yellow: "#f0c200",
       blue: "#5e5eb7",
+      red: "#ef6048",
     },
     accent: {
       primary: "#78bd76",
