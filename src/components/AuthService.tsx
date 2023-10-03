@@ -1,3 +1,4 @@
+import { waitFor } from "@testing-library/react";
 import axios from "axios";
 
 const API_URL = "http://18.202.253.30:8080/auth/";
@@ -5,7 +6,7 @@ const API_URL = "http://18.202.253.30:8080/auth/";
 
 
 class AuthService {
-  login(username: string, password: string) {
+  async login(username: string, password: string) {
     return axios
       .post(API_URL + "sign-in", {
         username: username,
@@ -14,6 +15,7 @@ class AuthService {
       .then((response) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
+          this.fetchCurrentUserData();
         }
         return response.data;
       });
@@ -141,15 +143,13 @@ class AuthService {
     }
     axios.get(API_URL + "user-information", config)
       .then((response: any) => {
-        console.log(response);
         localStorage.setItem("userProfile", JSON.stringify(response.data))
       });
   }
 
-  getUserProfileInfo(){
+  getUserProfileInfo() {
     this.fetchCurrentUserData();
     const userProfile = localStorage.getItem("userProfile");
-    console.log(userProfile)
     if (userProfile) return JSON.parse(userProfile);
 
     return null;

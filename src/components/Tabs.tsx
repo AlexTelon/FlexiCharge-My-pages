@@ -11,6 +11,7 @@ import AuthService from "../components/AuthService";
 import ProfileFormHandling from "./profileTab/ProfileFormHandling";
 import UpdateProfileButton from "./profileTab/UpdateProfileButton";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
+import { Description } from "@mui/icons-material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -47,51 +48,61 @@ function allyProps(index: number) {
 
 export default function BasicTabs() {
   const currentUser = AuthService.getUserProfileInfo();
-
-  const inputFieldValues = [
-    {
-      name: "firstName",
-      label: "First name: ",
-      descript: currentUser.firstName,
-      id: "firstName",
-    },
-    {
-      name: "lastName",
-      label: "Last name: ",
-      descript: currentUser.lastName,
-      id: "lastName",
-    },
-    {
-      name: "phoneNumber",
-      label: "Phone Number: ",
-      descript: currentUser.phoneNumber,
-      id: "phoneNumber",
-    },
-    {
-      name: "streetAddress",
-      label: "Street address: ",
-      descript: currentUser.streetAddress,
-      id: "streetAddress",
-    },
-    {
-      name: "zipCode",
-      label: "Zip code: ",
-      descript: currentUser.zipCode,
-      id: "zipCode",
-    },
-    {
-      name: "city",
-      label: "City: ",
-      descript: currentUser.city,
-      id: "city",
-    },
-    {
-      name: "country",
-      label: "Country: ",
-      descript: currentUser.country,
-      id: "country",
-    },
-  ];
+  let inputFieldValues
+  if(currentUser){
+    inputFieldValues = [
+      {
+        name: "firstName",
+        label: "First name: ",
+        descript: currentUser.firstName,
+        id: "firstName",
+      },
+      {
+        name: "lastName",
+        label: "Last name: ",
+        descript: currentUser.lastName,
+        id: "lastName",
+      },
+      {
+        name: "phoneNumber",
+        label: "Phone Number: ",
+        descript: currentUser.phoneNumber,
+        id: "phoneNumber",
+      },
+      {
+        name: "streetAddress",
+        label: "Street address: ",
+        descript: currentUser.streetAddress,
+        id: "streetAddress",
+      },
+      {
+        name: "zipCode",
+        label: "Zip code: ",
+        descript: currentUser.zipCode,
+        id: "zipCode",
+      },
+      {
+        name: "city",
+        label: "City: ",
+        descript: currentUser.city,
+        id: "city",
+      },
+      {
+        name: "country",
+        label: "Country: ",
+        descript: currentUser.country,
+        id: "country",
+      },
+    ];
+  } else {
+    inputFieldValues = [{
+      name: "",
+      label: "",
+      descript: "",
+      id: "",
+    }];
+  }
+  
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [firstName, setFirstName] = useState("");
@@ -123,7 +134,6 @@ export default function BasicTabs() {
       setuserId(currentUser.user_id);
     }
   }, [currentUser]);
-  console.log(inputFieldValues);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
