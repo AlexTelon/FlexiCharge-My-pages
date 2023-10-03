@@ -111,6 +111,7 @@ class AuthService {
   logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("userProfile");
+    window.location.href = '/sign-in';
   }
 
   register(username: string, password: string, confirmPassword: string) {
