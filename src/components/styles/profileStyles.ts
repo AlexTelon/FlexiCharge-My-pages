@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: "100%",
       margin: "100px auto",
       marginTop: "0vh",
-      backgroundColor: theme.flexiCharge.primary.white,
+      backgroundColor: theme.flexiCharge.primary.lightGrey,
     },
 
     container: {

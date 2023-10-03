@@ -16,6 +16,7 @@ import Title from "./Title";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
 import FlexiChargeLogo from "../assets/header-profile.svg";
+import { whileStatement } from "@babel/types";
 
 
 interface TabPanelProps {
@@ -138,7 +139,7 @@ export default function BasicTabs() {
   const customStyles = {
     fontSize: "14px",
     height: "100px",
-    border: "none !important",
+    borderTop: "1px solid #e5e5e5",
     "&:active": { color: "#78bd76 !important" },
     "&:focus": { color: "#78bd76 !important", outline: "none" },
     color: "#333 !important",
@@ -146,7 +147,7 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
       <Box>
-        <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", justifyContent: "space-between", backgroundColor: "white" }}>
           <img className={classes.navLogo} src={FlexiChargeLogo} />
 
           <Tabs
@@ -173,16 +174,16 @@ export default function BasicTabs() {
               {...allyProps(1)}
             />
             <Tab
-              sx={{ ...customStyles }}
+              sx={{ ...customStyles, borderBottom:"1px solid #e5e5e5" }}
               label="Profile"
               {...allyProps(2)}
             />
           </Tabs>
 
-          <Link to="/sign-in" className={classes.logoutButton}>
-            <Logout style={{ color: "#78bd76", marginRight: "1vh" }} fontSize="large" />
-            Sign Out
-          </Link>
+          <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
+          <Logout style={{ color: "#78bd76" }} fontSize="large" />
+          Sign Out
+        </Link>
         </Box>
       </Box>
       <Box>
