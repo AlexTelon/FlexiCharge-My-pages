@@ -16,21 +16,21 @@ const inputFieldValues = [
     name: "username",
     label: "Email",
     id: "username",
-    icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
+    icon: <EmailOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
     name: "newPassword",
     type: "password",
     label: "Password",
     id: "user-password",
-    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
     name: "confirmPassword",
     label: "Confirm Password",
     type: "password",
     id: "confirmPassword",
-    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
   },
 ];
 
@@ -54,7 +54,7 @@ const Register = () => {
     <Grid container direction="column">
       <div className={classes.nav}>
         <Link to="/sign-in">
-          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
         </Link>
       </div>
       <Grid container direction="column" className={classes.grid}>
@@ -97,7 +97,7 @@ const Register = () => {
                   variant="contained"
                   type="submit"
                   className={classes.button}
-                  >
+                >
                   Sign Up
                 </Button>
               </Grid>
@@ -106,7 +106,7 @@ const Register = () => {
                   <Link className={classes.links} to="/forgot-password">Forgot password?</Link>
                 </Grid>
                 <Grid item xs={6}>
-                  <Link className={classes.links} to="/sign-in"> <span style={{color: "#5e5eb7"}}> Already have an account? </span> Sign in</Link>
+                  <Link className={classes.links} to="/sign-in"> <span style={{ color: "#5e5eb7" }}> Already have an account? </span> Sign in</Link>
                 </Grid>
               </Grid>
               {msg ? <Alert severity="error">{msg}</Alert> : ""}

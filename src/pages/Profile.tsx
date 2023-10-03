@@ -40,7 +40,7 @@ const Profile = () => {
           <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
         </Link>
 
-        <Link to="/sign-in" className={classes.logoutButton}>
+        <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
           <Logout style={{ color: "#78bd76" }} fontSize="large" />
           Sign Out
         </Link>

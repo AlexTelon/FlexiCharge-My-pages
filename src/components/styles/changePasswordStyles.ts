@@ -2,7 +2,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    grid:{
+    grid: {
       alignItems: "center",
       justifyContent: "center",
       maxWidth: "35vw",
@@ -11,24 +11,24 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "10vh",
       margin: "auto",
     },
-    nav:{
+    nav: {
       width: "100vw",
       backgroundColor: theme.flexiCharge.primary.grey,
       height: "8vh",
-      marginTop:0,
-      position:"fixed",
+      marginTop: 0,
+      position: "fixed",
     },
-    navLogo:{
-      width:"15%",
-      marginTop:"1vh",
-      marginLeft:"5vw",
-      float:"left",
+    navLogo: {
+      width: "15%",
+      marginTop: "1vh",
+      marginLeft: "5vw",
+      float: "left",
 
     },
     container: {
       '& h1': {
-        fontFamily:theme.flexiCharge.font.h3.fontFamily,
-        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontFamily: theme.flexiCharge.font.fontFamily._main,
+        fontSize: theme.flexiCharge.font.fontSize.title,
         fontWeight: 800,
       },
       backgroundColor: theme.flexiCharge.primary.white,
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: "36px",
       paddingBottom: "24px",
       border: "3px solid #78bd76",
-      marginTop:"15%",
+      marginTop: "15%",
     },
     gridItem: {
       margin: "auto",
@@ -59,8 +59,8 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.yellow,
-      fontFamily: theme.flexiCharge.font.h5.fontFamily,
-      fontSize: theme.flexiCharge.font.h5.fontSize,
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
       textTransform: "none",
     },
     input: {
@@ -70,17 +70,17 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2rem",
       minWidth: "2rem",
     },
-    logoutButton:{
-      float:"right",
-      marginTop:"1.5vh",
-      marginRight:"5vw",
-      fontFamily:theme.flexiCharge.font.h5.fontFamily,
-      fontSize:theme.flexiCharge.font.h5.fontSize,
+    logoutButton: {
+      float: "right",
+      marginTop: "1.5vh",
+      marginRight: "5vw",
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
       color: theme.flexiCharge.primary.white,
-      textDecoration:"none",
+      textDecoration: "none",
       "&:hover": {
         transform: "translateY(2px)",
-        color:theme.flexiCharge.primary.white,
+        color: theme.flexiCharge.primary.white,
       },
 
     }
