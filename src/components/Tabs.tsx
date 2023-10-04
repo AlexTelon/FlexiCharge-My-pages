@@ -7,7 +7,6 @@ import Logout from "@mui/icons-material/Logout";
 import useStyles from "../components/styles/profileStyles";
 import ProfileInformation from "./profileTab/ProfileInformation";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import ProfileFormHandling from "./profileTab/ProfileFormHandling";
@@ -16,8 +15,10 @@ import Title from "./Title";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
 import FlexiChargeLogo from "../assets/header-profile.svg";
-import { whileStatement } from "@babel/types";
-import { Button } from "@material-ui/core";
+
+
+
+
 
 
 interface TabPanelProps {
@@ -132,7 +133,6 @@ export default function BasicTabs() {
       setuserId(currentUser.user_id);
     }
   }, []);
-  console.log(inputFieldValues);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -180,10 +180,10 @@ export default function BasicTabs() {
             {...allyProps(2)}
           />
         </Tabs>
-        <Button className={classes.logoutButton} onClick={AuthService.logout} >
-          <Logout style={{ color: "#78bd76",  }} fontSize="large" />
+        <a href = '/sign-in' className={classes.logoutButton} onClick={AuthService.logout}>
+        <Logout style={{ color: "#78bd76",  }} fontSize="large" />
           Sign Out
-        </Button>
+        </a>
       </Box>
       <Box>
         <TabPanel value={value} index={0}>
