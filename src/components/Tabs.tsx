@@ -17,6 +17,7 @@ import InvoicesTab from "./invoicesTab/InvoicesTab";
 import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
 import FlexiChargeLogo from "../assets/header-profile.svg";
 import { whileStatement } from "@babel/types";
+import { Button } from "@material-ui/core";
 
 
 interface TabPanelProps {
@@ -179,10 +180,10 @@ export default function BasicTabs() {
             {...allyProps(2)}
           />
         </Tabs>
-        <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
-          <Logout style={{ color: "#78bd76", marginTop: "auto !important" }} fontSize="large" />
+        <Button className={classes.logoutButton} onClick={AuthService.logout} >
+          <Logout style={{ color: "#78bd76",  }} fontSize="large" />
           Sign Out
-        </Link>
+        </Button>
       </Box>
       <Box>
         <TabPanel value={value} index={0}>

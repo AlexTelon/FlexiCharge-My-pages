@@ -98,8 +98,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.flexiCharge.margin.marginDistance,
       marginTop: "auto",
       fontFamily: theme.flexiCharge.font.fontFamily._main,
-      fontSize: theme.flexiCharge.font.fontSize.bigButton,
+      fontSize: theme.flexiCharge.font.fontSize._main,
       color: theme.flexiCharge.primary.grey,
+      textTransform: "none",
       textDecoration: "none",
       "&:hover": {
         transform: "translateY(2px)",
