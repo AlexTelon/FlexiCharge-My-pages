@@ -47,52 +47,62 @@ function allyProps(index: number) {
 }
 
 export default function BasicTabs() {
-  const currentUser = AuthService.getUpdatedUserProfile();
-
-  const inputFieldValues = [
-    {
-      name: "firstName",
-      label: "First name: ",
-      descript: "Sebastian",
-      id: "firstName",
-    },
-    {
-      name: "lastName",
-      label: "Last name: ",
-      descript: "Zeed",
-      id: "lastName",
-    },
-    {
-      name: "phoneNumber",
-      label: "Phone Number: ",
-      descript: "+46731234456",
-      id: "phoneNumber",
-    },
-    {
-      name: "streetAddress",
-      label: "Street address: ",
-      descript: "Banarpsgatan 6",
-      id: "streetAddress",
-    },
-    {
-      name: "zipCode",
-      label: "Zip code: ",
-      descript: "55312",
-      id: "zipCode",
-    },
-    {
-      name: "city",
-      label: "City: ",
-      descript: "Jönköping",
-      id: "city",
-    },
-    {
-      name: "country",
-      label: "Country: ",
-      descript: "Sweden",
-      id: "country",
-    },
-  ];
+  const currentUser = AuthService.getUserProfileInfo();
+  let inputFieldValues
+  if(currentUser){
+    inputFieldValues = [
+      {
+        name: "firstName",
+        label: "First name: ",
+        descript: currentUser.firstName,
+        id: "firstName",
+      },
+      {
+        name: "lastName",
+        label: "Last name: ",
+        descript: currentUser.lastName,
+        id: "lastName",
+      },
+      {
+        name: "phoneNumber",
+        label: "Phone Number: ",
+        descript: currentUser.phoneNumber,
+        id: "phoneNumber",
+      },
+      {
+        name: "streetAddress",
+        label: "Street address: ",
+        descript: currentUser.streetAddress,
+        id: "streetAddress",
+      },
+      {
+        name: "zipCode",
+        label: "Zip code: ",
+        descript: currentUser.zipCode,
+        id: "zipCode",
+      },
+      {
+        name: "city",
+        label: "City: ",
+        descript: currentUser.city,
+        id: "city",
+      },
+      {
+        name: "country",
+        label: "Country: ",
+        descript: currentUser.country,
+        id: "country",
+      },
+    ];
+  } else {
+    inputFieldValues = [{
+      name: "",
+      label: "",
+      descript: "",
+      id: "",
+    }];
+  }
+  
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [firstName, setFirstName] = useState("");
@@ -123,8 +133,7 @@ export default function BasicTabs() {
       setUserName(currentUser.username);
       setuserId(currentUser.user_id);
     }
-  }, []);
-  console.log(inputFieldValues);
+  }, [currentUser]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
