@@ -6,31 +6,31 @@ const MockInvoices = () => {
 
     const invoice1 = {
         id : "1234a",
-        year : "2022",
-        month : "June",
+        year : "2023",
+        month : "October",
         total : "1500",
         sessions : [
             {
                 id : "100012",
-                timestamp : 1663163478,
+                timestamp : 1696550400,
                 charger : "Some charger (JTH)",
                 total : "450",
             },
             {
                 id : "100013",
-                timestamp : 1663163478,
+                timestamp : 1696550400,
                 charger : "Some other charger (PLUTO)",
                 total : "225",
             },
             {
                 id : "100014",
-                timestamp : 1663163478,
+                timestamp : 1696550400,
                 charger : "Some other other charger (HLK)",
                 total : "725",
             },
             {
                 id : "100015",
-                timestamp : 1663163478,
+                timestamp : 1696550400,
                 charger : "Some other other other charger (The MOON)",
                 total : "100",
             }
