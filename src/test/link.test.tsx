@@ -30,10 +30,6 @@ test('Try fetching user information', async () => {
         });
         userData = AuthService.getUserProfileInfo();
     }
-    
-    
-    
-    console.log(userData)
     expect(userData.firstName = "Test");
     expect(userData.lastName = "Testson");
 
