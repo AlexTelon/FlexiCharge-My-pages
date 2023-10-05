@@ -6,6 +6,7 @@ import { ValidationForm } from "../../utils/pageValidation/validation";
 import Alert from "@mui/material/Alert";
 import AuthService from "../AuthService";
 
+
 const UpdateProfileInformation = (props: any) => {
   const inputFieldValues = [
     {
@@ -100,8 +101,8 @@ const UpdateProfileInformation = (props: any) => {
               className={classes.changebutton}
               type="submit"
               variant="contained"
-            >
-              Change
+       
+            >Change
             </Button>
             <Button
               className={classes.cancelbutton}
@@ -110,8 +111,8 @@ const UpdateProfileInformation = (props: any) => {
               onClick={(e: any) => {
                 e.setIsOpen(e.isOpen);
               }}
-            >
-              Cancel
+     
+            >Cancel
             </Button>
           </form>
         </div>

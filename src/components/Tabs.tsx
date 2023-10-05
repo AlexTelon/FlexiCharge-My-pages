@@ -3,6 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Logout from "@mui/icons-material/Logout";
 import useStyles from "../components/styles/profileStyles";
 import ProfileInformation from "./profileTab/ProfileInformation";
 import { useHistory } from "react-router";
@@ -10,8 +11,15 @@ import { useEffect, useState } from "react";
 import AuthService from "../components/AuthService";
 import ProfileFormHandling from "./profileTab/ProfileFormHandling";
 import UpdateProfileButton from "./profileTab/UpdateProfileButton";
+import Title from "./Title";
 import InvoicesTab from "./invoicesTab/InvoicesTab";
 import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
+import FlexiChargeLogo from "../assets/header-profile.svg";
+
+
+
+
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -21,6 +29,7 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
+  const classes = useStyles();
 
   return (
     <div
@@ -31,7 +40,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box className={classes.tabPanel}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -138,11 +147,20 @@ export default function BasicTabs() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  
+  const customStyles = {
+    fontSize: "14px",
+    height: "100px",
+    borderTop: "1px solid #e5e5e5",
+    "&:active": { color: "#78bd76 !important" },
+    "&:focus": { color: "#78bd76 !important", outline: "none" },
+    color: "#333 !important",
+  };
   return (
-    <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
-      <Box>
-        <Tabs
+    <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
+      <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", backgroundColor: "white" }}>
+          <img className={classes.navLogo} src={FlexiChargeLogo} />
+
+          <Tabs
           variant="fullWidth"
           TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
           value={value}
@@ -152,32 +170,44 @@ export default function BasicTabs() {
           sx={{ position: "sticky", top: "0", left: "0", width: "100%" }}
         >
           <Tab
-            className={classes.tabPanel}
+            sx={{
+              ...customStyles,
+            }}
+
             label="Invoices"
             {...allyProps(0)}
           />
           <Tab
-            className={classes.tabPanel}
+             sx={{
+              ...customStyles,
+            }}
             label="Charging History"
             {...allyProps(1)}
           />
           <Tab
-            className={classes.tabPanel}
+             sx={{ ...customStyles, borderBottom:"1px solid #e5e5e5" }}
             label="Profile"
             {...allyProps(2)}
           />
         </Tabs>
+        <a href = '/sign-in' className={classes.logoutButton} onClick={AuthService.logout}>
+        <Logout style={{ color: "#78bd76",  }} fontSize="large" />
+          Sign Out
+        </a>
       </Box>
       <Box>
         <TabPanel value={value} index={0}>
+          <Title text="Invoices" />
           <InvoicesTab UserId={userId} />
         </TabPanel>
 
         <TabPanel value={value} index={1}>
+          <Title text="Charging History" />
           <ChargingTab/>
         </TabPanel>
 
         <TabPanel value={value} index={2}>
+          <Title text="Profile" />
           <UpdateProfileButton
             classes={classes}
             onClick={(e: any) => e.setIsOpen(true)}

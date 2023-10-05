@@ -12,7 +12,7 @@ class AuthService {
         username: username,
         password: password,
       })
-      .then((response) => {
+      .then((response:any) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
           this.fetchCurrentUserData();
@@ -109,9 +109,10 @@ class AuthService {
   }
 
   logout() {
+   
     localStorage.removeItem("user");
-    localStorage.removeItem("userProfile");
-    window.location.href = '/sign-in';
+    
+    
   }
 
   register(username: string, password: string, confirmPassword: string) {

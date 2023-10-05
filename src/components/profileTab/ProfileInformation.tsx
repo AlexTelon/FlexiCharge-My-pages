@@ -9,6 +9,7 @@ const ProfileInformation = (props: any) => {
     <div>
       <div className={classes.container}>
         <div className={classes.profileElements}>{props.label}</div>
+        <div></div>
         <div className={classes.description}>{props.descript}</div>
       </div>
     </div>

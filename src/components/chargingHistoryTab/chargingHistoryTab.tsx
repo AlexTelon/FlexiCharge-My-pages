@@ -218,6 +218,7 @@ export default function EnhancedTable() {
 
                 return (
                   <TableRow
+                  // eslint-disable-next-line
                     hover={true}
                     tabIndex={-1}
                     key={row.date}
