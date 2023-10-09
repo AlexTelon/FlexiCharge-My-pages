@@ -47,7 +47,7 @@ function allyProps(index: number) {
 }
 
 export default function BasicTabs() {
-  const currentUser = AuthService.getUserProfileInfo();
+  let currentUser = AuthService.getUserProfileInfo();
   let inputFieldValues
   if(currentUser){
     inputFieldValues = [

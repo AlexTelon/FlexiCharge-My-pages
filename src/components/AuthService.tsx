@@ -15,7 +15,6 @@ class AuthService {
       .then((response) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
-          this.fetchCurrentUserData();
         }
         return response.data;
       });
@@ -61,11 +60,11 @@ class AuthService {
       method: "get",
       url: API_URL + "user-information",
       headers: {
-        Authorization: `Bearer ${this.getCurrentUser().accessToken}`,
+        authorization: `Bearer ${this.getCurrentUser().accessToken}`,
       },
     };
 
-    axios(config)
+    axios.get(config)
       .then(function (response: any) {
         return JSON.parse(response.data)
       })
@@ -77,17 +76,17 @@ class AuthService {
   updateUserProfile(
     newFirstName: string,
     newLastName: string,
-    newPhoneNumber: String,
+    newPhoneNumber: string,
     newStreetAddress: string,
     newZipCode: string,
     newCity: string,
     newCountry: string
   ) {
     const axios = require("axios");
-
+    const token = this.getCurrentUser().accessToken;
     const config = {
       method: "put",
-      url: API_URL + "user-information",
+      headers: {authorization: `${token}`},
       data: {
         firstName: newFirstName,
         lastName: newLastName,
@@ -99,9 +98,11 @@ class AuthService {
       },
     };
 
-    axios(config)
+    return axios.put(API_URL + "user-information", config)
       .then(function (response: any) {
         console.log(JSON.stringify(response.data));
+        
+        localStorage.setItem("userProfile", JSON.stringify(response.data))
       })
       .catch(function (error: any) {
         console.log(error);
@@ -140,16 +141,20 @@ class AuthService {
     const axios = require('axios') 
     const token = this.getCurrentUser().accessToken;
     const config = {
-      headers: {Authorization: `Bearer ${token}`}
+      headers: {authorization: `${token}`}
     }
+    console.log(token)
     axios.get(API_URL + "user-information", config)
       .then((response: any) => {
+        localStorage.removeItem("userProfile")
         localStorage.setItem("userProfile", JSON.stringify(response.data))
       });
   }
 
   getUserProfileInfo() {
-    this.fetchCurrentUserData();
+    //if(localStorage.getItem("userProfile") == null){
+      this.fetchCurrentUserData();
+    //}
     const userProfile = localStorage.getItem("userProfile");
     if (userProfile) return JSON.parse(userProfile);
 

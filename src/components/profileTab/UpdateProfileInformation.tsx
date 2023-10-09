@@ -10,48 +10,70 @@ const UpdateProfileInformation = (props: any) => {
   const inputFieldValues = [
     {
       name: "firstName",
-      currentValue: "ShaNawaz",
+      currentValue: "Example: Pelle",
+      value: "",
       label: "First name: ",
       type: "text",
       id: "firstName",
     },
     {
       name: "lastName",
+      currentValue: "Example: Johansson",
+      value: "",
       label: "Last name: ",
       type: "text",
       id: "lastName",
     },
     {
       name: "phoneNumber",
+      currentValue: "Example: +46702682779",
+      value: "",
       label: "Phone Number: ",
       type: "text",
       id: "phoneNumber",
     },
     {
       name: "streetAddress",
+      currentValue: "Example: Slottsgatan 2",
+      value: "",
       label: "Street address: ",
       type: "text",
       id: "streetAddress",
     },
     {
       name: "zipCode",
+      currentValue: "Example: 12345",
+      value: "",
       label: "Zip code: ",
       type: "text",
       id: "zipCode",
     },
     {
       name: "city",
+      currentValue: "Example: Stockholm",
+      value: "",
       label: "City: ",
       type: "text",
       id: "city",
     },
     {
       name: "country",
+      currentValue: "Example: Spain",
+      value: "",
       label: "Country: ",
       type: "text",
       id: "country",
     },
   ];
+  /*AuthService.updateUserProfile(
+    inputFieldValues[0].value,
+    inputFieldValues[1].value,
+    inputFieldValues[2].value,
+    inputFieldValues[3].value,
+    inputFieldValues[4].value,
+    inputFieldValues[5].value,
+    inputFieldValues[6].value
+    );*/
   const classes = useStyles();
   const { UpdateUserProfile, handleInputValue, errors, msg } = ValidationForm();
 
@@ -100,6 +122,15 @@ const UpdateProfileInformation = (props: any) => {
               className={classes.changebutton}
               type="submit"
               variant="contained"
+              onClick={(e: any) => {e.AuthService.updateUserProfile(
+                inputFieldValues[0].value,
+                inputFieldValues[1].value,
+                inputFieldValues[2].value,
+                inputFieldValues[3].value,
+                inputFieldValues[4].value,
+                inputFieldValues[5].value,
+                inputFieldValues[6].value
+              );}}
             >
               Change
             </Button>
