@@ -1,17 +1,21 @@
+import { waitFor } from "@testing-library/react";
 import axios from "axios";
 
 const API_URL = "http://18.202.253.30:8080/auth/";
 
+
+
 class AuthService {
-  login(username: string, password: string) {
+  async login(username: string, password: string) {
     return axios
       .post(API_URL + "sign-in", {
         username: username,
         password: password,
       })
-      .then((response) => {
+      .then((response:any) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
+          this.fetchCurrentUserData();
         }
         return response.data;
       });
@@ -52,7 +56,7 @@ class AuthService {
 
   getUpdatedUserProfile() {
     let axios = require("axios");
-
+    
     let config = {
       method: "get",
       url: API_URL + "user-information",
@@ -63,7 +67,7 @@ class AuthService {
 
     axios(config)
       .then(function (response: any) {
-        console.log(JSON.stringify(response.data));
+        return JSON.parse(response.data)
       })
       .catch(function (error: any) {
         console.log(error);
@@ -73,7 +77,7 @@ class AuthService {
   updateUserProfile(
     newFirstName: string,
     newLastName: string,
-    newPhoneNumber: string,
+    newPhoneNumber: String,
     newStreetAddress: string,
     newZipCode: string,
     newCity: string,
@@ -105,7 +109,10 @@ class AuthService {
   }
 
   logout() {
+   
     localStorage.removeItem("user");
+    
+    
   }
 
   register(username: string, password: string, confirmPassword: string) {
@@ -126,6 +133,26 @@ class AuthService {
   getCurrentUser() {
     const userStr = localStorage.getItem("user");
     if (userStr) return JSON.parse(userStr);
+
+    return null;
+  }
+
+  fetchCurrentUserData() {
+    const axios = require('axios') 
+    const token = this.getCurrentUser().accessToken;
+    const config = {
+      headers: {Authorization: `Bearer ${token}`}
+    }
+    axios.get(API_URL + "user-information", config)
+      .then((response: any) => {
+        localStorage.setItem("userProfile", JSON.stringify(response.data))
+      });
+  }
+
+  getUserProfileInfo() {
+    this.fetchCurrentUserData();
+    const userProfile = localStorage.getItem("userProfile");
+    if (userProfile) return JSON.parse(userProfile);
 
     return null;
   }

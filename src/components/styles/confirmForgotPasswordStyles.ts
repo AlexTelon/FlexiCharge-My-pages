@@ -2,7 +2,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    grid:{
+    grid: {
       alignItems: "center",
       justifyContent: "center",
       maxWidth: "35vw",
@@ -11,17 +11,17 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "3vw",
       margin: "auto",
     },
-    nav:{
+    nav: {
       width: "100%",
       backgroundColor: theme.flexiCharge.primary.grey,
       height: "8vh",
-      position:"fixed"
+      position: "fixed"
     },
-    navLogo:{
-      width:"15%",
-      marginTop:"1vh",
-      marginLeft:"5vw",
-      float:"left",
+    navLogo: {
+      width: "15%",
+      marginTop: "1vh",
+      marginLeft: "5vw",
+      float: "left",
 
     },
     container: {
@@ -32,13 +32,12 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: "24px",
       border: "3px solid #78bd76",
       '& h1': {
-        fontFamily:theme.flexiCharge.font.h3.fontFamily,
-        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontFamily: theme.flexiCharge.font.fontFamily._main,
+        fontSize: theme.flexiCharge.font.fontSize.title,
         fontWeight: 800,
       },
       '& p': {
-        fontFamily:theme.flexiCharge.font.p1.fontFamily,
-        fontSize:theme.flexiCharge.font.p1.fontSize,
+        fontFamily: theme.flexiCharge.font.fontFamily._main,
 
       },
     },
@@ -53,17 +52,17 @@ const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         transform: "translateY(2px)",
         boxShadow: theme.flexiCharge.boxShadow.button,
-        backgroundColor: theme.palette.primary.main,
-        color: theme.flexiCharge.primary.white,
+        backgroundColor: theme.flexiCharge.primary.yellow,
       },
+      color: theme.flexiCharge.primary.white,
       marginTop: "48px",
       marginBottom: "32px",
       width: "60%",
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
-      backgroundColor: theme.flexiCharge.primary.green,
-      fontFamily:theme.flexiCharge.font.h5.fontFamily,
-      fontSize:theme.flexiCharge.font.h5.fontSize,
+      backgroundColor: theme.flexiCharge.primary.yellow,
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
       textTransform: "none",
     },
     input: {

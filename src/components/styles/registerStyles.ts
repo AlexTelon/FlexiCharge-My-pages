@@ -2,7 +2,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    grid:{
+    grid: {
       alignItems: "center",
       justifyContent: "center",
       maxWidth: "35vw",
@@ -11,23 +11,23 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "3vw",
       margin: "auto",
     },
-    nav:{
+    nav: {
       width: "100%",
       backgroundColor: theme.flexiCharge.primary.grey,
       height: "8vh",
-      position:"fixed"
+      position: "fixed"
     },
-    navLogo:{
-      width:"15%",
-      marginTop:"1vh",
-      marginLeft:"5vw",
-      float:"left",
+    navLogo: {
+      width: "15%",
+      marginTop: "1vh",
+      marginLeft: "5vw",
+      float: "left",
 
     },
     container: {
       '& h1': {
-        fontFamily:theme.flexiCharge.font.h3.fontFamily,
-        fontSize:theme.flexiCharge.font.h3.fontSize,
+        fontFamily: theme.flexiCharge.font.fontFamily._main,
+        fontSize: theme.flexiCharge.font.fontSize.title,
         fontWeight: 800,
       },
       backgroundColor: theme.flexiCharge.primary.white,
@@ -43,15 +43,14 @@ const useStyles = makeStyles((theme: Theme) =>
     textFields: {
       maxWidth: "40%",
       marginTop: "24px",
-      marginLeft:"10%",
-      marginRight:"10%",
+      marginLeft: "10%",
+      marginRight: "10%",
     },
     button: {
       "&:hover": {
         transform: "translateY(2px)",
         boxShadow: theme.flexiCharge.boxShadow.button,
-        backgroundColor: theme.palette.primary.main,
-        color: theme.flexiCharge.primary.white,
+        backgroundColor: theme.flexiCharge.primary.green,
       },
       marginTop: "48px",
       marginBottom: "32px",
@@ -59,8 +58,9 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "2.5rem",
       borderRadius: "0.5rem",
       backgroundColor: theme.flexiCharge.primary.green,
-      fontFamily:theme.flexiCharge.font.h5.fontFamily,
-      fontSize:theme.flexiCharge.font.h5.fontSize,
+      color: theme.flexiCharge.primary.white,
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
       textTransform: "none",
     },
     links: {
@@ -68,8 +68,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 1000,
       color: theme.flexiCharge.primary.green,
       textDecorationLine: 'none',
-      fontFamily:theme.flexiCharge.font.h6.fontFamily,
-      fontSize:theme.flexiCharge.font.h6.fontSize,
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
     },
   })
 );

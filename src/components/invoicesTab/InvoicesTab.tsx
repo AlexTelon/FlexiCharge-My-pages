@@ -1,7 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Divider, FormControlLabel, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import MockInvoices from "./MockInvoices"
-import useStyles from "./InvoicesTabStyles";
+import useStyles from "../styles/InvoicesTabStyles";
 
 type invoices = {
     id : string,
@@ -98,7 +98,7 @@ const InvoicesList = ({invoices} : {invoices:invoices}) => {
     
     
     return (
-        <List>
+        <List sx={{ padding: "0" }}>
             {invoices.map((invoice) => (
                 <InvoicesListItem key = {invoice.id} invoice = {invoice}/>
             ))}

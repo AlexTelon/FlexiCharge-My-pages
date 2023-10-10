@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
               align: "right",
               width: '20%', 
               flexShrink: 0,
-              fontSize: "80%"
+              fontSize: theme.flexiCharge.font.fontSize.small,
           },
           "& p": {
               display: "inline-block !important",
@@ -23,11 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
       },
 
       downloadInvoiceButton: {
-        backgroundColor: "#78bd76",
-        color: "#333",
+        backgroundColor: theme.flexiCharge.primary.green,
+        color: theme.flexiCharge.primary.white,
         width: "100%",
         padding: "10px",
-        fontSize: "12px",
+        fontSize: theme.flexiCharge.font.fontSize.small,
         borderRadius: "10px",
         border: "none",
         "&:hover": {

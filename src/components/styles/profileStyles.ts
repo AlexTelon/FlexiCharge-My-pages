@@ -3,13 +3,12 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
-      height: "88vh",
+      height: "100vh",
       overflow: "auto",
-      maxWidth: "96%",
+      maxWidth: "100%",
       margin: "100px auto",
-      marginTop: "10vh",
-      backgroundColor: theme.flexiCharge.primary.white,
-      borderRadius: "10px",
+      marginTop: "0vh",
+      backgroundColor: theme.flexiCharge.primary.lightGrey,
     },
 
     container: {
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
     profile__items: {
       display: "flex",
-      fontSize: "20px",
       padding: "20px",
       justifyContent: "space-between",
       alignItem: "center",
@@ -48,11 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     deleteButton: {
-      backgroundColor: "#ef6048",
-      color: "#333",
+      backgroundColor: theme.flexiCharge.primary.red,
+      color: theme.flexiCharge.primary.white,
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -61,11 +58,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     changePasswordButton: {
-      backgroundColor: "#78bd76",
-      color: "#333",
+      backgroundColor: theme.flexiCharge.primary.yellow,
+      color: theme.flexiCharge.primary.white,
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -80,18 +76,17 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "fixed",
     },
     navLogo: {
-      width: "15%",
-      marginTop: "1vh",
-      marginLeft: "5vw",
+      width: "100%",
+      padding: theme.flexiCharge.margin.marginDistance,
       float: "left",
+      marginBottom: theme.flexiCharge.margin.marginDistance,
     },
 
     editInformationButton: {
-      backgroundColor: theme.flexiCharge.accent.warning,
-      color: "#333",
+      backgroundColor: theme.flexiCharge.primary.yellow,
+      color: theme.flexiCharge.primary.white,
       width: "250px",
       padding: "10px",
-      fontSize: "12px",
       borderRadius: "10px",
       border: "none",
       "&:hover": {
@@ -100,18 +95,21 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     logoutButton: {
-      float: "right",
-      marginTop: "1.5vh",
-      marginRight: "5vw",
-      fontFamily: theme.flexiCharge.font.h5.fontFamily,
-      fontSize: theme.flexiCharge.font.h5.fontSize,
-      color: theme.flexiCharge.primary.white,
+      marginBottom: theme.flexiCharge.margin.marginDistance,
+      marginTop: "auto",
+      fontFamily: theme.flexiCharge.font.fontFamily._main,
+      fontSize: theme.flexiCharge.font.fontSize.bigButton,
+      color: theme.flexiCharge.primary.grey,
       textDecoration: "none",
       "&:hover": {
         transform: "translateY(2px)",
-        color: theme.flexiCharge.primary.white,
+        color: theme.flexiCharge.primary.grey,
       },
     },
+
+    tabPanel: {
+      padding: theme.flexiCharge.margin.marginDistance,
+    }
   })
 );
 
