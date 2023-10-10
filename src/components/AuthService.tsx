@@ -77,17 +77,22 @@ class AuthService {
   updateUserProfile(
     newFirstName: string,
     newLastName: string,
-    newPhoneNumber: String,
+    newPhoneNumber: string,
     newStreetAddress: string,
     newZipCode: string,
     newCity: string,
     newCountry: string
   ) {
+    //const token = this.getCurrentUser().accessToken
+
+    // hardcode correct user token from swagger
+    const token = "token";
     const axios = require("axios");
 
     const config = {
       method: "put",
       url: API_URL + "user-information",
+      headers: {Authorization: `Bearer ${token}`},
       data: {
         firstName: newFirstName,
         lastName: newLastName,
@@ -99,13 +104,13 @@ class AuthService {
       },
     };
 
-    axios(config)
-      .then(function (response: any) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error: any) {
-        console.log(error);
-      });
+    return axios(config)
+    .then(function (response: any) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error: any) {
+      console.log(error);
+    });
   }
 
   logout() {
