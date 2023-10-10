@@ -1,29 +1,28 @@
-import { Button, TextField, Grid, Box } from "@material-ui/core";
-import Alert from "@mui/material/Alert";
-import Modal from "@mui/material/Modal";
-import { Redirect, Link } from "react-router-dom";
+import { Button, TextField, Grid, Box } from '@material-ui/core';
+import Alert from '@mui/material/Alert';
+import Modal from '@mui/material/Modal';
+import { Redirect, Link } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import InputAdornment from "@material-ui/core/InputAdornment";
+import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
-import { ValidationForm } from "../utils/pageValidation/loginValidation";
-import useStyles from "../components/styles/loginStyles";
-
+import FlexiChargeLogoDarkGrey from '../assets/FlexiChargeLogoDarkGrey.svg';
+import { ValidationForm } from '../utils/pageValidation/loginValidation';
+import useStyles from '../components/styles/loginStyles';
 
 const inputFieldValues = [
   {
-    name: "username",
-    label: "Email",
-    id: "username",
-    icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
+    name: 'username',
+    label: 'Email',
+    id: 'username',
+    icon: <EmailOutlinedIcon style={{ color: '#78bd76' }} />
   },
   {
-    name: "password",
-    type: "password",
-    label: "Password",
-    id: "user-password",
-    icon: <LockOutlinedIcon  style={{color: "#78bd76"}}/>,
-  },
+    name: 'password',
+    type: 'password',
+    label: 'Password',
+    id: 'user-password',
+    icon: <LockOutlinedIcon style={{ color: '#78bd76' }} />
+  }
 ];
 
 const Login = () => {
@@ -35,7 +34,7 @@ const Login = () => {
     errors,
     msg,
     open,
-    handleClose,
+    handleClose
   } = ValidationForm();
 
   if (redirect) {
@@ -44,7 +43,7 @@ const Login = () => {
 
   return (
     <Grid className={classes.body}>
-      <img className={classes.indexLogo} src={FlexiChargeLogoDarkGrey}/>
+      <img className={classes.indexLogo} src={FlexiChargeLogoDarkGrey} />
       <Grid container direction="column" className={classes.grid}>
         <Modal open={open} onClose={handleClose}>
           <Box className="backdrop">
@@ -66,7 +65,7 @@ const Login = () => {
                         <InputAdornment position="start">
                           {inputFieldValue.icon}
                         </InputAdornment>
-                      ),
+                      )
                     }}
                     fullWidth
                     className={classes.textFields}
@@ -76,7 +75,7 @@ const Login = () => {
                     autoComplete="none"
                     {...(errors[inputFieldValue.name] && {
                       error: true,
-                      helperText: errors[inputFieldValue.name],
+                      helperText: errors[inputFieldValue.name]
                     })}
                   />
                 </Grid>
@@ -96,11 +95,11 @@ const Login = () => {
                 <Link data-testid="forgotPassword" className={classes.links} to="/forgot-password">Forgot password?</Link>
               </Grid>
               <Grid item xs={6}>
-                <Link className={classes.links} to="/sign-up"> <span style={{color: "#5e5eb7"}}> Already have an account? </span> Sign Up</Link>
+                <Link className={classes.links} to="/sign-up"> <span style={{ color: '#5e5eb7' }}> Already have an account? </span> Sign Up</Link>
               </Grid>
             </Grid>
           </form>
-          {msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
+          {msg ? <Alert severity="error">{msg}</Alert> : ''}{' '}
         </Grid>
       </Grid>
     </Grid>

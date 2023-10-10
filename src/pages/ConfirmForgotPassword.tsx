@@ -1,44 +1,44 @@
-import { Button, TextField, Grid, Box } from "@material-ui/core";
-import Alert from "@mui/material/Alert";
-import Modal from "@mui/material/Modal";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Redirect, Link } from "react-router-dom";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../utils/pageValidation/validation";
-//import { ValidationForm } from "../components/pageValidation/confirmForgotPasswordValidation";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import useStyles from "../components/styles/confirmForgotPasswordStyles";
-import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+import { Button, TextField, Grid, Box } from '@material-ui/core';
+import Alert from '@mui/material/Alert';
+import Modal from '@mui/material/Modal';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Redirect, Link } from 'react-router-dom';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { ValidationForm } from '../utils/pageValidation/validation';
+// import { ValidationForm } from "../components/pageValidation/confirmForgotPasswordValidation";
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import useStyles from '../components/styles/confirmForgotPasswordStyles';
+import FlexiChargeLogoDarkGrey from '../assets/FlexiChargeLogoDarkGrey.svg';
 
 const inputFieldValues = [
   {
-    name: "username",
-    label: "Email",
-    id: "username",
-    icon: <EmailOutlinedIcon style={{ color: "#78bd76" }} />,
+    name: 'username',
+    label: 'Email',
+    id: 'username',
+    icon: <EmailOutlinedIcon style={{ color: '#78bd76' }} />
   },
   {
-    name: "newPassword",
-    type: "password",
-    label: "Password",
-    id: "password",
-    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
+    name: 'newPassword',
+    type: 'password',
+    label: 'Password',
+    id: 'password',
+    icon: <LockOutlinedIcon style={{ color: '#78bd76' }} />
   },
   {
-    name: "confirmPassword",
-    type: "password",
-    label: "Confirm password",
-    id: "confirmPassword",
-    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
+    name: 'confirmPassword',
+    type: 'password',
+    label: 'Confirm password',
+    id: 'confirmPassword',
+    icon: <LockOutlinedIcon style={{ color: '#78bd76' }} />
   },
   {
-    name: "verifyCode",
-    label: "Verification code",
-    id: "verifyCode",
+    name: 'verifyCode',
+    label: 'Verification code',
+    id: 'verifyCode',
     maxLength: 6,
-    icon: <VpnKeyIcon style={{ color: "#78bd76" }} />,
-  },
+    icon: <VpnKeyIcon style={{ color: '#78bd76' }} />
+  }
 ];
 
 const ConfirmForgotPassword = () => {
@@ -50,7 +50,7 @@ const ConfirmForgotPassword = () => {
     open,
     errors,
     msg,
-    redirect,
+    redirect
   } = ValidationForm();
 
   if (redirect) {
@@ -88,21 +88,21 @@ const ConfirmForgotPassword = () => {
                         <InputAdornment position="start">
                           {inputFieldValue.icon}
                         </InputAdornment>
-                      ),
+                      )
                     }}
                     fullWidth
-                    style={{ marginTop: "1rem" }}
+                    style={{ marginTop: '1rem' }}
                     className={classes.textFields}
                     name={inputFieldValue.name}
                     label={inputFieldValue.label}
                     type={inputFieldValue.type}
                     autoComplete="none"
                     inputProps={{
-                      maxLength: inputFieldValue.maxLength,
+                      maxLength: inputFieldValue.maxLength
                     }}
                     {...(errors[inputFieldValue.name] && {
                       error: true,
-                      helperText: errors[inputFieldValue.name],
+                      helperText: errors[inputFieldValue.name]
                     })}
                   />
                 </Grid>
@@ -115,7 +115,7 @@ const ConfirmForgotPassword = () => {
             >
               Set new password
             </Button>
-            {msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
+            {msg ? <Alert severity="error">{msg}</Alert> : ''}{' '}
           </form>
         </Grid>
       </Grid>

@@ -1,18 +1,18 @@
-import { Button, TextField, Grid, Box } from "@material-ui/core";
-import Alert from "@mui/material/Alert";
-import Modal from "@mui/material/Modal";
-import { Redirect, Link } from "react-router-dom";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../utils/pageValidation/forgotPasswordValidation";
+import { Button, TextField, Grid, Box } from '@material-ui/core';
+import Alert from '@mui/material/Alert';
+import Modal from '@mui/material/Modal';
+import { Redirect, Link } from 'react-router-dom';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { ValidationForm } from '../utils/pageValidation/forgotPasswordValidation';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import useStyles from "../components/styles/forgotPasswordStyles";
-import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+import useStyles from '../components/styles/forgotPasswordStyles';
+import FlexiChargeLogoDarkGrey from '../assets/FlexiChargeLogoDarkGrey.svg';
 
 const inputFieldValue = {
-  name: "username",
-  label: "Email",
-  id: "username",
-  icon: <EmailOutlinedIcon style={{color: "#78bd76"}} />,
+  name: 'username',
+  label: 'Email',
+  id: 'username',
+  icon: <EmailOutlinedIcon style={{ color: '#78bd76' }} />
 };
 
 const ForgotPassword = () => {
@@ -24,7 +24,7 @@ const ForgotPassword = () => {
     open,
     errors,
     msg,
-    redirect,
+    redirect
   } = ValidationForm();
 
   if (redirect) {
@@ -35,7 +35,7 @@ const ForgotPassword = () => {
     <Grid container direction="column">
       <div className={classes.nav}>
         <Link to="/sign-in">
-          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
         </Link>
       </div>
       <Grid container direction="column" className={classes.grid}>
@@ -59,7 +59,7 @@ const ForgotPassword = () => {
                     <InputAdornment position="start">
                       {inputFieldValue.icon}
                     </InputAdornment>
-                  ),
+                  )
                 }}
                 fullWidth
                 className={classes.textFields}
@@ -68,14 +68,14 @@ const ForgotPassword = () => {
                 autoComplete="none"
                 {...(errors[inputFieldValue.name] && {
                   error: true,
-                  helperText: errors[inputFieldValue.name],
+                  helperText: errors[inputFieldValue.name]
                 })}
               />
             </Grid>
             <Button variant="contained" type="submit" className={classes.button}>
               Send password reset
             </Button>
-            {msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
+            {msg ? <Alert severity="error">{msg}</Alert> : ''}{' '}
           </form>
         </Grid>
       </Grid>

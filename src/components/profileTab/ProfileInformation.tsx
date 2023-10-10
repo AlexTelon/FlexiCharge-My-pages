@@ -1,6 +1,6 @@
-import useStyles from "../styles/profileInformationStyles";
-import AuthService from "../AuthService";
-import { ValidationForm } from "../../utils/pageValidation/validation";
+import useStyles from '../styles/profileInformationStyles';
+import AuthService from '../AuthService';
+import { ValidationForm } from '../../utils/pageValidation/validation';
 
 const ProfileInformation = (props: any) => {
   const classes = useStyles();

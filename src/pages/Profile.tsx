@@ -1,28 +1,28 @@
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import AuthService from "../components/AuthService";
-import useStyles from "../components/styles/profileStyles";
-import Tabs from "../components/Tabs";
-import { Link } from "react-router-dom";
-import Logout from "@mui/icons-material/Logout";
-import { Grid } from "@material-ui/core";
-import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import AuthService from '../components/AuthService';
+import useStyles from '../components/styles/profileStyles';
+import Tabs from '../components/Tabs';
+import { Link } from 'react-router-dom';
+import Logout from '@mui/icons-material/Logout';
+import { Grid } from '@material-ui/core';
+import FlexiChargeLogoDarkGrey from '../assets/FlexiChargeLogoDarkGrey.svg';
 
 const Profile = () => {
   const classes = useStyles();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setFamilytName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [streetAddress, setAddress] = useState("");
-  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setFamilytName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [streetAddress, setAddress] = useState('');
+  const [userName, setUserName] = useState('');
   const history = useHistory();
 
   useEffect(() => {
     const currentUser = AuthService.getCurrentUser();
     if (!currentUser) {
-      history.push("/sign-in");
+      history.push('/sign-in');
     } else {
       setFirstName(currentUser.firstName);
       setFamilytName(currentUser.lastName);
@@ -41,7 +41,7 @@ const Profile = () => {
         </Link>
 
         <Link to="/sign-in" className={classes.logoutButton} onClick={AuthService.logout}>
-          <Logout style={{ color: "#78bd76" }} fontSize="large" />
+          <Logout style={{ color: '#78bd76' }} fontSize="large" />
           Sign Out
         </Link>
       </div>

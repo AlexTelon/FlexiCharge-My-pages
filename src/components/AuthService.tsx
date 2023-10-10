@@ -1,64 +1,65 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "http://18.202.253.30:8080/auth/";
+const API_URL = 'http://18.202.253.30:8080/auth/';
 
 class AuthService {
-  login(username: string, password: string) {
+  async login(username: string, password: string) {
     return axios
-      .post(API_URL + "sign-in", {
+      .post(API_URL + 'sign-in', {
         username: username,
-        password: password,
+        password: password
       })
       .then((response) => {
         if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem('user', JSON.stringify(response.data));
         }
         return response.data;
       });
   }
 
-  forgotPassword(username: string) {
+  async forgotPassword(username: string) {
     return axios.post(API_URL + `forgot-password/${username}`, {
-      username: username,
+      username: username
     });
   }
 
-  confirmForgotPassword(
+  async confirmForgotPassword(
     username: string,
     password: string,
     confirmPassword: string,
     confirmationCode: string
   ) {
-    return axios.post(API_URL + "confirm-forgot-password", {
+    return axios.post(API_URL + 'confirm-forgot-password', {
       username: username,
       password: password,
       confirmPassword: confirmPassword,
-      confirmationCode: confirmationCode,
+      confirmationCode: confirmationCode
     });
   }
-  changePassword(
+
+  async changePassword(
     token: string,
     password: string,
     newPassword: string,
     confirmPassword: string
   ) {
-    return axios.post(API_URL + "change-password", {
+    return axios.post(API_URL + 'change-password', {
       accessToken: token,
       previousPassword: password,
       newPassword: newPassword,
-      confirmPassword: confirmPassword,
+      confirmPassword: confirmPassword
     });
   }
 
   getUpdatedUserProfile() {
-    let axios = require("axios");
+    const axios = require('axios');
 
-    let config = {
-      method: "get",
-      url: API_URL + "user-information",
+    const config = {
+      method: 'get',
+      url: API_URL + 'user-information',
       headers: {
-        Authorization: `Bearer ${this.getCurrentUser().accessToken}`,
-      },
+        Authorization: `Bearer ${this.getCurrentUser().accessToken}`
+      }
     };
 
     axios(config)
@@ -79,11 +80,11 @@ class AuthService {
     newCity: string,
     newCountry: string
   ) {
-    const axios = require("axios");
+    const axios = require('axios');
 
     const config = {
-      method: "put",
-      url: API_URL + "user-information",
+      method: 'put',
+      url: API_URL + 'user-information',
       data: {
         firstName: newFirstName,
         lastName: newLastName,
@@ -91,8 +92,8 @@ class AuthService {
         streetAddress: newStreetAddress,
         zipCode: newZipCode,
         city: newCity,
-        country: newCountry,
-      },
+        country: newCountry
+      }
     };
 
     axios(config)
@@ -105,27 +106,27 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     window.location.href = '/sign-in';
   }
 
-  register(username: string, password: string, confirmPassword: string) {
-    return axios.post(API_URL + "sign-up", {
+  async register(username: string, password: string, confirmPassword: string) {
+    return axios.post(API_URL + 'sign-up', {
       username: username,
       password: password,
-      confirmPassword: confirmPassword,
+      confirmPassword: confirmPassword
     });
   }
 
-  verify(username: string, code: string) {
-    return axios.post(API_URL + "verify", {
+  async verify(username: string, code: string) {
+    return axios.post(API_URL + 'verify', {
       code: code,
-      username: username,
+      username: username
     });
   }
 
   getCurrentUser() {
-    const userStr = localStorage.getItem("user");
+    const userStr = localStorage.getItem('user');
     if (userStr) return JSON.parse(userStr);
 
     return null;

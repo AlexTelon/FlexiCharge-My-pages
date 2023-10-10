@@ -1,15 +1,15 @@
-import {useState } from "react";
-import AuthService from "../../components/AuthService";
-import { checkValidate, isEmpty } from "./checkValidate";
+import { useState } from 'react';
+import AuthService from '../../components/AuthService';
+import { checkValidate, isEmpty } from './checkValidate';
 
 const initialFormValues = {
-  username: "",
+  username: ''
 };
 
 export const ValidationForm = () => {
   const [values, setValues] = useState(initialFormValues);
   const [errors, setErrors] = useState({} as any);
-  const [msg, setMsg] = useState("");
+  const [msg, setMsg] = useState('');
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
@@ -18,10 +18,10 @@ export const ValidationForm = () => {
   const validate: any = (fieldValues = values) => {
     let temp: any = { ...errors };
 
-    temp = checkValidate(fieldValues)
+    temp = checkValidate(fieldValues);
 
     setErrors({
-      ...temp,
+      ...temp
     });
   };
 
@@ -29,7 +29,7 @@ export const ValidationForm = () => {
     const { name, value } = e.target;
     setValues({
       ...values,
-      [name]: value,
+      [name]: value
     });
     
     validate({ [name]: value });
@@ -40,10 +40,10 @@ export const ValidationForm = () => {
 
     const { username } = e.target.elements;
     const initialValues = {
-      username: username.value,
+      username: username.value
     };
 
-    const isValid = Object.values(errors).every((x) => x === "");
+    const isValid = Object.values(errors).every((x) => x === '');
 
     if (isValid && !isEmpty(initialValues)) {
       setOpen(true);
@@ -53,7 +53,7 @@ export const ValidationForm = () => {
         setOpen(false);
         setRedirect(true);
       });
-    } else setMsg("Please fill in the fields!");
+    } else setMsg('Please fill in the fields!');
   };
 
   return {
@@ -65,7 +65,7 @@ export const ValidationForm = () => {
     handleOpen,
     handleInputValue,
     ForgotPasswordHandleFormSubmit,
-    redirect,
+    redirect
   
   };
 };

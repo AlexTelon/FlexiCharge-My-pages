@@ -1,59 +1,53 @@
-import {checkValidate} from "../utils/pageValidation/checkValidate"
+import { checkValidate } from '../utils/pageValidation/checkValidate';
 
-let initialFormValues = {
-    username: "",
-    password: "",
-    verifyCode: "",
+const initialFormValues = {
+  username: '',
+  password: '',
+  verifyCode: ''
 };
 
+describe('Testing empty string', () => {
+  const checkErrors = checkValidate(initialFormValues);
 
-describe("Testing empty string", () =>{
-
-    const checkErrors = checkValidate(initialFormValues)
-
-    test("username test", () => {
-        expect(checkErrors.username).toEqual("This field is required.");
-    });
+  test('username test', () => {
+    expect(checkErrors.username).toEqual('This field is required.');
+  });
     
-    test("password test", () => {
-        expect(checkErrors.password).toEqual("This field is required.");
-     });
+  test('password test', () => {
+    expect(checkErrors.password).toEqual('This field is required.');
+  });
 
-    test("verify test", () => {
-        expect(checkErrors.verifyCode).toEqual("Code is a 6 digit number that was sent to your email.");
-    });
+  test('verify test', () => {
+    expect(checkErrors.verifyCode).toEqual('Code is a 6 digit number that was sent to your email.');
+  });
+});
+
+describe('Testing valid string', () => {
+  initialFormValues.username = 'flexi@char.ge';
+  initialFormValues.password = 'notEmpty';
+  initialFormValues.verifyCode = '23563';
+
+  const checkErrors = checkValidate(initialFormValues);
     
-})
-
-describe("Testing valid string", () =>{
-
-    initialFormValues.username = "flexi@char.ge"
-    initialFormValues.password="notEmpty"
-    initialFormValues.verifyCode = "23563"
-
-    const checkErrors = checkValidate(initialFormValues)
+  test('username test', () => {
+    expect(checkErrors.username).toEqual('');
+  });
     
-    test("username test", () => {
-        expect(checkErrors.username).toEqual("");
-     });
+  test('password test', () => {
+    expect(checkErrors.password).toEqual('');
+  });
     
-    test("password test", () => {
-        expect(checkErrors.password).toEqual("");
-     });
-    
-    test("verify test", () => {
-        expect(checkErrors.verifyCode).toEqual("");
-    });
-})
+  test('verify test', () => {
+    expect(checkErrors.verifyCode).toEqual('');
+  });
+});
 
-describe("Testing not valid string", () =>{
+describe('Testing not valid string', () => {
+  initialFormValues.username = 'flexicharge';
 
-    initialFormValues.username = "flexicharge"
+  const checkErrors = checkValidate(initialFormValues);
 
-    const checkErrors = checkValidate(initialFormValues)
-
-    test("username test", () => {
-        expect(checkErrors.username).toEqual("Email is not valid.");
-    });
-    
-})
+  test('username test', () => {
+    expect(checkErrors.username).toEqual('Email is not valid.');
+  });
+});

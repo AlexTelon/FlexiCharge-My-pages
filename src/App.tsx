@@ -1,27 +1,25 @@
-import "./App.css";
-import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core";
-import Theme from "./theme/theme";
-import AuthService from "./components/AuthService";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import ChargingSessions from "./pages/ChargingSessions";
-import VerifyAccount from "./pages/VerifyAccount";
-import ForgotPassword from "./pages/ForgotPassword";
-import ConfirmForgotPassword from "./pages/ConfirmForgotPassword";
-import Profile from "./pages/Profile";
-import ChangePassword from "./pages/ChangePassword";
-import NotFound from "./pages/NotFound";
-
-
+import './App.css';
+import React from 'react';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
+import Theme from './theme/theme';
+import AuthService from './components/AuthService';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ChargingSessions from './pages/ChargingSessions';
+import VerifyAccount from './pages/VerifyAccount';
+import ForgotPassword from './pages/ForgotPassword';
+import ConfirmForgotPassword from './pages/ConfirmForgotPassword';
+import Profile from './pages/Profile';
+import ChangePassword from './pages/ChangePassword';
+import NotFound from './pages/NotFound';
 
 function App() {
-  const isLoggedIn = AuthService.getCurrentUser() ? true : false;
+  const isLoggedIn = !!AuthService.getCurrentUser();
 
-  let redirectPath = "/sign-in";
+  let redirectPath = '/sign-in';
   if (isLoggedIn) {
-    redirectPath = "/profile";
+    redirectPath = '/profile';
   }
 
   return (

@@ -1,56 +1,56 @@
-import Box from "@mui/material/Box";
-import { Button } from "@material-ui/core";
-import TextField from "@mui/material/TextField";
-import useStyles from "../styles/profileInformationStyles";
-import { ValidationForm } from "../../utils/pageValidation/validation";
-import Alert from "@mui/material/Alert";
-import AuthService from "../AuthService";
+import Box from '@mui/material/Box';
+import { Button } from '@material-ui/core';
+import TextField from '@mui/material/TextField';
+import useStyles from '../styles/profileInformationStyles';
+import { ValidationForm } from '../../utils/pageValidation/validation';
+import Alert from '@mui/material/Alert';
+import AuthService from '../AuthService';
 
 const UpdateProfileInformation = (props: any) => {
   const inputFieldValues = [
     {
-      name: "firstName",
-      currentValue: "ShaNawaz",
-      label: "First name: ",
-      type: "text",
-      id: "firstName",
+      name: 'firstName',
+      currentValue: 'ShaNawaz',
+      label: 'First name: ',
+      type: 'text',
+      id: 'firstName'
     },
     {
-      name: "lastName",
-      label: "Last name: ",
-      type: "text",
-      id: "lastName",
+      name: 'lastName',
+      label: 'Last name: ',
+      type: 'text',
+      id: 'lastName'
     },
     {
-      name: "phoneNumber",
-      label: "Phone Number: ",
-      type: "text",
-      id: "phoneNumber",
+      name: 'phoneNumber',
+      label: 'Phone Number: ',
+      type: 'text',
+      id: 'phoneNumber'
     },
     {
-      name: "streetAddress",
-      label: "Street address: ",
-      type: "text",
-      id: "streetAddress",
+      name: 'streetAddress',
+      label: 'Street address: ',
+      type: 'text',
+      id: 'streetAddress'
     },
     {
-      name: "zipCode",
-      label: "Zip code: ",
-      type: "text",
-      id: "zipCode",
+      name: 'zipCode',
+      label: 'Zip code: ',
+      type: 'text',
+      id: 'zipCode'
     },
     {
-      name: "city",
-      label: "City: ",
-      type: "text",
-      id: "city",
+      name: 'city',
+      label: 'City: ',
+      type: 'text',
+      id: 'city'
     },
     {
-      name: "country",
-      label: "Country: ",
-      type: "text",
-      id: "country",
-    },
+      name: 'country',
+      label: 'Country: ',
+      type: 'text',
+      id: 'country'
+    }
   ];
   const classes = useStyles();
   const { UpdateUserProfile, handleInputValue, errors, msg } = ValidationForm();
@@ -60,15 +60,15 @@ const UpdateProfileInformation = (props: any) => {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": {
+          '& .MuiTextField-root': {
             m: 1,
-            margin: "48px",
-            width: "25ch",
-            display: "flex",
-            flexDirection: "column",
+            margin: '48px',
+            width: '25ch',
+            display: 'flex',
+            flexDirection: 'column'
           },
-          maxHeight: "100%",
-          overflow: "auto",
+          maxHeight: '100%',
+          overflow: 'auto'
         }}
         noValidate
         autoComplete="off"
@@ -87,11 +87,11 @@ const UpdateProfileInformation = (props: any) => {
                   placeholder={inputFieldValue.currentValue}
                   onChange={handleInputValue}
                   variant="standard"
-                  onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
+                  onKeyPress={(e) => e.key === 'Enter' && e.preventDefault()}
                   autoComplete="none"
                   {...(errors[inputFieldValue.name] && {
                     error: true,
-                    helperText: errors[inputFieldValue.name],
+                    helperText: errors[inputFieldValue.name]
                   })}
                 />
               );
@@ -116,7 +116,7 @@ const UpdateProfileInformation = (props: any) => {
           </form>
         </div>
       </Box>
-      {msg ? <Alert severity="error">{msg}</Alert> : ""}{" "}
+      {msg ? <Alert severity="error">{msg}</Alert> : ''}{' '}
     </div>
   );
 };

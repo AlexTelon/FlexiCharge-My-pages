@@ -1,28 +1,28 @@
-import { Button, TextField, Grid, Box } from "@material-ui/core";
-import Alert from "@mui/material/Alert";
-import Modal from "@mui/material/Modal";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { ValidationForm } from "../utils/pageValidation/verifyValidation";
+import { Button, TextField, Grid, Box } from '@material-ui/core';
+import Alert from '@mui/material/Alert';
+import Modal from '@mui/material/Modal';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { ValidationForm } from '../utils/pageValidation/verifyValidation';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import { Redirect, Link } from "react-router-dom";
-import useStyles from "../components/styles/verifyAccountStyles";
-import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import { Redirect, Link } from 'react-router-dom';
+import useStyles from '../components/styles/verifyAccountStyles';
+import FlexiChargeLogoDarkGrey from '../assets/FlexiChargeLogoDarkGrey.svg';
 
 const inputFieldValues = [
   {
-    name: "username",
-    label: "Email",
-    id: "user-username",
-    icon: <EmailOutlinedIcon style={{color: "#78bd76"}}/>,
+    name: 'username',
+    label: 'Email',
+    id: 'user-username',
+    icon: <EmailOutlinedIcon style={{ color: '#78bd76' }} />
   },
   {
-    name: "verifyCode",
-    label: "Verification code",
-    id: "verifyCode",
+    name: 'verifyCode',
+    label: 'Verification code',
+    id: 'verifyCode',
     maxLength: 6,
-    icon: <VpnKeyIcon style={{color: "#78bd76"}}/>,
-  },
+    icon: <VpnKeyIcon style={{ color: '#78bd76' }} />
+  }
 ];
 
 const VerifyAccount = () => {
@@ -35,7 +35,7 @@ const VerifyAccount = () => {
     open,
     errors,
     msg,
-    redirect,
+    redirect
   } = ValidationForm();
 
   if (!msg && redirect) {
@@ -46,7 +46,7 @@ const VerifyAccount = () => {
     <Grid container direction="column">
       <div className={classes.nav}>
         <Link to="/sign-in">
-          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey}/>
+          <img className={classes.navLogo} src={FlexiChargeLogoDarkGrey} />
         </Link>
       </div>
       <Grid container direction="column" className={classes.grid}>
@@ -71,19 +71,19 @@ const VerifyAccount = () => {
                         <InputAdornment position="start">
                           {inputFieldValue.icon}
                         </InputAdornment>
-                      ),
+                      )
                     }}
                     fullWidth
-                    style={{ marginTop: "1rem" }}
+                    style={{ marginTop: '1rem' }}
                     name={inputFieldValue.name}
                     label={inputFieldValue.label}
                     autoComplete="none"
                     inputProps={{
-                      maxLength: inputFieldValue.maxLength,
+                      maxLength: inputFieldValue.maxLength
                     }}
                     {...(errors[inputFieldValue.name] && {
                       error: true,
-                      helperText: errors[inputFieldValue.name],
+                      helperText: errors[inputFieldValue.name]
                     })}
                   />
                 </Grid>
@@ -92,7 +92,7 @@ const VerifyAccount = () => {
             <Button variant="contained" type="submit" className={classes.button}>
               Verify
             </Button>
-            {msg ? <Alert severity="error">{msg}</Alert> : ""}
+            {msg ? <Alert severity="error">{msg}</Alert> : ''}
           </form>
         </Grid>
       </Grid>

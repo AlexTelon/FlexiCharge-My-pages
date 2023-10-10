@@ -1,22 +1,22 @@
-import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import useStyles from "../components/styles/profileStyles";
-import ProfileInformation from "./profileTab/ProfileInformation";
-import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
-import AuthService from "../components/AuthService";
-import ProfileFormHandling from "./profileTab/ProfileFormHandling";
-import UpdateProfileButton from "./profileTab/UpdateProfileButton";
-import InvoicesTab from "./invoicesTab/InvoicesTab";
-import ChargingTab from "./chargingHistoryTab/chargingHistoryTab";
+import * as React from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import useStyles from '../components/styles/profileStyles';
+import ProfileInformation from './profileTab/ProfileInformation';
+import { useHistory } from 'react-router';
+import { useEffect, useState } from 'react';
+import AuthService from '../components/AuthService';
+import ProfileFormHandling from './profileTab/ProfileFormHandling';
+import UpdateProfileButton from './profileTab/UpdateProfileButton';
+import InvoicesTab from './invoicesTab/InvoicesTab';
+import ChargingTab from './chargingHistoryTab/chargingHistoryTab';
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+  children?: React.ReactNode
+  index: number
+  value: number
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -42,7 +42,7 @@ function TabPanel(props: TabPanelProps) {
 function allyProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`
   };
 }
 
@@ -51,66 +51,66 @@ export default function BasicTabs() {
 
   const inputFieldValues = [
     {
-      name: "firstName",
-      label: "First name: ",
-      descript: "Sebastian",
-      id: "firstName",
+      name: 'firstName',
+      label: 'First name: ',
+      descript: 'Sebastian',
+      id: 'firstName'
     },
     {
-      name: "lastName",
-      label: "Last name: ",
-      descript: "Zeed",
-      id: "lastName",
+      name: 'lastName',
+      label: 'Last name: ',
+      descript: 'Zeed',
+      id: 'lastName'
     },
     {
-      name: "phoneNumber",
-      label: "Phone Number: ",
-      descript: "+46731234456",
-      id: "phoneNumber",
+      name: 'phoneNumber',
+      label: 'Phone Number: ',
+      descript: '+46731234456',
+      id: 'phoneNumber'
     },
     {
-      name: "streetAddress",
-      label: "Street address: ",
-      descript: "Banarpsgatan 6",
-      id: "streetAddress",
+      name: 'streetAddress',
+      label: 'Street address: ',
+      descript: 'Banarpsgatan 6',
+      id: 'streetAddress'
     },
     {
-      name: "zipCode",
-      label: "Zip code: ",
-      descript: "55312",
-      id: "zipCode",
+      name: 'zipCode',
+      label: 'Zip code: ',
+      descript: '55312',
+      id: 'zipCode'
     },
     {
-      name: "city",
-      label: "City: ",
-      descript: "Jönköping",
-      id: "city",
+      name: 'city',
+      label: 'City: ',
+      descript: 'Jönköping',
+      id: 'city'
     },
     {
-      name: "country",
-      label: "Country: ",
-      descript: "Sweden",
-      id: "country",
-    },
+      name: 'country',
+      label: 'Country: ',
+      descript: 'Sweden',
+      id: 'country'
+    }
   ];
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setFamilytName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [streetAddress, setAddress] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userId, setuserId] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setFamilytName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [streetAddress, setAddress] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userId, setuserId] = useState('');
   const history = useHistory();
 
   useEffect(() => {
     const currentUser = AuthService.getCurrentUser();
     if (!currentUser) {
-      history.push("/sign-in");
+      history.push('/sign-in');
     } else {
       setFirstName(currentUser.firstName);
       setFamilytName(currentUser.lastName);
@@ -131,16 +131,16 @@ export default function BasicTabs() {
   };
   
   return (
-    <Box sx={{ width: "100%", maxHeight: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
+    <Box sx={{ width: '100%', maxHeight: '100%', display: 'grid', overflow: 'auto', gridTemplateColumns: '20% 80%' }}>
       <Box>
         <Tabs
           variant="fullWidth"
-          TabIndicatorProps={{ sx: { backgroundColor: "#333", height: 4 } }}
+          TabIndicatorProps={{ sx: { backgroundColor: '#333', height: 4 } }}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
           orientation="vertical"
-          sx={{ position: "sticky", top: "0", left: "0", width: "100%" }}
+          sx={{ position: 'sticky', top: '0', left: '0', width: '100%' }}
         >
           <Tab
             className={classes.tabPanel}
@@ -165,7 +165,7 @@ export default function BasicTabs() {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          <ChargingTab/>
+          <ChargingTab />
         </TabPanel>
 
         <TabPanel value={value} index={2}>
