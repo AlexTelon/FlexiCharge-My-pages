@@ -28,7 +28,6 @@ jobs:
         npm run lint > lint-results.txt
         
     - name: Convert Linter Errors to Annotations
-      uses: actions/github-script@0.10.0
       with:
         script: |
           const fs = require('fs');
