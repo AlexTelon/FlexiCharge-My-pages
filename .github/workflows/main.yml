@@ -25,32 +25,7 @@ jobs:
         
     - name: Run Linter
       run: |
-        npm run lint > lint-results.txt
-        
-    - name: Convert Linter Errors to Annotations
-      with:
-        script: |
-          const fs = require('fs');
-          const lintResults = fs.readFileSync('lint-results.txt', 'utf-8');
-          const annotations = lintResults.split('\n').map(line => {
-            const parts = line.split(':');
-            return {
-              file: parts[0],
-              start_line: parseInt(parts[1], 10),
-              end_line: parseInt(parts[1], 10),
-              annotation_level: 'warning',
-              message: parts[2],
-            };
-          });
-          await github.checks.create({
-            ...context.repo,
-            check_run_id: context.payload.check_run.id,
-            output: {
-              title: 'Linting Warnings',
-              summary: 'Linting warnings found in the code.',
-              annotations,
-            },
-          });
+        npm run lint
         
     - name: Run Tests
       run: |

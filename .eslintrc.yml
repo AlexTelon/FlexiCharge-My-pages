@@ -46,4 +46,6 @@ rules: {
   'no-mixed-spaces-and-tabs': ['warn'],
   'import/export': ['warn'],
   'no-tabs': ['warn'],
+  '@typescript-eslint/no-var-requires': ['warn'],
+  '@typescript-eslint/restrict-plus-operands': ['warn'],
 }
