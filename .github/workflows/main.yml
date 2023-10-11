@@ -1,4 +1,4 @@
-name: Run Tests on Push
+name: Run Linter and Tests on Push
 
 on:
   push:
@@ -22,7 +22,11 @@ jobs:
       run: |
         npm install -g create-react-app
         npm i @material-ui/lab
-
+        
+    - name: Run Linter
+      run: |
+        npm run lint
+        
     - name: Run Tests
       run: |
         npm test
