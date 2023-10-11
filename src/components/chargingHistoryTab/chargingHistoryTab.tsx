@@ -12,14 +12,15 @@ import Paper from '@mui/material/Paper';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { visuallyHidden } from '@mui/utils';
-import MockCharging from './MockCharging.json';
+import MockCharging from "./MockCharging.json";
+
 
 interface Data {
-  date: string
-  kWh: number
-  price: number
-  location: string
-  costs: number
+  date: string;
+  kWh: number;
+  price: number;
+  location: string;
+  costs: number;
 }
 
 function createData(
@@ -39,7 +40,8 @@ function createData(
 }
 
 // read data
-const dataRows = MockCharging.map(item => createData(item.year + '-' + item.month + '-' + item.day, item.kWh, item.price, item.location, item.costs));
+const dataRows = MockCharging.map(item => createData(item.year+"-"+item.month+"-"+item.day, item.kWh, item.price, item.location, item.costs));
+
 
 // sorting
 type Order = 'asc' | 'desc';
@@ -56,11 +58,11 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
 function getComparator<Key extends keyof any>(
   order: Order,
-  orderBy: Key
+  orderBy: Key,
 ): (
-    a: { [key in Key]: number | string },
-    b: { [key in Key]: number | string },
-  ) => number {
+  a: { [key in Key]: number | string },
+  b: { [key in Key]: number | string },
+) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
@@ -78,45 +80,46 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
   return stabilizedThis.map((el) => el[0]);
 }
 
+
 // define table cells
 interface HeadCell {
-  id: keyof Data
-  label: string
-  numeric: boolean
+  id: keyof Data;
+  label: string;
+  numeric: boolean;
 }
 
 const headCells: readonly HeadCell[] = [
   {
     id: 'date',
     label: 'Date',
-    numeric: false
+    numeric: false,
   },
   {
     id: 'kWh',
     label: 'Electricity transferred (kWh)',
-    numeric: true
+    numeric: true,
   },
   {
     id: 'price',
     label: 'Price (SEK/kWh)',
-    numeric: true
+    numeric: true,
   },
   {
     id: 'location',
     label: 'Location',
-    numeric: false
+    numeric: false,
   },
   {
     id: 'costs',
     label: 'Total costs (SEK)',
-    numeric: true
-  }
+    numeric: true,
+  },
 ];
 
 interface EnhancedTableProps {
-  order: Order
-  orderBy: string
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void
+  order: Order;
+  orderBy: string;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
@@ -128,7 +131,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
   return (
     <TableHead>
-      <TableRow sx={{ backgroundColor: '#e5e5e5' }}>
+      <TableRow sx={{ backgroundColor: "#e5e5e5" }}>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -139,16 +142,14 @@ function EnhancedTableHead(props: EnhancedTableProps) {
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
-              sx={{ fontWeight: 'bold' }}
+              sx={{ fontWeight: "bold" }}
             >
               {headCell.label}
-              {orderBy === headCell.id
-                ? (
-                  <Box component="span" sx={visuallyHidden}>
-                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                  </Box>
-                )
-                : null}
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
             </TableSortLabel>
           </TableCell>
         ))}
@@ -166,7 +167,7 @@ export default function EnhancedTable() {
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof Data,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -194,9 +195,9 @@ export default function EnhancedTable() {
     () =>
       stableSort(dataRows, getComparator(order, orderBy)).slice(
         page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage
+        page * rowsPerPage + rowsPerPage,
       ),
-    [order, orderBy, page, rowsPerPage]
+    [order, orderBy, page, rowsPerPage],
   );
 
   return (
@@ -217,6 +218,7 @@ export default function EnhancedTable() {
 
                 return (
                   <TableRow
+                  // eslint-disable-next-line
                     hover={true}
                     tabIndex={-1}
                     key={row.date}
@@ -226,7 +228,7 @@ export default function EnhancedTable() {
                       component="th"
                       id={labelId}
                       scope="row"
-                      sx={{ whiteSpace: 'nowrap' }}
+                      sx={{ whiteSpace: "nowrap" }}
                     >
                       {row.date}
                     </TableCell>
@@ -240,7 +242,7 @@ export default function EnhancedTable() {
               {emptyRows > 0 && (
                 <TableRow
                   style={{
-                    height: (dense ? 33 : 53) * emptyRows
+                    height: (dense ? 33 : 53) * emptyRows,
                   }}
                 >
                   <TableCell colSpan={6} />

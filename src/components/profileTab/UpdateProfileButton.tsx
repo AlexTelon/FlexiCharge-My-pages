@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import UpdateProfileInformation from './UpdateProfileInformation';
+import React, { useState } from "react";
+import UpdateProfileInformation from "./UpdateProfileInformation";
 
 const UpdateProfileButton = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const toogleCheck = () => {
     setIsOpen(() => !isOpen);
     !isOpen
-      ? console.log('Update form is open')
-      : console.log('Update form is closed');
+      ? console.log("Update form is open")
+      : console.log("Update form is closed");
   };
   return (
     <div>

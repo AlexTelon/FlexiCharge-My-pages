@@ -1,36 +1,36 @@
-import { Button, TextField, Grid, Box } from '@material-ui/core';
-import LockIcon from '@material-ui/icons/Lock';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
-import { Redirect, Link } from 'react-router-dom';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { ValidationForm } from '../utils/pageValidation/validation';
-import useStyles from '../components/styles/changePasswordStyles';
-import FlexiChargeLogoDarkGrey from '../assets/FlexiChargeLogoDarkGrey.svg';
-import Logout from '@mui/icons-material/Logout';
+import { Button, TextField, Grid, Box } from "@material-ui/core";
+import LockIcon from "@material-ui/icons/Lock";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LockTwoToneIcon from "@mui/icons-material/LockTwoTone";
+import { Redirect, Link } from "react-router-dom";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { ValidationForm } from "../utils/pageValidation/validation";
+import useStyles from "../components/styles/changePasswordStyles";
+import FlexiChargeLogoDarkGrey from "../assets/FlexiChargeLogoDarkGrey.svg";
+import Logout from "@mui/icons-material/Logout";
 
 const inputFieldValues = [
   {
-    name: 'password',
-    label: 'Current Password',
-    type: 'password',
-    id: 'password',
-    icon: <LockOutlinedIcon style={{ color: '#78bd76' }} />
+    name: "password",
+    label: "Current Password",
+    type: "password",
+    id: "password",
+    icon: <LockOutlinedIcon style={{ color: "#78bd76" }} />,
   },
   {
-    name: 'newPassword',
-    label: 'New Password',
-    type: 'password',
-    id: 'newPassword',
-    icon: <LockTwoToneIcon style={{ color: '#78bd76' }} />
+    name: "newPassword",
+    label: "New Password",
+    type: "password",
+    id: "newPassword",
+    icon: <LockTwoToneIcon style={{ color: "#78bd76" }} />,
   },
   {
-    name: 'confirmPassword',
-    label: 'Confirm Password',
-    type: 'password',
-    id: 'confirmPassword',
-    icon: <LockIcon style={{ color: '#78bd76' }} />
-  }
+    name: "confirmPassword",
+    label: "Confirm Password",
+    type: "password",
+    id: "confirmPassword",
+    icon: <LockIcon style={{ color: "#78bd76" }} />,
+  },
 ];
 
 const ChangePassword = () => {
@@ -51,7 +51,7 @@ const ChangePassword = () => {
         </Link>
 
         <Link to="/sign-in" className={classes.logoutButton}>
-          <Logout style={{ color: '#78bd76' }} fontSize="large" />
+          <Logout style={{ color: "#78bd76" }} fontSize="large" />
           Sign Out
         </Link>
       </div>
@@ -71,7 +71,7 @@ const ChangePassword = () => {
                         <InputAdornment position="start">
                           {inputFieldValue.icon}
                         </InputAdornment>
-                      )
+                      ),
                     }}
                     fullWidth
                     className={classes.textFields}
@@ -81,7 +81,7 @@ const ChangePassword = () => {
                     autoComplete="none"
                     {...(errors[inputFieldValue.name] && {
                       error: true,
-                      helperText: errors[inputFieldValue.name]
+                      helperText: errors[inputFieldValue.name],
                     })}
                   />
                 </Grid>
