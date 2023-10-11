@@ -52,7 +52,6 @@ jobs:
               annotations,
             },
           });
-        }
         
     - name: Run Tests
       run: |
