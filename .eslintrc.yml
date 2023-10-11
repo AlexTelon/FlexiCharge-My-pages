@@ -23,9 +23,9 @@ settings: {
 rules: {
   'semi': 'off',
   'indent': 'off',
-  'eol-last': ['error', 'never'],
-  '@typescript-eslint/semi': ['error', 'always'],
-  '@typescript-eslint/indent': ['error', 2],
+  'eol-last': ['warn', 'never'],
+  '@typescript-eslint/semi': ['warn', 'always'],
+  '@typescript-eslint/indent': ['warn', 2],
   '@typescript-eslint/no-floating-promises': 0,
   '@typescript-eslint/strict-boolean-expressions': 0,
   '@typescript-eslint/triple-slash-reference': 0,
