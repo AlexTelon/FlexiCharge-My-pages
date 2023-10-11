@@ -34,6 +34,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "jest",
+		"lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx",
+		"lintFix": "eslint . --ignore-path .gitignore --ext .ts,.tsx --fix",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
