@@ -83,10 +83,7 @@ class AuthService {
     newCity: string,
     newCountry: string
   ) {
-    //const token = this.getCurrentUser().accessToken
-
-    // hardcode correct user token from swagger
-    const token = "token";
+    const token = this.getCurrentUser().accessToken
     const axios = require("axios");
 
     const config = {

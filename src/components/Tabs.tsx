@@ -156,8 +156,6 @@ export default function BasicTabs() {
     color: "#333 !important",
   };
 
-  // hardcoded calling of user information update function
-  const x = AuthService.updateUserProfile("Max", "Mustermann", "+46123456789", "StreetTest", "12345", "Testcity", "Testcountry");
 
   return (
     <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
