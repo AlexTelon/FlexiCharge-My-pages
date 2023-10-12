@@ -91,13 +91,13 @@ class AuthService {
       url: API_URL + "user-information",
       headers: {Authorization: `Bearer ${token}`},
       data: {
-        firstName: newFirstName ? newFirstName : oldUserInformation.firstName,
-        lastName: newLastName ? newLastName : oldUserInformation.lastName,
-        phoneNumber: newPhoneNumber ? newPhoneNumber : oldUserInformation.phoneNumber,
-        streetAddress: newStreetAddress ? newStreetAddress : oldUserInformation.streetAddress,
-        zipCode: newZipCode ? newZipCode : oldUserInformation.zipCode,
-        city: newCity ? newCity : oldUserInformation.city,
-        country: newCountry ? newCountry : oldUserInformation.country,
+        firstName: newFirstName.length !== 0 ? newFirstName : oldUserInformation.firstName,
+        lastName: newLastName.length !== 0 ? newLastName : oldUserInformation.lastName,
+        phoneNumber: newPhoneNumber.length !== 0 ? newPhoneNumber : oldUserInformation.phoneNumber,
+        streetAddress: newStreetAddress.length !== 0 ? newStreetAddress : oldUserInformation.streetAddress,
+        zipCode: newZipCode.length !== 0 ? newZipCode : oldUserInformation.zipCode,
+        city: newCity.length !== 0 ? newCity : oldUserInformation.city,
+        country: newCountry.length !== 0 ? newCountry : oldUserInformation.country,
       },
     };
 
