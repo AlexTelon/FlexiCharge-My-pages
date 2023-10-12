@@ -85,18 +85,19 @@ class AuthService {
   ) {
     const token = this.getCurrentUser().accessToken
     const axios = require("axios");
+    const oldUserInformation = this.getUserProfileInfo()
     const config = {
       method: "put",
       url: API_URL + "user-information",
       headers: {Authorization: `Bearer ${token}`},
       data: {
-        firstName: newFirstName,
-        lastName: newLastName,
-        phoneNumber: newPhoneNumber,
-        streetAddress: newStreetAddress,
-        zipCode: newZipCode,
-        city: newCity,
-        country: newCountry,
+        firstName: newFirstName.length !== 0 ? newFirstName : oldUserInformation.firstName,
+        lastName: newLastName.length !== 0 ? newLastName : oldUserInformation.lastName,
+        phoneNumber: newPhoneNumber.length !== 0 ? newPhoneNumber : oldUserInformation.phoneNumber,
+        streetAddress: newStreetAddress.length !== 0 ? newStreetAddress : oldUserInformation.streetAddress,
+        zipCode: newZipCode.length !== 0 ? newZipCode : oldUserInformation.zipCode,
+        city: newCity.length !== 0 ? newCity : oldUserInformation.city,
+        country: newCountry.length !== 0 ? newCountry : oldUserInformation.country,
       },
     };
 
