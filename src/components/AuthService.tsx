@@ -85,7 +85,6 @@ class AuthService {
   ) {
     const token = this.getCurrentUser().accessToken
     const axios = require("axios");
-    console.log(newFirstName)
     const config = {
       method: "put",
       url: API_URL + "user-information",
@@ -103,10 +102,10 @@ class AuthService {
 
     return axios(config)
     .then(function (response: any) {
-      console.log(JSON.stringify(response.data));
+      console.log(response.data)
     })
     .catch(function (error: any) {
-      console.log(error);
+      console.log(error)
     });
   }
 

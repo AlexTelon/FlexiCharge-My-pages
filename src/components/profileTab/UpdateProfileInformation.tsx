@@ -67,17 +67,6 @@ const UpdateProfileInformation = (props: any) => {
   async function fetchNewInfoFromTextArea(){
     
     let listOfNewProfileInfo = [];
-    /*
-      For next year, I'm not sure why this for loop doesn't work.
-      It sends the value of the textareas twice, we only want the value once and then send it.
-      
-    for (let i = 0; i < inputFieldValues.length; i = i+1){
-      listOfNewProfileInfo.push(document.getElementById("index " + i + " of textareas") as HTMLInputElement);
-      console.log(i + " DETTA ÄR i")
-      console.log(listOfNewProfileInfo.push(document.getElementById("index " + i + " of textareas") as HTMLInputElement) + " THIS IS THE INPUTELEMENT");
-      console.log(listOfNewProfileInfo[i].value + " THIS IS THE VALUE FROM THE INPUTELEMENT ABOVE");
-    }
-    */
     listOfNewProfileInfo.push(document.getElementById("index " + 0 + " of textareas") as HTMLInputElement);
     listOfNewProfileInfo.push(document.getElementById("index " + 1 + " of textareas") as HTMLInputElement);
     listOfNewProfileInfo.push(document.getElementById("index " + 2 + " of textareas") as HTMLInputElement);
@@ -94,8 +83,7 @@ const UpdateProfileInformation = (props: any) => {
       listOfNewProfileInfo[5].value,
       listOfNewProfileInfo[6].value,
     );
-    console.log(listOfNewProfileInfo.push(document.getElementById("index " + 0 + " of textareas") as HTMLInputElement));
-    console.log(listOfNewProfileInfo[0].value);
+    window.location.href="/Profile"
   }
   
 
