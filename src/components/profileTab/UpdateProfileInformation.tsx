@@ -5,49 +5,57 @@ import useStyles from "../styles/profileInformationStyles";
 import { ValidationForm } from "../../utils/pageValidation/validation";
 import Alert from "@mui/material/Alert";
 import AuthService from "../AuthService";
+import Profile from "../../pages/Profile"
+import { Redirect } from "react-router-dom";
 
 
 const UpdateProfileInformation = (props: any) => {
   const inputFieldValues = [
     {
       name: "firstName",
-      currentValue: "ShaNawaz",
+      currentValue: "Example: Peter",
       label: "First name: ",
       type: "text",
       id: "firstName",
     },
     {
       name: "lastName",
+      currentValue: "Example: Johansson",
       label: "Last name: ",
       type: "text",
       id: "lastName",
     },
     {
       name: "phoneNumber",
+      currentValue: "Example: +46123456789",
       label: "Phone Number: ",
       type: "text",
       id: "phoneNumber",
     },
     {
       name: "streetAddress",
+      currentValue: "Example: Bankeryd2",
       label: "Street address: ",
       type: "text",
       id: "streetAddress",
     },
     {
       name: "zipCode",
+      currentValue: "Example: 12345",
       label: "Zip code: ",
       type: "text",
       id: "zipCode",
     },
     {
       name: "city",
+      currentValue: "Example: Stockholm",
       label: "City: ",
       type: "text",
       id: "city",
     },
     {
       name: "country",
+      currentValue: "Example: Sweden",
       label: "Country: ",
       type: "text",
       id: "country",
@@ -55,6 +63,31 @@ const UpdateProfileInformation = (props: any) => {
   ];
   const classes = useStyles();
   const { UpdateUserProfile, handleInputValue, errors, msg } = ValidationForm();
+
+  async function fetchNewInfoFromTextArea(){
+    
+    let listOfNewProfileInfo = [];
+    listOfNewProfileInfo.push(document.getElementById("index " + 0 + " of textareas") as HTMLInputElement);
+    listOfNewProfileInfo.push(document.getElementById("index " + 1 + " of textareas") as HTMLInputElement);
+    listOfNewProfileInfo.push(document.getElementById("index " + 2 + " of textareas") as HTMLInputElement);
+    listOfNewProfileInfo.push(document.getElementById("index " + 3 + " of textareas") as HTMLInputElement);
+    listOfNewProfileInfo.push(document.getElementById("index " + 4 + " of textareas") as HTMLInputElement);
+    listOfNewProfileInfo.push(document.getElementById("index " + 5 + " of textareas") as HTMLInputElement);
+    listOfNewProfileInfo.push(document.getElementById("index " + 6 + " of textareas") as HTMLInputElement);
+    await AuthService.updateUserProfile(
+      listOfNewProfileInfo[0].value,
+      listOfNewProfileInfo[1].value,
+      listOfNewProfileInfo[2].value,
+      listOfNewProfileInfo[3].value,
+      listOfNewProfileInfo[4].value,
+      listOfNewProfileInfo[5].value,
+      listOfNewProfileInfo[6].value,
+    );
+    window.location.href="/Profile"
+  }
+  
+
+
 
   return (
     <div className={`${classes.editBox}`}>
@@ -79,6 +112,7 @@ const UpdateProfileInformation = (props: any) => {
             {inputFieldValues.map((inputFieldValue, index) => {
               return (
                 <TextField
+                  id={"index " + index + " of textareas"}
                   key={index}
                   name={inputFieldValue.name}
                   label={inputFieldValue.label}
@@ -99,9 +133,9 @@ const UpdateProfileInformation = (props: any) => {
             })}
             <Button
               className={classes.changebutton}
-              type="submit"
+              type="button"
               variant="contained"
-       
+              onClick={fetchNewInfoFromTextArea}
             >Change
             </Button>
             <Button

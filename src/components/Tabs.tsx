@@ -155,6 +155,8 @@ export default function BasicTabs() {
     "&:focus": { color: "#78bd76 !important", outline: "none" },
     color: "#333 !important",
   };
+
+
   return (
     <Box sx={{ width: "100%", height: "100%", display: "grid", overflow: "auto", gridTemplateColumns: "20% 80%" }}>
       <Box sx={{ height: "100vh", position: "sticky", top: "0", left: "0", display: "flex", flexDirection: "column", backgroundColor: "white" }}>
