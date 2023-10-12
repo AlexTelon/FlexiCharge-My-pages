@@ -1,4 +1,0 @@
-
-> flexicharge@0.1.0 lint
-> eslint . --ignore-path .gitignore --ext .ts,.tsx error
-

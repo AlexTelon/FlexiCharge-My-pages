@@ -52,16 +52,6 @@ or
     npm start
 ```
 
-## Linter
-
-Automaticly find code style errors
-```bash
-    npm run lint
-```
-or automaticly try to fix code style errors
-```bash
-    npm run lintFix
-```
 
 ## AWS
 **Access**
